@@ -94,14 +94,14 @@ function App() {
       if (dir === 'up')    y = 1920;
       return { x, y, opacity: 0, position: 'absolute', width: '100%', height: '100%', zIndex: 5 };
     },
-    animate: { x: 0, y: 0, opacity: 1, zIndex: 10, transition: { duration: 0.6, ease: [0.33, 1, 0.68, 1] } },
+    animate: { x: 0, y: 0, opacity: 1, position: 'absolute', width: '100%', height: '100%', zIndex: 10, transition: { duration: 0.6, ease: [0.33, 1, 0.68, 1] } },
     exit: (dir) => {
       let x = 0, y = 0;
       if (dir === 'right') x = -1080;
       if (dir === 'left')  x = 1080;
       if (dir === 'down')  y = 1920;
       if (dir === 'up')    y = -1920;
-      return { x, y, opacity: 0, zIndex: 0, transition: { duration: 0.6, ease: [0.33, 1, 0.68, 1] } };
+      return { x, y, opacity: 0, position: 'absolute', width: '100%', height: '100%', zIndex: 0, transition: { duration: 0.6, ease: [0.33, 1, 0.68, 1] } };
     }
   };
 

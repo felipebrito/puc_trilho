@@ -9,12 +9,12 @@
 
 /* Full screen video for the home page */
 .variant-full {
-    height: 100vh;
+    height: 100%;
 }
 
 /* Half screen video with angular cut for detail pages */
 .variant-split {
-    height: 55vh;
+    height: 55%;
     clip-path: polygon(0 0, 100% 0, 100% calc(100% - 40px), calc(100% - 250px) calc(100% - 40px), calc(100% - 280px) 100%, 0 100%);
 }
 
