@@ -4,7 +4,7 @@
 export const ordovicianoSlides = [
     // Slide 0 - HOME
     {
-        type: 'home',
+        type: 'home_ordoviciano',
         period: 'ordoviciano',
         section: 'home'
     },
@@ -16,7 +16,7 @@ export const ordovicianoSlides = [
         section: 'biodiversidade',
         title: 'A BIODIVERSIDADE DA ÉPOCA',
         description: 'Conheça os representantes da fauna e da flora característicos desse momento geológico.',
-        videoSrc: '/assets/placeholder.mp4'
+        videoSrc: '/assets/ordoviciano/bio_intro_bg.png'
     },
 
     // Slides 2-8: Espécies (Canva Pg 3 a 9)
@@ -25,70 +25,77 @@ export const ordovicianoSlides = [
         period: 'ordoviciano',
         section: 'biodiversidade',
         id: 'homotelus',
-        name: 'HOMOTELUS SP.',
+        name: 'Homotelus sp.',
         subtitle: 'Trilobitas, com cerca de 8 cm de comprimento',
         description: 'A descoberta de muitos fósseis completos de trilobitas do gênero Homotelus juntos, indica que estes animais formavam grandes agregados sazonais, provavelmente para fins reprodutivos. Se alimentavam de restos orgânicos presentes no assoalho oceânico.',
-        videoSrc: '/assets/videos/homotelus_sp.mp4'
+        videoSrc: '/assets/ordoviciano/homotelus.png',
+        seloSrc: '/assets/ordoviciano/homotelus_selo.png'
     },
     {
         type: 'single_species',
         period: 'ordoviciano',
         section: 'biodiversidade',
         id: 'cameroceras',
-        name: 'CAMEROCERAS SP.',
+        name: 'Cameroceras sp.',
         subtitle: 'Molusco predador, podia chegar até 10 m de comprimento',
         description: 'Seu nome significa "chifre com câmaras". Era o maior predador de sua época e assemelhava-se a uma lula, mas com uma imensa concha em forma de cone.',
-        videoSrc: '/assets/videos/cameroceras_sp.mp4'
+        videoSrc: '/assets/ordoviciano/cameroceras.png',
+        seloSrc: '/assets/ordoviciano/cameroceras_selo.png'
     },
     {
         type: 'single_species',
         period: 'ordoviciano',
         section: 'biodiversidade',
         id: 'megalograptus',
-        name: 'MEGALOGRAPTUS SP.',
+        name: 'Megalograptus sp.',
         subtitle: 'Artrópode predador, com cerca de 1,2 m de comprimento',
         description: 'Conhecido também como "escorpião-marinho", era relativamente grande para um predador desse período e um dos escorpiões-marinhos mais antigos que se conhecem.',
-        videoSrc: '/assets/videos/megalograptus_sp.mp4'
+        videoSrc: '/assets/ordoviciano/megalograptus.png',
+        seloSrc: '/assets/ordoviciano/megalograptus_selo.png'
     },
     {
         type: 'single_species',
         period: 'ordoviciano',
         section: 'biodiversidade',
         id: 'balacrinus',
-        name: 'BALACRINUS SP.',
+        name: 'Balacrinus sp.',
         subtitle: 'Equinodermo filtrador, com cerca de 5 cm de comprimento',
         description: 'Animais marinhos conhecidos como lírios-do-mar. Esses organismos possuem um corpo com uma base calcária e longos braços que se estendem para capturar alimento. Viviam aderidos no substrato oceânico.',
-        videoSrc: '/assets/videos/balacrinus_sp.mp4'
+        videoSrc: '/assets/ordoviciano/balacrinus.png',
+        seloSrc: '/assets/ordoviciano/balacrinus_selo.png'
     },
     {
         type: 'single_species',
         period: 'ordoviciano',
         section: 'biodiversidade',
         id: 'sacabambaspis',
-        name: 'SACABAMBASPIS SP.',
+        name: 'Sacabambaspis sp.',
         subtitle: 'Peixe sem mandíbula, com aproximadamente 25 cm de comprimento',
         description: 'Sua boca em forma de colher, tinha pequenas fileiras de plaqueta ósseas para raspar algas e lodo do fundo do mar, bem como se alimentar realizando sucção (sugando). Habitaba águas rasas nas margens continentais de Gondwana.',
-        videoSrc: '/assets/videos/sacabambaspis_sp.mp4'
+        videoSrc: '/assets/ordoviciano/sacabambaspis.png',
+        seloSrc: '/assets/ordoviciano/sacabambaspis_selo.png'
     },
     {
         type: 'single_species',
         period: 'ordoviciano',
         section: 'biodiversidade',
         id: 'promissum',
-        name: 'PROMISSUM SP.',
+        name: 'Promissum sp.',
         subtitle: 'Conodonte predador, com aproximadamente 40 cm de comprimento',
         description: 'Estes animais apresentavam uma boca primitiva sob os olhos, com dentes mineralizados e uma espinha dorsal primitiva. Parecia uma pequena enguia ou um grande verme, sem nenhum tipo de barbatana.',
-        videoSrc: '/assets/placeholder.mp4'
+        videoSrc: '/assets/ordoviciano/promissum.png',
+        seloSrc: '/assets/ordoviciano/promissum_selo.png'
     },
     {
         type: 'single_species',
         period: 'ordoviciano',
         section: 'biodiversidade',
         id: 'sowerbyella',
-        name: 'SOWERBYELLA SP.',
+        name: 'Sowerbyella sp.',
         subtitle: 'Braquiópodes filtradores, com 1,5 cm de comprimento',
         description: 'Animais solitários, exclusivamente marinhos e bentônicos. Apresentam corpo mole incluso numa carapaça composta por duas valvas com espinhos, viviam aderidos no fundo oceânico.',
-        videoSrc: '/assets/placeholder.mp4'
+        videoSrc: '/assets/ordoviciano/sowerbyella.png',
+        seloSrc: '/assets/ordoviciano/sowerbyella_selo.png'
     },
 
     // Slide 9: Extinction Intro (Canva Pg 10)

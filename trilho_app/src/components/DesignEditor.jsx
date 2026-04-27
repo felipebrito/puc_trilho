@@ -1,6 +1,28 @@
 import React, { useState, useEffect } from 'react';
 
 const cssConfigs = {
+    'ordoviciano-home': [
+        { label: 'Titles Margin Top', prop: '--ordovician-titles-mt', value: 516, min: 0, max: 1000, suffix: 'px' },
+        { label: 'Subtitle Size', prop: '--ordovician-subtitle-size', value: 73, min: 10, max: 200, suffix: 'px' },
+        { label: 'Subtitle Spacing', prop: '--ordovician-subtitle-spacing', value: 7.8, min: -10, max: 50, suffix: 'px' },
+        { label: 'Subtitle MB', prop: '--ordovician-subtitle-mb', value: 0, min: -50, max: 100, suffix: 'px' },
+        { label: 'Title Size', prop: '--ordovician-title-size', value: 143, min: 10, max: 300, suffix: 'px' },
+        { label: 'Title Spacing', prop: '--ordovician-title-spacing', value: 9.7, min: -10, max: 50, suffix: 'px' },
+        { label: 'Title Line Height', prop: '--ordovician-title-lh', value: 0.9, min: 0.1, max: 3, suffix: '' },
+        { label: 'Title MT', prop: '--ordovician-title-mt', value: -18, min: -150, max: 150, suffix: 'px' },
+        { label: 'Title MB', prop: '--ordovician-title-mb', value: 62, min: -150, max: 150, suffix: 'px' },
+        { label: 'Title ML', prop: '--ordovician-title-ml', value: -5, min: -100, max: 100, suffix: 'px' },
+        { label: 'Desc Size', prop: '--ordovician-desc-size', value: 90, min: 10, max: 200, suffix: 'px' },
+        { label: 'Desc Width', prop: '--ordovician-desc-w', value: 900, min: 100, max: 1080, suffix: 'px' },
+        { label: 'Desc MT', prop: '--ordovician-desc-mt', value: 90, min: -150, max: 250, suffix: 'px' },
+        { label: 'Desc Spacing', prop: '--ordovician-desc-spacing', value: -5, min: -20, max: 20, suffix: 'px' },
+        { label: 'Desc MB', prop: '--ordovician-desc-mb', value: -8, min: -100, max: 100, suffix: 'px' },
+        { label: 'SubDesc Size', prop: '--ordovician-subdesc-size', value: 50, min: 10, max: 200, suffix: 'px' },
+        { label: 'SubDesc Width', prop: '--ordovician-subdesc-w', value: 823, min: 100, max: 1080, suffix: 'px' },
+        { label: 'Menu Top', prop: '--ordovician-menu-top', value: 1357, min: 0, max: 1920, suffix: 'px' },
+        { label: 'Menu Left', prop: '--ordovician-menu-left', value: 102, min: 0, max: 1080, suffix: 'px' },
+        { label: 'Menu Gap', prop: '--ordovician-menu-gap', value: 21, min: 0, max: 150, suffix: 'px' }
+    ],
     'devoniano-home': [
         { label: 'Titles Margin Top', prop: '--devonian-titles-mt', value: 430, min: 0, max: 1000, suffix: 'px' },
         { label: 'Subtitle Size', prop: '--devonian-subtitle-size', value: 73, min: 10, max: 200, suffix: 'px' },
@@ -81,6 +103,57 @@ const cssConfigs = {
     'devoniano-bio-ichthyostega': createDevonianoSpecimenConfig('ichthyostega', { nameMt: 67, nameSize: 86, subW: 935, descMt: -33, descW: 869, descLH: 47 }),
     'devoniano-bio-drepanophycus': createDevonianoSpecimenConfig('drepanophycus', { subMt: 78, subW: 834, descMt: 124, descW: 870, descLH: 50 }),
     
+    // Ordoviciano
+    'ordoviciano-bio-intro': createDevonianoIntroConfig('ord-bio', { 
+        bodyTop: 937, 
+        bodyW: 651,
+        headingTop: -62, 
+        headingSize: 100,
+        headingW: 805, 
+        headingSpacing: -1,
+        headingLH: 1.05 
+    }),
+    'ordoviciano-bio-homotelus': createDevonianoSpecimenConfig('ord-homotelus', {
+        subMt: 40,
+        descMt: 82,
+        descW: 880
+    }),
+    'ordoviciano-bio-cameroceras': createDevonianoSpecimenConfig('ord-cameroceras', {
+        subMt: 38,
+        subW: 790,
+        descMt: 69,
+        descW: 798
+    }),
+    'ordoviciano-bio-megalograptus': createDevonianoSpecimenConfig('ord-megalograptus', {
+        subMt: 40,
+        subW: 719,
+        descMt: 66,
+        bgScale: 1.1,
+        bgX: 50
+    }),
+    'ordoviciano-bio-balacrinus': createDevonianoSpecimenConfig('ord-balacrinus', {
+        subMt: 45,
+        subW: 776,
+        descMt: 60,
+        descW: 893
+    }),
+    'ordoviciano-bio-sacabambaspis': createDevonianoSpecimenConfig('ord-sacabambaspis', {
+        descMt: 73,
+        descW: 904
+    }),
+    'ordoviciano-bio-promissum': createDevonianoSpecimenConfig('ord-promissum', {
+        descMt: 47,
+        descW: 916
+    }),
+    'ordoviciano-bio-sowerbyella': createDevonianoSpecimenConfig('ord-sowerbyella', {
+        subMt: 42,
+        subW: 683,
+        descMt: 62,
+        descW: 804
+    }),
+    'ordoviciano-extincao-intro': createDevonianoIntroConfig('ord-ext'),
+    'ordoviciano-pos-intro': createDevonianoIntroConfig('ord-pos'),
+
     // Carbonífero
     'devoniano-pos-carbon-meganeura': createDevonianoSpecimenConfig('meganeura'),
     'devoniano-pos-carbon-stethacanthus': createDevonianoSpecimenConfig('stethacanthus'),
@@ -108,6 +181,7 @@ function createDevonianoIntroConfig(sectionPrefix, overrides = {}) {
         { label: 'Underline Display', prop: `--dev-${sectionPrefix}-line-display`, value: overrides.lineDisplay ?? 0, min: 0, max: 1, suffix: '' },
         { label: 'Body Top', prop: `--dev-${sectionPrefix}-body-top`, value: overrides.bodyTop ?? 599, min: 0, max: 1500, suffix: 'px' },
         { label: 'Body Left', prop: `--dev-${sectionPrefix}-body-left`, value: overrides.bodyLeft ?? 36, min: 0, max: 500, suffix: 'px' },
+        { label: 'Body Width', prop: `--dev-${sectionPrefix}-body-w`, value: overrides.bodyW ?? 900, min: 100, max: 1080, suffix: 'px' },
         { label: 'Heading Top', prop: `--dev-${sectionPrefix}-heading-top`, value: overrides.headingTop ?? 0, min: -200, max: 500, suffix: 'px' },
         { label: 'Heading Left', prop: `--dev-${sectionPrefix}-heading-left`, value: overrides.headingLeft ?? 0, min: -200, max: 500, suffix: 'px' },
         { label: 'Heading Size', prop: `--dev-${sectionPrefix}-heading-size`, value: overrides.headingSize ?? 96, min: 20, max: 300, suffix: 'px' },
@@ -151,10 +225,10 @@ function createDevonianoSpecimenConfig(id, overrides = {}) {
         { label: 'Desc LH', prop: `--devonian-${id}-desc-lh`, value: overrides.descLH || 50, min: 10, max: 150, suffix: 'px' },
 
         // 4. Fundo (BG)
-        { label: 'BG Height', prop: `--devonian-${id}-bg-h`, value: 42, min: 20, max: 100, suffix: '%' },
-        { label: 'BG Scale', prop: `--devonian-${id}-bg-scale`, value: 1, min: 0.5, max: 3, suffix: '' },
-        { label: 'BG X', prop: `--devonian-${id}-bg-x`, value: 0, min: -1000, max: 1000, suffix: 'px' },
-        { label: 'BG Y', prop: `--devonian-${id}-bg-y`, value: 0, min: -1000, max: 1000, suffix: 'px' },
+        { label: 'BG Height', prop: `--devonian-${id}-bg-h`, value: overrides.bgH || 42, min: 20, max: 100, suffix: '%' },
+        { label: 'BG Scale', prop: `--devonian-${id}-bg-scale`, value: overrides.bgScale || 1, min: 0.5, max: 3, suffix: '' },
+        { label: 'BG X', prop: `--devonian-${id}-bg-x`, value: overrides.bgX || 0, min: -1000, max: 1000, suffix: 'px' },
+        { label: 'BG Y', prop: `--devonian-${id}-bg-y`, value: overrides.bgY || 0, min: -1000, max: 1000, suffix: 'px' },
 
         // 5. Área Branca
         { label: 'White Top H', prop: `--devonian-${id}-white-h`, value: 34, min: 20, max: 80, suffix: '%' },
