@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import './SilurianGlobe.css';
 
-const SilurianGlobe = ({ onNavigate, slideData }) => {
+const SilurianGlobe = ({ onNavigate, slideData, viewId }) => {
     useEffect(() => {
         const handleKeyDown = (e) => {
             if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
@@ -24,10 +24,10 @@ const SilurianGlobe = ({ onNavigate, slideData }) => {
     };
 
     return (
-        <div className={`view-silurian-globe ${slideData.period || ''} animate-fade-in`}>
+        <div className={`view-silurian-globe ${slideData.period || ''} ${viewId || ''} animate-fade-in`}>
             {/* Blue Header Bar - 1:1 with Canva */}
             <div className="silurian-header-bar">
-                <h1 className="silurian-header-text">EXTINÇÃO</h1>
+                <h1 className="silurian-header-text">{slideData.headerTitle || "EXTINÇÃO"}</h1>
             </div>
 
             <div className="silurian-globe-content">
@@ -53,18 +53,11 @@ const SilurianGlobe = ({ onNavigate, slideData }) => {
                     variants={itemVariants}
                     transition={{ delay: 0.3 }}
                 >
-                    {slideData.imageCaption && (
-                        <p className="globe-image-caption">
-                            {slideData.imageCaption}
-                        </p>
-                    )}
                     <p className="globe-description">
                         {slideData.content}
                     </p>
                     {/* Bottom Blue Line */}
                     <div className="globe-bottom-line"></div>
-                    {/* Optional image caption — used by Devoniano, not Ordoviciano */}
-
                 </motion.div>
             </div>
 

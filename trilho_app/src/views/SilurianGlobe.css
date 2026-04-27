@@ -69,6 +69,7 @@
     text-align: left;
     padding-bottom: 100px;
     margin: 0;
+    white-space: pre-line;
 }
 
 /* Literal Blue Line */
@@ -109,7 +110,63 @@
    OVERRIDES DO DEVONIANO
    ========================================================== */
 
-/* Globe container — Devoniano sem margin-bottom */
-.view-silurian-globe.devoniano .globe-container {
-    margin-bottom: 0;
+/* Globe container — Devoniano overrides */
+.view-silurian-globe.devoniano-pos-extincao-globe .silurian-header-bar,
+.view-silurian-globe.devoniano-pos-extincao-summary .silurian-header-bar {
+    margin-top: var(--header-top, 0px);
+}
+
+.view-silurian-globe.devoniano-pos-extincao-globe .silurian-globe-content,
+.view-silurian-globe.devoniano-pos-extincao-summary .silurian-globe-content {
+    padding-top: var(--glob-mt, 0px);
+}
+
+.view-silurian-globe.devoniano-pos-extincao-globe .globe-container,
+.view-silurian-globe.devoniano-pos-extincao-summary .globe-container {
+    margin-bottom: var(--glob-desc-mt, 100px);
+    width: var(--glob-w, 1080px);
+}
+
+.view-silurian-globe.devoniano-pos-extincao-globe .globe-image,
+.view-silurian-globe.devoniano-pos-extincao-summary .globe-image {
+    width: 100%;
+    height: var(--glob-h, auto);
+    object-fit: cover;
+}
+
+.view-silurian-globe.devoniano-pos-extincao-globe .text-container,
+.view-silurian-globe.devoniano-pos-extincao-summary .text-container {
+    width: var(--glob-desc-w, 930px);
+    padding-left: var(--glob-desc-left, 20px);
+}
+
+.view-silurian-globe.devoniano-pos-extincao-globe .globe-description,
+.view-silurian-globe.devoniano-pos-extincao-summary .globe-description {
+    font-size: var(--glob-desc-size, 38.5px);
+    line-height: var(--glob-desc-lh, 47px);
+}
+
+/* Mapping prefixes to generic variables */
+.devoniano-pos-extincao-globe {
+    --header-top: var(--dev-pos-glob-header-top);
+    --glob-mt: var(--dev-pos-glob-mt);
+    --glob-w: var(--dev-pos-glob-w);
+    --glob-h: var(--dev-pos-glob-h);
+    --glob-desc-mt: var(--dev-pos-glob-desc-mt);
+    --glob-desc-w: var(--dev-pos-glob-desc-w);
+    --glob-desc-left: var(--dev-pos-glob-desc-left);
+    --glob-desc-size: var(--dev-pos-glob-desc-size);
+    --glob-desc-lh: var(--dev-pos-glob-desc-lh);
+}
+
+.devoniano-pos-extincao-summary {
+    --header-top: var(--dev-pos-sum-header-top);
+    --glob-mt: var(--dev-pos-sum-mt);
+    --glob-w: var(--dev-pos-sum-w);
+    --glob-h: var(--dev-pos-sum-h);
+    --glob-desc-mt: var(--dev-pos-sum-desc-mt);
+    --glob-desc-w: var(--dev-pos-sum-desc-w);
+    --glob-desc-left: var(--dev-pos-sum-desc-left);
+    --glob-desc-size: var(--dev-pos-sum-desc-size);
+    --glob-desc-lh: var(--dev-pos-sum-desc-lh);
 }

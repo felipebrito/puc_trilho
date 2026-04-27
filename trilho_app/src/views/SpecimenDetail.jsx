@@ -25,7 +25,7 @@ const SpecimenDetail = ({ slideIndex, totalSlides, onNavigate, slideData }) => {
     if (!specimen) return null;
 
     return (
-        <div className="view-detail animate-fade-in" key={specimen.id}>
+        <div className={`view-detail animate-fade-in ${specimen.period || ''} ${specimen.id || ''}`} key={specimen.id}>
             <BackgroundVideo src={specimen.videoSrc} variant="split" />
 
             <div className="detail-content">
@@ -35,7 +35,11 @@ const SpecimenDetail = ({ slideIndex, totalSlides, onNavigate, slideData }) => {
                 <div className="detail-empty-top"></div>
 
                 <div className="detail-info-area">
-                    <img className="detail-base-bg" src="/assets/baseInternaBranca.svg" alt="" />
+                    <img 
+                        className="detail-base-bg" 
+                        src={specimen.seloSrc ? "/assets/baseInternaBrancaSemLinha.svg" : "/assets/baseInternaBranca.svg"} 
+                        alt="" 
+                    />
 
                     <div className="detail-text-overlay">
                         <h1 className="specimen-name">
@@ -52,6 +56,9 @@ const SpecimenDetail = ({ slideIndex, totalSlides, onNavigate, slideData }) => {
                                 <Typewriter text={specimen.description} delay={15} initialDelay={2000} />
                             </p>
                         </div>
+                        {specimen.seloSrc && (
+                            <img className="specimen-selo" src={specimen.seloSrc} alt="" />
+                        )}
                     </div>
 
                 </div>

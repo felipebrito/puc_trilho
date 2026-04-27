@@ -126,38 +126,142 @@
 }
 
 /* ==========================================================================
-   OVERRIDES DO DEVONIANO
-   Edite aqui para customizar o Devoniano sem afetar o Ordoviciano.
-   Seletor base: .view-section-intro.devoniano
-   Com seção:    .view-section-intro.devoniano.extincao
+   DEVONIANO EXTINÇÃO (COM VARIÁVEIS DO DESIGN EDITOR)
    ========================================================================== */
-
-/* Extinção do Devoniano — texto com os 2 parágrafos */
-.view-section-intro.devoniano.extincao .section-intro-main-text {
-    font-size: 48px;
-    top: 122px;
-    line-height: 1.35;
-    white-space: normal; /* evita o espaço grande do \n\n */
+.view-section-intro.devoniano.extincao .section-bg-image {
+    opacity: var(--dev-ext-bg-opacity, 0.47);
 }
 
-/* Esconde a linha decorativa do meio — só na extinção do Devoniano */
-.view-section-intro.devoniano.extincao .section-body-top-line {
+.view-section-intro.devoniano.extincao .section-intro-header {
+    top: var(--dev-ext-header-top, 66px);
+    left: var(--dev-ext-header-left, 0px);
+}
+
+.view-section-intro.devoniano.extincao .section-intro-period-label {
+    top: var(--dev-ext-label-top, -5px);
+    left: var(--dev-ext-label-left, 41px);
+    font-size: var(--dev-ext-label-size, 30px);
+    letter-spacing: var(--dev-ext-label-spacing, 6px);
+}
+
+.view-section-intro.devoniano.extincao .section-intro-period-name {
+    top: var(--dev-ext-name-top, 36px);
+    left: var(--dev-ext-name-left, 36px);
+    font-size: var(--dev-ext-name-size, 60px);
+    letter-spacing: var(--dev-ext-name-spacing, 3px);
+}
+
+.view-section-intro.devoniano.extincao .section-title-underline {
     display: none;
 }
 
-/* Posição do corpo — extinção do Devoniano */
 .view-section-intro.devoniano.extincao .section-intro-body {
-    top: 240px;
+    top: var(--dev-ext-body-top, 540px);
+    left: var(--dev-ext-body-left, 3.1px);
 }
 
-/* Posição do corpo — E DEPOIS? do Devoniano */
-.view-section-intro.devoniano.pos_extincao .section-intro-body {
-    top: 370px;
+.view-section-intro.devoniano.extincao .section-intro-main-heading {
+    font-size: var(--dev-ext-heading-size, 96px);
+    width: var(--dev-ext-heading-w, 900px);
+    letter-spacing: var(--dev-ext-heading-spacing, 0px);
+    line-height: var(--dev-ext-heading-lh, 1.05);
 }
 
-/* Linha decorativa inferior — só na extinção do Devoniano */
+.view-section-intro.devoniano.extincao .section-body-top-line,
 .view-section-intro.devoniano.extincao .section-body-bottom-line {
-    top: 1320px;
+    display: none;
 }
 
-/* Adicione mais overrides do Devoniano abaixo conforme necessário */
+/* ==========================================================================
+   DEVONIANO PÓS-EXTINÇÃO (COM VARIÁVEIS DO DESIGN EDITOR)
+   ========================================================================== */
+.view-section-intro.devoniano.pos_extincao .section-bg-image {
+    opacity: var(--dev-pos-bg-opacity, 0.47);
+}
+
+.view-section-intro.devoniano.pos_extincao .section-intro-header {
+    top: var(--dev-pos-header-top, 66px);
+    left: var(--dev-pos-header-left, 0px);
+}
+
+.view-section-intro.devoniano.pos_extincao .section-intro-period-label {
+    top: var(--dev-pos-label-top, -5px);
+    left: var(--dev-pos-label-left, 41px);
+    font-size: var(--dev-pos-label-size, 30px);
+    letter-spacing: var(--dev-pos-label-spacing, 6px);
+}
+
+.view-section-intro.devoniano.pos_extincao .section-intro-period-name {
+    top: var(--dev-pos-name-top, 36px);
+    left: var(--dev-pos-name-left, 36px);
+    font-size: var(--dev-pos-name-size, 60px);
+    letter-spacing: var(--dev-pos-name-spacing, 3px);
+}
+
+.view-section-intro.devoniano.pos_extincao .section-title-underline {
+    display: none;
+}
+
+.view-section-intro.devoniano.pos_extincao .section-intro-body {
+    top: var(--dev-pos-body-top, 540px);
+    left: var(--dev-pos-body-left, 3.1px);
+}
+
+.view-section-intro.devoniano.pos_extincao .section-intro-main-heading {
+    font-size: var(--dev-pos-heading-size, 96px);
+    width: var(--dev-pos-heading-w, 900px);
+    letter-spacing: var(--dev-pos-heading-spacing, 0px);
+    line-height: var(--dev-pos-heading-lh, 1.05);
+}
+
+.view-section-intro.devoniano.pos_extincao .section-body-top-line,
+.view-section-intro.devoniano.pos_extincao .section-body-bottom-line {
+    display: none;
+}
+
+/* ==========================================================================
+   DEVONIANO BIODIVERSIDADE (COM VARIAVEIS DO DESIGN EDITOR)
+   ========================================================================== */
+.view-section-intro.devoniano.biodiversidade .section-bg-image {
+    opacity: var(--dev-bio-bg-opacity, 0.47);
+}
+
+.view-section-intro.devoniano.biodiversidade .section-intro-header {
+    top: var(--dev-bio-header-top, 66px);
+    left: var(--dev-bio-header-left, 0px);
+}
+
+.view-section-intro.devoniano.biodiversidade .section-intro-period-label {
+    top: var(--dev-bio-label-top, -5px);
+    left: var(--dev-bio-label-left, 41px);
+    font-size: var(--dev-bio-label-size, 30px);
+    letter-spacing: var(--dev-bio-label-spacing, 6px);
+}
+
+.view-section-intro.devoniano.biodiversidade .section-intro-period-name {
+    top: var(--dev-bio-name-top, 36px);
+    left: var(--dev-bio-name-left, 36px);
+    font-size: var(--dev-bio-name-size, 60px);
+    letter-spacing: var(--dev-bio-name-spacing, 3px);
+}
+
+.view-section-intro.devoniano.biodiversidade .section-title-underline {
+    opacity: var(--dev-bio-line-display, 0);
+}
+
+.view-section-intro.devoniano.biodiversidade .section-intro-body {
+    top: var(--dev-bio-body-top, 599px);
+    left: var(--dev-bio-body-left, 36px);
+}
+
+.view-section-intro.devoniano.biodiversidade .section-intro-main-heading {
+    font-size: var(--dev-bio-heading-size, 96px);
+    width: var(--dev-bio-heading-w, 900px);
+    letter-spacing: var(--dev-bio-heading-spacing, 0px);
+    line-height: var(--dev-bio-heading-lh, 1.05);
+}
+
+.view-section-intro.devoniano.biodiversidade .section-body-top-line,
+.view-section-intro.devoniano.biodiversidade .section-body-bottom-line {
+    display: none;
+}

@@ -216,7 +216,7 @@ export const devonianoSlides = [
         section: 'biodiversidade',
         title: 'A BIODIVERSIDADE DA ÉPOCA',
         description: 'Conheça os representantes da fauna e da flora característicos desse momento geológico.',
-        videoSrc: '/assets/placeholder.mp4'
+        videoSrc: '/assets/devoniano_biodiversidade_bg.png'
     },
 
     // Slides 2-12: Espécies (Canva Pg 3 a 13)
@@ -225,162 +225,183 @@ export const devonianoSlides = [
         period: 'devoniano',
         section: 'biodiversidade',
         id: 'dunkleosteus',
-        name: 'DUNKLEOSTEUS SP.',
-        subtitle: 'Peixe predador, com cerca de 4 a 10 m de comprimento',
+        name: 'Dunkleosteus sp.',
+        subtitle: 'Peixe predador, média de 4 a 10 m de comprimento',
         description: 'Um dos maiores predadores da época, com um corpo dotado de placas que formavam uma armadura óssea. Era capaz de partir um tubarão ao meio com uma única mordida.',
-        videoSrc: '/assets/placeholder.mp4'
+        videoSrc: '/assets/devoniano/img_dunkleosteus.png',
+        seloSrc: '/assets/devoniano/selo_dunkleosteus.png'
     },
     {
         type: 'single_species',
         period: 'devoniano',
         section: 'biodiversidade',
         id: 'campbellodus',
-        name: 'CAMPBELLODUS SP.',
+        name: 'Campbellodus sp.',
         subtitle: 'Peixe carnívoro, com cerca de 40 cm de comprimento',
         description: 'Era um peixe dotado de placas ósseas. Seu fóssil foi encontrado em perfeita forma tridimensional. Seus dentes eram feitos de placas ósseas para quebrar e triturar conchas.',
-        videoSrc: '/assets/placeholder.mp4'
+        videoSrc: '/assets/devoniano/img_campbellodus.png',
+        seloSrc: '/assets/devoniano/selo_campbellodus.png'
     },
     {
         type: 'single_species',
         period: 'devoniano',
         section: 'biodiversidade',
         id: 'ctenacanthus',
-        name: 'CTENACANTHUS SP.',
+        name: 'Ctenacanthus sp.',
         subtitle: 'Peixe cartilaginoso predador, com cerca de 2 m de comprimento',
-        description: 'Tubarão com uma mandíbula poderosa, que apresentava as espinhas das nadadeiras cobertas por fileiras de tubérculos, apresentando uma aparência de "pente".',
-        videoSrc: '/assets/placeholder.mp4'
+        description: 'Tubarões com uma mandíbula poderosa, que apresentavam as espinhas das nadadeiras cobertas por fileiras de tubérculos, apresentando uma aparência de “pente”.',
+        videoSrc: '/assets/devoniano/img_ctenacanthus.png',
+        seloSrc: '/assets/devoniano/selo_ctenacanthus.png'
     },
     {
         type: 'single_species',
         period: 'devoniano',
         section: 'biodiversidade',
         id: 'gogonasus',
-        name: 'GOGONASUS SP.',
+        name: 'Gogonasus sp.',
         subtitle: 'Peixe carnívoro, com cerca de 30 cm de comprimento',
         description: 'Possuía dois pares de nadadeiras lobadas e musculosas, além de um par de narinas externas.',
-        videoSrc: '/assets/placeholder.mp4'
+        videoSrc: '/assets/devoniano/img_gogonasus.png',
+        seloSrc: '/assets/devoniano/selo_gogonasus.png'
     },
     {
         type: 'single_species',
         period: 'devoniano',
         section: 'biodiversidade',
         id: 'griphognatus',
-        name: 'GRIPHOGNATUS SP.',
+        name: 'Griphognatus sp.',
         subtitle: 'Peixe dipnoico carnívoro, com cerca de 60 centímetros de comprimento',
-        description: 'Peixe conhecido por apresentar um focinho em forma de "bico de pato", que era usado para procurar vermes e artrópodes no lodo do assoalho marinho.',
-        videoSrc: '/assets/placeholder.mp4'
+        description: 'Peixe conhecido por apresentar um focinho em forma de “bico de pato”, que era usado para procurar vermes e artrópodes no lodo do assoalho marinho.',
+        videoSrc: '/assets/devoniano/img_griphognatus.png',
+        seloSrc: '/assets/devoniano/selo_griphognatus.png'
     },
     {
         type: 'single_species',
         period: 'devoniano',
         section: 'biodiversidade',
         id: 'furcaster',
-        name: 'FURCASTER SP.',
+        name: 'Furcaster sp.',
         subtitle: 'Equinodermo carnívoro, com cerca de 60 cm de comprimento',
-        description: 'Gênero extinto de "Brittle Stars" (estrelas frágeis). Seus 5 longos e finos braços eram utilizados para locomoção, de forma rastejante, no fundo do mar.',
-        videoSrc: '/assets/placeholder.mp4'
+        description: 'Gênero extinto de “Brittle Stars” (estrelas frágeis). Seus 5 longos e finos braços eram utilizados para locomoção, de forma rastejante, no fundo do mar.',
+        videoSrc: '/assets/devoniano/img_furcaster.png',
+        seloSrc: '/assets/devoniano/selo_furcaster.png'
     },
     {
         type: 'single_species',
         period: 'devoniano',
         section: 'biodiversidade',
         id: 'palaeoisopus',
-        name: 'PALAEOISOPUS PROBLEMATICUS',
+        name: 'Palaeoisopus problematicus sp.',
         subtitle: 'Artrópode predador, com cerca de 20 cm de comprimento',
-        description: 'Era um picnogônida — parente ancestral das aranhas-do-mar. Seu corpo era sustentado por longas pernas articuladas, utilizadas para se mover sobre o fundo oceânico e capturar presas como corais e hidroides.',
-        videoSrc: '/assets/placeholder.mp4'
+        description: 'Este quelicerado marinho apresentava pernas de até 18 cm e fortes pinças, tornando-o um caçador extremamente ativo.',
+        videoSrc: '/assets/devoniano/img_palaeoisopus.png',
+        seloSrc: '/assets/devoniano/selo_palaeoisopus.png'
     },
     {
         type: 'single_species',
         period: 'devoniano',
         section: 'biodiversidade',
         id: 'archaeopteris',
-        name: 'ARCHAEOPTERIS SP.',
+        name: 'Archaeopteris sp.',
         subtitle: 'Árvore, com porte de até 30 m',
-        description: 'Progimnosperma, com folhas semelhantes às das samambaias. Conhecida por ser considerada a primeira árvore lenhosa e primeira árvore a formar florestas.',
-        videoSrc: '/assets/placeholder.mp4'
+        description: 'Progimnosperma, com folhas semelhantes às das samambaias. Considerada a primeira árvore lenhosa e primeira árvore a formar florestas.',
+        videoSrc: '/assets/devoniano/img_archaeopteris.png',
+        seloSrc: '/assets/devoniano/selo_archaeopteris.png'
     },
     {
         type: 'single_species',
         period: 'devoniano',
         section: 'biodiversidade',
         id: 'tiktaalik',
-        name: 'TIKTAALIK ROSEAE',
-        subtitle: 'Peixe predador, de aproximadamente 1 a 2 m de comprimento',
-        description: 'Vivia em lagos e rios de água doce, próximo à beira d\'água. Era um predador de emboscada. Utilizava suas nadadeiras para se elevar no raso e poderia sobreviver por curtos períodos fora d\'água, mecanismo desenvolvido para sobreviver dos grandes predadores marinhos da época, sendo um precursor dos tetrápodes.',
-        videoSrc: '/assets/placeholder.mp4'
+        name: 'Tiktaalik roseae sp.',
+        subtitle: 'Peixe predador, média de 1 a 2 m de comprimento',
+        description: 'Vivia em lagos e rios de água doce, próximo à beira d’água. Era um predador de emboscada. Utilizava suas nadadeiras para se elevar no raso e poderia sobreviver por curtos períodos fora d’água, mecanismo desenvolvido para sobreviver aos grandes predadores marinhos da época. Foi um precursor dos tetrápodes.',
+        videoSrc: '/assets/devoniano/img_tiktaalik.png',
+        seloSrc: '/assets/devoniano/selo_tiktaalik.png'
     },
     {
         type: 'single_species',
         period: 'devoniano',
         section: 'biodiversidade',
         id: 'ichthyostega',
-        name: 'ICHTHYOSTEGA GUNNARI',
+        name: 'Ichthyostega gunnari sp.',
         subtitle: 'Tetrapodomorfo predador, de aproximadamente 1 m de comprimento',
-        description: 'Um dos primeiros vertebrados terrestres. Se alimentavam de pequenos animais, como insetos, crustáceos e peixes, e viviam em pântanos e ambientes alagados, os quais capturava através de emboscadas. Seus olhos eram no topo da cabeça, possibilitando uma boa visão para caça.',
-        videoSrc: '/assets/placeholder.mp4'
+        description: 'Um dos primeiros vertebrados terrestres. Se alimentavam de pequenos animais, como insetos, crustáceos e peixes que viviam em pântanos e ambientes alagados, os quais capturava através de emboscadas. Seus olhos ficavam no topo da cabeça, possibilitando uma boa visão para caça.',
+        videoSrc: '/assets/devoniano/img_ichthyostega.png',
+        seloSrc: '/assets/devoniano/selo_ichthyostega.png'
     },
     {
         type: 'single_species',
         period: 'devoniano',
         section: 'biodiversidade',
         id: 'drepanophycus',
-        name: 'DREPANOPHYCUS SP.',
-        subtitle: 'Planta vascular, com aproximadamente 50 cm',
+        name: 'Drepanophycus sp.',
+        subtitle: 'Aproximadamente 50 cm',
         description: 'Plantas vasculares de folhas micrófilas (pequenas folhinhas) extintas do gênero Lycopodiophyta. Seu talo era decumbente, fazendo-o crescer rasteiro ao solo.',
-        videoSrc: '/assets/placeholder.mp4'
+        videoSrc: '/assets/devoniano/img_drepanophycus.png',
+        seloSrc: '/assets/devoniano/selo_drepanophycus.png'
     },
 
-    // Slide 13 - Extinction (Canva Pg 14-15) — mesmo componente do Ordoviciano
+    // Slide 13 - Extinction (Canva Pg 31)
     {
         type: 'section_intro',
         period: 'devoniano',
         section: 'extincao',
-        title: 'A EXTINÇÃO',
-        content: 'Erupções vulcânicas soltam fuligem no ar. A nuvem de fuligem vai gradualmente tapando o Sol. As plantas começam a murchar e morrer. Ao mesmo tempo, os níveis de oxigênio do oceano baixam e os seres vivos aquáticos são os que mais sofrem. Os únicos grupos que conseguiram sobreviver foram alguns representantes dos peixes ósseos e alguns poucos tubarões. A fuligem e a falta de alimento ocasionam também na extinção de animais terrestres, por intoxicação e fome. Neste caso, restaram apenas alguns poucos sobreviventes, que mais tarde originarão a linhagem dos tetrápodes, a qual dominará a terra.',
-        bgImage: '/assets/extinction_map.png',
+        title: 'A 2ª EXTINÇÃO\nEM MASSA',
+        periodLabel: 'PERÍODO',
+        periodName: 'DEVONIANO',
+        bgImage: '/assets/devoniano/extincao_bg.png',
     },
 
-    // Slide 14 - Ambientes Aquático + Terrestre (Canva Pg 15)
+    // Slide 14 - Ambientes Aquático + Terrestre (Canva Pg 32)
     {
-        type: 'silurian_double_specimen',
+        type: 'devonian_extinction_environments',
         period: 'devoniano',
         section: 'extincao',
         speciesLeft: {
             name: 'AMBIENTE AQUÁTICO',
             subtitle: 'Representação do ambiente aquático no final do Devoniano.',
             description: '',
-            imageSrc: '/assets/placeholder.mp4'
+            imageSrc: '/assets/devoniano/extincao_aquatico.png'
         },
         speciesRight: {
             name: 'AMBIENTE TERRESTRE',
             subtitle: 'Representação do ambiente terrestre do Devoniano.',
             description: '',
-            imageSrc: '/assets/placeholder.mp4'
+            imageSrc: '/assets/devoniano/extincao_terrestre.png'
         }
     },
 
-    // Slide 14 - E DEPOIS? Intro (Canva Pg 16)
+    // Slide 15 - E DEPOIS? Intro (Canva Pg 33)
     {
         type: 'section_intro',
         period: 'devoniano',
         section: 'pos_extincao',
         title: 'E DEPOIS?',
         periodLabel: 'PERÍODO',
-        periodName: 'DEVONIANO',
+        periodName: 'CARBONÍFERO',
         content: '',
-        bgImage: '/assets/extinction_map.png'
+        bgImage: '/assets/devoniano/carbonifero_intro_bg.png'
     },
 
-    // Slide 15 - E DEPOIS? Globe (Canva Pg 17)
+    // Slide 16 - E DEPOIS? Globe (Canva Pg 34)
     {
         type: 'silurian_globe',
         period: 'devoniano',
         section: 'pos_extincao',
-        title: 'E DEPOIS?',
-        content: 'Vista do globo terrestre, com a disposição da massa continental correspondente à nova época retratada: o Período Carbonífero. Nesse período, os continentes se juntaram para formar a Pangeia. “Carbonífero”, é uma referência às grandes formações de jazidas de carvão que datam desse período, marcado também por uma notável proliferação de animais e plantas terrestres. Grupos outrora dominantes, como peixes sarcopterígios, placodermes e acantoides, deram lugar a tetrápodes, peixes actinopterígeos e peixes condrictes. O Carbonífero também foi marcado por grandes quantidades do oxigênio presente na atmosfera, o que possibilitou o surgimento de animais com tamanhos grandes, como a Meganeura. Embora a maioria da vida marinha tenha sido extinta, alguns animais sobreviveram e se diversificaram posteriormente.',
-        imageSrc: '/assets/mapa-depois.png',
-        imageCaption: 'Aparência do planeta Terra durante o início do período Carbonífero. Imagem de referência. A cor dos continentes no mapa preto e branco (continentes todos em branco) não representa gelo em sua grande maioria e os pontos verdes devem ser desconsiderados. Observe a cobertura de gelo no mapa superior, que reflete a correta distribuição deste.',
+        headerTitle: 'E DEPOIS?',
+        content: 'Vista do globo terrestre, com a disposição da massa continental correspondente à nova época retratada: o Período Carbonífero.\n\n“Carbonífero”, é uma referência às grandes formações de jazidas de carvão que datam desse período, marcado também por uma notável proliferação de animais e plantas terrestres.\n\nNesse período, os continentes se juntaram para formar a Pangeia. Grupos outrora dominantes, como peixes sarcopterígios, placodermes e acantoides, deram lugar a tetrápodes, peixes actinopterígeos e peixes condrictes.',
+        imageSrc: '/assets/devoniano/carbonifero_globe_bg.png',
+    },
+
+    // Slide 17 - E DEPOIS? Resumo (Canva Pg 35)
+    {
+        type: 'silurian_globe',
+        period: 'devoniano',
+        section: 'pos_extincao',
+        headerTitle: 'E DEPOIS?',
+        content: 'O Carbonífero também foi marcado por grandes quantidades de oxigênio presente na atmosfera, o que possibilitou o surgimento de animais com tamanhos grandes, como a Meganeura. Embora a maioria da vida marinha tenha sido extinta, alguns animais sobreviveram e se diversificaram posteriormente.\n\nAs novas mudanças alteraram a biota, com novas espécies tornando-se abundantes.\n\nAs espécies a seguir são características do novo momento.',
+        imageSrc: '/assets/devoniano/carbonifero_summary_bg.png',
     },
 
     // Slide 16 - Meganeura (Canva Pg 18)

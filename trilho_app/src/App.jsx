@@ -10,6 +10,7 @@ import HomePermian from './views/HomePermian'
 import SilurianGlobe from './views/SilurianGlobe'
 import SilurianSpecimen from './views/SilurianSpecimen'
 import SilurianDoubleSpecimen from './views/SilurianDoubleSpecimen'
+import DevonianExtinctionEnvironments from './views/DevonianExtinctionEnvironments'
 import ExtinctionContent from './views/ExtinctionContent'
 import ExtinctionContentDevonian from './views/ExtinctionContentDevonian'
 import SpecimenDetail from './views/SpecimenDetail'
@@ -173,6 +174,33 @@ function App() {
 
   const sectionIndex = sectionSlides.findIndex(s => s.absoluteIndex === slideIndex);
 
+  // Reference and Editor Mapping
+  const mapping = {
+    'devoniano-home': { ref: '/assets/referencias/page-18.jpg', viewId: 'devoniano-home' },
+    'devoniano-biodiversidade-intro': { ref: '/assets/referencias/page-19.jpg', viewId: 'devoniano-bio-intro' },
+    'devoniano-biodiversidade-1': { ref: '/assets/referencias/page-20.jpg', viewId: 'devoniano-bio-dunkleosteus' },
+    'devoniano-biodiversidade-2': { ref: '/assets/referencias/page-21.jpg', viewId: 'devoniano-bio-campbellodus' },
+    'devoniano-biodiversidade-3': { ref: '/assets/referencias/page-22.jpg', viewId: 'devoniano-bio-ctenacanthus' },
+    'devoniano-biodiversidade-4': { ref: '/assets/referencias/page-23.jpg', viewId: 'devoniano-bio-gogonasus' },
+    'devoniano-biodiversidade-5': { ref: '/assets/referencias/page-24.jpg', viewId: 'devoniano-bio-griphognatus' },
+    'devoniano-biodiversidade-6': { ref: '/assets/referencias/page-25.jpg', viewId: 'devoniano-bio-furcaster' },
+    'devoniano-biodiversidade-7': { ref: '/assets/referencias/page-26.jpg', viewId: 'devoniano-bio-palaeoisopus' },
+    'devoniano-biodiversidade-8': { ref: '/assets/referencias/page-27.jpg', viewId: 'devoniano-bio-archaeopteris' },
+    'devoniano-biodiversidade-9': { ref: '/assets/referencias/page-28.jpg', viewId: 'devoniano-bio-tiktaalik' },
+    'devoniano-biodiversidade-10': { ref: '/assets/referencias/page-29.jpg', viewId: 'devoniano-bio-ichthyostega' },
+    'devoniano-biodiversidade-11': { ref: '/assets/referencias/page-30.jpg', viewId: 'devoniano-bio-drepanophycus' },
+    'devoniano-extincao-intro': { ref: '/assets/referencias/page-31.jpg', viewId: 'devoniano-extincao-intro' },
+    'devoniano-extincao-1': { ref: '/assets/referencias/page-32.jpg', viewId: 'devoniano-extincao-ambientes' },
+    'devoniano-pos_extincao-intro': { ref: '/assets/referencias/page-33.jpg', viewId: 'devoniano-pos-extincao-intro' },
+    'devoniano-pos_extincao-1': { ref: '/assets/referencias/page-34.jpg', viewId: 'devoniano-pos-extincao-globe' },
+    'devoniano-pos_extincao-2': { ref: '/assets/referencias/page-35.jpg', viewId: 'devoniano-pos-extincao-summary' }
+  };
+
+  let pageKey = sectionIndex;
+  if (type === 'section_intro' || type === 'home_devonian') pageKey = 'intro';
+  const designKey = `${currentPeriod}-${currentSection}-${pageKey}`;
+  const currentMapping = mapping[designKey] || {};
+
   const scopedNavigate = (dir, targetSectionIndex = null) => {
     if (targetSectionIndex !== null) {
       handleNavigate(dir, sectionSlides[targetSectionIndex].absoluteIndex);
@@ -201,9 +229,10 @@ function App() {
             else if (type === 'single_species')             ComponentToRender = <SpecimenDetail slideIndex={sectionIndex} totalSlides={sectionSlides.length} onNavigate={scopedNavigate} slideData={currentSlide} />;
             else if (type === 'event_header')               ComponentToRender = <EventHeader slideIndex={sectionIndex} totalSlides={sectionSlides.length} onNavigate={scopedNavigate} slideData={currentSlide} />;
             else if (type === 'event_detail')               ComponentToRender = <EventDetail slideIndex={sectionIndex} totalSlides={sectionSlides.length} onNavigate={scopedNavigate} slideData={currentSlide} />;
-            else if (type === 'silurian_globe')             ComponentToRender = <SilurianGlobe slideData={currentSlide} onNavigate={scopedNavigate} />;
+            else if (type === 'silurian_globe')             ComponentToRender = <SilurianGlobe slideData={currentSlide} onNavigate={scopedNavigate} viewId={currentMapping.viewId} />;
             else if (type === 'silurian_specimen')          ComponentToRender = <SilurianSpecimen slideData={currentSlide} onNavigate={scopedNavigate} />;
             else if (type === 'silurian_double_specimen')   ComponentToRender = <SilurianDoubleSpecimen slideData={currentSlide} onNavigate={scopedNavigate} />;
+            else if (type === 'devonian_extinction_environments') ComponentToRender = <DevonianExtinctionEnvironments slideData={currentSlide} onNavigate={scopedNavigate} />;
             else if (type === 'double_species')             ComponentToRender = <DoubleSpecimenDetail slideIndex={sectionIndex} totalSlides={sectionSlides.length} onNavigate={scopedNavigate} slideData={currentSlide} />;
 
             return (
@@ -233,10 +262,12 @@ function App() {
 
         {currentSection === 'home' && <BottomBar />}
         
-        <DesignEditor 
-          referenceImage={currentPeriod === 'devoniano' && currentSection === 'home' ? '/assets/references/page-18.jpg' : null} 
-          viewKey={currentPeriod === 'devoniano' && currentSection === 'home' ? 'devoniano-home' : ''}
-        />
+        {currentMapping && currentMapping.ref && (
+          <DesignEditor 
+            referenceImage={currentMapping.ref} 
+            viewKey={currentMapping.viewId}
+          />
+        )}
       </div>
     </>
   );
