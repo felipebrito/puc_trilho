@@ -1,5 +1,17 @@
 # Changelog
 
+## [Unreleased] - 2026-04-27
+
+### Trilho Kiosk App
+- **Features & Infraestrutura**:
+    - Implementação de navegação robusta via rotas URL Hash (`/#periodo-sessao-id`), facilitando edição e preview de telas específicas.
+    - Implementação da ferramenta `DesignEditor` como overlay: permite injeção dinâmica de variáveis CSS sobre uma imagem de referência, com suporte de exportação para código.
+    - Script e ambiente criados para exportar referências originais em PDF como uma galeria de imagens para uso no overlay.
+- **Telas e Conteúdo**:
+    - **Devoniano (Home)**:
+        - Troca do background genérico pelo arquivo definitivo (`devoniano_home_bg.png`).
+        - Inclusão dos textos finais e alinhamento visual preciso utilizando o `DesignEditor`.
+        - Substituição do comportamento dos botões do menu inferior por recortes de imagem nativos (`botaoOFF.png`) correspondendo ao design de estado ativo.
 ## [Unreleased] - 2026-02-10
 
 ### Booth App

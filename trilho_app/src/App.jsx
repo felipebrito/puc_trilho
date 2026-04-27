@@ -18,11 +18,68 @@ import EventHeader from './views/EventHeader'
 import EventDetail from './views/EventDetail'
 import DoubleSpecimenDetail from './views/DoubleSpecimenDetail'
 import MorphingPageDots from './components/MorphingPageDots'
+import DesignEditor from './components/DesignEditor'
 import './App.css'
 
+function getHashForSlide(slide) {
+  if (!slide) return '';
+  const sameSectionSlides = slidesData.filter(s => s.period === slide.period && s.section === slide.section);
+  const relativeIndex = sameSectionSlides.findIndex(s => s === slide);
+
+  if (slide.section === 'biodiversidade') {
+    return `${slide.period}-${slide.section}-${relativeIndex}`;
+  }
+
+  if (slide.id) {
+    return `${slide.period}-${slide.section}-${slide.id}`;
+  }
+  return `${slide.period}-${slide.section}-${relativeIndex}`;
+}
+
+function getIndexForHash(hashStr) {
+  const cleanHash = hashStr.replace('#', '');
+  if (!cleanHash) return 0;
+  
+  const index = slidesData.findIndex(slide => {
+    const sameSectionSlides = slidesData.filter(s => s.period === slide.period && s.section === slide.section);
+    const relativeIndex = sameSectionSlides.findIndex(s => s === slide);
+
+    if (slide.section === 'biodiversidade') {
+      return `${slide.period}-${slide.section}-${relativeIndex}` === cleanHash;
+    }
+
+    if (slide.id) {
+      return `${slide.period}-${slide.section}-${slide.id}` === cleanHash;
+    }
+    return `${slide.period}-${slide.section}-${relativeIndex}` === cleanHash;
+  });
+  return index >= 0 ? index : 0;
+}
+
 function App() {
-  const [slideIndex, setSlideIndex] = useState(0);
+  const [slideIndex, setSlideIndex] = useState(() => getIndexForHash(window.location.hash));
   const [slideDirection, setSlideDirection] = useState('up');
+
+  // Sincroniza a URL com o slideIndex atual
+  useEffect(() => {
+    const newHash = getHashForSlide(slidesData[slideIndex]);
+    if (newHash) {
+      window.history.replaceState(null, '', `#${newHash}`);
+    }
+  }, [slideIndex]);
+
+  // Permite navegação usando os botões de voltar/avançar do navegador
+  useEffect(() => {
+    const handleHashChange = () => {
+      const parsed = getIndexForHash(window.location.hash);
+      if (parsed !== slideIndex) {
+        setSlideDirection(parsed > slideIndex ? 'right' : 'left');
+        setSlideIndex(parsed);
+      }
+    };
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, [slideIndex]);
 
   const handleNavigate = useCallback((directionStr, targetAbsoluteIndex = null) => {
     setSlideDirection(directionStr);
@@ -175,6 +232,11 @@ function App() {
         )}
 
         {currentSection === 'home' && <BottomBar />}
+        
+        <DesignEditor 
+          referenceImage={currentPeriod === 'devoniano' && currentSection === 'home' ? '/assets/references/page-18.jpg' : null} 
+          viewKey={currentPeriod === 'devoniano' && currentSection === 'home' ? 'devoniano-home' : ''}
+        />
       </div>
     </>
   );

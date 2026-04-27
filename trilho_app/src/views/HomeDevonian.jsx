@@ -5,10 +5,10 @@ import { slidesData, periodStartIndex } from '../data/slides';
 import './HomeDevonian.css';
 
 // Absolute indices in slidesData for each devoniano section
-const DEVONIAN_OFFSET    = periodStartIndex.devoniano;
+const DEVONIAN_OFFSET = periodStartIndex.devoniano;
 const BIODIVERSIDADE_IDX = DEVONIAN_OFFSET + slidesData.slice(DEVONIAN_OFFSET).findIndex(s => s.section === 'biodiversidade');
-const EXTINCAO_IDX       = DEVONIAN_OFFSET + slidesData.slice(DEVONIAN_OFFSET).findIndex(s => s.section === 'extincao');
-const POS_EXTINCAO_IDX   = DEVONIAN_OFFSET + slidesData.slice(DEVONIAN_OFFSET).findIndex(s => s.section === 'pos_extincao');
+const EXTINCAO_IDX = DEVONIAN_OFFSET + slidesData.slice(DEVONIAN_OFFSET).findIndex(s => s.section === 'extincao');
+const POS_EXTINCAO_IDX = DEVONIAN_OFFSET + slidesData.slice(DEVONIAN_OFFSET).findIndex(s => s.section === 'pos_extincao');
 
 const HomeDevonian = ({ onNavigate }) => {
     const [activeIndex, setActiveIndex] = useState(0);
@@ -49,7 +49,7 @@ const HomeDevonian = ({ onNavigate }) => {
 
     return (
         <div className="view-home-devonian animate-fade-in">
-            <BackgroundVideo src="/assets/placeholder.mp4" variant="full">
+            <BackgroundVideo src="/assets/devoniano_home_bg.png" variant="full">
                 <motion.div
                     className="home-devonian-content"
                     variants={containerVariants}
@@ -59,10 +59,8 @@ const HomeDevonian = ({ onNavigate }) => {
                     <div className="home-devonian-titles">
                         <motion.h2 variants={itemVariants} className="devonian-subtitle">PERÍODO</motion.h2>
                         <motion.h1 variants={itemVariants} className="devonian-title">DEVONIANO</motion.h1>
-                        <motion.div variants={itemVariants} className="devonian-title-underline"></motion.div>
-                        <motion.p variants={itemVariants} className="devonian-description">360 milhões de anos</motion.p>
-                        <motion.p variants={itemVariants} className="devonian-sub-description">A 2ª extinção em massa</motion.p>
-                        <motion.img variants={itemVariants} src="/assets/linha.png" alt="Linha Grafismo" className="devonian-line-graphic" />
+                        <motion.p variants={itemVariants} className="devonian-description">420 a 360 milhões de anos</motion.p>
+
                     </div>
 
                     <motion.div variants={itemVariants} className="home-devonian-menu">
@@ -79,7 +77,7 @@ const HomeDevonian = ({ onNavigate }) => {
                             onClick={() => onNavigate('up', EXTINCAO_IDX)}
                             onMouseEnter={() => setActiveIndex(1)}
                         >
-                            <span>A EXTINÇÃO</span>
+                            <span>A 2ª EXTINÇÃO EM MASSA</span>
                             <span className={activeIndex === 1 ? "btn-devonian-icon-active" : "btn-devonian-icon-inactive"}>›</span>
                         </button>
                         <button

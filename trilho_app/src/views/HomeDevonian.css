@@ -15,48 +15,51 @@
 }
 
 .home-devonian-titles {
-    margin-top: 592px;
+    margin-top: var(--devonian-titles-mt, 430px);
     margin-bottom: auto;
 }
 
 .home-devonian-titles .devonian-subtitle {
-    font-size: 73px;
+    font-size: var(--devonian-subtitle-size, 73px);
     font-family: 'Blender Pro Book', sans-serif;
     font-weight: 300;
-    letter-spacing: 7.8px;
-    margin-bottom: 0px;
+    letter-spacing: var(--devonian-subtitle-spacing, 7.8px);
+    margin-bottom: var(--devonian-subtitle-mb, 0px);
     color: var(--color-white);
 }
 
 .home-devonian-titles .devonian-title {
-    font-size: 143px;
+    font-size: var(--devonian-title-size, 143px);
     font-family: 'Blender Pro Heavy', sans-serif;
     font-weight: 900;
-    letter-spacing: 9.7px;
-    line-height: 0.9;
+    letter-spacing: var(--devonian-title-spacing, 9.7px);
+    line-height: var(--devonian-title-lh, 0.9);
+    margin-top: var(--devonian-title-mt, -16px);
+    margin-bottom: var(--devonian-title-mb, 62px);
     color: var(--color-white);
-    margin-left: -5px;
+    margin-left: var(--devonian-title-ml, -5px);
 }
 
 .devonian-title-underline {
-    width: 610px;
-    height: 5px;
+    width: var(--devonian-underline-w, 610px);
+    height: var(--devonian-underline-h, 5px);
     background-color: var(--color-white);
-    margin-top: 22px;
-    margin-bottom: 70px;
+    margin-top: var(--devonian-underline-mt, 22px);
+    margin-bottom: var(--devonian-underline-mb, 70px);
 }
 
 .home-devonian-titles .devonian-description {
-    font-size: 96px;
+    font-size: var(--devonian-desc-size, 90px);
     font-family: 'Blender Pro Medium', sans-serif;
     font-weight: normal;
-    margin-bottom: 7px;
+    margin-top: var(--devonian-desc-mt, 0px);
+    margin-bottom: var(--devonian-desc-mb, 9px);
     color: var(--color-white);
-    letter-spacing: -3px;
+    letter-spacing: var(--devonian-desc-spacing, -5px);
 }
 
 .home-devonian-titles .devonian-sub-description {
-    font-size: 50px;
+    font-size: var(--devonian-subdesc-size, 50px);
     font-family: 'Canva Sans Regular', sans-serif;
     font-weight: normal;
     padding-bottom: 1px;
@@ -64,21 +67,21 @@
 }
 
 .devonian-line-graphic {
-    width: 820px;
-    margin-top: 0;
+    width: var(--devonian-line-w, 820px);
+    margin-top: var(--devonian-line-mt, 0px);
     height: auto;
     object-fit: contain;
     align-self: flex-start;
-    margin-left: 22px;
+    margin-left: var(--devonian-line-ml, 22px);
 }
 
 .home-devonian-menu {
     position: absolute;
-    top: 1278px;
-    left: 110px;
+    top: var(--devonian-menu-top, 1357px);
+    left: var(--devonian-menu-left, 102px);
     display: flex;
     flex-direction: column;
-    gap: 21px;
+    gap: var(--devonian-menu-gap, 21px);
 }
 
 .btn-devonian {
@@ -124,8 +127,8 @@
 }
 
 .btn-devonian-inactive {
-    background-color: var(--color-primary-blue);
-    background-image: none;
-    border-radius: 10px;
+    background-image: url('/assets/botaoOFF.png');
+    background-color: transparent;
+    border-radius: 0;
     color: var(--color-white);
 }
