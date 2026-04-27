@@ -193,7 +193,15 @@ function App() {
     'devoniano-extincao-1': { ref: '/assets/referencias/page-32.jpg', viewId: 'devoniano-extincao-ambientes' },
     'devoniano-pos_extincao-intro': { ref: '/assets/referencias/page-33.jpg', viewId: 'devoniano-pos-extincao-intro' },
     'devoniano-pos_extincao-1': { ref: '/assets/referencias/page-34.jpg', viewId: 'devoniano-pos-extincao-globe' },
-    'devoniano-pos_extincao-2': { ref: '/assets/referencias/page-35.jpg', viewId: 'devoniano-pos-extincao-summary' }
+    'devoniano-pos_extincao-2': { ref: '/assets/referencias/page-35.jpg', viewId: 'devoniano-pos-extincao-summary' },
+    'devoniano-pos_extincao-3': { ref: '/assets/referencias/page-36.jpg', viewId: 'devoniano-pos-carbon-meganeura' },
+    'devoniano-pos_extincao-4': { ref: '/assets/referencias/page-37.jpg', viewId: 'devoniano-pos-carbon-stethacanthus' },
+    'devoniano-pos_extincao-5': { ref: '/assets/referencias/page-38.jpg', viewId: 'devoniano-pos-carbon-arthropleura' },
+    'devoniano-pos_extincao-6': { ref: '/assets/referencias/page-39.jpg', viewId: 'devoniano-pos-carbon-amphibamus' },
+    'devoniano-pos_extincao-7': { ref: '/assets/referencias/page-40.jpg', viewId: 'devoniano-pos-carbon-sphenophyllum' },
+    'devoniano-pos_extincao-8': { ref: '/assets/referencias/page-41.jpg', viewId: 'devoniano-pos-carbon-calamites' },
+    'devoniano-pos_extincao-9': { ref: '/assets/referencias/page-42.jpg', viewId: 'devoniano-pos-carbon-cordaites' },
+    'devoniano-pos_extincao-10': { ref: '/assets/referencias/page-43.jpg', viewId: 'devoniano-pos-carbon-sigillaria' }
   };
 
   let pageKey = sectionIndex;

@@ -404,101 +404,108 @@ export const devonianoSlides = [
         imageSrc: '/assets/devoniano/carbonifero_summary_bg.png',
     },
 
-    // Slide 16 - Meganeura (Canva Pg 18)
+    // Slide 18 - Meganeura (Canva Pg 36)
     {
         type: 'single_species',
         period: 'devoniano',
         section: 'pos_extincao',
         id: 'meganeura',
         name: 'MEGANEURA MONYI',
-        subtitle: 'Libélula gigante, com cerca de 70 cm de envergadura de asa',
+        subtitle: 'Libélula gigante',
         description: 'Semelhantes às libélulas atuais, porém muito maior. Seu tamanho era similar ao de um pombo-comum e pesava cerca de 1,2 kg.',
-        videoSrc: '/assets/placeholder.mp4'
+        imageSrc: '/assets/carbonifero/img_meganeura.png',
+        seloSrc: '/assets/carbonifero/selo_meganeura.png'
     },
 
-    // Slide 17 - Stethacanthus (Canva Pg 19)
+    // Slide 19 - Stethacanthus (Canva Pg 37)
     {
         type: 'single_species',
         period: 'devoniano',
         section: 'pos_extincao',
         id: 'stethacanthus',
-        name: 'STETHACANTHUS SP.',
-        subtitle: 'Peixe cartilaginoso carnívoro, com cerca de 70 cm de comprimento',
+        name: 'STETHACANTHUS',
+        subtitle: 'Tubarão primitivo',
         description: 'Similar aos tubarões de hoje em dia, acredita-se que a sua barbatana dorsal, além de hidrodinâmica, tenha servido para proteção passiva contra os predadores e para cortejo de fêmeas, pois só os machos possuíam esta estrutura.',
-        videoSrc: '/assets/placeholder.mp4'
+        imageSrc: '/assets/carbonifero/img_stethacanthus.png',
+        seloSrc: '/assets/carbonifero/selo_stethacanthus.png'
     },
 
-    // Slide 18 - Arthropleura (Canva Pg 20)
+    // Slide 20 - Arthropleura (Canva Pg 38)
     {
         type: 'single_species',
         period: 'devoniano',
         section: 'pos_extincao',
         id: 'arthropleura',
-        name: 'ARTHROPLEURA SP.',
-        subtitle: 'Artrópode herbívoro, com aproximadamente 2,5 m de comprimento',
+        name: 'ARTHROPLEURA',
+        subtitle: 'Milípede gigante',
         description: 'Maior invertebrado terrestre que já existiu. Acredita-se que possuía pouquíssimos predadores, devido ao seu tamanho massivo. Como as meganeuras, seu tamanho se dá devido à alta abundância de oxigênio na época.',
-        videoSrc: '/assets/placeholder.mp4'
+        imageSrc: '/assets/carbonifero/img_arthropleura.png',
+        seloSrc: '/assets/carbonifero/selo_arthropleura.png'
     },
 
-    // Slide 19 - Amphibamus (Canva Pg 21)
+    // Slide 21 - Amphibamus (Canva Pg 39)
     {
         type: 'single_species',
         period: 'devoniano',
         section: 'pos_extincao',
         id: 'amphibamus',
-        name: 'AMPHIBAMUS SP.',
-        subtitle: 'Anfíbio ancestral carnívoro, com cerca de 20 cm de comprimento',
-        description: 'Estudos indicam que ele seja o ancestral dos anfíbios atuais. Como os anfíbios, precisavam por seus ovos em corpos d\'água pois eles não possuíam uma casca protetora.',
-        videoSrc: '/assets/placeholder.mp4'
+        name: 'AMPHIBAMUS',
+        subtitle: 'Ancestral dos anfíbios',
+        description: 'Estudos indicam que ele seja o ancestral dos anfíbios atuais. Como estes anfíbios, precisavam pôr seus ovos em corpos d’água, pois eles não possuíam uma casca protetora.',
+        imageSrc: '/assets/carbonifero/img_amphibamus.png',
+        seloSrc: '/assets/carbonifero/selo_amphibamus.png'
     },
 
-
-    // Slide 20 - Sphenophyllum (Canva Pg 22)
+    // Slide 22 - Sphenophyllum (Canva Pg 40)
     {
         type: 'single_species',
         period: 'devoniano',
         section: 'pos_extincao',
         id: 'sphenophyllum',
-        name: 'SPHENOPHYLLUM SP.',
-        subtitle: 'Cavalinha, com porte de até 1 m de altura',
-        description: 'Planta vascular que crescia em ambientes úmidos das florestas carboníferas. Seus caules apresentavam nós distintos e folhas em formato de cunha dispostas em verticilo ao redor do caule.',
-        videoSrc: '/assets/placeholder.mp4'
+        name: 'SPHENOPHYLLUM',
+        subtitle: 'Planta trepadeira',
+        description: 'Esta cavalinha do período Carbonífero crescia enrolada como as videiras atuais. Apresentava um caule central estriado que se ramificava através de seus nódulos. Cada ramo tinha 6 folhas em formato de cunha, sempre distribuídos em espiral.',
+        imageSrc: '/assets/carbonifero/img_sphenophyllum.png',
+        seloSrc: '/assets/carbonifero/selo_sphenophyllum.png'
     },
 
-    // Slide 21 - Calamites (Canva Pg 23)
+    // Slide 23 - Calamites (Canva Pg 41)
     {
         type: 'single_species',
         period: 'devoniano',
         section: 'pos_extincao',
         id: 'calamites',
-        name: 'CALAMITES SP.',
-        subtitle: 'Cavalinha, com porte de até 30 a 50 m de altura',
+        name: 'CALAMITES',
+        subtitle: 'Cavalinha gigante',
         description: 'Era uma espécie de cavalinha primitiva que apresentava uma arquitetura nó-entrenó bem definida, semelhante às cavalinhas modernas, e seus galhos e folhas emergiam em espirais desses nós. Se situavam principalmente ao longo das margens arenosas dos rios, e tinham a capacidade de brotar vigorosamente de rizomas subterrâneos quando as porções superiores da planta eram danificadas.',
-        videoSrc: '/assets/placeholder.mp4'
+        imageSrc: '/assets/carbonifero/img_calamites.png',
+        seloSrc: '/assets/carbonifero/selo_calamites.png'
     },
 
-    // Slide 22 - Cordaites (Canva Pg 24)
+    // Slide 24 - Cordaites (Canva Pg 42)
     {
         type: 'single_species',
         period: 'devoniano',
         section: 'pos_extincao',
         id: 'cordaites',
-        name: 'CORDAITES SP.',
-        subtitle: 'Árvore, com porte de até 30 m de altura',
-        description: 'Plantas com sementes consideradas relacionadas às coníferas (ou podem ser as primeiras coníferas). Acredita-se que os cordaites cresciam como árvores e arbustos lenhosos, e alguns propuseram que eles até desenvolveram um hábito de mangue com raízes sustentadas. Os cordaites cresceram tanto em terra seca quanto em pântanos úmidos em toda a sua área de distribuição.',
-        videoSrc: '/assets/placeholder.mp4'
+        name: 'CORDAITES',
+        subtitle: 'Conífera primitiva',
+        description: 'Relacionadas às coníferas, as cordaites cresceram tanto em terra seca quanto em pântanos úmidos em toda a sua área de distribuição.',
+        imageSrc: '/assets/carbonifero/img_cordaites.png',
+        seloSrc: '/assets/carbonifero/selo_cordaites.png'
     },
 
-    // Slide 23 - Sigillaria (Canva Pg 25)
+    // Slide 25 - Sigillaria (Canva Pg 43)
     {
         type: 'single_species',
         period: 'devoniano',
         section: 'pos_extincao',
         id: 'sigillaria',
-        name: 'SIGILLARIA SP.',
-        subtitle: 'Árvore, com porte de até 30 a 50 m de altura',
-        description: 'Licopódios gigantes que estão relacionados aos musgos atuais que dominavam os manguezais que deram origem as famosas jazidas de carvão do carbonífero. Caracterizado por um fino fio de madeira e casca grossa. Folhas longas e finas cresciam em espiral ao longo do tronco, onde permanecia a cicatriz foliar quando a folha caía. Situava-se em solos ais bem drenados, sobrevivendo à secagem dos grandes pântanos de carvão.',
-        videoSrc: '/assets/placeholder.mp4'
+        name: 'SIGILLARIA',
+        subtitle: 'Árvore de escamas',
+        description: 'Dominava os manguezais que deram origem às famosas jazidas de carvão do carbonífero. Tinha um tronco único ou pouco ramificado, caracterizado por um fino fio de madeira e casca grossa. Folhas longas e finas cresciam em espiral ao longo do tronco.',
+        imageSrc: '/assets/carbonifero/img_sigillaria.png',
+        seloSrc: '/assets/carbonifero/selo_sigillaria.png'
     },
 ];
 

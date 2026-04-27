@@ -70,6 +70,16 @@ const cssConfigs = {
     'devoniano-bio-tiktaalik': createDevonianoSpecimenConfig('tiktaalik', { subW: 590, descMt: -11, descW: 915, descLH: 48 }),
     'devoniano-bio-ichthyostega': createDevonianoSpecimenConfig('ichthyostega', { nameMt: 67, nameSize: 86, subW: 935, descMt: -33, descW: 869, descLH: 47 }),
     'devoniano-bio-drepanophycus': createDevonianoSpecimenConfig('drepanophycus', { subMt: 78, subW: 834, descMt: 124, descW: 870, descLH: 50 }),
+    
+    // Carbonífero
+    'devoniano-pos-carbon-meganeura': createDevonianoSpecimenConfig('meganeura'),
+    'devoniano-pos-carbon-stethacanthus': createDevonianoSpecimenConfig('stethacanthus'),
+    'devoniano-pos-carbon-arthropleura': createDevonianoSpecimenConfig('arthropleura'),
+    'devoniano-pos-carbon-amphibamus': createDevonianoSpecimenConfig('amphibamus'),
+    'devoniano-pos-carbon-sphenophyllum': createDevonianoSpecimenConfig('sphenophyllum'),
+    'devoniano-pos-carbon-calamites': createDevonianoSpecimenConfig('calamites'),
+    'devoniano-pos-carbon-cordaites': createDevonianoSpecimenConfig('cordaites'),
+    'devoniano-pos-carbon-sigillaria': createDevonianoSpecimenConfig('sigillaria'),
 };
 
 function createDevonianoIntroConfig(sectionPrefix, overrides = {}) {
