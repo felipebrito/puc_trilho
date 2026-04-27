@@ -26,7 +26,7 @@ const SpecimenDetail = ({ slideIndex, totalSlides, onNavigate, slideData }) => {
 
     return (
         <div className={`view-detail animate-fade-in ${specimen.period || ''} ${specimen.id || ''}`} key={specimen.id}>
-            <BackgroundVideo src={specimen.videoSrc} variant="split" />
+            <BackgroundVideo src={specimen.videoSrc || specimen.imageSrc} variant="split" />
 
             <div className="detail-content">
                 {/* SVG Phantom overlay for alignment reference */}

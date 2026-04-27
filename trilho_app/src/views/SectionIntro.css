@@ -84,8 +84,8 @@
 
 .section-intro-main-heading {
     position: absolute;
-    top: 0;
-    left: 0;
+    top: var(--dev-bio-heading-top, var(--dev-ext-heading-top, var(--dev-pos-heading-top, 0px)));
+    left: var(--dev-bio-heading-left, var(--dev-ext-heading-left, var(--dev-pos-heading-left, 0px)));
     font-size: 96px;
     font-family: 'Blender Pro Heavy', sans-serif;
     font-weight: 900;
@@ -227,7 +227,7 @@
 }
 
 .view-section-intro.devoniano.biodiversidade .section-intro-header {
-    top: var(--dev-bio-header-top, 66px);
+    top: var(--dev-bio-header-top, 62px);
     left: var(--dev-bio-header-left, 0px);
 }
 
@@ -239,26 +239,27 @@
 }
 
 .view-section-intro.devoniano.biodiversidade .section-intro-period-name {
-    top: var(--dev-bio-name-top, 36px);
+    top: var(--dev-bio-name-top, 39px);
     left: var(--dev-bio-name-left, 36px);
-    font-size: var(--dev-bio-name-size, 60px);
+    font-size: var(--dev-bio-name-size, 61px);
     letter-spacing: var(--dev-bio-name-spacing, 3px);
 }
 
 .view-section-intro.devoniano.biodiversidade .section-title-underline {
     opacity: var(--dev-bio-line-display, 0);
+    display: none !important;
 }
 
 .view-section-intro.devoniano.biodiversidade .section-intro-body {
-    top: var(--dev-bio-body-top, 599px);
+    top: var(--dev-bio-body-top, 638px);
     left: var(--dev-bio-body-left, 36px);
 }
 
 .view-section-intro.devoniano.biodiversidade .section-intro-main-heading {
-    font-size: var(--dev-bio-heading-size, 96px);
+    font-size: var(--dev-bio-heading-size, 105px);
     width: var(--dev-bio-heading-w, 900px);
     letter-spacing: var(--dev-bio-heading-spacing, 0px);
-    line-height: var(--dev-bio-heading-lh, 1.05);
+    line-height: var(--dev-bio-heading-lh, 0.95);
 }
 
 .view-section-intro.devoniano.biodiversidade .section-body-top-line,

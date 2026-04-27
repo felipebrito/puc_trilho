@@ -21,7 +21,17 @@ const cssConfigs = {
         { label: 'Menu Left', prop: '--devonian-menu-left', value: 102, min: 0, max: 1080, suffix: 'px' },
         { label: 'Menu Gap', prop: '--devonian-menu-gap', value: 21, min: 0, max: 150, suffix: 'px' }
     ],
-    'devoniano-bio-intro': createDevonianoIntroConfig('bio'),
+    'devoniano-bio-intro': createDevonianoIntroConfig('bio', { 
+        headerTop: 62, 
+        labelTop: -5,
+        nameTop: 39,
+        nameSize: 61,
+        bodyTop: 638, 
+        headingTop: -29,
+        headingSize: 105, 
+        headingLH: 0.95,
+        lineDisplay: 0 
+    }),
     'devoniano-extincao-intro': createDevonianoIntroConfig('ext', {
         bgOpacity: 1,
         headerTop: 62,
@@ -98,6 +108,8 @@ function createDevonianoIntroConfig(sectionPrefix, overrides = {}) {
         { label: 'Underline Display', prop: `--dev-${sectionPrefix}-line-display`, value: overrides.lineDisplay ?? 0, min: 0, max: 1, suffix: '' },
         { label: 'Body Top', prop: `--dev-${sectionPrefix}-body-top`, value: overrides.bodyTop ?? 599, min: 0, max: 1500, suffix: 'px' },
         { label: 'Body Left', prop: `--dev-${sectionPrefix}-body-left`, value: overrides.bodyLeft ?? 36, min: 0, max: 500, suffix: 'px' },
+        { label: 'Heading Top', prop: `--dev-${sectionPrefix}-heading-top`, value: overrides.headingTop ?? 0, min: -200, max: 500, suffix: 'px' },
+        { label: 'Heading Left', prop: `--dev-${sectionPrefix}-heading-left`, value: overrides.headingLeft ?? 0, min: -200, max: 500, suffix: 'px' },
         { label: 'Heading Size', prop: `--dev-${sectionPrefix}-heading-size`, value: overrides.headingSize ?? 96, min: 20, max: 300, suffix: 'px' },
         { label: 'Heading Width', prop: `--dev-${sectionPrefix}-heading-w`, value: overrides.headingW ?? 900, min: 100, max: 1080, suffix: 'px' },
         { label: 'Heading Spacing', prop: `--dev-${sectionPrefix}-heading-spacing`, value: overrides.headingSpacing ?? 0, min: -10, max: 50, suffix: 'px' },
@@ -120,30 +132,43 @@ function createDevonianoGlobeConfig(prefix, defaults = {}) {
 }
 function createDevonianoSpecimenConfig(id, overrides = {}) {
     return [
-        { label: 'BG Height', prop: `--devonian-${id}-bg-h`, value: 42, min: 20, max: 100, suffix: '%' },
-        { label: 'White Top H', prop: `--devonian-${id}-white-h`, value: 34, min: 20, max: 80, suffix: '%' },
-        { label: 'White Area MT', prop: `--devonian-${id}-white-mt`, value: 38, min: -200, max: 500, suffix: 'px' },
-        { label: 'Cut Y', prop: `--devonian-${id}-cut-y`, value: 40, min: 0, max: 200, suffix: 'px' },
-        { label: 'Cut X1', prop: `--devonian-${id}-cut-x1`, value: 250, min: 0, max: 1080, suffix: 'px' },
-        { label: 'Cut X2', prop: `--devonian-${id}-cut-x2`, value: 280, min: 0, max: 1080, suffix: 'px' },
-        { label: 'BG Scale', prop: `--devonian-${id}-bg-scale`, value: 1, min: 0.5, max: 3, suffix: '' },
-        { label: 'BG X', prop: `--devonian-${id}-bg-x`, value: 0, min: -1000, max: 1000, suffix: 'px' },
-        { label: 'BG Y', prop: `--devonian-${id}-bg-y`, value: 0, min: -1000, max: 1000, suffix: 'px' },
+        // 1. Nome (Título)
         { label: 'Name MT', prop: `--devonian-${id}-name-mt`, value: overrides.nameMt || 96, min: -200, max: 500, suffix: 'px' },
         { label: 'Name ML', prop: `--devonian-${id}-name-ml`, value: 0, min: -200, max: 500, suffix: 'px' },
         { label: 'Name Size', prop: `--devonian-${id}-name-size`, value: overrides.nameSize || 83, min: 20, max: 150, suffix: 'px' },
-        { label: 'Selo Width', prop: `--devonian-${id}-selo-w`, value: 862, min: 50, max: 1500, suffix: 'px' },
-        { label: 'Selo Top', prop: `--devonian-${id}-selo-top`, value: 799, min: -200, max: 1500, suffix: 'px' },
-        { label: 'Selo Left', prop: `--devonian-${id}-selo-left`, value: 0, min: -200, max: 1080, suffix: 'px' },
+
+        // 2. Subtítulo
         { label: 'Sub MT', prop: `--devonian-${id}-sub-mt`, value: overrides.subMt || 51, min: -200, max: 500, suffix: 'px' },
         { label: 'Sub ML', prop: `--devonian-${id}-sub-ml`, value: 0, min: -200, max: 500, suffix: 'px' },
         { label: 'Sub Width', prop: `--devonian-${id}-sub-w`, value: overrides.subW || 590, min: 100, max: 1080, suffix: 'px' },
         { label: 'Sub Size', prop: `--devonian-${id}-sub-size`, value: 56, min: 20, max: 150, suffix: 'px' },
+
+        // 3. Descrição
         { label: 'Desc MT', prop: `--devonian-${id}-desc-mt`, value: overrides.descMt || 96, min: -200, max: 800, suffix: 'px' },
         { label: 'Desc ML', prop: `--devonian-${id}-desc-ml`, value: 0, min: -200, max: 500, suffix: 'px' },
         { label: 'Desc Width', prop: `--devonian-${id}-desc-w`, value: overrides.descW || 752, min: 100, max: 1080, suffix: 'px' },
         { label: 'Desc Size', prop: `--devonian-${id}-desc-size`, value: overrides.descSize || 40, min: 10, max: 100, suffix: 'px' },
         { label: 'Desc LH', prop: `--devonian-${id}-desc-lh`, value: overrides.descLH || 50, min: 10, max: 150, suffix: 'px' },
+
+        // 4. Fundo (BG)
+        { label: 'BG Height', prop: `--devonian-${id}-bg-h`, value: 42, min: 20, max: 100, suffix: '%' },
+        { label: 'BG Scale', prop: `--devonian-${id}-bg-scale`, value: 1, min: 0.5, max: 3, suffix: '' },
+        { label: 'BG X', prop: `--devonian-${id}-bg-x`, value: 0, min: -1000, max: 1000, suffix: 'px' },
+        { label: 'BG Y', prop: `--devonian-${id}-bg-y`, value: 0, min: -1000, max: 1000, suffix: 'px' },
+
+        // 5. Área Branca
+        { label: 'White Top H', prop: `--devonian-${id}-white-h`, value: 34, min: 20, max: 80, suffix: '%' },
+        { label: 'White Area MT', prop: `--devonian-${id}-white-mt`, value: 38, min: -200, max: 500, suffix: 'px' },
+
+        // 6. Corte (Cut)
+        { label: 'Cut Y', prop: `--devonian-${id}-cut-y`, value: 40, min: 0, max: 200, suffix: 'px' },
+        { label: 'Cut X1', prop: `--devonian-${id}-cut-x1`, value: 250, min: 0, max: 1080, suffix: 'px' },
+        { label: 'Cut X2', prop: `--devonian-${id}-cut-x2`, value: 280, min: 0, max: 1080, suffix: 'px' },
+
+        // 7. Selo (Sempre por último)
+        { label: 'Selo Width', prop: `--devonian-${id}-selo-w`, value: 862, min: 50, max: 1500, suffix: 'px' },
+        { label: 'Selo Top', prop: `--devonian-${id}-selo-top`, value: 799, min: -200, max: 1500, suffix: 'px' },
+        { label: 'Selo Left', prop: `--devonian-${id}-selo-left`, value: 0, min: -200, max: 1080, suffix: 'px' },
     ];
 }
 

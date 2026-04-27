@@ -12,7 +12,7 @@ const BackgroundVideo = ({ src, variant = 'full', children }) => {
 
     return (
         <div className={`video-container variant-${variant}`}>
-            {src.match(/\.(jpeg|jpg|gif|png)$/) != null ? (
+            {src && (src.match(/\.(jpeg|jpg|gif|png)$/) != null ? (
                 <img src={src} className="bg-video" alt="background" />
             ) : (
                 <video
@@ -26,7 +26,7 @@ const BackgroundVideo = ({ src, variant = 'full', children }) => {
                     <source src={src} type="video/mp4" />
                     Seu navegador não suporta vídeos.
                 </video>
-            )}
+            ))}
             <div className="video-overlay"></div>
             <div className="video-content">
                 {children}
