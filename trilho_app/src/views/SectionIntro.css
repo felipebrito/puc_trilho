@@ -20,7 +20,7 @@
     position: absolute;
     top: 154px;
     left: 70px;
-    width: 900px;
+    width: calc(100% - 70px);
     height: 1500px;
     z-index: 10;
 }
@@ -84,8 +84,8 @@
 
 .section-intro-main-heading {
     position: absolute;
-    top: var(--dev-bio-heading-top, var(--dev-ext-heading-top, var(--dev-pos-heading-top, 0px)));
-    left: var(--dev-bio-heading-left, var(--dev-ext-heading-left, var(--dev-pos-heading-left, 0px)));
+    top: 0px;
+    left: 0px;
     font-size: 96px;
     font-family: 'Blender Pro Heavy', sans-serif;
     font-weight: 900;
@@ -111,7 +111,7 @@
     font-family: 'Canva Sans Regular', sans-serif;
     font-weight: 400;
     line-height: 1.3;
-    width: 850px;
+    width: 100%;
     color: var(--color-white);
     margin: 0;
     letter-spacing: -0.5px;
@@ -265,4 +265,152 @@
 .view-section-intro.devoniano.biodiversidade .section-body-top-line,
 .view-section-intro.devoniano.biodiversidade .section-body-bottom-line {
     display: none;
+}
+
+/* ==========================================================================
+   ORDOVICIANO (COM VARIÁVEIS DO DESIGN EDITOR)
+   ========================================================================== */
+.view-section-intro.ordoviciano.biodiversidade .section-bg-image {
+    opacity: var(--dev-ord-bio-bg-opacity, 0.47);
+}
+
+.view-section-intro.ordoviciano.biodiversidade .section-intro-header {
+    top: var(--dev-ord-bio-header-top, 66px);
+    left: var(--dev-ord-bio-header-left, 0px);
+}
+
+.view-section-intro.ordoviciano.biodiversidade .section-intro-period-label {
+    top: var(--dev-ord-bio-label-top, -5px);
+    left: var(--dev-ord-bio-label-left, 41px);
+}
+
+.view-section-intro.ordoviciano.biodiversidade .section-intro-period-name {
+    top: var(--dev-ord-bio-name-top, 36px);
+    left: var(--dev-ord-bio-name-left, 36px);
+}
+
+.view-section-intro.ordoviciano.biodiversidade .section-intro-body {
+    top: var(--dev-ord-bio-body-top, 937px);
+    left: var(--dev-ord-bio-body-left, 36px);
+    width: var(--dev-ord-bio-body-w, 651px);
+}
+
+.view-section-intro.ordoviciano.biodiversidade .section-intro-main-text {
+    line-height: var(--dev-ord-bio-body-lh, 1.3);
+}
+
+.view-section-intro.ordoviciano.biodiversidade .section-intro-main-heading {
+    top: var(--dev-ord-bio-heading-top, -62px);
+    left: var(--dev-ord-bio-heading-left, 0px);
+    font-size: var(--dev-ord-bio-heading-size, 100px);
+    width: var(--dev-ord-bio-heading-w, 805px);
+    letter-spacing: var(--dev-ord-bio-heading-spacing, -1px);
+    line-height: var(--dev-ord-bio-heading-lh, 1.05);
+}
+
+.view-section-intro.ordoviciano.biodiversidade .section-title-underline,
+.view-section-intro.ordoviciano.extincao .section-title-underline {
+    display: none !important;
+}
+
+.view-section-intro.ordoviciano.biodiversidade .section-body-top-line,
+.view-section-intro.ordoviciano.biodiversidade .section-body-bottom-line,
+.view-section-intro.ordoviciano.extincao .section-body-top-line,
+.view-section-intro.ordoviciano.extincao .section-body-bottom-line {
+    display: none !important;
+}
+
+.view-section-intro.ordoviciano.extincao .section-bg-image {
+    opacity: var(--dev-ord-ext-bg-opacity, 1);
+}
+
+.view-section-intro.ordoviciano.extincao .section-intro-header {
+    top: var(--dev-ord-ext-header-top, 66px);
+    left: var(--dev-ord-ext-header-left, 0px);
+}
+
+.view-section-intro.ordoviciano.extincao .section-intro-period-label {
+    top: var(--dev-ord-ext-label-top, -5px);
+    left: var(--dev-ord-ext-label-left, 41px);
+    font-size: var(--dev-ord-ext-label-size, 30px);
+    letter-spacing: var(--dev-ord-ext-label-spacing, 6px);
+}
+
+.view-section-intro.ordoviciano.extincao .section-intro-period-name {
+    top: var(--dev-ord-ext-name-top, 36px);
+    left: var(--dev-ord-ext-name-left, 36px);
+    font-size: var(--dev-ord-ext-name-size, 60px);
+    letter-spacing: var(--dev-ord-ext-name-spacing, 3px);
+}
+
+.view-section-intro.ordoviciano.extincao .section-intro-body {
+    top: var(--dev-ord-ext-body-top, 937px);
+    left: var(--dev-ord-ext-body-left, 36px);
+    width: var(--dev-ord-ext-body-w, 651px);
+}
+
+.view-section-intro.ordoviciano.extincao .section-intro-main-text {
+    line-height: var(--dev-ord-ext-body-lh, 1.3);
+}
+
+.view-section-intro.ordoviciano.extincao .section-intro-main-heading {
+    top: var(--dev-ord-ext-heading-top, -62px);
+    left: var(--dev-ord-ext-heading-left, 0px);
+    font-size: var(--dev-ord-ext-heading-size, 100px);
+    width: var(--dev-ord-ext-heading-w, 805px);
+    letter-spacing: var(--dev-ord-ext-heading-spacing, -1px);
+    line-height: var(--dev-ord-ext-heading-lh, 1.05);
+    color: var(--color-primary-blue) !important;
+    /* Título em azul conforme solicitado */
+}
+
+/* Forçar remoção das linhas para Ordoviciano */
+.view-section-intro.ordoviciano .section-title-underline,
+.view-section-intro.ordoviciano .section-body-top-line,
+.view-section-intro.ordoviciano .section-body-bottom-line {
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+}
+
+.view-section-intro.ordoviciano.pos_extincao .section-bg-image {
+    opacity: var(--dev-ord-pos-bg-opacity, 1);
+}
+
+.view-section-intro.ordoviciano.pos_extincao .section-intro-header {
+    top: var(--dev-ord-pos-header-top, 66px);
+    left: var(--dev-ord-pos-header-left, 0px);
+}
+
+.view-section-intro.ordoviciano.pos_extincao .section-intro-period-label {
+    top: var(--dev-ord-pos-label-top, -5px);
+    left: var(--dev-ord-pos-label-left, 41px);
+    font-size: var(--dev-ord-pos-label-size, 30px);
+    letter-spacing: var(--dev-ord-pos-label-spacing, 6px);
+}
+
+.view-section-intro.ordoviciano.pos_extincao .section-intro-period-name {
+    top: var(--dev-ord-pos-name-top, 36px);
+    left: var(--dev-ord-pos-name-left, 36px);
+    font-size: var(--dev-ord-pos-name-size, 60px);
+    letter-spacing: var(--dev-ord-pos-name-spacing, 3px);
+}
+
+.view-section-intro.ordoviciano.pos_extincao .section-intro-body {
+    top: var(--dev-ord-pos-body-top, 937px);
+    left: var(--dev-ord-pos-body-left, 36px);
+    width: var(--dev-ord-pos-body-w, 651px);
+}
+
+.view-section-intro.ordoviciano.pos_extincao .section-intro-main-text {
+    line-height: var(--dev-ord-pos-body-lh, 1.3);
+}
+
+.view-section-intro.ordoviciano.pos_extincao .section-intro-main-heading {
+    top: var(--dev-ord-pos-heading-top, -62px);
+    left: var(--dev-ord-pos-heading-left, 0px);
+    font-size: var(--dev-ord-pos-heading-size, 100px);
+    width: var(--dev-ord-pos-heading-w, 805px);
+    letter-spacing: var(--dev-ord-pos-heading-spacing, -1px);
+    line-height: var(--dev-ord-pos-heading-lh, 1.05);
 }

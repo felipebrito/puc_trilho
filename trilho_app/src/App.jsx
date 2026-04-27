@@ -4,6 +4,7 @@ import { io } from 'socket.io-client'
 import TopBar from './components/TopBar'
 import BottomBar from './components/BottomBar'
 import Home from './views/Home'
+import HomeOrdovician from './views/HomeOrdovician'
 import HomeDevonian from './views/HomeDevonian'
 import SectionIntro from './views/SectionIntro'
 import HomePermian from './views/HomePermian'
@@ -176,6 +177,24 @@ function App() {
 
   // Reference and Editor Mapping
   const mapping = {
+    'ordoviciano-home': { ref: '/assets/referencias/page-01.jpg', viewId: 'ordoviciano-home' },
+    'ordoviciano-biodiversidade-intro': { ref: '/assets/referencias/page-02.jpg', viewId: 'ordoviciano-bio-intro' },
+    'ordoviciano-biodiversidade-1': { ref: '/assets/referencias/page-03.jpg', viewId: 'ordoviciano-bio-homotelus' },
+    'ordoviciano-biodiversidade-2': { ref: '/assets/referencias/page-04.jpg', viewId: 'ordoviciano-bio-cameroceras' },
+    'ordoviciano-biodiversidade-3': { ref: '/assets/referencias/page-05.jpg', viewId: 'ordoviciano-bio-megalograptus' },
+    'ordoviciano-biodiversidade-4': { ref: '/assets/referencias/page-06.jpg', viewId: 'ordoviciano-bio-balacrinus' },
+    'ordoviciano-biodiversidade-5': { ref: '/assets/referencias/page-07.jpg', viewId: 'ordoviciano-bio-sacabambaspis' },
+    'ordoviciano-biodiversidade-6': { ref: '/assets/referencias/page-08.jpg', viewId: 'ordoviciano-bio-promissum' },
+    'ordoviciano-biodiversidade-7': { ref: '/assets/referencias/page-09.jpg', viewId: 'ordoviciano-bio-sowerbyella' },
+    'ordoviciano-extincao-intro': { ref: '/assets/referencias/page-10.jpg', viewId: 'ordoviciano-extincao-intro' },
+    'ordoviciano-extincao-1': { ref: '/assets/referencias/page-11.jpg', viewId: 'ordoviciano-extincao-content' },
+    'ordoviciano-pos_extincao-intro': { ref: '/assets/referencias/page-12.jpg', viewId: 'ordoviciano-pos-intro' },
+    'ordoviciano-pos_extincao-1': { ref: '/assets/referencias/page-13.jpg', viewId: 'ordoviciano-pos-globe' },
+    'ordoviciano-pos_extincao-2': { ref: '/assets/referencias/page-14.jpg', viewId: 'ordoviciano-pos-dalmanites' },
+    'ordoviciano-pos_extincao-dalmanites': { ref: '/assets/referencias/page-14.jpg', viewId: 'ordoviciano-pos-dalmanites' },
+    'ordoviciano-pos_extincao-3': { ref: '/assets/referencias/page-15.jpg', viewId: 'ordoviciano-pos-halysites' },
+    'ordoviciano-pos_extincao-4': { ref: '/assets/referencias/page-16.jpg', viewId: 'ordoviciano-pos-cooksonia' },
+    'ordoviciano-pos_extincao-atrypa': { ref: '/assets/referencias/page-17.jpg', viewId: 'ordoviciano-pos-atrypa' },
     'devoniano-home': { ref: '/assets/referencias/page-18.jpg', viewId: 'devoniano-home' },
     'devoniano-biodiversidade-intro': { ref: '/assets/referencias/page-19.jpg', viewId: 'devoniano-bio-intro' },
     'devoniano-biodiversidade-1': { ref: '/assets/referencias/page-20.jpg', viewId: 'devoniano-bio-dunkleosteus' },
@@ -205,9 +224,16 @@ function App() {
   };
 
   let pageKey = sectionIndex;
-  if (type === 'section_intro' || type === 'home_devonian') pageKey = 'intro';
+  if (type === 'section_intro') pageKey = 'intro';
+  if (type.startsWith('home')) pageKey = 'home';
+  if (sectionIndex === -1 && type.startsWith('home')) pageKey = 'home';
+  
   const designKey = `${currentPeriod}-${currentSection}-${pageKey}`;
-  const currentMapping = mapping[designKey] || {};
+  // Fallback for home without -home suffix if needed, but let's try to be precise
+  let finalDesignKey = designKey;
+  if (currentSection === 'home') finalDesignKey = `${currentPeriod}-home`;
+  
+  const currentMapping = mapping[finalDesignKey] || mapping[designKey] || {};
 
   const scopedNavigate = (dir, targetSectionIndex = null) => {
     if (targetSectionIndex !== null) {
@@ -229,6 +255,7 @@ function App() {
             const key = `${type}-${slideIndex}`;
 
             if      (type === 'home')                       ComponentToRender = <Home onNavigate={handleNavigate} />;
+            else if (type === 'home_ordoviciano')           ComponentToRender = <HomeOrdovician onNavigate={absoluteNavigate} />;
             else if (type === 'home_devonian')              ComponentToRender = <HomeDevonian onNavigate={absoluteNavigate} />;
             else if (type === 'home_permiano')              ComponentToRender = <HomePermian onNavigate={absoluteNavigate} />;
             else if (type === 'section_intro')              ComponentToRender = <SectionIntro slideData={currentSlide} onNavigate={scopedNavigate} />;

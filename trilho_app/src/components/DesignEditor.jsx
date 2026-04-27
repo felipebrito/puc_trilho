@@ -107,6 +107,7 @@ const cssConfigs = {
     'ordoviciano-bio-intro': createDevonianoIntroConfig('ord-bio', { 
         bodyTop: 937, 
         bodyW: 651,
+        bodyLH: 1.3,
         headingTop: -62, 
         headingSize: 100,
         headingW: 805, 
@@ -151,8 +152,109 @@ const cssConfigs = {
         descMt: 62,
         descW: 804
     }),
-    'ordoviciano-extincao-intro': createDevonianoIntroConfig('ord-ext'),
-    'ordoviciano-pos-intro': createDevonianoIntroConfig('ord-pos'),
+    'ordoviciano-extincao-intro': createDevonianoIntroConfig('ord-ext', {
+        headerTop: 66,
+        headerLeft: 0,
+        labelTop: -5,
+        labelLeft: 41,
+        labelSize: 30,
+        labelSpacing: 6,
+        nameTop: 36,
+        nameLeft: 36,
+        nameSize: 60,
+        nameSpacing: 3,
+        headingTop: -259,
+        headingLeft: 0,
+        headingSize: 100,
+        headingW: 466,
+        headingSpacing: -1,
+        headingLH: 1.05,
+        bodyTop: 507,
+        bodyLeft: 36,
+        bodyW: 819,
+        bodyLH: 1.25,
+        bgOpacity: 1,
+        lineDisplay: 0
+    }),
+    'ordoviciano-extincao-content': createDevonianoExtinctionConfig('ext', {
+        imageTop: 0,
+        imageHeight: 920,
+        imageScale: 1.2,
+        captionTop: 874,
+        captionLeft: 75,
+        captionSize: 27,
+        captionW: 900,
+        lineTop: 978,
+        lineLeft: 97,
+        lineW: 890,
+        textTop: 1081,
+        textLeft: 90,
+        textW: 760,
+        textLH: 46
+    }),
+    'ordoviciano-pos-intro': createDevonianoIntroConfig('ord-pos', {
+        headerTop: 1534,
+        headerLeft: 0,
+        labelTop: -5,
+        labelLeft: 41,
+        labelSize: 30,
+        labelSpacing: 6,
+        nameTop: 36,
+        nameLeft: 36,
+        nameSize: 60,
+        nameSpacing: 3,
+        headingTop: -191,
+        headingLeft: 0,
+        headingSize: 116,
+        headingW: 900,
+        headingSpacing: 0,
+        headingLH: 1.05,
+        bodyTop: 755,
+        bodyLeft: 36,
+        bodyW: 817,
+        bodyLH: 1.3,
+        bgOpacity: 0.8,
+        lineDisplay: 0
+    }),
+    'ordoviciano-pos-globe': createDevonianoGlobeConfig('ord-glob', {
+        headerTitle: 'E DEPOIS?',
+        headerTop: -61,
+        globMt: 61,
+        globW: 1080,
+        globH: 629,
+        descMt: 104,
+        descW: 903,
+        descSize: 38.5,
+        descLH: 45,
+        lineMt: 29
+    }),
+
+    'ordoviciano-pos-dalmanites': createDevonianoSpecimenConfig('dalmanites', {
+        nameMt: 20,
+        nameMl: 0,
+        nameSize: 83,
+        subMt: 29,
+        subMl: 0,
+        subW: 1070,
+        subSize: 47,
+        descMt: -9,
+        descMl: 0,
+        descW: 951,
+        descSize: 36,
+        descLH: 48,
+        bgH: 45,
+        bgTop: 304,
+        bgY: -257,
+        whiteMt: 926,
+        seloTop: 543,
+        topTextTop: 181,
+        topTextLeft: 108,
+        topTextW: 864,
+        topTextSize: 38
+    }),
+    'ordoviciano-pos-halysites': createDevonianoSpecimenConfig('halysites'),
+    'ordoviciano-pos-cooksonia': createDevonianoSpecimenConfig('cooksonia'),
+    'ordoviciano-pos-atrypa': createDevonianoSpecimenConfig('atrypa'),
 
     // Carbonífero
     'devoniano-pos-carbon-meganeura': createDevonianoSpecimenConfig('meganeura'),
@@ -165,11 +267,33 @@ const cssConfigs = {
     'devoniano-pos-carbon-sigillaria': createDevonianoSpecimenConfig('sigillaria'),
 };
 
+function createDevonianoExtinctionConfig(sectionPrefix, overrides = {}) {
+    return [
+        { label: 'Image Top', prop: `--dev-${sectionPrefix}-img-top`, value: overrides.imageTop ?? 123.81, min: 0, max: 1000, suffix: 'px' },
+        { label: 'Image Height', prop: `--dev-${sectionPrefix}-img-h`, value: overrides.imageHeight ?? 700, min: 100, max: 1500, suffix: 'px' },
+        { label: 'Image Scale', prop: `--dev-${sectionPrefix}-img-scale`, value: overrides.imageScale ?? 1, min: 0.5, max: 3, suffix: '' },
+        
+        { label: 'Caption Top', prop: `--dev-${sectionPrefix}-caption-top`, value: overrides.captionTop ?? 860, min: 0, max: 1920, suffix: 'px' },
+        { label: 'Caption Left', prop: `--dev-${sectionPrefix}-caption-left`, value: overrides.captionLeft ?? 108, min: 0, max: 1080, suffix: 'px' },
+        { label: 'Caption Size', prop: `--dev-${sectionPrefix}-caption-size`, value: overrides.captionSize ?? 26, min: 10, max: 100, suffix: 'px' },
+        { label: 'Caption Width', prop: `--dev-${sectionPrefix}-caption-w`, value: overrides.captionW ?? 900, min: 100, max: 1080, suffix: 'px' },
+        
+        { label: 'Line Top', prop: `--dev-${sectionPrefix}-line-top`, value: overrides.lineTop ?? 960, min: 0, max: 1920, suffix: 'px' },
+        { label: 'Line Left', prop: `--dev-${sectionPrefix}-line-left`, value: overrides.lineLeft ?? 108, min: 0, max: 1080, suffix: 'px' },
+        { label: 'Line Width', prop: `--dev-${sectionPrefix}-line-w`, value: overrides.lineW ?? 890, min: 10, max: 1080, suffix: 'px' },
+        
+        { label: 'Text Top', prop: `--dev-${sectionPrefix}-text-top`, value: overrides.textTop ?? 1050, min: 0, max: 1920, suffix: 'px' },
+        { label: 'Text Left', prop: `--dev-${sectionPrefix}-text-left`, value: overrides.textLeft ?? 108, min: 0, max: 500, suffix: 'px' },
+        { label: 'Text Width', prop: `--dev-${sectionPrefix}-text-w`, value: overrides.textW ?? 864, min: 100, max: 1080, suffix: 'px' },
+        { label: 'Text LH', prop: `--dev-${sectionPrefix}-text-lh`, value: overrides.textLH ?? 47, min: 10, max: 100, suffix: 'px' },
+    ];
+}
+
 function createDevonianoIntroConfig(sectionPrefix, overrides = {}) {
     return [
-        { label: 'BG Opacity', prop: `--dev-${sectionPrefix}-bg-opacity`, value: overrides.bgOpacity ?? 0.47, min: 0, max: 1, suffix: '' },
-        { label: 'Header Top', prop: `--dev-${sectionPrefix}-header-top`, value: overrides.headerTop ?? 66, min: 0, max: 1500, suffix: 'px' },
-        { label: 'Header Left', prop: `--dev-${sectionPrefix}-header-left`, value: overrides.headerLeft ?? 0, min: 0, max: 1500, suffix: 'px' },
+        // 1. Header (Labels e Nome do Período)
+        { label: 'Header Top', prop: `--dev-${sectionPrefix}-header-top`, value: overrides.headerTop ?? 66, min: 0, max: 2000, suffix: 'px' },
+        { label: 'Header Left', prop: `--dev-${sectionPrefix}-header-left`, value: overrides.headerLeft ?? 0, min: 0, max: 2000, suffix: 'px' },
         { label: 'Label Top', prop: `--dev-${sectionPrefix}-label-top`, value: overrides.labelTop ?? -5, min: -100, max: 100, suffix: 'px' },
         { label: 'Label Left', prop: `--dev-${sectionPrefix}-label-left`, value: overrides.labelLeft ?? 41, min: -100, max: 500, suffix: 'px' },
         { label: 'Label Size', prop: `--dev-${sectionPrefix}-label-size`, value: overrides.labelSize ?? 30, min: 10, max: 100, suffix: 'px' },
@@ -178,16 +302,24 @@ function createDevonianoIntroConfig(sectionPrefix, overrides = {}) {
         { label: 'Name Left', prop: `--dev-${sectionPrefix}-name-left`, value: overrides.nameLeft ?? 36, min: -100, max: 500, suffix: 'px' },
         { label: 'Name Size', prop: `--dev-${sectionPrefix}-name-size`, value: overrides.nameSize ?? 60, min: 10, max: 200, suffix: 'px' },
         { label: 'Name Spacing', prop: `--dev-${sectionPrefix}-name-spacing`, value: overrides.nameSpacing ?? 3, min: 0, max: 50, suffix: 'px' },
-        { label: 'Underline Display', prop: `--dev-${sectionPrefix}-line-display`, value: overrides.lineDisplay ?? 0, min: 0, max: 1, suffix: '' },
-        { label: 'Body Top', prop: `--dev-${sectionPrefix}-body-top`, value: overrides.bodyTop ?? 599, min: 0, max: 1500, suffix: 'px' },
-        { label: 'Body Left', prop: `--dev-${sectionPrefix}-body-left`, value: overrides.bodyLeft ?? 36, min: 0, max: 500, suffix: 'px' },
-        { label: 'Body Width', prop: `--dev-${sectionPrefix}-body-w`, value: overrides.bodyW ?? 900, min: 100, max: 1080, suffix: 'px' },
-        { label: 'Heading Top', prop: `--dev-${sectionPrefix}-heading-top`, value: overrides.headingTop ?? 0, min: -200, max: 500, suffix: 'px' },
+
+        // 2. Heading (Título da Seção)
+        { label: 'Heading Top', prop: `--dev-${sectionPrefix}-heading-top`, value: overrides.headingTop ?? 0, min: -800, max: 800, suffix: 'px' },
         { label: 'Heading Left', prop: `--dev-${sectionPrefix}-heading-left`, value: overrides.headingLeft ?? 0, min: -200, max: 500, suffix: 'px' },
         { label: 'Heading Size', prop: `--dev-${sectionPrefix}-heading-size`, value: overrides.headingSize ?? 96, min: 20, max: 300, suffix: 'px' },
         { label: 'Heading Width', prop: `--dev-${sectionPrefix}-heading-w`, value: overrides.headingW ?? 900, min: 100, max: 1080, suffix: 'px' },
         { label: 'Heading Spacing', prop: `--dev-${sectionPrefix}-heading-spacing`, value: overrides.headingSpacing ?? 0, min: -10, max: 50, suffix: 'px' },
         { label: 'Heading LH', prop: `--dev-${sectionPrefix}-heading-lh`, value: overrides.headingLH ?? 1.05, min: 0.1, max: 2, suffix: '' },
+
+        // 3. Body (Texto de Descrição)
+        { label: 'Body Top', prop: `--dev-${sectionPrefix}-body-top`, value: overrides.bodyTop ?? 599, min: 0, max: 1500, suffix: 'px' },
+        { label: 'Body Left', prop: `--dev-${sectionPrefix}-body-left`, value: overrides.bodyLeft ?? 36, min: 0, max: 500, suffix: 'px' },
+        { label: 'Body Width', prop: `--dev-${sectionPrefix}-body-w`, value: overrides.bodyW ?? 900, min: 100, max: 1080, suffix: 'px' },
+        { label: 'Body LH', prop: `--dev-${sectionPrefix}-body-lh`, value: overrides.bodyLH ?? 1.3, min: 0.5, max: 3, suffix: '' },
+
+        // 4. Background e Outros
+        { label: 'BG Opacity', prop: `--dev-${sectionPrefix}-bg-opacity`, value: overrides.bgOpacity ?? 0.47, min: 0, max: 1, suffix: '' },
+        { label: 'Underline Display', prop: `--dev-${sectionPrefix}-line-display`, value: overrides.lineDisplay ?? 0, min: 0, max: 1, suffix: '' },
     ];
 }
 
@@ -196,12 +328,13 @@ function createDevonianoGlobeConfig(prefix, defaults = {}) {
         { label: 'Header Top', prop: `--dev-${prefix}-header-top`, value: defaults.headerTop ?? 0, min: -100, max: 200, suffix: 'px' },
         { label: 'Globe MT', prop: `--dev-${prefix}-glob-mt`, value: defaults.globMt ?? 0, min: -100, max: 300, suffix: 'px' },
         { label: 'Globe Width', prop: `--dev-${prefix}-glob-w`, value: defaults.globW ?? 1080, min: 200, max: 1500, suffix: 'px' },
-        { label: 'Globe Height', prop: `--dev-${prefix}-glob-h`, value: defaults.globH ?? 600, min: 200, max: 1000, suffix: 'px' },
-        { label: 'Description MT', prop: `--dev-${prefix}-glob-desc-mt`, value: defaults.descMt ?? 60, min: -200, max: 400, suffix: 'px' },
+        { label: 'Globe Height', prop: `--dev-${prefix}-glob-h`, value: defaults.globH ?? 600, min: 200, max: 1500, suffix: 'px' },
+        { label: 'Description MT', prop: `--dev-${prefix}-glob-desc-mt`, value: defaults.descMt ?? 60, min: -200, max: 800, suffix: 'px' },
         { label: 'Desc Width', prop: `--dev-${prefix}-glob-desc-w`, value: defaults.descW ?? 930, min: 500, max: 1080, suffix: 'px' },
         { label: 'Desc Left', prop: `--dev-${prefix}-glob-desc-left`, value: defaults.descLeft ?? 20, min: -100, max: 500, suffix: 'px' },
         { label: 'Desc Size', prop: `--dev-${prefix}-glob-desc-size`, value: defaults.descSize ?? 38.5, min: 10, max: 100, suffix: 'px' },
         { label: 'Desc LH', prop: `--dev-${prefix}-glob-desc-lh`, value: defaults.descLH ?? 47, min: 10, max: 150, suffix: 'px' },
+        { label: 'Line MT', prop: `--dev-${prefix}-glob-line-mt`, value: defaults.lineMt ?? 100, min: -200, max: 800, suffix: 'px' },
     ];
 }
 function createDevonianoSpecimenConfig(id, overrides = {}) {
@@ -226,13 +359,13 @@ function createDevonianoSpecimenConfig(id, overrides = {}) {
 
         // 4. Fundo (BG)
         { label: 'BG Height', prop: `--devonian-${id}-bg-h`, value: overrides.bgH || 42, min: 20, max: 100, suffix: '%' },
+        { label: 'BG Top', prop: `--devonian-${id}-bg-top`, value: overrides.bgTop || 0, min: -100, max: 800, suffix: 'px' },
         { label: 'BG Scale', prop: `--devonian-${id}-bg-scale`, value: overrides.bgScale || 1, min: 0.5, max: 3, suffix: '' },
         { label: 'BG X', prop: `--devonian-${id}-bg-x`, value: overrides.bgX || 0, min: -1000, max: 1000, suffix: 'px' },
         { label: 'BG Y', prop: `--devonian-${id}-bg-y`, value: overrides.bgY || 0, min: -1000, max: 1000, suffix: 'px' },
 
         // 5. Área Branca
-        { label: 'White Top H', prop: `--devonian-${id}-white-h`, value: 34, min: 20, max: 80, suffix: '%' },
-        { label: 'White Area MT', prop: `--devonian-${id}-white-mt`, value: 38, min: -200, max: 500, suffix: 'px' },
+        { label: 'Box Top', prop: `--devonian-${id}-white-mt`, value: 38, min: -500, max: 1500, suffix: 'px' },
 
         // 6. Corte (Cut)
         { label: 'Cut Y', prop: `--devonian-${id}-cut-y`, value: 40, min: 0, max: 200, suffix: 'px' },
@@ -243,6 +376,12 @@ function createDevonianoSpecimenConfig(id, overrides = {}) {
         { label: 'Selo Width', prop: `--devonian-${id}-selo-w`, value: 862, min: 50, max: 1500, suffix: 'px' },
         { label: 'Selo Top', prop: `--devonian-${id}-selo-top`, value: 799, min: -200, max: 1500, suffix: 'px' },
         { label: 'Selo Left', prop: `--devonian-${id}-selo-left`, value: 0, min: -200, max: 1080, suffix: 'px' },
+        
+        // 8. Top Text (Transição)
+        { label: 'TopText Top', prop: `--devonian-toptext-top`, value: 80, min: 0, max: 1500, suffix: 'px' },
+        { label: 'TopText Left', prop: `--devonian-toptext-left`, value: 108, min: 0, max: 1000, suffix: 'px' },
+        { label: 'TopText Width', prop: `--devonian-toptext-w`, value: 864, min: 100, max: 1080, suffix: 'px' },
+        { label: 'TopText Size', prop: `--devonian-toptext-size`, value: 38, min: 10, max: 100, suffix: 'px' },
     ];
 }
 

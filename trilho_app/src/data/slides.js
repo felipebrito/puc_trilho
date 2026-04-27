@@ -103,9 +103,9 @@ export const ordovicianoSlides = [
         type: 'section_intro',
         period: 'ordoviciano',
         section: 'extincao',
-        title: 'A EXTINÇÃO',
-        content: 'Nesse momento geológico, os níveis de dióxido de carbono no planeta diminuíram, reduzindo o efeito estufa e causando o resfriamento do planeta, o que, somado ao deslocamento de Gondwana em direção ao Polo Sul, criou uma cobertura de gelo nessa região, que também se alastrou sobre algumas áreas continentais e costeiras, como na imagem a seguir:',
-        bgImage: '/assets/extinction_map.png'
+        title: 'A PRIMEIRA EXTINÇÃO EM MASSA',
+        description: 'Nesse momento geológico, os níveis de dióxido de carbono no planeta diminuíram, reduzindo o efeito estufa e causando o resfriamento do planeta, o que, somado ao deslocamento de Gondwana em direção ao Polo Sul, criou uma cobertura de gelo nessa região, que também se alastrou sobre algumas áreas continentais e costeiras.',
+        bgImage: '/assets/ordoviciano/extincao_intro_bg.png'
     },
 
     // Slide 10: Extinction Content (Canva Pg 11)
@@ -113,11 +113,10 @@ export const ordovicianoSlides = [
         type: 'extinction_content',
         period: 'ordoviciano',
         section: 'extincao',
-        title: 'A EXTINÇÃO',
-        topText: 'Nesse momento geológico, os níveis de dióxido de carbono no planeta diminuíram, reduzindo o efeito estufa e causando o resfriamento do planeta, o que, somado ao deslocamento de Gondwana em direção ao Polo Sul, criou uma cobertura de gelo nessa região, que também se alastrou sobre algumas áreas continentais e costeiras, como na imagem abaixo:',
-        imageSrc: '/assets/extinction_map.png',
-        imageCaption: 'Aparência do planeta Terra durante o final do período Ordoviciano, com a cobertura de gelo alastrada devido as baixas temperaturas.',
-        bottomText: 'Gradualmente a temperatura diminui, o nível do mar baixa e os invertebrados marinhos começam a morrer. Cerca de 85% de todas as espécies que habitavam as águas rasas pereceram congeladas. Aqueles poucos que sobreviveram se refugiaram nas águas profundas.',
+        imageSrc: '/assets/ordoviciano/extincao_topo.png',
+        topText: 'Nesse momento geológico, a temperatura diminui de forma gradula, mas intensa.\nO nível do mar baixa e os invertebrados marinhos começam a morrer.',
+        imageCaption: 'Aparência do planeta Terra durante o final do período Ordoviciano, com a cobertura de gelo alastrada devido às baixas temperaturas.',
+        bottomText: 'Cerca de 85% de todas as espécies que habitavam as águas rasas pereceram congeladas. Aqueles poucos que sobreviveram se refugiaram nas águas profundas.',
     },
 
     // Slide 11 - E DEPOIS? Intro (Canva Pg 12)
@@ -127,9 +126,9 @@ export const ordovicianoSlides = [
         section: 'pos_extincao',
         title: 'E DEPOIS?',
         periodLabel: 'PERÍODO',
-        periodName: 'ORDOVICIANO',
-        content: 'Aparência do planeta Terra durante o início do período Siluriano, com a cobertura de gelo sendo reduzida devido ao aumento nas temperaturas do globo terrestre.',
-        bgImage: '/assets/extinction_map.png'
+        periodName: 'SILURIANO',
+        description: 'Aparência do planeta Terra durante o início do período Siluriano, com a cobertura de gelo sendo reduzida devido ao aumento nas temperaturas do globo terrestre.',
+        bgImage: '/assets/ordoviciano/siluriano_intro_bg.png'
     },
 
     // Slide 12 - E DEPOIS? Globe (Canva Pg 13)
@@ -137,71 +136,62 @@ export const ordovicianoSlides = [
         type: 'silurian_globe',
         period: 'ordoviciano',
         section: 'pos_extincao',
-        title: 'E DEPOIS?',
-        content: 'Vista do globo terrestre, com a disposição da massa continental correspondente à nova época retratada: Período Siluriano. No início desse período, cerca de 200 mil anos após a primeira extinção em massa, houve um aumento no nível de gás carbônico atmosférico. Como consequência, a temperatura do planeta voltou a aumentar, fazendo com que as enormes geleiras derretessem e a vida tomasse um novo curso.',
-        imageSrc: '/assets/mapa-depois.png'
+        headerTitle: 'E DEPOIS?',
+        content: 'Vista do globo terrestre, com a disposição da massa continental correspondente à nova época retratada: Período Siluriano. No início desse período, cerca de 200 mil anos após a primeira extinção em massa, houve um aumento no nível de gás carbônico atmosférico.\n\nComo consequência, a temperatura do planeta voltou a aumentar, fazendo com que as enormes geleiras derretessem e a vida tomasse um novo curso.',
+        imageSrc: '/assets/ordoviciano/siluriano_globe.png'
     },
 
     // Slide 13 - Dalmanites sp. (Canva Pg 14)
     {
-        type: 'silurian_specimen',
+        type: 'single_species',
         period: 'ordoviciano',
         section: 'pos_extincao',
-        name: 'DALMANITES SP.',
+        id: 'dalmanites',
+        name: 'Dalmanites sp.',
         subtitle: 'Trilobita, com cerca de 8 cm de comprimento',
-        introText: 'As novas mudanças alteraram a biota, com novas espécies tornando-se abundantes (novo zoom para demonstrar o ambiente oceânico). Na representação do Siluriano, sugerimos retratar os animais que seguem:',
-        description: 'Possuíam exoesqueleto levemente convexos, terminados em uma cauda com extremidade pontiaguda. Se alimentava de matéria orgânica em decomposição, como restos de plantas e outros organismos. Se alimentavam de restos orgânicos presentes no assoalho oceânico.',
-        imageSrc: 'assets/dalmanites.png'
+        topText: 'As novas mudanças alteraram a biota, com novas espécies tornando-se abundantes.',
+        description: 'Possuíam exoesqueleto levemente convexos, terminados em uma cauda com extremidade pontiaguda. Se alimentava de matéria orgânica em decomposição, como restos de plantas e outros organismos presentes no assoalho oceânico.',
+        videoSrc: '/assets/ordoviciano/dalmanites.png',
+        seloSrc: '/assets/ordoviciano/selo_dalmanites.png'
     },
 
-    // Slide 14 - Double Species (Halysites + Cyrtograptus) (Canva Pg 15)
+    // Slide 14 - Halysites (Canva Pg 15)
     {
-        type: 'silurian_double_specimen',
+        type: 'single_species',
         period: 'ordoviciano',
         section: 'pos_extincao',
-        speciesLeft: {
-            name: 'HALYSITES SP.',
-            subtitle: 'Corais, que podiam chegar a 40 cm de altura',
-            description: 'Conhecidos por suas estruturas em colônias ramificadas e tabulados, que se assemelham a colmeias. Seu alimento era composto basicamente por plâncton.',
-            imageSrc: 'assets/halysites.png'
-        },
-        speciesRight: {
-            name: 'CYRTOGRAPTUS SP.',
-            subtitle: 'Graptólitos filtradores, com cerca de 12 cm de diâmetro',
-            description: 'Um dos primeiros animais a colonizar ambientes de mar aberto. Formado por uma espiral helicoidal baixa com 1,5 voltas firmemente enroladas, munidos de espinhos dorsolaterais.',
-            imageSrc: 'https://media.canva.com/v2/image-resize/format:PNG/height:169/quality:100/uri:ifs%3A%2F%2FM%2Fb213e829-7294-4d36-8486-805bc3f8ae3d/watermark:F/width:309?csig=AAAAAAAAAAAAAAAAAAAAAFYB_VYBWuQY-AU_EHXQ8f3XRnWK6LxqhJAwWZ7cHcZC&exp=1773807571&osig=AAAAAAAAAAAAAAAAAAAAABl4Ydo9nmS_PSHapdv_SURkDNhz-FX7R2zpgvOXYJs2&signer=media-rpc&x-canva-quality=screen'
-        }
+        id: 'halysites',
+        name: 'Halysites sp.',
+        subtitle: 'Corais, que podiam chegar a 40 cm de altura',
+        description: 'Conhecidos por suas estruturas em colônias ramificadas e tabulados, que se assemelham a colmeias. Seu alimento era composto basicamente por plâncton.',
+        videoSrc: '/assets/ordoviciano/halysites.png',
+        seloSrc: '/assets/ordoviciano/selo_halysites.png'
     },
 
-    // Slide 15 - Double Species (Favosites + Heliolites) (Canva Pg 16)
+    // Slide 15 - Cooksonia (Canva Pg 16 - Placeholder for now)
     {
-        type: 'silurian_double_specimen',
+        type: 'single_species',
         period: 'ordoviciano',
         section: 'pos_extincao',
-        speciesLeft: {
-            name: 'FAVOSITES SP.',
-            subtitle: 'Corais filtradores, podendo chegar a 30 cm de altura',
-            description: 'A estrutura deste coral era parecida com um favo-de-mel, dando-lhes o nome de "corais favos-de-mel". As paredes deste coral apresentavam poros, que facilitavam a troca de nutrientes entre os organismos coloniais.',
-            imageSrc: 'assets/favosites.png'
-        },
-        speciesRight: {
-            name: 'HELIOLITES SP.',
-            subtitle: 'Corais filtradores, com cerca de 15 cm de altura',
-            description: 'Os membros do gênero são distinguidos por um coenênquima tubular proeminente (o tecido que liga os pólipos vizinhos) com 14-17 túbulos ao redor de cada coralito (a "taça calcárea" na qual cada pólipo fica).',
-            imageSrc: 'assets/heliolites.png'
-        }
+        id: 'cooksonia',
+        name: 'Cooksonia sp.',
+        subtitle: 'Uma das primeiras plantas terrestres',
+        description: 'Apresentava caules ramificados em forma de Y que terminavam em estruturas globulares chamadas esporângios. Não possuía folhas verdadeiras nem raízes.',
+        videoSrc: '/assets/ordoviciano/cooksonia.png',
+        seloSrc: '/assets/ordoviciano/selo_cooksonia.png'
     },
 
     // Slide 16 - Atrypa sp. (Canva Pg 17)
     {
-        type: 'silurian_specimen',
+        type: 'single_species',
         period: 'ordoviciano',
         section: 'pos_extincao',
         id: 'atrypa',
-        name: 'ATRYPA SP.',
-        subtitle: 'braquiópode filtrador, com cerca de 3 cm de comprimento',
-        description: 'Apresentavam conchas redondas a curtas em forma de ovo, cobertas com muitas cristas radiais finas (ou costae), que se dividem mais para fora e linhas de crescimento perpendiculares às costae e 2-3 vezes mais espaçadas. Viviam aderidos ao substrato oceânico.',
-        imageSrc: 'assets/atrypa.png'
+        name: 'Atrypa sp.',
+        subtitle: 'Braquiópode filtrador, com cerca de 3 cm de comprimento',
+        description: 'Apresentavam conchas redondas a curtas em forma de ovo, cobertas com muitas cristas radiais finas. Viviam aderidos ao substrato oceânico.',
+        videoSrc: '/assets/atrypa.png',
+        seloSrc: '/assets/ordoviciano/selo_atrypa.png'
     },
 ];
 

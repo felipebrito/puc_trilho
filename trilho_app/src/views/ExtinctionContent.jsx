@@ -68,57 +68,90 @@ const ExtinctionContent = ({ onNavigate, slideData }) => {
                 <img src="/assets/museu.png" alt="Museu Logo" onError={(e) => { e.target.onerror = null; e.target.src = "https://media.canva.com/v2/image-resize/format:PNG/height:125/quality:100/uri:ifs%3A%2F%2FM%2F60c1fc46-c287-45e5-b695-4bc3016f100e/watermark:F/width:489"; }} style={{ width: '100%', height: '100%' }} />
             </div>
 
-            {/* MAP IMAGE */}
-            <div id="LBXC0rkHyhY3lqwL" style={{ position: 'absolute', width: '975.743px', height: '487.871px', transform: 'translate(52.1286px, 628.147px)' }}>
-                <motion.img variants={blurVariants} initial="hidden" animate="visible" src={slideData.imageSrc} alt="Mapa Ordoviciano" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+            {/* IMAGE (Top) */}
+            <div className="extinction-image-container" style={{ 
+                top: 'var(--dev-ext-img-top, 123.81px)', 
+                height: 'var(--dev-ext-img-h, 700px)',
+                width: '1080px',
+                left: 0
+            }}>
+                <motion.img 
+                    variants={blurVariants} 
+                    initial="hidden" 
+                    animate={{
+                        ...blurVariants.visible,
+                        scale: 'var(--dev-ext-img-scale, 1)'
+                    }} 
+                    src={slideData.imageSrc} 
+                    alt="Extinção Image" 
+                    style={{ 
+                        width: '100%', 
+                        height: '100%', 
+                        objectFit: 'contain'
+                    }} 
+                />
             </div>
 
-            {/* TEXT #1 (Top Text) */}
-            <div id="LB3XzL9R447P6PXB" style={{ position: 'absolute', width: '864px', height: '420.387px', transform: 'translate(108px, 180.706px)' }}>
-                <p style={{ margin: 0, fontFamily: 'YAFdJjTk5UU_0, "Canva Sans Regular", sans-serif', fontSize: '37.3337px', color: 'rgb(11, 14, 33)', lineHeight: '47px', letterSpacing: '0em', textTransform: 'none', listStyleType: 'none', fontWeight: 400, fontStyle: 'normal' }}>
-                    {slideData.topText?.split('\n').map((line, i) => (
-                        <React.Fragment key={i}>
-                            {line}<br />
-                        </React.Fragment>
-                    ))}
-                </p>
-            </div>
-
-            {/* TEXT #2 (Map Caption) */}
-            <div id="LBMH9sqBBLCb1cNr" style={{ position: 'absolute', width: '919.871px', height: '105.335px', transform: 'translate(108px, 1143.02px)' }}>
-                <motion.p variants={blurVariants} initial="hidden" animate="visible">
-                    <span style={{ fontSize: '1.7em', fontWeight: 500, fontStyle: 'normal', color: 'rgb(11, 14, 33)', fontKerning: 'normal', textDecorationLine: 'none', textDecorationThickness: 'initial', textDecorationStyle: 'initial' }}>
-                        {slideData.imageCaption}
-                    </span>
+            {/* CAPTION (Below Image) */}
+            <div className="extinction-caption" style={{ 
+                top: 'var(--dev-ext-caption-top, 860px)',
+                left: 'var(--dev-ext-caption-left, 108px)',
+                width: 'var(--dev-ext-caption-w, 900px)',
+                textAlign: 'center'
+            }}>
+                <motion.p variants={blurVariants} initial="hidden" animate="visible" style={{ fontSize: 'var(--dev-ext-caption-size, 26px)' }}>
+                    {slideData.imageCaption}
                 </motion.p>
             </div>
 
-            {/* STROKE LINE */}
-            <div id="LBspcmTbDbm76KP5" style={{ position: 'absolute', width: '890.54px', height: '4px', transform: 'translate(108px, 1246.35px)' }}>
-                <svg style={{ width: '890.54px', height: '4px' }}>
-                    <path d="M0,2L890.5400397663743,2" stroke="rgb(0, 95, 255)" strokeWidth="4" fill="none" />
-                </svg>
-            </div>
+            {/* SEPARATOR LINE */}
+            <div className="extinction-separator" style={{ 
+                top: 'var(--dev-ext-line-top, 960px)',
+                left: 'var(--dev-ext-line-left, 108px)',
+                width: 'var(--dev-ext-line-w, 890px)'
+            }} />
 
-            {/* TEXT #3 (Bottom Text) */}
-            <div id="LBtqWFL1MbBdj6DY" style={{ position: 'absolute', width: '898.552px', height: '326.387px', transform: 'translate(108px, 1307.35px)' }}>
-                <p style={{ margin: 0, fontFamily: 'YAFdJjTk5UU_0, "Canva Sans Regular", sans-serif', fontSize: '37.3337px', color: 'rgb(11, 14, 33)', lineHeight: '47px', letterSpacing: '0em' }}>
-                    {slideData.bottomText?.split('\n').map((line, i) => {
-                        const parts = line.split(/(85% de todas as espécies)/g);
-                        return (
+            {/* TEXT CONTENT (Bottom) */}
+            <div className="extinction-text-content" style={{ 
+                position: 'absolute', 
+                top: 'var(--dev-ext-text-top, 1050px)', 
+                left: 'var(--dev-ext-text-left, 108px)', 
+                width: 'var(--dev-ext-text-w, 864px)' 
+            }}>
+                <div className="extinction-top-text" style={{ 
+                    marginBottom: '60px',
+                    lineHeight: 'var(--dev-ext-text-lh, 47px)'
+                }}>
+                    <p style={{ margin: 0, fontFamily: 'var(--font-canva)', fontSize: '37px', color: 'rgb(11, 14, 33)', lineHeight: 'inherit' }}>
+                        {slideData.topText?.split('\n').map((line, i) => (
                             <React.Fragment key={i}>
-                                {parts.map((part, j) => (
-                                    part === '85% de todas as espécies' ? (
-                                        <span key={j} style={{ fontFamily: 'Inter, sans-serif', color: 'rgb(0, 95, 255)', fontWeight: 'bold', WebkitTextStroke: '1px rgb(0, 95, 255)' }}>
-                                            {part}
-                                        </span>
-                                    ) : part
-                                ))}
-                                <br />
+                                {line}<br />
                             </React.Fragment>
-                        );
-                    })}
-                </p>
+                        ))}
+                    </p>
+                </div>
+
+                <div className="extinction-bottom-text" style={{
+                    lineHeight: 'var(--dev-ext-text-lh, 47px)'
+                }}>
+                    <p style={{ margin: 0, fontFamily: 'var(--font-canva)', fontSize: '37px', color: 'rgb(11, 14, 33)', lineHeight: 'inherit' }}>
+                        {slideData.bottomText?.split('\n').map((line, i) => {
+                            const parts = line.split(/(85% de todas as espécies)/g);
+                            return (
+                                <React.Fragment key={i}>
+                                    {parts.map((part, j) => (
+                                        part === '85% de todas as espécies' ? (
+                                            <span key={j} style={{ color: 'var(--color-primary-blue)', fontWeight: 'bold' }}>
+                                                {part}
+                                            </span>
+                                        ) : part
+                                    ))}
+                                    <br />
+                                </React.Fragment>
+                            );
+                        })}
+                    </p>
+                </div>
             </div>
         </div>
     );

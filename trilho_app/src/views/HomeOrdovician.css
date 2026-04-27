@@ -1,0 +1,119 @@
+/* HomeOrdovician.css */
+
+.view-home-ordovician {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.home-ordovician-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    padding: 0 97px;
+}
+
+.home-ordovician-titles {
+    margin-top: var(--ordovician-titles-mt, 516px);
+    margin-bottom: auto;
+}
+
+.home-ordovician-titles .ordovician-subtitle {
+    font-size: var(--ordovician-subtitle-size, 73px);
+    font-family: 'Blender Pro Book', sans-serif;
+    font-weight: 300;
+    letter-spacing: var(--ordovician-subtitle-spacing, 7.8px);
+    margin-bottom: var(--ordovician-subtitle-mb, 0px);
+    color: var(--color-white);
+}
+
+.home-ordovician-titles .ordovician-title {
+    font-size: var(--ordovician-title-size, 143px);
+    font-family: 'Blender Pro Heavy', sans-serif;
+    font-weight: 900;
+    letter-spacing: var(--ordovician-title-spacing, 9.7px);
+    line-height: var(--ordovician-title-lh, 0.9);
+    margin-top: var(--ordovician-title-mt, -18px);
+    margin-bottom: var(--ordovician-title-mb, 62px);
+    color: var(--color-white);
+    margin-left: var(--ordovician-title-ml, -5px);
+}
+
+.home-ordovician-titles .ordovician-description {
+    font-size: var(--ordovician-desc-size, 90px);
+    width: var(--ordovician-desc-w, 900px);
+    font-family: 'Blender Pro Medium', sans-serif;
+    font-weight: normal;
+    margin-top: var(--ordovician-desc-mt, 90px);
+    margin-bottom: var(--ordovician-desc-mb, -8px);
+    color: var(--color-white);
+    letter-spacing: var(--ordovician-desc-spacing, -5px);
+}
+
+.home-ordovician-titles .ordovician-sub-description {
+    font-size: var(--ordovician-subdesc-size, 50px);
+    width: var(--ordovician-subdesc-w, 823px);
+    font-family: 'Canva Sans Regular', sans-serif;
+    font-weight: normal;
+    padding-bottom: 1px;
+    color: var(--color-white);
+}
+
+.home-ordovician-menu {
+    position: absolute;
+    top: var(--ordovician-menu-top, 1357px);
+    left: var(--ordovician-menu-left, 102px);
+    display: flex;
+    flex-direction: column;
+    gap: var(--ordovician-menu-gap, 21px);
+}
+
+.btn-ordovician {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 860px;
+    height: 89px;
+    padding: 0 45px;
+    font-size: 41px;
+    font-family: 'Blender Pro Medium', sans-serif;
+    font-weight: normal;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border: none;
+    background-color: transparent;
+    background-size: 110% 100%;
+    background-position: left center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.btn-ordovician-icon-active {
+    font-size: 50px;
+    font-family: 'Canva Sans Regular', sans-serif;
+    color: #0b0e21;
+}
+
+.btn-ordovician-icon-inactive {
+    font-size: 50px;
+    font-family: 'Canva Sans Regular', sans-serif;
+    color: var(--color-white);
+}
+
+.btn-ordovician:hover {
+    transform: translateY(-2px);
+}
+
+.btn-ordovician-active {
+    background-image: url('/assets/botaoON.png');
+    color: #0b0e21;
+}
+
+.btn-ordovician-inactive {
+    background-image: url('/assets/botaoOFF.png');
+    background-color: transparent;
+    border-radius: 0;
+    color: var(--color-white);
+}

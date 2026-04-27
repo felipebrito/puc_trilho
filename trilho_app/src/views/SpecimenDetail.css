@@ -35,9 +35,23 @@
     width: 100%;
 }
 
+.specimen-top-text {
+    position: absolute;
+    top: var(--devonian-toptext-top, 80px);
+    left: var(--devonian-toptext-left, 108px);
+    width: var(--devonian-toptext-w, 864px);
+    font-family: var(--font-canva);
+    font-size: var(--devonian-toptext-size, 38px);
+    color: var(--devonian-toptext-color, #000000);
+    line-height: 1.2;
+    z-index: 20;
+    pointer-events: none;
+}
+
 .detail-info-area {
-    flex: 1;
     position: relative;
+    width: 100%;
+    min-height: 1200px;
     background-color: transparent;
     color: var(--color-text-dark);
     display: flex;
@@ -205,7 +219,7 @@
 
 .view-detail.devoniano .detail-empty-top,
 .view-detail.ordoviciano .detail-empty-top {
-    height: var(--devonian-white-h);
+    height: 0;
 }
 
 .view-detail.devoniano .detail-info-area,
@@ -216,6 +230,7 @@
 .view-detail.devoniano .video-container.variant-split,
 .view-detail.ordoviciano .video-container.variant-split {
     height: var(--devonian-bg-h);
+    top: var(--devonian-bg-top, 0);
     clip-path: polygon(
         0 0, 
         100% 0, 
@@ -245,6 +260,7 @@
 
 .view-detail.devoniano .bg-video,
 .view-detail.ordoviciano .bg-video {
+    height: 1080px; /* Altura fixa para evitar zoom ao mudar o bg-h do container */
     transform: scale(var(--devonian-bg-scale)) translate(var(--devonian-bg-x), var(--devonian-bg-y));
 }
 
@@ -951,4 +967,120 @@
     --devonian-bg-scale: var(--devonian-ord-sowerbyella-bg-scale, 1);
     --devonian-bg-x: var(--devonian-ord-sowerbyella-bg-x, 0px);
     --devonian-bg-y: var(--devonian-ord-sowerbyella-bg-y, 0px);
+}
+
+/* ==========================================================
+   SILURIANO (ORDOVICIANO POS-EXTINCAO)
+   ========================================================== */
+
+.view-detail.ordoviciano.dalmanites {
+    --devonian-name-mt: var(--devonian-dalmanites-name-mt, 96px);
+    --devonian-name-ml: var(--devonian-dalmanites-name-ml, 0px);
+    --devonian-name-size: var(--devonian-dalmanites-name-size, 82px);
+    --devonian-selo-w: var(--devonian-dalmanites-selo-w, 862px);
+    --devonian-selo-top: var(--devonian-dalmanites-selo-top, 799px);
+    --devonian-selo-left: var(--devonian-dalmanites-selo-left, 0px);
+    --devonian-white-h: var(--devonian-dalmanites-white-h, 34%);
+    --devonian-white-mt: var(--devonian-dalmanites-white-mt, 38px);
+    --devonian-bg-h: var(--devonian-dalmanites-bg-h, 42%);
+    --devonian-cut-y: var(--devonian-dalmanites-cut-y, 40px);
+    --devonian-cut-x1: var(--devonian-dalmanites-cut-x1, 250px);
+    --devonian-cut-x2: var(--devonian-dalmanites-cut-x2, 280px);
+    --devonian-sub-mt: var(--devonian-dalmanites-sub-mt, 46px);
+    --devonian-sub-ml: var(--devonian-dalmanites-sub-ml, 3px);
+    --devonian-sub-w: var(--devonian-dalmanites-sub-w, 736px);
+    --devonian-sub-size: var(--devonian-dalmanites-sub-size, 56px);
+    --devonian-desc-mt: var(--devonian-dalmanites-desc-mt, 117px);
+    --devonian-desc-ml: var(--devonian-dalmanites-desc-ml, 0px);
+    --devonian-desc-w: var(--devonian-dalmanites-desc-w, 883px);
+    --devonian-desc-size: var(--devonian-dalmanites-desc-size, 40px);
+    --devonian-desc-lh: var(--devonian-dalmanites-desc-lh, 50px);
+    --devonian-bg-scale: var(--devonian-dalmanites-bg-scale, 1);
+    --devonian-bg-x: var(--devonian-dalmanites-bg-x, 0px);
+    --devonian-bg-y: var(--devonian-dalmanites-bg-y, 0px);
+    --devonian-bg-top: var(--devonian-dalmanites-bg-top, 0px);
+}
+
+.view-detail.ordoviciano.halysites {
+    --devonian-name-mt: var(--devonian-halysites-name-mt, 96px);
+    --devonian-name-ml: var(--devonian-halysites-name-ml, 0px);
+    --devonian-name-size: var(--devonian-halysites-name-size, 82px);
+    --devonian-selo-w: var(--devonian-halysites-selo-w, 862px);
+    --devonian-selo-top: var(--devonian-halysites-selo-top, 799px);
+    --devonian-selo-left: var(--devonian-halysites-selo-left, 0px);
+    --devonian-white-h: var(--devonian-halysites-white-h, 34%);
+    --devonian-white-mt: var(--devonian-halysites-white-mt, 38px);
+    --devonian-bg-h: var(--devonian-halysites-bg-h, 42%);
+    --devonian-cut-y: var(--devonian-halysites-cut-y, 40px);
+    --devonian-cut-x1: var(--devonian-halysites-cut-x1, 250px);
+    --devonian-cut-x2: var(--devonian-halysites-cut-x2, 280px);
+    --devonian-sub-mt: var(--devonian-halysites-sub-mt, 46px);
+    --devonian-sub-ml: var(--devonian-halysites-sub-ml, 3px);
+    --devonian-sub-w: var(--devonian-halysites-sub-w, 736px);
+    --devonian-sub-size: var(--devonian-halysites-sub-size, 56px);
+    --devonian-desc-mt: var(--devonian-halysites-desc-mt, 117px);
+    --devonian-desc-ml: var(--devonian-halysites-desc-ml, 0px);
+    --devonian-desc-w: var(--devonian-halysites-desc-w, 883px);
+    --devonian-desc-size: var(--devonian-halysites-desc-size, 40px);
+    --devonian-desc-lh: var(--devonian-halysites-desc-lh, 50px);
+    --devonian-bg-scale: var(--devonian-halysites-bg-scale, 1);
+    --devonian-bg-x: var(--devonian-halysites-bg-x, 0px);
+    --devonian-bg-y: var(--devonian-halysites-bg-y, 0px);
+    --devonian-bg-top: var(--devonian-halysites-bg-top, 0px);
+}
+
+.view-detail.ordoviciano.cooksonia {
+    --devonian-name-mt: var(--devonian-cooksonia-name-mt, 96px);
+    --devonian-name-ml: var(--devonian-cooksonia-name-ml, 0px);
+    --devonian-name-size: var(--devonian-cooksonia-name-size, 82px);
+    --devonian-selo-w: var(--devonian-cooksonia-selo-w, 862px);
+    --devonian-selo-top: var(--devonian-cooksonia-selo-top, 799px);
+    --devonian-selo-left: var(--devonian-cooksonia-selo-left, 0px);
+    --devonian-white-h: var(--devonian-cooksonia-white-h, 34%);
+    --devonian-white-mt: var(--devonian-cooksonia-white-mt, 38px);
+    --devonian-bg-h: var(--devonian-cooksonia-bg-h, 42%);
+    --devonian-cut-y: var(--devonian-cooksonia-cut-y, 40px);
+    --devonian-cut-x1: var(--devonian-cooksonia-cut-x1, 250px);
+    --devonian-cut-x2: var(--devonian-cooksonia-cut-x2, 280px);
+    --devonian-sub-mt: var(--devonian-cooksonia-sub-mt, 46px);
+    --devonian-sub-ml: var(--devonian-cooksonia-sub-ml, 3px);
+    --devonian-sub-w: var(--devonian-cooksonia-sub-w, 736px);
+    --devonian-sub-size: var(--devonian-cooksonia-sub-size, 56px);
+    --devonian-desc-mt: var(--devonian-cooksonia-desc-mt, 117px);
+    --devonian-desc-ml: var(--devonian-cooksonia-desc-ml, 0px);
+    --devonian-desc-w: var(--devonian-cooksonia-desc-w, 883px);
+    --devonian-desc-size: var(--devonian-cooksonia-desc-size, 40px);
+    --devonian-desc-lh: var(--devonian-cooksonia-desc-lh, 50px);
+    --devonian-bg-scale: var(--devonian-cooksonia-bg-scale, 1);
+    --devonian-bg-x: var(--devonian-cooksonia-bg-x, 0px);
+    --devonian-bg-y: var(--devonian-cooksonia-bg-y, 0px);
+    --devonian-bg-top: var(--devonian-cooksonia-bg-top, 0px);
+}
+
+.view-detail.ordoviciano.atrypa {
+    --devonian-name-mt: var(--devonian-atrypa-name-mt, 96px);
+    --devonian-name-ml: var(--devonian-atrypa-name-ml, 0px);
+    --devonian-name-size: var(--devonian-atrypa-name-size, 82px);
+    --devonian-selo-w: var(--devonian-atrypa-selo-w, 862px);
+    --devonian-selo-top: var(--devonian-atrypa-selo-top, 799px);
+    --devonian-selo-left: var(--devonian-atrypa-selo-left, 0px);
+    --devonian-white-h: var(--devonian-atrypa-white-h, 34%);
+    --devonian-white-mt: var(--devonian-atrypa-white-mt, 38px);
+    --devonian-bg-h: var(--devonian-atrypa-bg-h, 42%);
+    --devonian-cut-y: var(--devonian-atrypa-cut-y, 40px);
+    --devonian-cut-x1: var(--devonian-atrypa-cut-x1, 250px);
+    --devonian-cut-x2: var(--devonian-atrypa-cut-x2, 280px);
+    --devonian-sub-mt: var(--devonian-atrypa-sub-mt, 46px);
+    --devonian-sub-ml: var(--devonian-atrypa-sub-ml, 3px);
+    --devonian-sub-w: var(--devonian-atrypa-sub-w, 736px);
+    --devonian-sub-size: var(--devonian-atrypa-sub-size, 56px);
+    --devonian-desc-mt: var(--devonian-atrypa-desc-mt, 117px);
+    --devonian-desc-ml: var(--devonian-atrypa-desc-ml, 0px);
+    --devonian-desc-w: var(--devonian-atrypa-desc-w, 883px);
+    --devonian-desc-size: var(--devonian-atrypa-desc-size, 40px);
+    --devonian-desc-lh: var(--devonian-atrypa-desc-lh, 50px);
+    --devonian-bg-scale: var(--devonian-atrypa-bg-scale, 1);
+    --devonian-bg-x: var(--devonian-atrypa-bg-x, 0px);
+    --devonian-bg-y: var(--devonian-atrypa-bg-y, 0px);
+    --devonian-bg-top: var(--devonian-atrypa-bg-top, 0px);
 }
