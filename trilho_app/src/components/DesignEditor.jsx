@@ -279,7 +279,7 @@ function createDevonianoSpecimenConfig(id, overrides = {}) {
     ];
 }
 
-const DesignEditor = ({ referenceImage, viewId, period, section, slideId }) => {
+const DesignEditor = ({ referenceImage, viewId, period, section, slideId, savedSettings }) => {
     const [isVisible, setIsVisible] = useState(false);
     const [opacity, setOpacity] = useState(0.5);
     const [variables, setVariables] = useState({});
@@ -289,14 +289,12 @@ const DesignEditor = ({ referenceImage, viewId, period, section, slideId }) => {
 
     useEffect(() => {
         const initialVars = {};
-        const style = getComputedStyle(document.documentElement);
         currentConfig.forEach(cfg => {
-            const live = style.getPropertyValue(cfg.prop).trim();
-            // Prefere o valor já aplicado (do JSON salvo), cai no default do config
-            const numeric = live ? parseFloat(live) : cfg.value;
+            // Tenta ler do JSON salvo (formato novo: chave = CSS var)
+            const saved = savedSettings?.[cfg.prop];
+            const numeric = saved !== undefined ? parseFloat(saved) : NaN;
             initialVars[cfg.prop] = isNaN(numeric) ? cfg.value : numeric;
-            // Garante que a var está no DOM com o valor correto
-            if (!live) document.documentElement.style.setProperty(cfg.prop, `${cfg.value}${cfg.suffix}`);
+            document.documentElement.style.setProperty(cfg.prop, `${initialVars[cfg.prop]}${cfg.suffix}`);
         });
         setVariables(initialVars);
         setSaveStatus('idle');

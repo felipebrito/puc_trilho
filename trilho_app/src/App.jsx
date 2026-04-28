@@ -69,7 +69,9 @@ function App() {
     if (!currentSlide) return;
 
     const { period, section, id } = currentSlide;
-    const settings = designSettings[period]?.[section]?.[id] ||
+    // Slides sem id (ex: section_intro) usam o viewId como chave
+    const settingsId = id || computeViewId(currentSlide);
+    const settings = designSettings[period]?.[section]?.[settingsId] ||
                      designSettings[period]?.["biodiversidade"]?.["default"];
 
     if (settings) {
@@ -78,12 +80,12 @@ function App() {
           document.documentElement.style.setProperty('--devonian-base-bg-display', value ? 'none' : 'block');
           return;
         }
-        // Suporta novo formato (chaves começando com --) e formato legado (camelCase)
+        // Suporta novo formato (chaves CSS diretas com --) e formato legado (camelCase)
         if (key.startsWith('--')) {
           document.documentElement.style.setProperty(key, value);
         } else {
           const cssKey = key.replace(/([A-Z])/g, '-$1').toLowerCase();
-          document.documentElement.style.setProperty(`--devonian-${id}-${cssKey}`, value);
+          document.documentElement.style.setProperty(`--devonian-${settingsId}-${cssKey}`, value);
         }
       });
     }
@@ -203,8 +205,27 @@ function App() {
 
   const sectionIndex = sectionSlides.findIndex(s => s.absoluteIndex === slideIndex);
 
-  // Imagens de referência por página (apenas devoniano tem referências mapeadas)
+  // Imagens de referência por página
   const refMapping = {
+    // Ordoviciano (pages 01-17)
+    'ordoviciano-home-0':            '/assets/referencias/page-01.jpg',
+    'ordoviciano-biodiversidade-intro': '/assets/referencias/page-02.jpg',
+    'ordoviciano-biodiversidade-1':  '/assets/referencias/page-03.jpg',
+    'ordoviciano-biodiversidade-2':  '/assets/referencias/page-04.jpg',
+    'ordoviciano-biodiversidade-3':  '/assets/referencias/page-05.jpg',
+    'ordoviciano-biodiversidade-4':  '/assets/referencias/page-06.jpg',
+    'ordoviciano-biodiversidade-5':  '/assets/referencias/page-07.jpg',
+    'ordoviciano-biodiversidade-6':  '/assets/referencias/page-08.jpg',
+    'ordoviciano-biodiversidade-7':  '/assets/referencias/page-09.jpg',
+    'ordoviciano-extincao-intro':    '/assets/referencias/page-10.jpg',
+    'ordoviciano-extincao-1':        '/assets/referencias/page-11.jpg',
+    'ordoviciano-pos_extincao-intro':'/assets/referencias/page-12.jpg',
+    'ordoviciano-pos_extincao-1':    '/assets/referencias/page-13.jpg',
+    'ordoviciano-pos_extincao-2':    '/assets/referencias/page-14.jpg',
+    'ordoviciano-pos_extincao-3':    '/assets/referencias/page-15.jpg',
+    'ordoviciano-pos_extincao-4':    '/assets/referencias/page-16.jpg',
+    'ordoviciano-pos_extincao-5':    '/assets/referencias/page-17.jpg',
+    // Devoniano (pages 18-43)
     'devoniano-home-intro': '/assets/referencias/page-18.jpg',
     'devoniano-biodiversidade-intro': '/assets/referencias/page-19.jpg',
     'devoniano-biodiversidade-1': '/assets/referencias/page-20.jpg',
@@ -338,6 +359,7 @@ function App() {
           period={currentPeriod}
           section={currentSection}
           slideId={currentSlide.id || viewId}
+          savedSettings={designSettings[currentPeriod]?.[currentSection]?.[currentSlide.id || viewId] || null}
         />
       </div>
     </>
