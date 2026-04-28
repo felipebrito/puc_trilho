@@ -148,6 +148,22 @@ const cssConfigs = {
         descW: 804
     }),
     'ordoviciano-extincao-intro': createDevonianoIntroConfig('ord-ext'),
+    'ordoviciano-extincao-content': [
+        { label: 'Img Top', prop: '--dev-ext-img-top', value: 160, min: 0, max: 500, suffix: 'px' },
+        { label: 'Img Height', prop: '--dev-ext-img-h', value: 660, min: 100, max: 1200, suffix: 'px' },
+        { label: 'Img Scale', prop: '--dev-ext-img-scale', value: 1, min: 0.5, max: 2, suffix: '' },
+        { label: 'Caption Top', prop: '--dev-ext-caption-top', value: 860, min: 0, max: 1500, suffix: 'px' },
+        { label: 'Caption Left', prop: '--dev-ext-caption-left', value: 108, min: 0, max: 500, suffix: 'px' },
+        { label: 'Caption Width', prop: '--dev-ext-caption-w', value: 900, min: 100, max: 1080, suffix: 'px' },
+        { label: 'Caption Size', prop: '--dev-ext-caption-size', value: 26, min: 10, max: 80, suffix: 'px' },
+        { label: 'Line Top', prop: '--dev-ext-line-top', value: 960, min: 0, max: 1500, suffix: 'px' },
+        { label: 'Line Left', prop: '--dev-ext-line-left', value: 108, min: 0, max: 500, suffix: 'px' },
+        { label: 'Line Width', prop: '--dev-ext-line-w', value: 890, min: 100, max: 1080, suffix: 'px' },
+        { label: 'Text Top', prop: '--dev-ext-text-top', value: 1050, min: 0, max: 1800, suffix: 'px' },
+        { label: 'Text Left', prop: '--dev-ext-text-left', value: 108, min: 0, max: 500, suffix: 'px' },
+        { label: 'Text Width', prop: '--dev-ext-text-w', value: 864, min: 100, max: 1080, suffix: 'px' },
+        { label: 'Text Line Height', prop: '--dev-ext-text-lh', value: 47, min: 20, max: 100, suffix: 'px' },
+    ],
     'ordoviciano-pos-intro': createDevonianoIntroConfig('ord-pos'),
 
     'ordoviciano-pos-dalmanites': createDevonianoSpecimenConfig('dalmanites', {
