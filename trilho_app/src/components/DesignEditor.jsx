@@ -289,9 +289,14 @@ const DesignEditor = ({ referenceImage, viewId, period, section, slideId }) => {
 
     useEffect(() => {
         const initialVars = {};
+        const style = getComputedStyle(document.documentElement);
         currentConfig.forEach(cfg => {
-            initialVars[cfg.prop] = cfg.value;
-            document.documentElement.style.setProperty(cfg.prop, `${cfg.value}${cfg.suffix}`);
+            const live = style.getPropertyValue(cfg.prop).trim();
+            // Prefere o valor já aplicado (do JSON salvo), cai no default do config
+            const numeric = live ? parseFloat(live) : cfg.value;
+            initialVars[cfg.prop] = isNaN(numeric) ? cfg.value : numeric;
+            // Garante que a var está no DOM com o valor correto
+            if (!live) document.documentElement.style.setProperty(cfg.prop, `${cfg.value}${cfg.suffix}`);
         });
         setVariables(initialVars);
         setSaveStatus('idle');

@@ -205,7 +205,7 @@ function App() {
 
   // Imagens de referência por página (apenas devoniano tem referências mapeadas)
   const refMapping = {
-    'devoniano-home': '/assets/referencias/page-18.jpg',
+    'devoniano-home-intro': '/assets/referencias/page-18.jpg',
     'devoniano-biodiversidade-intro': '/assets/referencias/page-19.jpg',
     'devoniano-biodiversidade-1': '/assets/referencias/page-20.jpg',
     'devoniano-biodiversidade-2': '/assets/referencias/page-21.jpg',
