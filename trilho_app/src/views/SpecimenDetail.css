@@ -1217,6 +1217,15 @@
     height: 0;
 }
 
+/* detail-base-bg: reset do hack +46px que estica o SVG para além da tela */
+.view-detail.ordoviciano.dalmanites .detail-base-bg,
+.view-detail.ordoviciano.halysites .detail-base-bg,
+.view-detail.ordoviciano.cooksonia .detail-base-bg,
+.view-detail.ordoviciano.atrypa .detail-base-bg {
+    top: 0;
+    height: 100%;
+}
+
 /* info-area absoluta: white-mt vira top, bottom:0 garante altura sem cálculo */
 .view-detail.ordoviciano.dalmanites .detail-info-area,
 .view-detail.ordoviciano.halysites .detail-info-area,
