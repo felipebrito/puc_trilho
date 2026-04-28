@@ -62,7 +62,7 @@
     width: var(--devonian-toptext-w, 864px);
     font-size: var(--devonian-toptext-size, 38px);
     font-family: 'Canva Sans Regular', sans-serif;
-    color: #ffffff;
+    color: #0b0e21;
     line-height: 1.3;
     z-index: 20;
     pointer-events: none;
@@ -1217,7 +1217,7 @@
     height: 0;
 }
 
-/* info-area absoluta: white-mt vira top, sem deformar altura da tela */
+/* info-area absoluta: white-mt vira top, bottom:0 garante altura sem cálculo */
 .view-detail.ordoviciano.dalmanites .detail-info-area,
 .view-detail.ordoviciano.halysites .detail-info-area,
 .view-detail.ordoviciano.cooksonia .detail-info-area,
@@ -1226,7 +1226,7 @@
     top: var(--devonian-white-mt, 926px);
     left: 0;
     width: 100%;
-    height: calc(100% - var(--devonian-white-mt, 926px));
+    bottom: 0;
     margin-top: 0;
     flex: none;
 }
