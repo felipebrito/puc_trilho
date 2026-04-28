@@ -32,6 +32,10 @@ const SpecimenDetail = ({ slideIndex, totalSlides, onNavigate, slideData }) => {
                 {/* SVG Phantom overlay for alignment reference */}
                 {/* <img className="png-reference" src="/assets/ref1.png" alt="Layout reference" /> */}
 
+                {specimen.topText && (
+                    <div className="detail-toptext">{specimen.topText}</div>
+                )}
+
                 <div className="detail-empty-top"></div>
 
                 <div className="detail-info-area">

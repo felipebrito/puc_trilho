@@ -55,6 +55,19 @@
     z-index: 10;
 }
 
+.detail-toptext {
+    position: absolute;
+    top: var(--devonian-toptext-top, 80px);
+    left: var(--devonian-toptext-left, 108px);
+    width: var(--devonian-toptext-w, 864px);
+    font-size: var(--devonian-toptext-size, 38px);
+    font-family: 'Canva Sans Regular', sans-serif;
+    color: #ffffff;
+    line-height: 1.3;
+    z-index: 20;
+    pointer-events: none;
+}
+
 .detail-base-bg {
     position: absolute;
     top: 10px;
@@ -1202,6 +1215,20 @@
 .view-detail.ordoviciano.cooksonia .detail-empty-top,
 .view-detail.ordoviciano.atrypa .detail-empty-top {
     height: 0;
+}
+
+/* info-area absoluta: white-mt vira top, sem deformar altura da tela */
+.view-detail.ordoviciano.dalmanites .detail-info-area,
+.view-detail.ordoviciano.halysites .detail-info-area,
+.view-detail.ordoviciano.cooksonia .detail-info-area,
+.view-detail.ordoviciano.atrypa .detail-info-area {
+    position: absolute;
+    top: var(--devonian-white-mt, 926px);
+    left: 0;
+    width: 100%;
+    height: calc(100% - var(--devonian-white-mt, 926px));
+    margin-top: 0;
+    flex: none;
 }
 
 .view-detail.ordoviciano.dalmanites .video-container.variant-split,
