@@ -63,16 +63,13 @@ function App() {
   const [slideIndex, setSlideIndex] = useState(() => getIndexForHash(window.location.hash));
   const [slideDirection, setSlideDirection] = useState('up');
 
-  // Injetor de Estilos JSON para garantir fidelidade (Leve e sem conflitos)
+  // Aplica configurações do design_settings.json ao trocar de slide
   useEffect(() => {
     const currentSlide = slidesData[slideIndex];
     if (!currentSlide) return;
 
-    const period = currentSlide.period;
-    const section = currentSlide.section;
-    const id = currentSlide.id;
-
-    const settings = designSettings[period]?.[section]?.[id] || 
+    const { period, section, id } = currentSlide;
+    const settings = designSettings[period]?.[section]?.[id] ||
                      designSettings[period]?.["biodiversidade"]?.["default"];
 
     if (settings) {
@@ -81,9 +78,13 @@ function App() {
           document.documentElement.style.setProperty('--devonian-base-bg-display', value ? 'none' : 'block');
           return;
         }
-        const cssKey = key.replace(/([A-Z])/g, '-$1').toLowerCase();
-        // Injetamos apenas a variável com ID para não quebrar a transição
-        document.documentElement.style.setProperty(`--devonian-${id}-${cssKey}`, value);
+        // Suporta novo formato (chaves começando com --) e formato legado (camelCase)
+        if (key.startsWith('--')) {
+          document.documentElement.style.setProperty(key, value);
+        } else {
+          const cssKey = key.replace(/([A-Z])/g, '-$1').toLowerCase();
+          document.documentElement.style.setProperty(`--devonian-${id}-${cssKey}`, value);
+        }
       });
     }
   }, [slideIndex]);
@@ -202,40 +203,63 @@ function App() {
 
   const sectionIndex = sectionSlides.findIndex(s => s.absoluteIndex === slideIndex);
 
-  // Reference and Editor Mapping
-  const mapping = {
-    'devoniano-home': { ref: '/assets/referencias/page-18.jpg', viewId: 'devoniano-home' },
-    'devoniano-biodiversidade-intro': { ref: '/assets/referencias/page-19.jpg', viewId: 'devoniano-bio-intro' },
-    'devoniano-biodiversidade-1': { ref: '/assets/referencias/page-20.jpg', viewId: 'devoniano-bio-dunkleosteus' },
-    'devoniano-biodiversidade-2': { ref: '/assets/referencias/page-21.jpg', viewId: 'devoniano-bio-campbellodus' },
-    'devoniano-biodiversidade-3': { ref: '/assets/referencias/page-22.jpg', viewId: 'devoniano-bio-ctenacanthus' },
-    'devoniano-biodiversidade-4': { ref: '/assets/referencias/page-23.jpg', viewId: 'devoniano-bio-gogonasus' },
-    'devoniano-biodiversidade-5': { ref: '/assets/referencias/page-24.jpg', viewId: 'devoniano-bio-griphognatus' },
-    'devoniano-biodiversidade-6': { ref: '/assets/referencias/page-25.jpg', viewId: 'devoniano-bio-furcaster' },
-    'devoniano-biodiversidade-7': { ref: '/assets/referencias/page-26.jpg', viewId: 'devoniano-bio-palaeoisopus' },
-    'devoniano-biodiversidade-8': { ref: '/assets/referencias/page-27.jpg', viewId: 'devoniano-bio-archaeopteris' },
-    'devoniano-biodiversidade-9': { ref: '/assets/referencias/page-28.jpg', viewId: 'devoniano-bio-tiktaalik' },
-    'devoniano-biodiversidade-10': { ref: '/assets/referencias/page-29.jpg', viewId: 'devoniano-bio-ichthyostega' },
-    'devoniano-biodiversidade-11': { ref: '/assets/referencias/page-30.jpg', viewId: 'devoniano-bio-drepanophycus' },
-    'devoniano-extincao-intro': { ref: '/assets/referencias/page-31.jpg', viewId: 'devoniano-extincao-intro' },
-    'devoniano-extincao-1': { ref: '/assets/referencias/page-32.jpg', viewId: 'devoniano-extincao-ambientes' },
-    'devoniano-pos_extincao-intro': { ref: '/assets/referencias/page-33.jpg', viewId: 'devoniano-pos-extincao-intro' },
-    'devoniano-pos_extincao-1': { ref: '/assets/referencias/page-34.jpg', viewId: 'devoniano-pos-extincao-globe' },
-    'devoniano-pos_extincao-2': { ref: '/assets/referencias/page-35.jpg', viewId: 'devoniano-pos-extincao-summary' },
-    'devoniano-pos_extincao-3': { ref: '/assets/referencias/page-36.jpg', viewId: 'devoniano-pos-carbon-meganeura' },
-    'devoniano-pos_extincao-4': { ref: '/assets/referencias/page-37.jpg', viewId: 'devoniano-pos-carbon-stethacanthus' },
-    'devoniano-pos_extincao-5': { ref: '/assets/referencias/page-38.jpg', viewId: 'devoniano-pos-carbon-arthropleura' },
-    'devoniano-pos_extincao-6': { ref: '/assets/referencias/page-39.jpg', viewId: 'devoniano-pos-carbon-amphibamus' },
-    'devoniano-pos_extincao-7': { ref: '/assets/referencias/page-40.jpg', viewId: 'devoniano-pos-carbon-sphenophyllum' },
-    'devoniano-pos_extincao-8': { ref: '/assets/referencias/page-41.jpg', viewId: 'devoniano-pos-carbon-calamites' },
-    'devoniano-pos_extincao-9': { ref: '/assets/referencias/page-42.jpg', viewId: 'devoniano-pos-carbon-cordaites' },
-    'devoniano-pos_extincao-10': { ref: '/assets/referencias/page-43.jpg', viewId: 'devoniano-pos-carbon-sigillaria' }
+  // Imagens de referência por página (apenas devoniano tem referências mapeadas)
+  const refMapping = {
+    'devoniano-home': '/assets/referencias/page-18.jpg',
+    'devoniano-biodiversidade-intro': '/assets/referencias/page-19.jpg',
+    'devoniano-biodiversidade-1': '/assets/referencias/page-20.jpg',
+    'devoniano-biodiversidade-2': '/assets/referencias/page-21.jpg',
+    'devoniano-biodiversidade-3': '/assets/referencias/page-22.jpg',
+    'devoniano-biodiversidade-4': '/assets/referencias/page-23.jpg',
+    'devoniano-biodiversidade-5': '/assets/referencias/page-24.jpg',
+    'devoniano-biodiversidade-6': '/assets/referencias/page-25.jpg',
+    'devoniano-biodiversidade-7': '/assets/referencias/page-26.jpg',
+    'devoniano-biodiversidade-8': '/assets/referencias/page-27.jpg',
+    'devoniano-biodiversidade-9': '/assets/referencias/page-28.jpg',
+    'devoniano-biodiversidade-10': '/assets/referencias/page-29.jpg',
+    'devoniano-biodiversidade-11': '/assets/referencias/page-30.jpg',
+    'devoniano-extincao-intro': '/assets/referencias/page-31.jpg',
+    'devoniano-extincao-1': '/assets/referencias/page-32.jpg',
+    'devoniano-pos_extincao-intro': '/assets/referencias/page-33.jpg',
+    'devoniano-pos_extincao-1': '/assets/referencias/page-34.jpg',
+    'devoniano-pos_extincao-2': '/assets/referencias/page-35.jpg',
+    'devoniano-pos_extincao-3': '/assets/referencias/page-36.jpg',
+    'devoniano-pos_extincao-4': '/assets/referencias/page-37.jpg',
+    'devoniano-pos_extincao-5': '/assets/referencias/page-38.jpg',
+    'devoniano-pos_extincao-6': '/assets/referencias/page-39.jpg',
+    'devoniano-pos_extincao-7': '/assets/referencias/page-40.jpg',
+    'devoniano-pos_extincao-8': '/assets/referencias/page-41.jpg',
+    'devoniano-pos_extincao-9': '/assets/referencias/page-42.jpg',
+    'devoniano-pos_extincao-10': '/assets/referencias/page-43.jpg',
   };
+
+  // Calcula viewId para qualquer slide, usado pelo DesignEditor
+  function computeViewId(slide) {
+    if (!slide) return null;
+    const { type, period, section, id } = slide;
+    if (type === 'home_ordoviciano') return 'ordoviciano-home';
+    if (type === 'home_devonian')    return 'devoniano-home';
+    if (type === 'section_intro') {
+      if (section === 'biodiversidade') return `${period}-bio-intro`;
+      if (section === 'extincao')       return `${period}-extincao-intro`;
+      if (section === 'pos_extincao')   return `${period}-pos-extincao-intro`;
+    }
+    if (type === 'devonian_extinction_environments') return 'devoniano-extincao-ambientes';
+    if (type === 'silurian_globe') return `${period}-pos-globe`;
+    if (type === 'single_species' || type === 'double_species' || type === 'silurian_specimen' || type === 'silurian_double_specimen') {
+      if (period === 'devoniano' && section === 'biodiversidade') return `devoniano-bio-${id}`;
+      if (period === 'devoniano' && section === 'pos_extincao')   return `devoniano-pos-carbon-${id}`;
+      if (period === 'ordoviciano' && section === 'biodiversidade') return id; // já inclui 'ord-' no id
+      if (period === 'ordoviciano' && section === 'pos_extincao')   return `ordoviciano-pos-${id}`;
+    }
+    return null;
+  }
 
   let pageKey = sectionIndex;
   if (type === 'section_intro' || type === 'home_devonian') pageKey = 'intro';
-  const designKey = `${currentPeriod}-${currentSection}-${pageKey}`;
-  const currentMapping = mapping[designKey] || {};
+  const refKey = `${currentPeriod}-${currentSection}-${pageKey}`;
+  const referenceImage = refMapping[refKey] || null;
+  const viewId = computeViewId(currentSlide);
 
   const scopedNavigate = (dir, targetSectionIndex = null) => {
     if (targetSectionIndex !== null) {
@@ -266,7 +290,7 @@ function App() {
             else if (type === 'single_species')             ComponentToRender = <SpecimenDetail slideIndex={sectionIndex} totalSlides={sectionSlides.length} onNavigate={scopedNavigate} slideData={currentSlide} />;
             else if (type === 'event_header')               ComponentToRender = <EventHeader slideIndex={sectionIndex} totalSlides={sectionSlides.length} onNavigate={scopedNavigate} slideData={currentSlide} />;
             else if (type === 'event_detail')               ComponentToRender = <EventDetail slideIndex={sectionIndex} totalSlides={sectionSlides.length} onNavigate={scopedNavigate} slideData={currentSlide} />;
-            else if (type === 'silurian_globe')             ComponentToRender = <SilurianGlobe slideData={currentSlide} onNavigate={scopedNavigate} viewId={currentMapping.viewId} />;
+            else if (type === 'silurian_globe')             ComponentToRender = <SilurianGlobe slideData={currentSlide} onNavigate={scopedNavigate} viewId={viewId} />;
             else if (type === 'silurian_specimen')          ComponentToRender = <SilurianSpecimen slideData={currentSlide} onNavigate={scopedNavigate} />;
             else if (type === 'silurian_double_specimen')   ComponentToRender = <SilurianDoubleSpecimen slideData={currentSlide} onNavigate={scopedNavigate} />;
             else if (type === 'devonian_extinction_environments') ComponentToRender = <DevonianExtinctionEnvironments slideData={currentSlide} onNavigate={scopedNavigate} />;
@@ -308,12 +332,13 @@ function App() {
           })}
         </div>
 
-        {currentMapping && currentMapping.ref && (
-          <DesignEditor 
-            referenceImage={currentMapping.ref} 
-            viewId={currentMapping.viewId}
-          />
-        )}
+        <DesignEditor
+          referenceImage={referenceImage}
+          viewId={viewId}
+          period={currentPeriod}
+          section={currentSection}
+          slideId={currentSlide.id || viewId}
+        />
       </div>
     </>
   );

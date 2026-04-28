@@ -279,22 +279,22 @@ function createDevonianoSpecimenConfig(id, overrides = {}) {
     ];
 }
 
-const DesignEditor = ({ referenceImage, viewId }) => {
+const DesignEditor = ({ referenceImage, viewId, period, section, slideId }) => {
     const [isVisible, setIsVisible] = useState(false);
     const [opacity, setOpacity] = useState(0.5);
     const [variables, setVariables] = useState({});
+    const [saveStatus, setSaveStatus] = useState('idle'); // idle | saving | saved | error
 
-    // Load configs based on viewKey
     const currentConfig = cssConfigs[viewId] || [];
 
     useEffect(() => {
-        // Initialize default values
         const initialVars = {};
         currentConfig.forEach(cfg => {
             initialVars[cfg.prop] = cfg.value;
             document.documentElement.style.setProperty(cfg.prop, `${cfg.value}${cfg.suffix}`);
         });
         setVariables(initialVars);
+        setSaveStatus('idle');
     }, [viewId]);
 
     const handleVarChange = (prop, value, suffix) => {
@@ -302,74 +302,92 @@ const DesignEditor = ({ referenceImage, viewId }) => {
         document.documentElement.style.setProperty(prop, `${value}${suffix}`);
     };
 
+    const handleSave = async () => {
+        if (!period || !section || !slideId) {
+            alert('Faltam dados de identificação (period/section/id) para salvar.');
+            return;
+        }
+        // Build values as { cssVar: "value+unit" }
+        const values = {};
+        currentConfig.forEach(cfg => {
+            values[cfg.prop] = `${variables[cfg.prop] ?? cfg.value}${cfg.suffix}`;
+        });
+        setSaveStatus('saving');
+        try {
+            const res = await fetch('/api/save-design', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ period, section, id: slideId, values }),
+            });
+            if (!res.ok) throw new Error(await res.text());
+            setSaveStatus('saved');
+            setTimeout(() => setSaveStatus('idle'), 2000);
+        } catch (e) {
+            setSaveStatus('error');
+            alert(`Erro ao salvar: ${e.message}`);
+        }
+    };
+
     useEffect(() => {
         const handleKeyDown = (e) => {
-            if (e.key === 'e' || e.key === 'E') {
+            if ((e.key === 'e' || e.key === 'E') && !e.target.matches('input, textarea')) {
                 setIsVisible(prev => !prev);
             }
         };
-
         window.addEventListener('keydown', handleKeyDown);
         return () => window.removeEventListener('keydown', handleKeyDown);
     }, []);
 
     if (!isVisible) return null;
 
+    const saveLabel = { idle: 'Salvar JSON', saving: 'Salvando...', saved: '✓ Salvo!', error: 'Erro!' }[saveStatus];
+    const saveBg = { idle: '#4ade80', saving: '#aaa', saved: '#22c55e', error: '#ef4444' }[saveStatus];
+
     return (
         <>
-            {/* Reference Overlay */}
             {referenceImage && (
                 <div
                     style={{
-                        position: 'absolute',
-                        top: 0,
-                        left: 0,
-                        width: '1080px',
-                        height: '1920px',
+                        position: 'absolute', top: 0, left: 0,
+                        width: '1080px', height: '1920px',
                         backgroundImage: `url('${referenceImage}')`,
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center',
-                        opacity: opacity,
-                        pointerEvents: 'none',
-                        zIndex: 9998
+                        backgroundSize: 'cover', backgroundPosition: 'center',
+                        opacity: opacity, pointerEvents: 'none', zIndex: 9998
                     }}
                 />
             )}
 
-            {/* Controls Panel */}
             <div
                 style={{
-                    position: 'absolute',
-                    top: '20px',
-                    left: '20px',
-                    background: 'rgba(0,0,0,0.85)',
-                    padding: '20px',
-                    borderRadius: '8px',
-                    color: 'white',
-                    zIndex: 9999,
-                    fontFamily: 'sans-serif',
-                    width: '320px',
-                    maxHeight: '90vh',
-                    overflowY: 'auto'
+                    position: 'absolute', top: '20px', left: '20px',
+                    background: 'rgba(0,0,0,0.85)', padding: '20px',
+                    borderRadius: '8px', color: 'white', zIndex: 9999,
+                    fontFamily: 'sans-serif', width: '320px',
+                    maxHeight: '90vh', overflowY: 'auto'
                 }}
-                onKeyDown={(e) => e.stopPropagation()} 
+                onKeyDown={(e) => e.stopPropagation()}
             >
-                <h3 style={{ margin: '0 0 15px 0', fontSize: '16px' }}>Design Editor ({viewId})</h3>
-                
-                <div style={{ marginBottom: '20px', paddingBottom: '15px', borderBottom: '1px solid #444' }}>
-                    <label style={{ display: 'block', marginBottom: '5px', fontSize: '14px' }}>
-                        Opacidade Ref: {Math.round(opacity * 100)}%
-                    </label>
-                    <input
-                        type="range"
-                        min="0"
-                        max="1"
-                        step="0.05"
-                        value={opacity}
-                        onChange={(e) => setOpacity(parseFloat(e.target.value))}
-                        style={{ width: '100%' }}
-                    />
+                <h3 style={{ margin: '0 0 4px 0', fontSize: '16px' }}>Design Editor</h3>
+                <div style={{ fontSize: '11px', color: '#888', marginBottom: '15px' }}>
+                    {period} / {section} / {slideId || viewId}
                 </div>
+
+                {referenceImage && (
+                    <div style={{ marginBottom: '20px', paddingBottom: '15px', borderBottom: '1px solid #444' }}>
+                        <label style={{ display: 'block', marginBottom: '5px', fontSize: '14px' }}>
+                            Opacidade Ref: {Math.round(opacity * 100)}%
+                        </label>
+                        <input
+                            type="range" min="0" max="1" step="0.05" value={opacity}
+                            onChange={(e) => setOpacity(parseFloat(e.target.value))}
+                            style={{ width: '100%' }}
+                        />
+                    </div>
+                )}
+
+                {currentConfig.length === 0 && (
+                    <p style={{ fontSize: '13px', color: '#888' }}>Nenhuma config disponível para "{viewId}".</p>
+                )}
 
                 {currentConfig.map(cfg => (
                     <div key={cfg.prop} style={{ marginBottom: '15px' }}>
@@ -380,9 +398,7 @@ const DesignEditor = ({ referenceImage, viewId }) => {
                             </span>
                         </div>
                         <input
-                            type="range"
-                            min={cfg.min}
-                            max={cfg.max}
+                            type="range" min={cfg.min} max={cfg.max}
                             step={cfg.suffix === '' ? 0.05 : 1}
                             value={variables[cfg.prop] ?? cfg.value}
                             onChange={(e) => handleVarChange(cfg.prop, parseFloat(e.target.value), cfg.suffix)}
@@ -391,18 +407,24 @@ const DesignEditor = ({ referenceImage, viewId }) => {
                     </div>
                 ))}
 
-                <button 
-                    onClick={() => {
-                        const cssString = currentConfig.map(cfg => `${cfg.prop}: ${variables[cfg.prop]}${cfg.suffix};`).join('\n');
-                        navigator.clipboard.writeText(cssString);
-                        alert('CSS copiado!');
-                    }}
-                    style={{
-                        marginTop: '10px', width: '100%', padding: '10px', background: '#4ade80', color: '#000', border: 'none', borderRadius: '4px', cursor: 'pointer', fontWeight: 'bold'
-                    }}
-                >
-                    Copiar CSS
-                </button>
+                <div style={{ display: 'flex', gap: '8px', marginTop: '10px' }}>
+                    <button
+                        onClick={handleSave}
+                        disabled={saveStatus === 'saving'}
+                        style={{ flex: 2, padding: '10px', background: saveBg, color: '#000', border: 'none', borderRadius: '4px', cursor: 'pointer', fontWeight: 'bold' }}
+                    >
+                        {saveLabel}
+                    </button>
+                    <button
+                        onClick={() => {
+                            const css = currentConfig.map(cfg => `${cfg.prop}: ${variables[cfg.prop] ?? cfg.value}${cfg.suffix};`).join('\n');
+                            navigator.clipboard.writeText(css);
+                        }}
+                        style={{ flex: 1, padding: '10px', background: '#334155', color: '#fff', border: 'none', borderRadius: '4px', cursor: 'pointer', fontSize: '12px' }}
+                    >
+                        CSS
+                    </button>
+                </div>
             </div>
         </>
     );
