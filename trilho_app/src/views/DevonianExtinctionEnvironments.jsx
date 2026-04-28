@@ -19,7 +19,7 @@ const DevonianExtinctionEnvironments = ({ onNavigate, slideData }) => {
     }, [onNavigate]);
 
     return (
-        <div className="view-dev-ext-environments animate-fade-in">
+        <div className="view-dev-ext-environments">
             {/* Header Bar */}
             <div className="dev-ext-header-bar">
                 <h1 className="dev-ext-header-text">EXTINÇÃO</h1>

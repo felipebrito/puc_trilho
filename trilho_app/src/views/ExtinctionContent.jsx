@@ -38,7 +38,7 @@ const ExtinctionContent = ({ onNavigate, slideData }) => {
     };
 
     return (
-        <div className="view-extinction-content animate-fade-in" style={{ width: '1080px', height: '1920px', position: 'relative', overflow: 'hidden', backgroundColor: '#ffffff' }}>
+        <div className="view-extinction-content" style={{ width: '1080px', height: '1920px', position: 'relative', overflow: 'hidden', backgroundColor: '#ffffff' }}>
             <div id="LBp0D41Ffcn01kT5" style={{ position: 'absolute', width: '1080px', height: '123.81px', transform: 'translate(0px, 0px)' }}>
                 <div style={{ position: 'absolute', top: 0, left: 0, transformOrigin: '0px 0px', height: '123.81px', width: '1080px', transform: 'scale(1)' }}>
                     <div style={{ width: '1080px', height: '123.81px', marginLeft: 0, marginTop: 0 }}>

@@ -25,7 +25,7 @@ const EventDetail = ({ slideIndex, totalSlides, onNavigate, slideData }) => {
     };
 
     return (
-        <div className="view-event-detail animate-fade-in">
+        <div className="view-event-detail">
             <BackgroundVideo src="/assets/placeholder.mp4" variant="full">
                 <div className="event-detail-content">
                     <motion.div 

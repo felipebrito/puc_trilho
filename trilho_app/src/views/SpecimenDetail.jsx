@@ -25,20 +25,14 @@ const SpecimenDetail = ({ slideIndex, totalSlides, onNavigate, slideData }) => {
     if (!specimen) return null;
 
     return (
-        <div className={`view-detail animate-fade-in ${specimen.period || ''} ${specimen.id || ''}`} key={specimen.id}>
+        <div className={`view-detail ${specimen.period || ''} ${specimen.id || ''}`} key={specimen.id}>
             <BackgroundVideo src={specimen.videoSrc || specimen.imageSrc} variant="split" />
 
             <div className="detail-content">
                 {/* SVG Phantom overlay for alignment reference */}
                 {/* <img className="png-reference" src="/assets/ref1.png" alt="Layout reference" /> */}
 
-                <div className="detail-empty-top">
-                    {specimen.topText && (
-                        <div className="specimen-top-text">
-                            <Typewriter text={specimen.topText} delay={30} initialDelay={100} />
-                        </div>
-                    )}
-                </div>
+                <div className="detail-empty-top"></div>
 
                 <div className="detail-info-area">
                     <img 

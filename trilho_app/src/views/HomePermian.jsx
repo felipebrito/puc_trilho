@@ -48,7 +48,7 @@ const HomePermian = ({ onNavigate }) => {
     };
 
     return (
-        <div className="view-home-permian animate-fade-in">
+        <div className="view-home-permian">
             <BackgroundVideo src="/assets/placeholder.mp4" variant="full">
                 <motion.div
                     className="home-permian-content"

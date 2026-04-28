@@ -20,7 +20,7 @@ const DoubleSpecimenDetail = ({ slideIndex, totalSlides, onNavigate, slideData }
     }, [onNavigate]);
 
     return (
-        <div className="view-double-detail animate-fade-in">
+        <div className="view-double-detail">
             <BackgroundVideo src="/assets/placeholder.mp4" variant="full" />
             
             <div className="double-detail-content">

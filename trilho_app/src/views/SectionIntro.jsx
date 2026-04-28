@@ -37,7 +37,7 @@ const SectionIntro = ({ onNavigate, slideData }) => {
     const periodName = slideData.periodName || slideData.period?.toUpperCase() || "ORDOVICIANO";
 
     return (
-        <div className={`view-section-intro ${slideData.period || ''} ${slideData.section || ''} animate-fade-in`}>
+        <div className={`view-section-intro ${slideData.period || ''} ${slideData.section || ''}`}>
             {slideData.videoSrc ? (
                 <BackgroundVideo src={slideData.videoSrc} variant="full" />
             ) : (

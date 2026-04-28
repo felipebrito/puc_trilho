@@ -48,7 +48,7 @@ const HomeDevonian = ({ onNavigate }) => {
     };
 
     return (
-        <div className="view-home-devonian animate-fade-in">
+        <div className="view-home-devonian">
             <BackgroundVideo src="/assets/devoniano_home_bg.png" variant="full">
                 <motion.div
                     className="home-devonian-content"

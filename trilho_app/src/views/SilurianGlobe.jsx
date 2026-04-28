@@ -24,7 +24,7 @@ const SilurianGlobe = ({ onNavigate, slideData, viewId }) => {
     };
 
     return (
-        <div className={`view-silurian-globe ${slideData.period || ''} ${viewId || ''} animate-fade-in`}>
+        <div className={`view-silurian-globe ${slideData.period || ''} ${viewId || ''}`}>
             {/* Blue Header Bar - 1:1 with Canva */}
             <div className="silurian-header-bar">
                 <h1 className="silurian-header-text">{slideData.headerTitle || "EXTINÇÃO"}</h1>

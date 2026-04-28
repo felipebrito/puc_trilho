@@ -42,7 +42,7 @@ const Home = ({ onNavigate }) => {
     };
 
     return (
-        <div className="view-home animate-fade-in">
+        <div className="view-home">
 
             <BackgroundVideo src="/assets/placeholder.mp4" variant="full">
                 {/* <img src="/assets/bg.png" className="bg-image" /> */}

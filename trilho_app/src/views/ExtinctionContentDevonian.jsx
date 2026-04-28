@@ -37,7 +37,7 @@ const ExtinctionContentDevonian = ({ onNavigate, slideData }) => {
     };
 
     return (
-        <div className="view-extinction-content-devonian animate-fade-in" style={{ width: '1080px', height: '1920px', position: 'relative', overflow: 'hidden', backgroundColor: '#ffffff' }}>
+        <div className="view-extinction-content-devonian" style={{ width: '1080px', height: '1920px', position: 'relative', overflow: 'hidden', backgroundColor: '#ffffff' }}>
             {/* BLUE HEADER BAR */}
             <div id="dev-ext-bar" style={{ position: 'absolute', width: '1080px', height: '123.81px', transform: 'translate(0px, 0px)' }}>
                 <div style={{ position: 'absolute', top: 0, left: 0, transformOrigin: '0px 0px', height: '123.81px', width: '1080px', transform: 'scale(1)' }}>

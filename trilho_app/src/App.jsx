@@ -63,7 +63,7 @@ function App() {
   const [slideIndex, setSlideIndex] = useState(() => getIndexForHash(window.location.hash));
   const [slideDirection, setSlideDirection] = useState('up');
 
-  // Injetor de Estilos JSON para garantir fidelidade
+  // Injetor de Estilos JSON para garantir fidelidade (Leve e sem conflitos)
   useEffect(() => {
     const currentSlide = slidesData[slideIndex];
     if (!currentSlide) return;
@@ -75,28 +75,19 @@ function App() {
     const settings = designSettings[period]?.[section]?.[id] || 
                      designSettings[period]?.["biodiversidade"]?.["default"];
 
-    // PRIORIDADE: Se o usuário já mexeu no Editor para essa view, NÃO aplica o JSON
-    const savedConfigs = localStorage.getItem('kiosk-design-config');
-    if (savedConfigs) {
-      const parsed = JSON.parse(savedConfigs);
-      if (parsed[id]) return; 
-    }
-
     if (settings) {
-      // Reset da visibilidade do fundo por padrão
-      document.documentElement.style.setProperty('--devonian-base-bg-display', 'block');
-
       Object.entries(settings).forEach(([key, value]) => {
         if (key === 'hideBaseBg') {
           document.documentElement.style.setProperty('--devonian-base-bg-display', value ? 'none' : 'block');
           return;
         }
         const cssKey = key.replace(/([A-Z])/g, '-$1').toLowerCase();
-        document.documentElement.style.setProperty(`--devonian-${cssKey}`, value);
+        // Injetamos apenas a variável com ID para não quebrar a transição
         document.documentElement.style.setProperty(`--devonian-${id}-${cssKey}`, value);
       });
     }
   }, [slideIndex]);
+
 
   // Sincroniza a URL com o slideIndex atual
   useEffect(() => {
@@ -213,24 +204,6 @@ function App() {
 
   // Reference and Editor Mapping
   const mapping = {
-    'ordoviciano-home': { ref: '/assets/referencias/page-01.jpg', viewId: 'ordoviciano-home' },
-    'ordoviciano-biodiversidade-intro': { ref: '/assets/referencias/page-02.jpg', viewId: 'ordoviciano-bio-intro' },
-    'ordoviciano-biodiversidade-1': { ref: '/assets/referencias/page-03.jpg', viewId: 'ord-homotelus' },
-    'ordoviciano-biodiversidade-2': { ref: '/assets/referencias/page-04.jpg', viewId: 'ord-cameroceras' },
-    'ordoviciano-biodiversidade-3': { ref: '/assets/referencias/page-05.jpg', viewId: 'ord-megalograptus' },
-    'ordoviciano-biodiversidade-4': { ref: '/assets/referencias/page-06.jpg', viewId: 'ord-balacrinus' },
-    'ordoviciano-biodiversidade-5': { ref: '/assets/referencias/page-07.jpg', viewId: 'ord-sacabambaspis' },
-    'ordoviciano-biodiversidade-6': { ref: '/assets/referencias/page-08.jpg', viewId: 'ord-promissum' },
-    'ordoviciano-biodiversidade-7': { ref: '/assets/referencias/page-09.jpg', viewId: 'ord-sowerbyella' },
-    'ordoviciano-extincao-intro': { ref: '/assets/referencias/page-10.jpg', viewId: 'ordoviciano-extincao-intro' },
-    'ordoviciano-extincao-1': { ref: '/assets/referencias/page-11.jpg', viewId: 'ordoviciano-extincao-content' },
-    'ordoviciano-pos_extincao-intro': { ref: '/assets/referencias/page-12.jpg', viewId: 'ordoviciano-pos-intro' },
-    'ordoviciano-pos_extincao-1': { ref: '/assets/referencias/page-13.jpg', viewId: 'ordoviciano-pos-globe' },
-    'ordoviciano-pos_extincao-2': { ref: '/assets/referencias/page-14.jpg', viewId: 'ordoviciano-pos-dalmanites' },
-    'ordoviciano-pos_extincao-dalmanites': { ref: '/assets/referencias/page-14.jpg', viewId: 'ordoviciano-pos-dalmanites' },
-    'ordoviciano-pos_extincao-3': { ref: '/assets/referencias/page-15.jpg', viewId: 'ordoviciano-pos-halysites' },
-    'ordoviciano-pos_extincao-4': { ref: '/assets/referencias/page-16.jpg', viewId: 'ordoviciano-pos-cooksonia' },
-    'ordoviciano-pos_extincao-atrypa': { ref: '/assets/referencias/page-17.jpg', viewId: 'ordoviciano-pos-atrypa' },
     'devoniano-home': { ref: '/assets/referencias/page-18.jpg', viewId: 'devoniano-home' },
     'devoniano-biodiversidade-intro': { ref: '/assets/referencias/page-19.jpg', viewId: 'devoniano-bio-intro' },
     'devoniano-biodiversidade-1': { ref: '/assets/referencias/page-20.jpg', viewId: 'devoniano-bio-dunkleosteus' },
@@ -260,16 +233,9 @@ function App() {
   };
 
   let pageKey = sectionIndex;
-  if (type === 'section_intro') pageKey = 'intro';
-  if (type.startsWith('home')) pageKey = 'home';
-  if (sectionIndex === -1 && type.startsWith('home')) pageKey = 'home';
-  
+  if (type === 'section_intro' || type === 'home_devonian') pageKey = 'intro';
   const designKey = `${currentPeriod}-${currentSection}-${pageKey}`;
-  // Fallback for home without -home suffix if needed, but let's try to be precise
-  let finalDesignKey = designKey;
-  if (currentSection === 'home') finalDesignKey = `${currentPeriod}-home`;
-  
-  const currentMapping = mapping[finalDesignKey] || mapping[designKey] || {};
+  const currentMapping = mapping[designKey] || {};
 
   const scopedNavigate = (dir, targetSectionIndex = null) => {
     if (targetSectionIndex !== null) {
@@ -285,7 +251,8 @@ function App() {
     <>
       <TopBar />
       <div style={{ position: 'relative', width: '100%', height: '100%', overflow: 'hidden' }}>
-        {(() => {
+        <AnimatePresence custom={slideDirection} initial={false}>
+          {(() => {
             let ComponentToRender = null;
             const key = `${type}-${slideIndex}`;
 
@@ -306,11 +273,19 @@ function App() {
             else if (type === 'double_species')             ComponentToRender = <DoubleSpecimenDetail slideIndex={sectionIndex} totalSlides={sectionSlides.length} onNavigate={scopedNavigate} slideData={currentSlide} />;
 
             return (
-              <div key={key} style={{ width: '100%', height: '100%' }}>
+              <motion.div
+                key={key}
+                custom={slideDirection}
+                variants={slideVariants}
+                initial="initial"
+                animate="animate"
+                exit="exit"
+              >
                 {ComponentToRender}
-              </div>
+              </motion.div>
             );
           })()}
+        </AnimatePresence>
 
         {currentSection !== 'home' && (
           <div style={{ position: 'absolute', bottom: '100px', width: '100%', zIndex: 100 }}>
@@ -323,7 +298,16 @@ function App() {
         )}
 
         {currentSection === 'home' && <BottomBar />}
-        
+
+        {/* Prerender invisível para forçar decode das imagens antes da transição */}
+        <div style={{ position: 'absolute', width: 0, height: 0, overflow: 'hidden', opacity: 0, pointerEvents: 'none' }}>
+          {slidesData.map((slide, i) => {
+            const src = slide?.videoSrc || slide?.bgImage || slide?.imageSrc;
+            if (!src || !/\.(png|jpe?g|gif|webp)$/i.test(src)) return null;
+            return <img key={i} src={src} alt="" />;
+          })}
+        </div>
+
         {currentMapping && currentMapping.ref && (
           <DesignEditor 
             referenceImage={currentMapping.ref} 

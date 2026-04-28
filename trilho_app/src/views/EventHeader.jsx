@@ -25,7 +25,7 @@ const EventHeader = ({ slideIndex, totalSlides, onNavigate, slideData }) => {
     };
 
     return (
-        <div className="view-event-header animate-fade-in">
+        <div className="view-event-header">
             <BackgroundVideo src="/assets/placeholder.mp4" variant="full">
                 <div className="event-header-content">
                     <motion.div 

@@ -48,7 +48,7 @@ const HomeOrdovician = ({ onNavigate }) => {
     };
 
     return (
-        <div className="view-home-ordovician animate-fade-in">
+        <div className="view-home-ordovician">
             <BackgroundVideo src="/assets/ordoviciano/home_bg.png" variant="full">
                 <motion.div
                     className="home-ordovician-content"

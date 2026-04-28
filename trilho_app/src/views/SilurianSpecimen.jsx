@@ -19,7 +19,7 @@ const SilurianSpecimen = ({ onNavigate, slideData }) => {
     }, [onNavigate]);
 
     return (
-        <div className="view-silurian-specimen animate-fade-in">
+        <div className="view-silurian-specimen">
             <div className="silurian-header-bar">
                 <h1 className="silurian-header-text">EXTINÇÃO</h1>
             </div>
