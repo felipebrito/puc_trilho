@@ -113,39 +113,35 @@ const cssConfigs = {
         headingSpacing: -1,
         headingLH: 1.05 
     }),
-    'ordoviciano-bio-homotelus': createDevonianoSpecimenConfig('ord-homotelus', {
-        subMt: 40,
-        descMt: 82,
-        descW: 880
-    }),
-    'ordoviciano-bio-cameroceras': createDevonianoSpecimenConfig('ord-cameroceras', {
+    'ord-homotelus': createDevonianoSpecimenConfig('ord-homotelus'),
+    'ord-cameroceras': createDevonianoSpecimenConfig('ord-cameroceras', {
         subMt: 38,
         subW: 790,
         descMt: 69,
         descW: 798
     }),
-    'ordoviciano-bio-megalograptus': createDevonianoSpecimenConfig('ord-megalograptus', {
+    'ord-megalograptus': createDevonianoSpecimenConfig('ord-megalograptus', {
         subMt: 40,
         subW: 719,
         descMt: 66,
         bgScale: 1.1,
         bgX: 50
     }),
-    'ordoviciano-bio-balacrinus': createDevonianoSpecimenConfig('ord-balacrinus', {
+    'ord-balacrinus': createDevonianoSpecimenConfig('ord-balacrinus', {
         subMt: 45,
         subW: 776,
         descMt: 60,
         descW: 893
     }),
-    'ordoviciano-bio-sacabambaspis': createDevonianoSpecimenConfig('ord-sacabambaspis', {
+    'ord-sacabambaspis': createDevonianoSpecimenConfig('ord-sacabambaspis', {
         descMt: 73,
         descW: 904
     }),
-    'ordoviciano-bio-promissum': createDevonianoSpecimenConfig('ord-promissum', {
+    'ord-promissum': createDevonianoSpecimenConfig('ord-promissum', {
         descMt: 47,
         descW: 916
     }),
-    'ordoviciano-bio-sowerbyella': createDevonianoSpecimenConfig('ord-sowerbyella', {
+    'ord-sowerbyella': createDevonianoSpecimenConfig('ord-sowerbyella', {
         subMt: 42,
         subW: 683,
         descMt: 62,
@@ -283,13 +279,13 @@ function createDevonianoSpecimenConfig(id, overrides = {}) {
     ];
 }
 
-const DesignEditor = ({ referenceImage, viewKey }) => {
+const DesignEditor = ({ referenceImage, viewId }) => {
     const [isVisible, setIsVisible] = useState(false);
     const [opacity, setOpacity] = useState(0.5);
     const [variables, setVariables] = useState({});
 
     // Load configs based on viewKey
-    const currentConfig = cssConfigs[viewKey] || [];
+    const currentConfig = cssConfigs[viewId] || [];
 
     useEffect(() => {
         // Initialize default values
@@ -299,7 +295,7 @@ const DesignEditor = ({ referenceImage, viewKey }) => {
             document.documentElement.style.setProperty(cfg.prop, `${cfg.value}${cfg.suffix}`);
         });
         setVariables(initialVars);
-    }, [viewKey]);
+    }, [viewId]);
 
     const handleVarChange = (prop, value, suffix) => {
         setVariables(prev => ({ ...prev, [prop]: value }));
@@ -358,7 +354,7 @@ const DesignEditor = ({ referenceImage, viewKey }) => {
                 }}
                 onKeyDown={(e) => e.stopPropagation()} 
             >
-                <h3 style={{ margin: '0 0 15px 0', fontSize: '16px' }}>Design Editor ({viewKey})</h3>
+                <h3 style={{ margin: '0 0 15px 0', fontSize: '16px' }}>Design Editor ({viewId})</h3>
                 
                 <div style={{ marginBottom: '20px', paddingBottom: '15px', borderBottom: '1px solid #444' }}>
                     <label style={{ display: 'block', marginBottom: '5px', fontSize: '14px' }}>

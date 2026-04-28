@@ -75,8 +75,22 @@ function App() {
     const settings = designSettings[period]?.[section]?.[id] || 
                      designSettings[period]?.["biodiversidade"]?.["default"];
 
+    // PRIORIDADE: Se o usuário já mexeu no Editor para essa view, NÃO aplica o JSON
+    const savedConfigs = localStorage.getItem('kiosk-design-config');
+    if (savedConfigs) {
+      const parsed = JSON.parse(savedConfigs);
+      if (parsed[id]) return; 
+    }
+
     if (settings) {
+      // Reset da visibilidade do fundo por padrão
+      document.documentElement.style.setProperty('--devonian-base-bg-display', 'block');
+
       Object.entries(settings).forEach(([key, value]) => {
+        if (key === 'hideBaseBg') {
+          document.documentElement.style.setProperty('--devonian-base-bg-display', value ? 'none' : 'block');
+          return;
+        }
         const cssKey = key.replace(/([A-Z])/g, '-$1').toLowerCase();
         document.documentElement.style.setProperty(`--devonian-${cssKey}`, value);
         document.documentElement.style.setProperty(`--devonian-${id}-${cssKey}`, value);
@@ -201,13 +215,13 @@ function App() {
   const mapping = {
     'ordoviciano-home': { ref: '/assets/referencias/page-01.jpg', viewId: 'ordoviciano-home' },
     'ordoviciano-biodiversidade-intro': { ref: '/assets/referencias/page-02.jpg', viewId: 'ordoviciano-bio-intro' },
-    'ordoviciano-biodiversidade-1': { ref: '/assets/referencias/page-03.jpg', viewId: 'ordoviciano-bio-homotelus' },
-    'ordoviciano-biodiversidade-2': { ref: '/assets/referencias/page-04.jpg', viewId: 'ordoviciano-bio-cameroceras' },
-    'ordoviciano-biodiversidade-3': { ref: '/assets/referencias/page-05.jpg', viewId: 'ordoviciano-bio-megalograptus' },
-    'ordoviciano-biodiversidade-4': { ref: '/assets/referencias/page-06.jpg', viewId: 'ordoviciano-bio-balacrinus' },
-    'ordoviciano-biodiversidade-5': { ref: '/assets/referencias/page-07.jpg', viewId: 'ordoviciano-bio-sacabambaspis' },
-    'ordoviciano-biodiversidade-6': { ref: '/assets/referencias/page-08.jpg', viewId: 'ordoviciano-bio-promissum' },
-    'ordoviciano-biodiversidade-7': { ref: '/assets/referencias/page-09.jpg', viewId: 'ordoviciano-bio-sowerbyella' },
+    'ordoviciano-biodiversidade-1': { ref: '/assets/referencias/page-03.jpg', viewId: 'ord-homotelus' },
+    'ordoviciano-biodiversidade-2': { ref: '/assets/referencias/page-04.jpg', viewId: 'ord-cameroceras' },
+    'ordoviciano-biodiversidade-3': { ref: '/assets/referencias/page-05.jpg', viewId: 'ord-megalograptus' },
+    'ordoviciano-biodiversidade-4': { ref: '/assets/referencias/page-06.jpg', viewId: 'ord-balacrinus' },
+    'ordoviciano-biodiversidade-5': { ref: '/assets/referencias/page-07.jpg', viewId: 'ord-sacabambaspis' },
+    'ordoviciano-biodiversidade-6': { ref: '/assets/referencias/page-08.jpg', viewId: 'ord-promissum' },
+    'ordoviciano-biodiversidade-7': { ref: '/assets/referencias/page-09.jpg', viewId: 'ord-sowerbyella' },
     'ordoviciano-extincao-intro': { ref: '/assets/referencias/page-10.jpg', viewId: 'ordoviciano-extincao-intro' },
     'ordoviciano-extincao-1': { ref: '/assets/referencias/page-11.jpg', viewId: 'ordoviciano-extincao-content' },
     'ordoviciano-pos_extincao-intro': { ref: '/assets/referencias/page-12.jpg', viewId: 'ordoviciano-pos-intro' },
@@ -271,8 +285,7 @@ function App() {
     <>
       <TopBar />
       <div style={{ position: 'relative', width: '100%', height: '100%', overflow: 'hidden' }}>
-        <AnimatePresence custom={slideDirection} initial={false}>
-          {(() => {
+        {(() => {
             let ComponentToRender = null;
             const key = `${type}-${slideIndex}`;
 
@@ -293,19 +306,11 @@ function App() {
             else if (type === 'double_species')             ComponentToRender = <DoubleSpecimenDetail slideIndex={sectionIndex} totalSlides={sectionSlides.length} onNavigate={scopedNavigate} slideData={currentSlide} />;
 
             return (
-              <motion.div
-                key={key}
-                custom={slideDirection}
-                variants={slideVariants}
-                initial="initial"
-                animate="animate"
-                exit="exit"
-              >
+              <div key={key} style={{ width: '100%', height: '100%' }}>
                 {ComponentToRender}
-              </motion.div>
+              </div>
             );
           })()}
-        </AnimatePresence>
 
         {currentSection !== 'home' && (
           <div style={{ position: 'absolute', bottom: '100px', width: '100%', zIndex: 100 }}>
@@ -322,7 +327,7 @@ function App() {
         {currentMapping && currentMapping.ref && (
           <DesignEditor 
             referenceImage={currentMapping.ref} 
-            viewKey={currentMapping.viewId}
+            viewId={currentMapping.viewId}
           />
         )}
       </div>

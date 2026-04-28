@@ -1,5 +1,39 @@
 {
   "ordoviciano": {
+    "biodiversidade": {
+      "ord-homotelus": {
+        "nameMt": "96px",
+        "nameMl": "0px",
+        "nameSize": "83px",
+        "subMt": "51px",
+        "subMl": "0px",
+        "subW": "566px",
+        "subSize": "56px",
+        "descMt": "96px",
+        "descMl": "0px",
+        "descW": "752px",
+        "descSize": "40px",
+        "descLH": "50px",
+        "bgH": "42%",
+        "bgTop": "0px",
+        "bgScale": "1",
+        "bgX": "0px",
+        "bgY": "0px",
+        "whiteH": "34%",
+        "whiteMt": "38px",
+        "cutY": "40px",
+        "cutX1": "250px",
+        "cutX2": "280px",
+        "toptextTop": "80px",
+        "toptextLeft": "108px",
+        "toptextW": "864px",
+        "toptextSize": "38px",
+        "seloW": "862px",
+        "seloTop": "799px",
+        "seloLeft": "0px",
+        "hideBaseBg": true
+      }
+    },
     "pos_extincao": {
       "dalmanites": {
         "nameMt": "20px",
@@ -13,7 +47,7 @@
         "bgY": "-257px",
         "whiteMt": "926px",
         "seloTop": "543px",
-        "topTextTop": "181px"
+        "toptextTop": "181px"
       },
       "globe": {
         "headerTop": "-61px",

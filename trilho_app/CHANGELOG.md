@@ -8,6 +8,9 @@
 - **IDs de Navegação**: Atribuídos IDs persistentes (`intro`, `globe`, `dalmanites`, etc.) para garantir que as coordenadas fiquem atreladas ao conteúdo e não ao índice numérico.
 
 ### 🎨 Correções e Alinhamento
+- **Finalização Homotelus sp.**: Coordenadas travadas e blindadas no JSON (Slide 1 Biodiversidade Ordoviciano).
+- **Restauração do Editor**: Corrigidos erros de sincronização e mapeamento (viewId) que impediam o funcionamento dos sliders.
+- **Limpeza de Transição**: Removida animação de sobreposição que causava "texto fantasma" durante a navegação.
 - **Restauração Global**: Revertidas mudanças estruturais no `SpecimenDetail.css` que causavam regressões no Devoniano/Carbonífero.
 - **Correção Meganeura**: Restaurado alinhamento original (96px Name MT) via injeção de dados estáveis.
 - **Blindagem Dalmanites**: Aplicadas as coordenadas finais do chat (Box Top: 926px, TopText: 181px) via JSON.

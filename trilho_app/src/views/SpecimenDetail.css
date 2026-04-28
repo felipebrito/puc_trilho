@@ -66,6 +66,7 @@
     /* Use fill instead of cover so SVG doesn't get cut */
     object-position: top;
     z-index: -1;
+    display: var(--devonian-base-bg-display, block);
 }
 
 /* Compensate for the video clip path cut */
@@ -764,7 +765,7 @@
 /* ==========================================================================
    ESPECIES DO ORDOVICIANO
    ========================================================================== */
-.view-detail.ordoviciano.homotelus {
+.view-detail.ordoviciano.ord-homotelus {
     --devonian-name-mt: var(--devonian-ord-homotelus-name-mt, 96px);
     --devonian-name-ml: var(--devonian-ord-homotelus-name-ml, 0px);
     --devonian-name-size: var(--devonian-ord-homotelus-name-size, 83px);
@@ -791,7 +792,7 @@
     --devonian-bg-y: var(--devonian-ord-homotelus-bg-y, 0px);
 }
 
-.view-detail.ordoviciano.cameroceras {
+.view-detail.ordoviciano.ord-cameroceras {
     --devonian-name-mt: var(--devonian-ord-cameroceras-name-mt, 96px);
     --devonian-name-ml: var(--devonian-ord-cameroceras-name-ml, 0px);
     --devonian-name-size: var(--devonian-ord-cameroceras-name-size, 83px);
@@ -818,7 +819,7 @@
     --devonian-bg-y: var(--devonian-ord-cameroceras-bg-y, 0px);
 }
 
-.view-detail.ordoviciano.megalograptus {
+.view-detail.ordoviciano.ord-megalograptus {
     --devonian-name-mt: var(--devonian-ord-megalograptus-name-mt, 96px);
     --devonian-name-ml: var(--devonian-ord-megalograptus-name-ml, 0px);
     --devonian-name-size: var(--devonian-ord-megalograptus-name-size, 83px);
@@ -845,7 +846,7 @@
     --devonian-bg-y: var(--devonian-ord-megalograptus-bg-y, 0px);
 }
 
-.view-detail.ordoviciano.balacrinus {
+.view-detail.ordoviciano.ord-balacrinus {
     --devonian-name-mt: var(--devonian-ord-balacrinus-name-mt, 96px);
     --devonian-name-ml: var(--devonian-ord-balacrinus-name-ml, 0px);
     --devonian-name-size: var(--devonian-ord-balacrinus-name-size, 83px);
@@ -872,7 +873,7 @@
     --devonian-bg-y: var(--devonian-ord-balacrinus-bg-y, 0px);
 }
 
-.view-detail.ordoviciano.sacabambaspis {
+.view-detail.ordoviciano.ord-sacabambaspis {
     --devonian-name-mt: var(--devonian-ord-sacabambaspis-name-mt, 96px);
     --devonian-name-ml: var(--devonian-ord-sacabambaspis-name-ml, 0px);
     --devonian-name-size: var(--devonian-ord-sacabambaspis-name-size, 83px);
@@ -899,7 +900,7 @@
     --devonian-bg-y: var(--devonian-ord-sacabambaspis-bg-y, 0px);
 }
 
-.view-detail.ordoviciano.promissum {
+.view-detail.ordoviciano.ord-promissum {
     --devonian-name-mt: var(--devonian-ord-promissum-name-mt, 96px);
     --devonian-name-ml: var(--devonian-ord-promissum-name-ml, 0px);
     --devonian-name-size: var(--devonian-ord-promissum-name-size, 83px);
@@ -926,7 +927,7 @@
     --devonian-bg-y: var(--devonian-ord-promissum-bg-y, 0px);
 }
 
-.view-detail.ordoviciano.sowerbyella {
+.view-detail.ordoviciano.ord-sowerbyella {
     --devonian-name-mt: var(--devonian-ord-sowerbyella-name-mt, 96px);
     --devonian-name-ml: var(--devonian-ord-sowerbyella-name-ml, 0px);
     --devonian-name-size: var(--devonian-ord-sowerbyella-name-size, 83px);
