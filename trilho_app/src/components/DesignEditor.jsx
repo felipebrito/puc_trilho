@@ -168,6 +168,18 @@ const cssConfigs = {
         seloTop: 543,
         topTextTop: 181
     }),
+    'ordoviciano-pos-globe': createDevonianoGlobeConfig('ord-glob', {
+        headerTop: -61,
+        globMt: 61,
+        globW: 1080,
+        globH: 629,
+        descMt: 104,
+        descW: 903,
+        descLeft: 20,
+        descSize: 38.5,
+        descLH: 45,
+        lineMt: 29
+    }),
     'ordoviciano-pos-halysites': createDevonianoSpecimenConfig('halysites'),
     'ordoviciano-pos-cooksonia': createDevonianoSpecimenConfig('cooksonia'),
     'ordoviciano-pos-atrypa': createDevonianoSpecimenConfig('atrypa'),

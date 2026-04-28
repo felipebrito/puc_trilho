@@ -127,6 +127,7 @@ export const ordovicianoSlides = [
         title: 'E DEPOIS?',
         periodLabel: 'PERÍODO',
         periodName: 'SILURIANO',
+        id: 'intro',
         description: 'Aparência do planeta Terra durante o início do período Siluriano, com a cobertura de gelo sendo reduzida devido ao aumento nas temperaturas do globo terrestre.',
         bgImage: '/assets/ordoviciano/siluriano_intro_bg.png'
     },
@@ -136,6 +137,7 @@ export const ordovicianoSlides = [
         type: 'silurian_globe',
         period: 'ordoviciano',
         section: 'pos_extincao',
+        id: 'globe',
         headerTitle: 'E DEPOIS?',
         content: 'Vista do globo terrestre, com a disposição da massa continental correspondente à nova época retratada: Período Siluriano. No início desse período, cerca de 200 mil anos após a primeira extinção em massa, houve um aumento no nível de gás carbônico atmosférico.\n\nComo consequência, a temperatura do planeta voltou a aumentar, fazendo com que as enormes geleiras derretessem e a vida tomasse um novo curso.',
         imageSrc: '/assets/ordoviciano/siluriano_globe.png'

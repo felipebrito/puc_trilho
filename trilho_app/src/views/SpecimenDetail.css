@@ -38,7 +38,7 @@
 .detail-info-area {
     position: relative;
     width: 100%;
-    margin-top: var(--devonian-white-mt);
+    margin-top: var(--devonian-white-mt, 50px);
     background-color: transparent;
     color: var(--color-text-dark);
     display: flex;

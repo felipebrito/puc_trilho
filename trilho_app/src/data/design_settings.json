@@ -1,0 +1,57 @@
+{
+  "ordoviciano": {
+    "pos_extincao": {
+      "dalmanites": {
+        "nameMt": "20px",
+        "subMt": "29px",
+        "subSize": "47px",
+        "subW": "1070px",
+        "descMt": "-9px",
+        "descLH": "48px",
+        "bgH": "45%",
+        "bgTop": "304px",
+        "bgY": "-257px",
+        "whiteMt": "926px",
+        "seloTop": "543px",
+        "topTextTop": "181px"
+      },
+      "globe": {
+        "headerTop": "-61px",
+        "globMt": "61px",
+        "globW": "1080px",
+        "globH": "629px",
+        "descMt": "104px",
+        "descW": "903px",
+        "descLeft": "20px",
+        "descSize": "38.5px",
+        "descLH": "45px",
+        "lineMt": "29px"
+      }
+    }
+  },
+  "devoniano": {
+    "pos_extincao": {
+      "meganeura": {
+        "nameMt": "96px",
+        "nameSize": "82px",
+        "subMt": "46px",
+        "subW": "736px",
+        "descMt": "117px",
+        "descW": "883px"
+      },
+      "stethacanthus": {
+        "nameMt": "96px",
+        "nameSize": "83px",
+        "subMt": "44px",
+        "subW": "814px",
+        "descMt": "76px",
+        "descW": "834px"
+      }
+    },
+    "biodiversidade": {
+      "default": {
+        "whiteMt": "50px"
+      }
+    }
+  }
+}

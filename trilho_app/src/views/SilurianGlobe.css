@@ -185,14 +185,14 @@
 }
 
 .ordoviciano-pos-globe {
-    --header-top: var(--dev-ord-glob-header-top);
-    --glob-mt: var(--dev-ord-glob-glob-mt);
-    --glob-w: var(--dev-ord-glob-glob-w);
-    --glob-h: var(--dev-ord-glob-glob-h);
-    --glob-desc-mt: var(--dev-ord-glob-glob-desc-mt);
-    --glob-desc-w: var(--dev-ord-glob-glob-desc-w);
-    --glob-desc-left: var(--dev-ord-glob-glob-desc-left);
-    --glob-desc-size: var(--dev-ord-glob-glob-desc-size);
-    --glob-desc-lh: var(--dev-ord-glob-glob-desc-lh);
-    --glob-line-mt: var(--dev-ord-glob-glob-line-mt);
+    --header-top: var(--devonian-globe-header-top, -61px);
+    --glob-mt: var(--devonian-globe-glob-mt, 61px);
+    --glob-w: var(--devonian-globe-glob-w, 1080px);
+    --glob-h: var(--devonian-globe-glob-h, 629px);
+    --glob-desc-mt: var(--devonian-globe-glob-desc-mt, 104px);
+    --glob-desc-w: var(--devonian-globe-glob-desc-w, 903px);
+    --glob-desc-left: var(--devonian-globe-glob-desc-left, 20px);
+    --glob-desc-size: var(--devonian-globe-glob-desc-size, 38.5px);
+    --glob-desc-lh: var(--devonian-globe-glob-desc-lh, 45px);
+    --glob-line-mt: var(--devonian-globe-glob-line-mt, 29px);
 }

@@ -21,6 +21,7 @@ import EventDetail from './views/EventDetail'
 import DoubleSpecimenDetail from './views/DoubleSpecimenDetail'
 import MorphingPageDots from './components/MorphingPageDots'
 import DesignEditor from './components/DesignEditor'
+import designSettings from './data/design_settings.json'
 import './App.css'
 
 function getHashForSlide(slide) {
@@ -61,6 +62,27 @@ function getIndexForHash(hashStr) {
 function App() {
   const [slideIndex, setSlideIndex] = useState(() => getIndexForHash(window.location.hash));
   const [slideDirection, setSlideDirection] = useState('up');
+
+  // Injetor de Estilos JSON para garantir fidelidade
+  useEffect(() => {
+    const currentSlide = slidesData[slideIndex];
+    if (!currentSlide) return;
+
+    const period = currentSlide.period;
+    const section = currentSlide.section;
+    const id = currentSlide.id;
+
+    const settings = designSettings[period]?.[section]?.[id] || 
+                     designSettings[period]?.["biodiversidade"]?.["default"];
+
+    if (settings) {
+      Object.entries(settings).forEach(([key, value]) => {
+        const cssKey = key.replace(/([A-Z])/g, '-$1').toLowerCase();
+        document.documentElement.style.setProperty(`--devonian-${cssKey}`, value);
+        document.documentElement.style.setProperty(`--devonian-${id}-${cssKey}`, value);
+      });
+    }
+  }, [slideIndex]);
 
   // Sincroniza a URL com o slideIndex atual
   useEffect(() => {
