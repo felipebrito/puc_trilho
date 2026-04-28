@@ -357,7 +357,19 @@ function App() {
           period={currentPeriod}
           section={currentSection}
           slideId={currentSlide.id || viewId}
-          savedSettings={designSettings[currentPeriod]?.[currentSection]?.[currentSlide.id || viewId] || null}
+          savedSettings={(() => {
+            const sid = currentSlide.id || viewId;
+            const raw = designSettings[currentPeriod]?.[currentSection]?.[sid] || null;
+            if (!raw) return null;
+            // Normaliza formato antigo (camelCase) para CSS props (--devonian-{id}-*)
+            return Object.fromEntries(
+              Object.entries(raw).map(([k, v]) => {
+                if (k.startsWith('--')) return [k, v];
+                const cssKey = k.replace(/([A-Z])/g, '-$1').toLowerCase();
+                return [`--devonian-${sid}-${cssKey}`, v];
+              })
+            );
+          })()}
         />
       </div>
     </>
