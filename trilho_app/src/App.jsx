@@ -69,9 +69,6 @@ function App() {
     if (!currentSlide) return;
 
     const { period, section, id } = currentSlide;
-    // Reseta vars globais que podem ter sido alteradas por slides anteriores
-    document.documentElement.style.setProperty('--devonian-base-bg-display', 'block');
-
     // Slides sem id (ex: section_intro) usam o viewId como chave
     const settingsId = id || computeViewId(currentSlide);
     const settings = designSettings[period]?.[section]?.[settingsId] ||
@@ -79,10 +76,6 @@ function App() {
 
     if (settings) {
       Object.entries(settings).forEach(([key, value]) => {
-        if (key === 'hideBaseBg') {
-          document.documentElement.style.setProperty('--devonian-base-bg-display', value ? 'none' : 'block');
-          return;
-        }
         // Suporta novo formato (chaves CSS diretas com --) e formato legado (camelCase)
         if (key.startsWith('--')) {
           document.documentElement.style.setProperty(key, value);

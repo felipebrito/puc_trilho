@@ -66,7 +66,7 @@
     /* Use fill instead of cover so SVG doesn't get cut */
     object-position: top;
     z-index: -1;
-    display: var(--devonian-base-bg-display, block);
+    display: block;
 }
 
 /* Compensate for the video clip path cut */
@@ -1019,6 +1019,8 @@
     --devonian-toptext-left: var(--devonian-dalmanites-toptext-left, 108px);
     --devonian-toptext-w: var(--devonian-dalmanites-toptext-w, 864px);
     --devonian-toptext-size: var(--devonian-dalmanites-toptext-size, 38px);
+}
+
 .view-detail.ordoviciano.halysites {
     --devonian-name-mt: var(--devonian-halysites-name-mt, 96px);
     --devonian-name-ml: var(--devonian-halysites-name-ml, 0px);
