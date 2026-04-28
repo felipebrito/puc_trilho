@@ -35,29 +35,15 @@
     width: 100%;
 }
 
-.specimen-top-text {
-    position: absolute;
-    top: var(--devonian-toptext-top, 80px);
-    left: var(--devonian-toptext-left, 108px);
-    width: var(--devonian-toptext-w, 864px);
-    font-family: var(--font-canva);
-    font-size: var(--devonian-toptext-size, 38px);
-    color: var(--devonian-toptext-color, #000000);
-    line-height: 1.2;
-    z-index: 20;
-    pointer-events: none;
-}
-
 .detail-info-area {
     position: relative;
     width: 100%;
-    min-height: 1200px;
+    margin-top: var(--devonian-white-mt);
     background-color: transparent;
     color: var(--color-text-dark);
     display: flex;
     flex-direction: column;
     pointer-events: auto;
-    /* Re-enable clicks for buttons */
 }
 
 .detail-text-overlay {
@@ -83,8 +69,8 @@
 }
 
 /* Compensate for the video clip path cut */
+/* Removido override fixo que quebrava o editor */
 .detail-info-area {
-    margin-top: 50px;
 }
 
 .specimen-name {
@@ -219,18 +205,17 @@
 
 .view-detail.devoniano .detail-empty-top,
 .view-detail.ordoviciano .detail-empty-top {
-    height: 0;
+    height: var(--devonian-white-h);
 }
 
 .view-detail.devoniano .detail-info-area,
 .view-detail.ordoviciano .detail-info-area {
-    margin-top: var(--devonian-white-mt);
+    /* Removido margin-top daqui para evitar conflitos, movido para a base .detail-info-area */
 }
 
 .view-detail.devoniano .video-container.variant-split,
 .view-detail.ordoviciano .video-container.variant-split {
     height: var(--devonian-bg-h);
-    top: var(--devonian-bg-top, 0);
     clip-path: polygon(
         0 0, 
         100% 0, 
@@ -260,7 +245,6 @@
 
 .view-detail.devoniano .bg-video,
 .view-detail.ordoviciano .bg-video {
-    height: 1080px; /* Altura fixa para evitar zoom ao mudar o bg-h do container */
     transform: scale(var(--devonian-bg-scale)) translate(var(--devonian-bg-x), var(--devonian-bg-y));
 }
 
@@ -970,37 +954,70 @@
 }
 
 /* ==========================================================
-   SILURIANO (ORDOVICIANO POS-EXTINCAO)
+   SILURIANO (ORDOVICIANO POS-EXTINCAO) - ISOLADO
    ========================================================== */
 
-.view-detail.ordoviciano.dalmanites {
-    --devonian-name-mt: var(--devonian-dalmanites-name-mt, 96px);
-    --devonian-name-ml: var(--devonian-dalmanites-name-ml, 0px);
-    --devonian-name-size: var(--devonian-dalmanites-name-size, 82px);
-    --devonian-selo-w: var(--devonian-dalmanites-selo-w, 862px);
-    --devonian-selo-top: var(--devonian-dalmanites-selo-top, 799px);
-    --devonian-selo-left: var(--devonian-dalmanites-selo-left, 0px);
-    --devonian-white-h: var(--devonian-dalmanites-white-h, 34%);
-    --devonian-white-mt: var(--devonian-dalmanites-white-mt, 38px);
-    --devonian-bg-h: var(--devonian-dalmanites-bg-h, 42%);
-    --devonian-cut-y: var(--devonian-dalmanites-cut-y, 40px);
-    --devonian-cut-x1: var(--devonian-dalmanites-cut-x1, 250px);
-    --devonian-cut-x2: var(--devonian-dalmanites-cut-x2, 280px);
-    --devonian-sub-mt: var(--devonian-dalmanites-sub-mt, 46px);
-    --devonian-sub-ml: var(--devonian-dalmanites-sub-ml, 3px);
-    --devonian-sub-w: var(--devonian-dalmanites-sub-w, 736px);
-    --devonian-sub-size: var(--devonian-dalmanites-sub-size, 56px);
-    --devonian-desc-mt: var(--devonian-dalmanites-desc-mt, 117px);
-    --devonian-desc-ml: var(--devonian-dalmanites-desc-ml, 0px);
-    --devonian-desc-w: var(--devonian-dalmanites-desc-w, 883px);
-    --devonian-desc-size: var(--devonian-dalmanites-desc-size, 40px);
-    --devonian-desc-lh: var(--devonian-dalmanites-desc-lh, 50px);
-    --devonian-bg-scale: var(--devonian-dalmanites-bg-scale, 1);
-    --devonian-bg-x: var(--devonian-dalmanites-bg-x, 0px);
-    --devonian-bg-y: var(--devonian-dalmanites-bg-y, 0px);
-    --devonian-bg-top: var(--devonian-dalmanites-bg-top, 0px);
+.specimen-top-text {
+    position: absolute;
+    top: var(--devonian-toptext-top, 80px);
+    left: var(--devonian-toptext-left, 108px);
+    width: var(--devonian-toptext-w, 864px);
+    font-family: var(--font-canva);
+    font-size: var(--devonian-toptext-size, 38px);
+    color: var(--devonian-toptext-color, #000000);
+    line-height: 1.2;
+    z-index: 20;
+    pointer-events: none;
 }
 
+/* Regras específicas para evitar quebra do sistema antigo em outras páginas */
+.view-detail.ordoviciano.dalmanites .detail-empty-top,
+.view-detail.ordoviciano.halysites .detail-empty-top,
+.view-detail.ordoviciano.cooksonia .detail-empty-top,
+.view-detail.ordoviciano.atrypa .detail-empty-top {
+    height: 0;
+}
+
+.view-detail.ordoviciano.dalmanites .video-container.variant-split,
+.view-detail.ordoviciano.halysites .video-container.variant-split,
+.view-detail.ordoviciano.cooksonia .video-container.variant-split,
+.view-detail.ordoviciano.atrypa .video-container.variant-split {
+    top: var(--devonian-bg-top, 0);
+}
+
+.view-detail.ordoviciano.dalmanites .bg-video,
+.view-detail.ordoviciano.halysites .bg-video,
+.view-detail.ordoviciano.cooksonia .bg-video,
+.view-detail.ordoviciano.atrypa .bg-video {
+    height: 1080px;
+}
+
+.view-detail.ordoviciano.dalmanites {
+    --devonian-name-mt: var(--devonian-dalmanites-name-mt, 20px);
+    --devonian-name-ml: var(--devonian-dalmanites-name-ml, 0px);
+    --devonian-name-size: var(--devonian-dalmanites-name-size, 83px);
+    --devonian-selo-w: var(--devonian-dalmanites-selo-w, 862px);
+    --devonian-selo-top: var(--devonian-dalmanites-selo-top, 543px);
+    --devonian-selo-left: var(--devonian-dalmanites-selo-left, 0px);
+    --devonian-white-mt: var(--devonian-dalmanites-white-mt, 926px);
+    --devonian-bg-h: var(--devonian-dalmanites-bg-h, 45%);
+    --devonian-bg-top: var(--devonian-dalmanites-bg-top, 304px);
+    --devonian-bg-y: var(--devonian-dalmanites-bg-y, -257px);
+    --devonian-bg-scale: var(--devonian-dalmanites-bg-scale, 1);
+    --devonian-bg-x: var(--devonian-dalmanites-bg-x, 0px);
+    --devonian-sub-mt: var(--devonian-dalmanites-sub-mt, 29px);
+    --devonian-sub-ml: var(--devonian-dalmanites-sub-ml, 0px);
+    --devonian-sub-w: var(--devonian-dalmanites-sub-w, 1070px);
+    --devonian-sub-size: var(--devonian-dalmanites-sub-size, 47px);
+    --devonian-desc-mt: var(--devonian-dalmanites-desc-mt, -9px);
+    --devonian-desc-ml: var(--devonian-dalmanites-desc-ml, 0px);
+    --devonian-desc-w: var(--devonian-dalmanites-desc-w, 951px);
+    --devonian-desc-size: var(--devonian-dalmanites-desc-size, 36px);
+    --devonian-desc-lh: var(--devonian-dalmanites-desc-lh, 48px);
+    --devonian-toptext-top: var(--devonian-dalmanites-toptext-top, 181px);
+    --devonian-toptext-left: var(--devonian-dalmanites-toptext-left, 108px);
+    --devonian-toptext-w: var(--devonian-dalmanites-toptext-w, 864px);
+    --devonian-toptext-size: var(--devonian-dalmanites-toptext-size, 38px);
 .view-detail.ordoviciano.halysites {
     --devonian-name-mt: var(--devonian-halysites-name-mt, 96px);
     --devonian-name-ml: var(--devonian-halysites-name-ml, 0px);
