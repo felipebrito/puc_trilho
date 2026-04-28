@@ -164,7 +164,7 @@ const cssConfigs = {
         { label: 'Text Width', prop: '--dev-ext-text-w', value: 864, min: 100, max: 1080, suffix: 'px' },
         { label: 'Text Line Height', prop: '--dev-ext-text-lh', value: 47, min: 20, max: 100, suffix: 'px' },
     ],
-    'ordoviciano-pos-intro': createDevonianoIntroConfig('ord-pos'),
+    'ordoviciano-pos-extincao-intro': createDevonianoIntroConfig('ord-pos'),
 
     'ordoviciano-pos-dalmanites': createDevonianoSpecimenConfig('dalmanites', {
         nameMt: 20,
