@@ -39,12 +39,6 @@ const SpecimenDetail = ({ slideIndex, totalSlides, onNavigate, slideData }) => {
                 <div className="detail-empty-top"></div>
 
                 <div className="detail-info-area">
-                    <img 
-                        className="detail-base-bg" 
-                        src={specimen.seloSrc ? "/assets/baseInternaBrancaSemLinha.svg" : "/assets/baseInternaBranca.svg"} 
-                        alt="" 
-                    />
-
                     <div className="detail-text-overlay">
                         <h1 className="specimen-name">
                             <Typewriter text={specimen.name} delay={50} initialDelay={300} />

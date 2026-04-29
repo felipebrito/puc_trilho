@@ -170,29 +170,29 @@ export const ordovicianoSlides = [
         seloSrc: '/assets/ordoviciano/selo_halysites.png'
     },
 
-    // Slide 15 - Cooksonia (Canva Pg 16 - Placeholder for now)
+    // Slide 15 - Cyrtograptus (Canva Pg 16)
     {
         type: 'single_species',
         period: 'ordoviciano',
         section: 'pos_extincao',
         id: 'cooksonia',
-        name: 'Cooksonia sp.',
-        subtitle: 'Uma das primeiras plantas terrestres',
-        description: 'Apresentava caules ramificados em forma de Y que terminavam em estruturas globulares chamadas esporângios. Não possuía folhas verdadeiras nem raízes.',
+        name: 'Cyrtograptus sp.',
+        subtitle: 'Graptólitos filtradores, com cerca de 12 cm de diâmetro',
+        description: 'Um dos primeiros animais a colonizar ambientes de mar aberto. Formado por uma espiral helicoidal baixa com 1,5 voltas firmemente enroladas, munidos de espinhos dorsolaterais.',
         videoSrc: '/assets/ordoviciano/cooksonia.png',
         seloSrc: '/assets/ordoviciano/selo_cooksonia.png'
     },
 
-    // Slide 16 - Atrypa sp. (Canva Pg 17)
+    // Slide 16 - Favosites (Canva Pg 17)
     {
         type: 'single_species',
         period: 'ordoviciano',
         section: 'pos_extincao',
         id: 'atrypa',
-        name: 'Atrypa sp.',
-        subtitle: 'Braquiópode filtrador, com cerca de 3 cm de comprimento',
-        description: 'Apresentavam conchas redondas a curtas em forma de ovo, cobertas com muitas cristas radiais finas. Viviam aderidos ao substrato oceânico.',
-        videoSrc: '/assets/atrypa.png',
+        name: 'Favosites sp.',
+        subtitle: 'Corais filtradores, podendo chegar a 30 cm de altura',
+        description: 'A estrutura deste coral era parecida com um favo-de-mel, dando-lhes o nome de "coral favo-de-mel". Suas paredes apresentavam poros, que facilitavam a troca de nutrientes entre os organismos coloniais.',
+        videoSrc: '/assets/ordoviciano/atrypa.png',
         seloSrc: '/assets/ordoviciano/selo_atrypa.png'
     },
 ];
