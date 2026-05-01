@@ -264,7 +264,7 @@ function App() {
     if (type === 'devonian_extinction_environments') return 'devoniano-extincao-ambientes';
     if (type === 'extinction_content') return `${period}-extincao-content`;
     if (type === 'extinction_content_devonian') return `${period}-extincao-content`;
-    if (type === 'silurian_globe') return `${period}-pos-globe`;
+    if (type === 'silurian_globe') return id ? `${period}-pos-${id}` : `${period}-pos-globe`;
     if (type === 'single_species' || type === 'double_species' || type === 'silurian_specimen' || type === 'silurian_double_specimen') {
       if (period === 'devoniano' && section === 'biodiversidade') return `devoniano-bio-${id}`;
       if (period === 'devoniano' && section === 'pos_extincao')   return `devoniano-pos-carbon-${id}`;

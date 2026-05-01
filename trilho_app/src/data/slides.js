@@ -386,6 +386,7 @@ export const devonianoSlides = [
     // Slide 16 - E DEPOIS? Globe (Canva Pg 34)
     {
         type: 'silurian_globe',
+        id: 'globe',
         period: 'devoniano',
         section: 'pos_extincao',
         headerTitle: 'E DEPOIS?',
@@ -396,6 +397,7 @@ export const devonianoSlides = [
     // Slide 17 - E DEPOIS? Resumo (Canva Pg 35)
     {
         type: 'silurian_globe',
+        id: 'summary',
         period: 'devoniano',
         section: 'pos_extincao',
         headerTitle: 'E DEPOIS?',

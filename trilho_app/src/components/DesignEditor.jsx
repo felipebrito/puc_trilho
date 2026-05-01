@@ -43,21 +43,19 @@ const cssConfigs = {
         { label: 'Menu Left', prop: '--devonian-menu-left', value: 102, min: 0, max: 1080, suffix: 'px' },
         { label: 'Menu Gap', prop: '--devonian-menu-gap', value: 21, min: 0, max: 150, suffix: 'px' }
     ],
-    'devoniano-bio-intro': createDevonianoIntroConfig('bio', { 
-        headerTop: 62, 
-        labelTop: -5,
-        nameTop: 39,
+    'devoniano-bio-intro': createDevonianoIntroConfig('bio', {
+        labelTop: 57,
+        nameTop: 101,
         nameSize: 61,
-        bodyTop: 638, 
+        bodyTop: 638,
         headingTop: -29,
-        headingSize: 105, 
+        headingSize: 105,
         headingLH: 0.95,
-        lineDisplay: 0 
     }),
     'devoniano-extincao-intro': createDevonianoIntroConfig('ext', {
         bgOpacity: 1,
-        headerTop: 62,
-        nameTop: 37,
+        labelTop: 57,
+        nameTop: 99,
         bodyTop: 643,
         headingW: 699,
         headingSpacing: 4,
@@ -75,17 +73,17 @@ const cssConfigs = {
     ],
     'devoniano-pos-extincao-intro': createDevonianoIntroConfig('pos', {
         bgOpacity: 1,
-        headerTop: 1238,
-        labelTop: -30,
+        labelTop: 1208,
+        nameTop: 1274,
         bodyTop: 599
     }),
-    'devoniano-pos-extincao-globe': createDevonianoGlobeConfig('pos-glob', {
+    'devoniano-pos-globe': createDevonianoGlobeConfig('pos-glob', {
         headerTop: -61,
         globMt: 61,
         descMt: 92,
         descLH: 47
     }),
-    'devoniano-pos-extincao-summary': createDevonianoGlobeConfig('pos-sum', {
+    'devoniano-pos-summary': createDevonianoGlobeConfig('pos-sum', {
         headerTop: -61,
         globMt: 61,
         descMt: 92,
@@ -209,27 +207,30 @@ const cssConfigs = {
 
 function createDevonianoIntroConfig(sectionPrefix, overrides = {}) {
     return [
-        { label: 'BG Opacity', prop: `--dev-${sectionPrefix}-bg-opacity`, value: overrides.bgOpacity ?? 0.47, min: 0, max: 1, suffix: '' },
-        { label: 'Header Top', prop: `--dev-${sectionPrefix}-header-top`, value: overrides.headerTop ?? 66, min: 0, max: 2500, suffix: 'px' },
-        { label: 'Header Left', prop: `--dev-${sectionPrefix}-header-left`, value: overrides.headerLeft ?? 0, min: 0, max: 1500, suffix: 'px' },
-        { label: 'Label Top', prop: `--dev-${sectionPrefix}-label-top`, value: overrides.labelTop ?? -5, min: -100, max: 100, suffix: 'px' },
-        { label: 'Label Left', prop: `--dev-${sectionPrefix}-label-left`, value: overrides.labelLeft ?? 41, min: -100, max: 500, suffix: 'px' },
-        { label: 'Label Size', prop: `--dev-${sectionPrefix}-label-size`, value: overrides.labelSize ?? 30, min: 10, max: 100, suffix: 'px' },
-        { label: 'Label Spacing', prop: `--dev-${sectionPrefix}-label-spacing`, value: overrides.labelSpacing ?? 6, min: 0, max: 50, suffix: 'px' },
-        { label: 'Name Top', prop: `--dev-${sectionPrefix}-name-top`, value: overrides.nameTop ?? 36, min: -100, max: 200, suffix: 'px' },
-        { label: 'Name Left', prop: `--dev-${sectionPrefix}-name-left`, value: overrides.nameLeft ?? 36, min: -100, max: 500, suffix: 'px' },
-        { label: 'Name Size', prop: `--dev-${sectionPrefix}-name-size`, value: overrides.nameSize ?? 60, min: 10, max: 200, suffix: 'px' },
-        { label: 'Name Spacing', prop: `--dev-${sectionPrefix}-name-spacing`, value: overrides.nameSpacing ?? 3, min: 0, max: 50, suffix: 'px' },
-        { label: 'Underline Display', prop: `--dev-${sectionPrefix}-line-display`, value: overrides.lineDisplay ?? 0, min: 0, max: 1, suffix: '' },
-        { label: 'Body Top', prop: `--dev-${sectionPrefix}-body-top`, value: overrides.bodyTop ?? 599, min: 0, max: 1500, suffix: 'px' },
-        { label: 'Body Left', prop: `--dev-${sectionPrefix}-body-left`, value: overrides.bodyLeft ?? 36, min: 0, max: 500, suffix: 'px' },
-        { label: 'Body Width', prop: `--dev-${sectionPrefix}-body-w`, value: overrides.bodyW ?? 900, min: 100, max: 1080, suffix: 'px' },
-        { label: 'Heading Top', prop: `--dev-${sectionPrefix}-heading-top`, value: overrides.headingTop ?? 0, min: -200, max: 500, suffix: 'px' },
-        { label: 'Heading Left', prop: `--dev-${sectionPrefix}-heading-left`, value: overrides.headingLeft ?? 0, min: -200, max: 500, suffix: 'px' },
-        { label: 'Heading Size', prop: `--dev-${sectionPrefix}-heading-size`, value: overrides.headingSize ?? 96, min: 20, max: 300, suffix: 'px' },
-        { label: 'Heading Width', prop: `--dev-${sectionPrefix}-heading-w`, value: overrides.headingW ?? 900, min: 100, max: 1080, suffix: 'px' },
-        { label: 'Heading Spacing', prop: `--dev-${sectionPrefix}-heading-spacing`, value: overrides.headingSpacing ?? 0, min: -10, max: 50, suffix: 'px' },
-        { label: 'Heading LH', prop: `--dev-${sectionPrefix}-heading-lh`, value: overrides.headingLH ?? 1.05, min: 0.1, max: 2, suffix: '' },
+        { label: 'BG Opacity',     prop: `--dev-${sectionPrefix}-bg-opacity`,      value: overrides.bgOpacity ?? 0.47, min: 0,    max: 1,    suffix: '' },
+        // PERÍODO label (posição absoluta do overlay)
+        { label: 'Label Top',      prop: `--dev-${sectionPrefix}-label-top`,        value: overrides.labelTop ?? 61,    min: 0,    max: 1920, suffix: 'px' },
+        { label: 'Label Left',     prop: `--dev-${sectionPrefix}-label-left`,       value: overrides.labelLeft ?? 41,   min: -100, max: 500,  suffix: 'px' },
+        { label: 'Label Size',     prop: `--dev-${sectionPrefix}-label-size`,       value: overrides.labelSize ?? 30,   min: 10,   max: 100,  suffix: 'px' },
+        { label: 'Label Spacing',  prop: `--dev-${sectionPrefix}-label-spacing`,    value: overrides.labelSpacing ?? 6, min: 0,    max: 50,   suffix: 'px' },
+        // Nome do período (posição absoluta do overlay)
+        { label: 'Name Top',       prop: `--dev-${sectionPrefix}-name-top`,         value: overrides.nameTop ?? 102,    min: 0,    max: 1920, suffix: 'px' },
+        { label: 'Name Left',      prop: `--dev-${sectionPrefix}-name-left`,        value: overrides.nameLeft ?? 36,    min: -100, max: 500,  suffix: 'px' },
+        { label: 'Name Size',      prop: `--dev-${sectionPrefix}-name-size`,        value: overrides.nameSize ?? 60,    min: 10,   max: 200,  suffix: 'px' },
+        { label: 'Name Spacing',   prop: `--dev-${sectionPrefix}-name-spacing`,     value: overrides.nameSpacing ?? 3,  min: 0,    max: 50,   suffix: 'px' },
+        // Título principal
+        { label: 'Heading Top',    prop: `--dev-${sectionPrefix}-heading-top`,      value: overrides.headingTop ?? 0,   min: -200, max: 500,  suffix: 'px' },
+        { label: 'Heading Left',   prop: `--dev-${sectionPrefix}-heading-left`,     value: overrides.headingLeft ?? 0,  min: -200, max: 500,  suffix: 'px' },
+        { label: 'Heading Size',   prop: `--dev-${sectionPrefix}-heading-size`,     value: overrides.headingSize ?? 96, min: 20,   max: 300,  suffix: 'px' },
+        { label: 'Heading Width',  prop: `--dev-${sectionPrefix}-heading-w`,        value: overrides.headingW ?? 900,   min: 100,  max: 1080, suffix: 'px' },
+        { label: 'Heading Spacing',prop: `--dev-${sectionPrefix}-heading-spacing`,  value: overrides.headingSpacing ?? 0, min: -10, max: 50,  suffix: 'px' },
+        { label: 'Heading LH',     prop: `--dev-${sectionPrefix}-heading-lh`,       value: overrides.headingLH ?? 1.05, min: 0.1,  max: 2,    suffix: '' },
+        // Corpo / texto descritivo
+        { label: 'Body Top',       prop: `--dev-${sectionPrefix}-body-top`,         value: overrides.bodyTop ?? 599,    min: 0,    max: 1920, suffix: 'px' },
+        { label: 'Body Left',      prop: `--dev-${sectionPrefix}-body-left`,        value: overrides.bodyLeft ?? 36,    min: 0,    max: 500,  suffix: 'px' },
+        { label: 'Body Width',     prop: `--dev-${sectionPrefix}-body-w`,           value: overrides.bodyW ?? 821,      min: 100,  max: 1080, suffix: 'px' },
+        { label: 'Body Size',      prop: `--dev-${sectionPrefix}-body-size`,        value: overrides.bodySize ?? 37,    min: 10,   max: 80,   suffix: 'px' },
+        { label: 'Body LH',        prop: `--dev-${sectionPrefix}-body-lh`,          value: overrides.bodyLH ?? 1.3,     min: 0.8,  max: 3,    suffix: '' },
     ];
 }
 
