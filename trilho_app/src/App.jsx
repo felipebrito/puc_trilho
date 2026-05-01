@@ -204,7 +204,7 @@ function App() {
   // Imagens de referência por página
   const refMapping = {
     // Ordoviciano (pages 01-17)
-    'ordoviciano-home-0':            '/assets/referencias/page-01.jpg',
+    'ordoviciano-home-intro':            '/assets/referencias/page-01.jpg',
     'ordoviciano-biodiversidade-intro': '/assets/referencias/page-02.jpg',
     'ordoviciano-biodiversidade-1':  '/assets/referencias/page-03.jpg',
     'ordoviciano-biodiversidade-2':  '/assets/referencias/page-04.jpg',
@@ -248,6 +248,25 @@ function App() {
     'devoniano-pos_extincao-8': '/assets/referencias/page-41.jpg',
     'devoniano-pos_extincao-9': '/assets/referencias/page-42.jpg',
     'devoniano-pos_extincao-10': '/assets/referencias/page-43.jpg',
+    // Permiano (pages 44-61)
+    'permiano-home-intro':           '/assets/referencias/permiano/page-44.jpg',
+    'permiano-biodiversidade-intro': '/assets/referencias/permiano/page-45.jpg',
+    'permiano-biodiversidade-1':     '/assets/referencias/permiano/page-46.jpg',
+    'permiano-biodiversidade-2':     '/assets/referencias/permiano/page-47.jpg',
+    'permiano-biodiversidade-3':     '/assets/referencias/permiano/page-48.jpg',
+    'permiano-biodiversidade-4':     '/assets/referencias/permiano/page-49.jpg',
+    'permiano-biodiversidade-5':     '/assets/referencias/permiano/page-50.jpg',
+    'permiano-biodiversidade-6':     '/assets/referencias/permiano/page-51.jpg',
+    'permiano-biodiversidade-7':     '/assets/referencias/permiano/page-52.jpg',
+    'permiano-extincao-intro':       '/assets/referencias/permiano/page-53.jpg',
+    'permiano-extincao-1':           '/assets/referencias/permiano/page-54.jpg',
+    'permiano-pos_extincao-intro':   '/assets/referencias/permiano/page-55.jpg',
+    'permiano-pos_extincao-1':       '/assets/referencias/permiano/page-56.jpg',
+    'permiano-pos_extincao-2':       '/assets/referencias/permiano/page-57.jpg',
+    'permiano-pos_extincao-3':       '/assets/referencias/permiano/page-58.jpg',
+    'permiano-pos_extincao-4':       '/assets/referencias/permiano/page-59.jpg',
+    'permiano-pos_extincao-5':       '/assets/referencias/permiano/page-60.jpg',
+    'permiano-pos_extincao-6':       '/assets/referencias/permiano/page-61.jpg',
   };
 
   // Calcula viewId para qualquer slide, usado pelo DesignEditor
@@ -256,6 +275,7 @@ function App() {
     const { type, period, section, id } = slide;
     if (type === 'home_ordoviciano') return 'ordoviciano-home';
     if (type === 'home_devonian')    return 'devoniano-home';
+    if (type === 'home_permiano')    return 'permiano-home';
     if (type === 'section_intro') {
       if (section === 'biodiversidade') return `${period}-bio-intro`;
       if (section === 'extincao')       return `${period}-extincao-intro`;
@@ -275,7 +295,7 @@ function App() {
   }
 
   let pageKey = sectionIndex;
-  if (type === 'section_intro' || type === 'home_devonian') pageKey = 'intro';
+  if (type === 'section_intro' || type === 'home_devonian' || type === 'home_permiano' || type === 'home_ordoviciano') pageKey = 'intro';
   const refKey = `${currentPeriod}-${currentSection}-${pageKey}`;
   const referenceImage = refMapping[refKey] || null;
   const viewId = computeViewId(currentSlide);

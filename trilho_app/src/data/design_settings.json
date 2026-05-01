@@ -565,5 +565,45 @@
         "--devonian-drepanophycus-selo-left": "0px"
       }
     }
+  },
+  "permiano": {
+    "home": {
+      "permiano-home": {
+        "--devonian-permiano-home-titles-mt": "427px",
+        "--devonian-permiano-home-subtitle-size": "76px",
+        "--devonian-permiano-home-subtitle-spacing": "8px",
+        "--devonian-permiano-home-subtitle-mb": "-18px",
+        "--devonian-permiano-home-title-size": "144px",
+        "--devonian-permiano-home-title-spacing": "10px",
+        "--devonian-permiano-home-title-lh": "0.9",
+        "--devonian-permiano-home-title-mt": "-4px",
+        "--devonian-permiano-home-title-mb": "0px",
+        "--devonian-permiano-home-title-ml": "-9px",
+        "--devonian-permiano-home-underline-w": "610px",
+        "--devonian-permiano-home-underline-h": "0px",
+        "--devonian-permiano-home-underline-mt": "14px",
+        "--devonian-permiano-home-underline-mb": "70px",
+        "--devonian-permiano-home-desc-size": "87px",
+        "--devonian-permiano-home-desc-spacing": "-3px",
+        "--devonian-permiano-home-desc-mb": "36px",
+        "--devonian-permiano-home-desc-mt": "-8px",
+        "--devonian-permiano-home-subdesc-size": "52px",
+        "--devonian-permiano-home-subdesc-ml": "47px",
+        "--devonian-permiano-home-subdesc-weight": "680.65",
+        "--devonian-permiano-home-extra-size": "43px",
+        "--devonian-permiano-home-extra-mt": "0px",
+        "--devonian-permiano-home-extra-ml": "43px",
+        "--devonian-permiano-home-extra-weight": "628.55",
+        "--devonian-permiano-home-extra-w": "825px",
+        "--devonian-permiano-home-extra-lh": "1.4",
+        "--devonian-permiano-home-extra-opacity": "0.8",
+        "--devonian-permiano-home-menu-top": "1354px",
+        "--devonian-permiano-home-menu-left": "116px",
+        "--devonian-permiano-home-menu-gap": "21px",
+        "--devonian-permiano-home-btn-w": "860px",
+        "--devonian-permiano-home-btn-h": "89px",
+        "--devonian-permiano-home-btn-pl": "45px"
+      }
+    }
   }
 }

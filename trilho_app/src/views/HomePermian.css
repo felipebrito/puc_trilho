@@ -15,79 +15,87 @@
 }
 
 .home-permian-titles {
-    margin-top: 592px;
+    margin-top: var(--devonian-permiano-home-titles-mt, 592px);
     margin-bottom: auto;
 }
 
 .home-permian-titles .permian-subtitle {
-    font-size: 73px;
+    font-size: var(--devonian-permiano-home-subtitle-size, 73px);
     font-family: 'Blender Pro Book', sans-serif;
     font-weight: 300;
-    letter-spacing: 7.8px;
-    margin-bottom: 0px;
+    letter-spacing: var(--devonian-permiano-home-subtitle-spacing, 7.8px);
+    margin-bottom: var(--devonian-permiano-home-subtitle-mb, 0px);
     color: var(--color-white);
 }
 
 .home-permian-titles .permian-title {
-    font-size: 143px;
+    font-size: var(--devonian-permiano-home-title-size, 143px);
     font-family: 'Blender Pro Heavy', sans-serif;
     font-weight: 900;
-    letter-spacing: 9.7px;
-    line-height: 0.9;
+    letter-spacing: var(--devonian-permiano-home-title-spacing, 9.7px);
+    line-height: var(--devonian-permiano-home-title-lh, 0.9);
     color: var(--color-white);
-    margin-left: -5px;
+    margin-left: var(--devonian-permiano-home-title-ml, -5px);
+    margin-top: var(--devonian-permiano-home-title-mt, 0px);
+    margin-bottom: var(--devonian-permiano-home-title-mb, 0px);
 }
 
 .permian-title-underline {
-    width: 610px;
-    height: 5px;
+    width: var(--devonian-permiano-home-underline-w, 610px);
+    height: var(--devonian-permiano-home-underline-h, 5px);
     background-color: var(--color-white);
-    margin-top: 22px;
-    margin-bottom: 70px;
+    margin-top: var(--devonian-permiano-home-underline-mt, 22px);
+    margin-bottom: var(--devonian-permiano-home-underline-mb, 70px);
 }
 
 .home-permian-titles .permian-description {
-    font-size: 96px;
+    font-size: var(--devonian-permiano-home-desc-size, 96px);
     font-family: 'Blender Pro Medium', sans-serif;
     font-weight: normal;
-    margin-bottom: 7px;
+    margin-bottom: var(--devonian-permiano-home-desc-mb, 7px);
+    margin-top: var(--devonian-permiano-home-desc-mt, 0px);
     color: var(--color-white);
-    letter-spacing: -3px;
+    letter-spacing: var(--devonian-permiano-home-desc-spacing, -3px);
 }
 
 .home-permian-titles .permian-sub-description {
-    font-size: 50px;
+    font-size: var(--devonian-permiano-home-subdesc-size, 50px);
     font-family: 'Canva Sans Regular', sans-serif;
-    font-weight: normal;
+    font-weight: var(--devonian-permiano-home-subdesc-weight, normal);
     padding-bottom: 1px;
     color: var(--color-white);
+    margin-left: var(--devonian-permiano-home-subdesc-ml, 0px);
 }
 
-.permian-line-graphic {
-    width: 820px;
-    margin-top: 0;
-    height: auto;
-    object-fit: contain;
-    align-self: flex-start;
-    margin-left: 22px;
+.home-permian-titles .permian-extra-description {
+    font-size: var(--devonian-permiano-home-extra-size, 32px);
+    font-family: 'Canva Sans Regular', sans-serif;
+    font-weight: var(--devonian-permiano-home-extra-weight, 400);
+    color: var(--color-white);
+    margin-top: var(--devonian-permiano-home-extra-mt, 30px);
+    margin-left: var(--devonian-permiano-home-extra-ml, 0px);
+    width: var(--devonian-permiano-home-extra-w, 600px);
+    line-height: var(--devonian-permiano-home-extra-lh, 1.4);
+    opacity: var(--devonian-permiano-home-extra-opacity, 0.8);
 }
 
 .home-permian-menu {
     position: absolute;
-    top: 1278px;
-    left: 110px;
+    top: var(--devonian-permiano-home-menu-top, 1278px);
+    left: var(--devonian-permiano-home-menu-left, 110px);
     display: flex;
     flex-direction: column;
-    gap: 21px;
+    gap: var(--devonian-permiano-home-menu-gap, 21px);
 }
 
 .btn-permian {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 860px;
-    height: 89px;
+    width: var(--devonian-permiano-home-btn-w, 860px);
+    height: var(--devonian-permiano-home-btn-h, 89px);
     padding: 0 45px;
+    padding-left: var(--devonian-permiano-home-btn-pl, 45px);
     font-size: 41px;
     font-family: 'Blender Pro Medium', sans-serif;
     font-weight: normal;
@@ -100,6 +108,7 @@
     background-repeat: no-repeat;
     cursor: pointer;
     transition: transform 0.2s ease;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 30px 100%, 0 calc(100% - 30px));
 }
 
 .btn-permian-icon-active {

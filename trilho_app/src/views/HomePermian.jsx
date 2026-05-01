@@ -49,7 +49,7 @@ const HomePermian = ({ onNavigate }) => {
 
     return (
         <div className="view-home-permian">
-            <BackgroundVideo src="/assets/placeholder.mp4" variant="full">
+            <BackgroundVideo src="/assets/permiano/menu_bg.png" variant="full">
                 <motion.div
                     className="home-permian-content"
                     variants={containerVariants}
@@ -60,9 +60,11 @@ const HomePermian = ({ onNavigate }) => {
                         <motion.h2 variants={itemVariants} className="permian-subtitle">PERÍODO</motion.h2>
                         <motion.h1 variants={itemVariants} className="permian-title">PERMIANO</motion.h1>
                         <motion.div variants={itemVariants} className="permian-title-underline"></motion.div>
-                        <motion.p variants={itemVariants} className="permian-description">251 milhões de anos</motion.p>
-                        <motion.p variants={itemVariants} className="permian-sub-description">A 3ª extinção em massa</motion.p>
-                        <motion.img variants={itemVariants} src="/assets/linha.png" alt="Linha Grafismo" className="permian-line-graphic" />
+                        <motion.p variants={itemVariants} className="permian-description">299 a 251 milhões de anos</motion.p>
+                        <motion.p variants={itemVariants} className="permian-sub-description">A 3ª extinção em massa.</motion.p>
+                        <motion.p variants={itemVariants} className="permian-extra-description">
+                            O supercontinente Pangeia se forma e ocorre a terceira extinção em massa, a mais letal de todos os tempos.
+                        </motion.p>
                     </div>
 
                     <motion.div variants={itemVariants} className="home-permian-menu">
@@ -79,7 +81,7 @@ const HomePermian = ({ onNavigate }) => {
                             onClick={() => onNavigate('up', EXTINCAO_IDX)}
                             onMouseEnter={() => setActiveIndex(1)}
                         >
-                            <span>A EXTINÇÃO</span>
+                            <span>A 3ª EXTINÇÃO EM MASSA |</span>
                             <span className={activeIndex === 1 ? "btn-permian-icon-active" : "btn-permian-icon-inactive"}>›</span>
                         </button>
                         <button

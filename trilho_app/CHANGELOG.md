@@ -1,3 +1,18 @@
+# Changelog - PUC Trilho [2026-05-01]
+
+## 🛠️ Versão: Implementação Período Permiano (Menu)
+
+### 🚀 Novas Funcionalidades
+- **Módulo Permiano**: Iniciada a implementação do Período Permiano (299 a 251 Ma).
+- **Menu Dinâmico**: Criada a `HomePermian` com suporte completo a variáveis CSS injetadas pelo `DesignEditor`.
+- **Controles de Design**: Adicionados 30+ novos controles no `DesignEditor` específicos para o menu do Permiano (ML, Weights, Button Padding, etc.).
+- **Mapeamento de Referências**: Integradas 19 novas imagens de referência para guiar o alinhamento visual do período.
+
+### 🎨 Correções e Alinhamento
+- **Efeito de Crop**: Implementado `clip-path` diagonal em todos os botões do menu para alinhar com o design high-fidelity.
+- **Correção de pageKey**: Ajustada lógica de navegação no `App.jsx` para suportar múltiplos períodos com slides de "Home" distintos.
+- **Blindagem de Textos**: Transcritos conteúdos oficiais sobre a 3ª Extinção em Massa e formação da Pangeia.
+
 # Changelog - PUC Trilho [2026-04-27]
 
 ## 🛠️ Versão: Estabilidade JSON-First (Ponto Zero)
