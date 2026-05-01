@@ -33,8 +33,8 @@ const ExtinctionContent = ({ onNavigate, slideData }) => {
     };
 
     const blurVariants = {
-        hidden: { opacity: 0, filter: 'blur(20px)', WebkitFilter: 'blur(20px)', y: 20 },
-        visible: { opacity: 1, filter: 'blur(0px)', WebkitFilter: 'blur(0px)', y: 0, transition: { duration: 1.4, ease: 'easeOut' } }
+        hidden: { opacity: 0, y: 20 },
+        visible: { opacity: 1, y: 0, transition: { duration: 1.4, ease: 'easeOut' } }
     };
 
     return (

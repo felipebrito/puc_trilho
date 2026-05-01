@@ -46,4 +46,9 @@ function designSaverPlugin() {
 
 export default defineConfig({
   plugins: [react(), designSaverPlugin()],
+  server: {
+    fs: {
+      allow: ['..']
+    }
+  }
 })

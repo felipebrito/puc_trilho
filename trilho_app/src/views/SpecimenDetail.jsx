@@ -41,21 +41,21 @@ const SpecimenDetail = ({ slideIndex, totalSlides, onNavigate, slideData }) => {
                 <div className="detail-info-area">
                     <div className="detail-text-overlay">
                         <h1 className="specimen-name">
-                            <Typewriter text={specimen.name} delay={50} initialDelay={300} />
+                            <Typewriter text={specimen.name} delay={50} initialDelay={800} />
                         </h1>
-                        {/* Assuming max 25 chars for name: 300 + 25 * 50 = 1550 -> 1600 starts subtitle */}
+                        {/* Assuming max 25 chars for name: 800 + 25 * 50 = 2050 -> 2100 starts subtitle */}
                         <h2 className="specimen-subtitle">
-                            <Typewriter text={specimen.subtitle} delay={30} initialDelay={1000} />
+                            <Typewriter text={specimen.subtitle} delay={30} initialDelay={1500} />
                         </h2>
 
                         {/* Description starts much sooner */}
                         <div className="specimen-description-container">
                             <p className="specimen-description">
-                                <Typewriter text={specimen.description} delay={15} initialDelay={2000} />
+                                <Typewriter text={specimen.description} delay={15} initialDelay={2500} />
                             </p>
                         </div>
                         {specimen.seloSrc && (
-                            <img className="specimen-selo" src={specimen.seloSrc} alt="" />
+                            <img className="specimen-selo" src={encodeURI(specimen.seloSrc)} alt="" />
                         )}
                     </div>
 

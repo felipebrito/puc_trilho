@@ -38,13 +38,16 @@ const HomeOrdovician = ({ onNavigate }) => {
         hidden: { opacity: 1 },
         visible: {
             opacity: 1,
-            transition: { staggerChildren: 0.15 }
+            transition: { 
+                delayChildren: 0.6,
+                staggerChildren: 0.15 
+            }
         }
     };
 
     const itemVariants = {
-        hidden: { opacity: 0, filter: 'blur(15px)', y: 20 },
-        visible: { opacity: 1, filter: 'blur(0px)', y: 0, transition: { duration: 0.8, ease: 'easeOut' } }
+        hidden: { opacity: 0, y: 20 },
+        visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: 'easeOut' } }
     };
 
     return (
@@ -53,8 +56,6 @@ const HomeOrdovician = ({ onNavigate }) => {
                 <motion.div
                     className="home-ordovician-content"
                     variants={containerVariants}
-                    initial="hidden"
-                    animate="visible"
                 >
                     <div className="home-ordovician-titles">
                         <motion.h2 variants={itemVariants} className="ordovician-subtitle">PERÍODO</motion.h2>

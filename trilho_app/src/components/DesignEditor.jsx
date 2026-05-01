@@ -1,5 +1,113 @@
 import React, { useState, useEffect } from 'react';
 
+// ==========================================================================
+// HELPERS - DEFINED FIRST
+// ==========================================================================
+
+function createDevonianoIntroConfig(sectionPrefix, overrides = {}) {
+    return [
+        { label: 'BG Opacity',     prop: `--dev-${sectionPrefix}-bg-opacity`,      value: overrides.bgOpacity ?? 0.47, min: 0,    max: 1,    suffix: '' },
+        { label: 'Label Top',      prop: `--dev-${sectionPrefix}-label-top`,        value: overrides.labelTop ?? 61,    min: 0,    max: 1920, suffix: 'px' },
+        { label: 'Label Left',     prop: `--dev-${sectionPrefix}-label-left`,       value: overrides.labelLeft ?? 41,   min: -100, max: 500,  suffix: 'px' },
+        { label: 'Label Size',     prop: `--dev-${sectionPrefix}-label-size`,       value: overrides.labelSize ?? 30,   min: 10,   max: 100,  suffix: 'px' },
+        { label: 'Label Spacing',  prop: `--dev-${sectionPrefix}-label-spacing`,    value: overrides.labelSpacing ?? 6, min: 0,    max: 50,   suffix: 'px' },
+        { label: 'Name Top',       prop: `--dev-${sectionPrefix}-name-top`,         value: overrides.nameTop ?? 102,    min: 0,    max: 1920, suffix: 'px' },
+        { label: 'Name Left',      prop: `--dev-${sectionPrefix}-name-left`,        value: overrides.nameLeft ?? 36,    min: -100, max: 500,  suffix: 'px' },
+        { label: 'Name Size',      prop: `--dev-${sectionPrefix}-name-size`,        value: overrides.nameSize ?? 60,    min: 10,   max: 200,  suffix: 'px' },
+        { label: 'Name Spacing',   prop: `--dev-${sectionPrefix}-name-spacing`,     value: overrides.nameSpacing ?? 3,  min: 0,    max: 50,   suffix: 'px' },
+        { label: 'Heading Top',    prop: `--dev-${sectionPrefix}-heading-top`,      value: overrides.headingTop ?? 0,   min: -200, max: 500,  suffix: 'px' },
+        { label: 'Heading Left',   prop: `--dev-${sectionPrefix}-heading-left`,     value: overrides.headingLeft ?? 0,  min: -200, max: 500,  suffix: 'px' },
+        { label: 'Heading Size',   prop: `--dev-${sectionPrefix}-heading-size`,     value: overrides.headingSize ?? 96, min: 20,   max: 300,  suffix: 'px' },
+        { label: 'Heading Width',  prop: `--dev-${sectionPrefix}-heading-w`,        value: overrides.headingW ?? 900,   min: 100,  max: 1080, suffix: 'px' },
+        { label: 'Heading Spacing',prop: `--dev-${sectionPrefix}-heading-spacing`,  value: overrides.headingSpacing ?? 0, min: -10, max: 50,  suffix: 'px' },
+        { label: 'Heading LH',     prop: `--dev-${sectionPrefix}-heading-lh`,       value: overrides.headingLH ?? 1.05, min: 0.1,  max: 2,    suffix: '' },
+        { label: 'Body Top',       prop: `--dev-${sectionPrefix}-body-top`,         value: overrides.bodyTop ?? 599,    min: 0,    max: 1920, suffix: 'px' },
+        { label: 'Body Left',      prop: `--dev-${sectionPrefix}-body-left`,        value: overrides.bodyLeft ?? 36,    min: 0,    max: 500,  suffix: 'px' },
+        { label: 'Body Width',     prop: `--dev-${sectionPrefix}-body-w`,           value: overrides.bodyW ?? 821,      min: 100,  max: 1080, suffix: 'px' },
+        { label: 'Body Size',      prop: `--dev-${sectionPrefix}-body-size`,        value: overrides.bodySize ?? 37,    min: 10,   max: 80,   suffix: 'px' },
+        { label: 'Body LH',        prop: `--dev-${sectionPrefix}-body-lh`,          value: overrides.bodyLH ?? 1.3,     min: 0.8,  max: 3,    suffix: '' },
+    ];
+}
+
+function createDevonianoGlobeConfig(prefix, defaults = {}) {
+    return [
+        { label: 'Header Top', prop: `--dev-${prefix}-header-top`, value: defaults.headerTop ?? 0, min: -100, max: 200, suffix: 'px' },
+        { label: 'Globe MT', prop: `--dev-${prefix}-glob-mt`, value: defaults.globMt ?? 0, min: -100, max: 300, suffix: 'px' },
+        { label: 'Globe Width', prop: `--dev-${prefix}-glob-w`, value: defaults.globW ?? 1080, min: 200, max: 1500, suffix: 'px' },
+        { label: 'Globe Height', prop: `--dev-${prefix}-glob-h`, value: defaults.globH ?? 600, min: 200, max: 1000, suffix: 'px' },
+        { label: 'Description MT', prop: `--dev-${prefix}-glob-desc-mt`, value: defaults.descMt ?? 60, min: -200, max: 400, suffix: 'px' },
+        { label: 'Desc Width', prop: `--dev-${prefix}-glob-desc-w`, value: defaults.descW ?? 930, min: 500, max: 1080, suffix: 'px' },
+        { label: 'Desc Left', prop: `--dev-${prefix}-glob-desc-left`, value: defaults.descLeft ?? 20, min: -100, max: 500, suffix: 'px' },
+        { label: 'Desc Size', prop: `--dev-${prefix}-glob-desc-size`, value: defaults.descSize ?? 38.5, min: 10, max: 100, suffix: 'px' },
+        { label: 'Desc LH', prop: `--dev-${prefix}-glob-desc-lh`, value: defaults.descLH ?? 47, min: 10, max: 150, suffix: 'px' },
+    ];
+}
+
+function createDevonianoSpecimenConfig(id, overrides = {}) {
+    return [
+        { label: 'Name MT', prop: `--devonian-${id}-name-mt`, value: overrides.nameMt || 96, min: -200, max: 500, suffix: 'px' },
+        { label: 'Name ML', prop: `--devonian-${id}-name-ml`, value: 0, min: -200, max: 500, suffix: 'px' },
+        { label: 'Name Size', prop: `--devonian-${id}-name-size`, value: overrides.nameSize || 83, min: 20, max: 150, suffix: 'px' },
+        { label: 'Sub MT', prop: `--devonian-${id}-sub-mt`, value: overrides.subMt || 51, min: -200, max: 500, suffix: 'px' },
+        { label: 'Sub ML', prop: `--devonian-${id}-sub-ml`, value: 0, min: -200, max: 500, suffix: 'px' },
+        { label: 'Sub Width', prop: `--devonian-${id}-sub-w`, value: overrides.subW || 590, min: 100, max: 1080, suffix: 'px' },
+        { label: 'Sub Size', prop: `--devonian-${id}-sub-size`, value: overrides.subSize || 56, min: 20, max: 150, suffix: 'px' },
+        { label: 'Desc MT', prop: `--devonian-${id}-desc-mt`, value: overrides.descMt || 96, min: -200, max: 800, suffix: 'px' },
+        { label: 'Desc ML', prop: `--devonian-${id}-desc-ml`, value: 0, min: -200, max: 500, suffix: 'px' },
+        { label: 'Desc Width', prop: `--devonian-${id}-desc-w`, value: overrides.descW || 752, min: 100, max: 1080, suffix: 'px' },
+        { label: 'Desc Size', prop: `--devonian-${id}-desc-size`, value: overrides.descSize || 40, min: 10, max: 100, suffix: 'px' },
+        { label: 'Desc LH', prop: `--devonian-${id}-desc-lh`, value: overrides.descLH || 50, min: 10, max: 150, suffix: 'px' },
+        { label: 'BG Height', prop: `--devonian-${id}-bg-h`, value: overrides.bgH || 42, min: 20, max: 100, suffix: '%' },
+        { label: 'BG Top', prop: `--devonian-${id}-bg-top`, value: overrides.bgTop || 0, min: -500, max: 1000, suffix: 'px' },
+        { label: 'BG Scale', prop: `--devonian-${id}-bg-scale`, value: overrides.bgScale || 1, min: 0.5, max: 3, suffix: '' },
+        { label: 'BG X', prop: `--devonian-${id}-bg-x`, value: overrides.bgX || 0, min: -1000, max: 1000, suffix: 'px' },
+        { label: 'BG Y', prop: `--devonian-${id}-bg-y`, value: overrides.bgY || 0, min: -1000, max: 1000, suffix: 'px' },
+        { label: 'White Top H', prop: `--devonian-${id}-white-h`, value: 34, min: 20, max: 80, suffix: '%' },
+        { label: 'White Area MT', prop: `--devonian-${id}-white-mt`, value: overrides.whiteMt || 38, min: -200, max: 2000, suffix: 'px' },
+        { label: 'Cut Y', prop: `--devonian-${id}-cut-y`, value: 40, min: 0, max: 200, suffix: 'px' },
+        { label: 'Cut X1', prop: `--devonian-${id}-cut-x1`, value: 250, min: 0, max: 1080, suffix: 'px' },
+        { label: 'Cut X2', prop: `--devonian-${id}-cut-x2`, value: 280, min: 0, max: 1080, suffix: 'px' },
+        { label: 'TopText Top', prop: `--devonian-${id}-toptext-top`, value: overrides.topTextTop || 80, min: 0, max: 1000, suffix: 'px' },
+        { label: 'TopText Left', prop: `--devonian-${id}-toptext-left`, value: 108, min: 0, max: 1000, suffix: 'px' },
+        { label: 'TopText Width', prop: `--devonian-${id}-toptext-w`, value: 864, min: 200, max: 1080, suffix: 'px' },
+        { label: 'TopText Size', prop: `--devonian-${id}-toptext-size`, value: 38, min: 10, max: 100, suffix: 'px' },
+        { label: 'Selo Width', prop: `--devonian-${id}-selo-w`, value: 862, min: 50, max: 1500, suffix: 'px' },
+        { label: 'Selo Top', prop: `--devonian-${id}-selo-top`, value: overrides.seloTop || 799, min: -200, max: 1500, suffix: 'px' },
+        { label: 'Selo Left', prop: `--devonian-${id}-selo-left`, value: 0, min: -200, max: 1080, suffix: 'px' },
+    ];
+}
+
+const createPermianoSpecimenConfig = (id, defaults = {}) => {
+    const prefix = `perm-bio-${id}`;
+    return [
+        { label: 'Name MT', prop: `--devonian-${prefix}-name-mt`, value: defaults.nameMt || 96, min: -200, max: 1500, suffix: 'px' },
+        { label: 'Name ML', prop: `--devonian-${prefix}-name-ml`, value: defaults.nameMl || 0, min: -200, max: 500, suffix: 'px' },
+        { label: 'Name Size', prop: `--devonian-${prefix}-name-size`, value: defaults.nameSize || 83, min: 10, max: 200, suffix: 'px' },
+        { label: 'Sub MT', prop: `--devonian-${prefix}-sub-mt`, value: defaults.subMt || 51, min: -100, max: 500, suffix: 'px' },
+        { label: 'Sub ML', prop: `--devonian-${prefix}-sub-ml`, value: defaults.subMl || 0, min: -200, max: 500, suffix: 'px' },
+        { label: 'Sub Width', prop: `--devonian-${prefix}-sub-w`, value: defaults.subW || 590, min: 100, max: 1080, suffix: 'px' },
+        { label: 'Sub Size', prop: `--devonian-${prefix}-sub-size`, value: defaults.subSize || 56, min: 10, max: 150, suffix: 'px' },
+        { label: 'Desc MT', prop: `--devonian-${prefix}-desc-mt`, value: defaults.descMt || 96, min: -200, max: 500, suffix: 'px' },
+        { label: 'Desc ML', prop: `--devonian-${prefix}-desc-ml`, value: defaults.descMl || 0, min: -200, max: 500, suffix: 'px' },
+        { label: 'Desc Width', prop: `--devonian-${prefix}-desc-w`, value: defaults.descW || 752, min: 100, max: 1080, suffix: 'px' },
+        { label: 'Desc Size', prop: `--devonian-${prefix}-desc-size`, value: defaults.descSize || 40, min: 10, max: 100, suffix: 'px' },
+        { label: 'Desc LH', prop: `--devonian-${prefix}-desc-lh`, value: defaults.descLH || 50, min: 10, max: 150, suffix: 'px' },
+        { label: 'BG Height', prop: `--devonian-${prefix}-bg-h`, value: defaults.bgH || 42, min: 10, max: 100, suffix: '%' },
+        { label: 'BG Scale', prop: `--devonian-${prefix}-bg-scale`, value: defaults.bgScale || 1, min: 0.1, max: 3, step: 0.05, suffix: '' },
+        { label: 'BG X', prop: `--devonian-${prefix}-bg-x`, value: defaults.bgX || 0, min: -1080, max: 1080, suffix: 'px' },
+        { label: 'BG Y', prop: `--devonian-${prefix}-bg-y`, value: defaults.bgY || 0, min: -1920, max: 1920, suffix: 'px' },
+        { label: 'White Height', prop: `--devonian-${prefix}-white-h`, value: defaults.whiteH || 34, min: 10, max: 100, suffix: '%' },
+        { label: 'White MT', prop: `--devonian-${prefix}-white-mt`, value: defaults.whiteMt || 38, min: -100, max: 2000, suffix: 'px' },
+        { label: 'Selo Width', prop: `--devonian-${prefix}-selo-w`, value: defaults.seloW || 862, min: 50, max: 1500, suffix: 'px' },
+        { label: 'Selo Top', prop: `--devonian-${prefix}-selo-top`, value: defaults.seloTop || 799, min: -200, max: 1500, suffix: 'px' },
+        { label: 'Selo Left', prop: `--devonian-${prefix}-selo-left`, value: defaults.seloLeft || 0, min: -200, max: 1080, suffix: 'px' },
+    ];
+}
+
+// ==========================================================================
+// CONFIGS
+// ==========================================================================
+
 const cssConfigs = {
     'ordoviciano-home': [
         { label: 'Titles Margin Top', prop: '--ordovician-titles-mt', value: 516, min: 0, max: 1000, suffix: 'px' },
@@ -137,6 +245,25 @@ const cssConfigs = {
     'devoniano-bio-ichthyostega': createDevonianoSpecimenConfig('ichthyostega', { nameMt: 67, nameSize: 86, subW: 935, descMt: -33, descW: 869, descLH: 47 }),
     'devoniano-bio-drepanophycus': createDevonianoSpecimenConfig('drepanophycus', { subMt: 78, subW: 834, descMt: 124, descW: 870, descLH: 50 }),
     
+    'perm-bio-intro': createDevonianoIntroConfig('perm-bio', {
+        bgOpacity: 0.47,
+        labelTop: 61,
+        nameTop: 102,
+        bodyTop: 937,
+        headingTop: -62,
+        headingSize: 100,
+        headingW: 805,
+        headingSpacing: -1,
+        headingLH: 1.05
+    }),
+    'perm-bio-archosaurus': createPermianoSpecimenConfig('archosaurus'),
+    'perm-bio-scutosaurus': createPermianoSpecimenConfig('scutosaurus'),
+    'perm-bio-dvinia': createPermianoSpecimenConfig('dvinia'),
+    'perm-bio-arctotypus': createPermianoSpecimenConfig('arctotypus'),
+    'perm-bio-dicynodon': createPermianoSpecimenConfig('dicynodon'),
+    'perm-bio-glossopteris': createPermianoSpecimenConfig('glossopteris'),
+    'perm-bio-phyllotheca': createPermianoSpecimenConfig('phyllotheca'),
+
     // Ordoviciano
     'ordoviciano-bio-intro': createDevonianoIntroConfig('ord-bio', { 
         bodyTop: 937, 
@@ -239,98 +366,22 @@ const cssConfigs = {
     'devoniano-pos-carbon-calamites': createDevonianoSpecimenConfig('calamites'),
     'devoniano-pos-carbon-cordaites': createDevonianoSpecimenConfig('cordaites'),
     'devoniano-pos-carbon-sigillaria': createDevonianoSpecimenConfig('sigillaria'),
+
+    // Permiano
+    'perm-bio-intro': createDevonianoIntroConfig('perm-bio'),
+    'perm-bio-archosaurus': createPermianoSpecimenConfig('archosaurus'),
+    'perm-bio-scutosaurus': createPermianoSpecimenConfig('scutosaurus'),
+    'perm-bio-dvinia': createPermianoSpecimenConfig('dvinia'),
+    'perm-bio-arctotypus': createPermianoSpecimenConfig('arctotypus'),
+    'perm-bio-dicynodon': createPermianoSpecimenConfig('dicynodon'),
+    'perm-bio-glossopteris': createPermianoSpecimenConfig('glossopteris'),
+    'perm-bio-phyllotheca': createPermianoSpecimenConfig('phyllotheca'),
+    'perm-ext-intro': createDevonianoIntroConfig('perm-ext'),
 };
 
-function createDevonianoIntroConfig(sectionPrefix, overrides = {}) {
-    return [
-        { label: 'BG Opacity',     prop: `--dev-${sectionPrefix}-bg-opacity`,      value: overrides.bgOpacity ?? 0.47, min: 0,    max: 1,    suffix: '' },
-        // PERÍODO label (posição absoluta do overlay)
-        { label: 'Label Top',      prop: `--dev-${sectionPrefix}-label-top`,        value: overrides.labelTop ?? 61,    min: 0,    max: 1920, suffix: 'px' },
-        { label: 'Label Left',     prop: `--dev-${sectionPrefix}-label-left`,       value: overrides.labelLeft ?? 41,   min: -100, max: 500,  suffix: 'px' },
-        { label: 'Label Size',     prop: `--dev-${sectionPrefix}-label-size`,       value: overrides.labelSize ?? 30,   min: 10,   max: 100,  suffix: 'px' },
-        { label: 'Label Spacing',  prop: `--dev-${sectionPrefix}-label-spacing`,    value: overrides.labelSpacing ?? 6, min: 0,    max: 50,   suffix: 'px' },
-        // Nome do período (posição absoluta do overlay)
-        { label: 'Name Top',       prop: `--dev-${sectionPrefix}-name-top`,         value: overrides.nameTop ?? 102,    min: 0,    max: 1920, suffix: 'px' },
-        { label: 'Name Left',      prop: `--dev-${sectionPrefix}-name-left`,        value: overrides.nameLeft ?? 36,    min: -100, max: 500,  suffix: 'px' },
-        { label: 'Name Size',      prop: `--dev-${sectionPrefix}-name-size`,        value: overrides.nameSize ?? 60,    min: 10,   max: 200,  suffix: 'px' },
-        { label: 'Name Spacing',   prop: `--dev-${sectionPrefix}-name-spacing`,     value: overrides.nameSpacing ?? 3,  min: 0,    max: 50,   suffix: 'px' },
-        // Título principal
-        { label: 'Heading Top',    prop: `--dev-${sectionPrefix}-heading-top`,      value: overrides.headingTop ?? 0,   min: -200, max: 500,  suffix: 'px' },
-        { label: 'Heading Left',   prop: `--dev-${sectionPrefix}-heading-left`,     value: overrides.headingLeft ?? 0,  min: -200, max: 500,  suffix: 'px' },
-        { label: 'Heading Size',   prop: `--dev-${sectionPrefix}-heading-size`,     value: overrides.headingSize ?? 96, min: 20,   max: 300,  suffix: 'px' },
-        { label: 'Heading Width',  prop: `--dev-${sectionPrefix}-heading-w`,        value: overrides.headingW ?? 900,   min: 100,  max: 1080, suffix: 'px' },
-        { label: 'Heading Spacing',prop: `--dev-${sectionPrefix}-heading-spacing`,  value: overrides.headingSpacing ?? 0, min: -10, max: 50,  suffix: 'px' },
-        { label: 'Heading LH',     prop: `--dev-${sectionPrefix}-heading-lh`,       value: overrides.headingLH ?? 1.05, min: 0.1,  max: 2,    suffix: '' },
-        // Corpo / texto descritivo
-        { label: 'Body Top',       prop: `--dev-${sectionPrefix}-body-top`,         value: overrides.bodyTop ?? 599,    min: 0,    max: 1920, suffix: 'px' },
-        { label: 'Body Left',      prop: `--dev-${sectionPrefix}-body-left`,        value: overrides.bodyLeft ?? 36,    min: 0,    max: 500,  suffix: 'px' },
-        { label: 'Body Width',     prop: `--dev-${sectionPrefix}-body-w`,           value: overrides.bodyW ?? 821,      min: 100,  max: 1080, suffix: 'px' },
-        { label: 'Body Size',      prop: `--dev-${sectionPrefix}-body-size`,        value: overrides.bodySize ?? 37,    min: 10,   max: 80,   suffix: 'px' },
-        { label: 'Body LH',        prop: `--dev-${sectionPrefix}-body-lh`,          value: overrides.bodyLH ?? 1.3,     min: 0.8,  max: 3,    suffix: '' },
-    ];
-}
-
-function createDevonianoGlobeConfig(prefix, defaults = {}) {
-    return [
-        { label: 'Header Top', prop: `--dev-${prefix}-header-top`, value: defaults.headerTop ?? 0, min: -100, max: 200, suffix: 'px' },
-        { label: 'Globe MT', prop: `--dev-${prefix}-glob-mt`, value: defaults.globMt ?? 0, min: -100, max: 300, suffix: 'px' },
-        { label: 'Globe Width', prop: `--dev-${prefix}-glob-w`, value: defaults.globW ?? 1080, min: 200, max: 1500, suffix: 'px' },
-        { label: 'Globe Height', prop: `--dev-${prefix}-glob-h`, value: defaults.globH ?? 600, min: 200, max: 1000, suffix: 'px' },
-        { label: 'Description MT', prop: `--dev-${prefix}-glob-desc-mt`, value: defaults.descMt ?? 60, min: -200, max: 400, suffix: 'px' },
-        { label: 'Desc Width', prop: `--dev-${prefix}-glob-desc-w`, value: defaults.descW ?? 930, min: 500, max: 1080, suffix: 'px' },
-        { label: 'Desc Left', prop: `--dev-${prefix}-glob-desc-left`, value: defaults.descLeft ?? 20, min: -100, max: 500, suffix: 'px' },
-        { label: 'Desc Size', prop: `--dev-${prefix}-glob-desc-size`, value: defaults.descSize ?? 38.5, min: 10, max: 100, suffix: 'px' },
-        { label: 'Desc LH', prop: `--dev-${prefix}-glob-desc-lh`, value: defaults.descLH ?? 47, min: 10, max: 150, suffix: 'px' },
-    ];
-}
-function createDevonianoSpecimenConfig(id, overrides = {}) {
-    return [
-        // 1. Nome (Título)
-        { label: 'Name MT', prop: `--devonian-${id}-name-mt`, value: overrides.nameMt || 96, min: -200, max: 500, suffix: 'px' },
-        { label: 'Name ML', prop: `--devonian-${id}-name-ml`, value: 0, min: -200, max: 500, suffix: 'px' },
-        { label: 'Name Size', prop: `--devonian-${id}-name-size`, value: overrides.nameSize || 83, min: 20, max: 150, suffix: 'px' },
-
-        // 2. Subtítulo
-        { label: 'Sub MT', prop: `--devonian-${id}-sub-mt`, value: overrides.subMt || 51, min: -200, max: 500, suffix: 'px' },
-        { label: 'Sub ML', prop: `--devonian-${id}-sub-ml`, value: 0, min: -200, max: 500, suffix: 'px' },
-        { label: 'Sub Width', prop: `--devonian-${id}-sub-w`, value: overrides.subW || 590, min: 100, max: 1080, suffix: 'px' },
-        { label: 'Sub Size', prop: `--devonian-${id}-sub-size`, value: overrides.subSize || 56, min: 20, max: 150, suffix: 'px' },
-
-        // 3. Descrição
-        { label: 'Desc MT', prop: `--devonian-${id}-desc-mt`, value: overrides.descMt || 96, min: -200, max: 800, suffix: 'px' },
-        { label: 'Desc ML', prop: `--devonian-${id}-desc-ml`, value: 0, min: -200, max: 500, suffix: 'px' },
-        { label: 'Desc Width', prop: `--devonian-${id}-desc-w`, value: overrides.descW || 752, min: 100, max: 1080, suffix: 'px' },
-        { label: 'Desc Size', prop: `--devonian-${id}-desc-size`, value: overrides.descSize || 40, min: 10, max: 100, suffix: 'px' },
-        { label: 'Desc LH', prop: `--devonian-${id}-desc-lh`, value: overrides.descLH || 50, min: 10, max: 150, suffix: 'px' },
-
-        // 4. Fundo (BG)
-        { label: 'BG Height', prop: `--devonian-${id}-bg-h`, value: overrides.bgH || 42, min: 20, max: 100, suffix: '%' },
-        { label: 'BG Top', prop: `--devonian-${id}-bg-top`, value: overrides.bgTop || 0, min: -500, max: 1000, suffix: 'px' },
-        { label: 'BG Scale', prop: `--devonian-${id}-bg-scale`, value: overrides.bgScale || 1, min: 0.5, max: 3, suffix: '' },
-        { label: 'BG X', prop: `--devonian-${id}-bg-x`, value: overrides.bgX || 0, min: -1000, max: 1000, suffix: 'px' },
-        { label: 'BG Y', prop: `--devonian-${id}-bg-y`, value: overrides.bgY || 0, min: -1000, max: 1000, suffix: 'px' },
-
-        // 5. Área Branca
-        { label: 'White Top H', prop: `--devonian-${id}-white-h`, value: 34, min: 20, max: 80, suffix: '%' },
-        { label: 'White Area MT', prop: `--devonian-${id}-white-mt`, value: overrides.whiteMt || 38, min: -200, max: 2000, suffix: 'px' },
-
-        // 6. Corte (Cut)
-        { label: 'Cut Y', prop: `--devonian-${id}-cut-y`, value: 40, min: 0, max: 200, suffix: 'px' },
-        { label: 'Cut X1', prop: `--devonian-${id}-cut-x1`, value: 250, min: 0, max: 1080, suffix: 'px' },
-        { label: 'Cut X2', prop: `--devonian-${id}-cut-x2`, value: 280, min: 0, max: 1080, suffix: 'px' },
-
-        // 7. Texto de Topo (Siluriano)
-        { label: 'TopText Top', prop: `--devonian-${id}-toptext-top`, value: overrides.topTextTop || 80, min: 0, max: 1000, suffix: 'px' },
-        { label: 'TopText Left', prop: `--devonian-${id}-toptext-left`, value: 108, min: 0, max: 1000, suffix: 'px' },
-        { label: 'TopText Width', prop: `--devonian-${id}-toptext-w`, value: 864, min: 200, max: 1080, suffix: 'px' },
-        { label: 'TopText Size', prop: `--devonian-${id}-toptext-size`, value: 38, min: 10, max: 100, suffix: 'px' },
-
-        // 8. Selo (Sempre por último)
-        { label: 'Selo Width', prop: `--devonian-${id}-selo-w`, value: 862, min: 50, max: 1500, suffix: 'px' },
-        { label: 'Selo Top', prop: `--devonian-${id}-selo-top`, value: overrides.seloTop || 799, min: -200, max: 1500, suffix: 'px' },
-        { label: 'Selo Left', prop: `--devonian-${id}-selo-left`, value: 0, min: -200, max: 1080, suffix: 'px' },
-    ];
-}
+// ==========================================================================
+// COMPONENT
+// ==========================================================================
 
 const DesignEditor = ({ referenceImage, viewId, period, section, slideId, savedSettings }) => {
     const [isVisible, setIsVisible] = useState(false);

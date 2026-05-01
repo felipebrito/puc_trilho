@@ -520,100 +520,115 @@ export const permianoSlides = [
         section: 'home'
     },
     {
+        id: 'biodiversidade-intro',
         type: 'section_intro',
         period: 'permiano',
         section: 'biodiversidade',
         title: 'A BIODIVERSIDADE DA ÉPOCA',
         description: 'Conheça os representantes da fauna e da flora característicos desse momento geológico.',
-        videoSrc: '/assets/placeholder.mp4'
+        videoSrc: '',
+        bgImage: '/assets/permiano/bg_biodiversidade.jpg'
     },
     {
         type: 'single_species',
         period: 'permiano',
         section: 'biodiversidade',
-        id: 'archosaurus',
-        name: 'ARCHOSAURUS ROSSICUS',
-        subtitle: 'Arcossauriforme predador, com cerca de 1-3m de comprimento',
-        description: 'Possuiam membros curtos e postura semelhante a crocodilianos modernos. Foi um dos primeiros arcossauriformes descobertos.',
-        videoSrc: '/assets/placeholder.mp4'
+        id: 'perm-bio-archosaurus',
+        name: 'Archosaurus rossicus sp.',
+        subtitle: 'Arcossauriforme predador, atingia de 1 a 3 m de comprimento',
+        description: 'Possuia membros curtos e postura semelhante a crocodilianos modernos. Foi um dos primeiros arcossauriformes descobertos.',
+        imageSrc: '/assets/permiano/especies/archosaurus.png',
+        seloSrc: '/assets/permiano/especies/archosaurus_selo.png'
     },
     {
         type: 'single_species',
         period: 'permiano',
         section: 'biodiversidade',
-        id: 'scutosaurus',
-        name: 'SCUTOSAURUS SP.',
+        id: 'perm-bio-scutosaurus',
+        name: 'Scutosaurus sp.',
         subtitle: 'Réptil herbívoro, com cerca de 2m de comprimento',
         description: 'Maior herbívoro de sua época, seu crânio em forma de capacete e seu corpo revestido por placas ósseas ofereciam uma forte defesa contra os predadores da época.',
-        videoSrc: '/assets/placeholder.mp4'
+        imageSrc: '/assets/permiano/especies/scutosaurus.png',
+        seloSrc: '/assets/permiano/especies/scutosaurus_selo.png'
     },
     {
         type: 'single_species',
         period: 'permiano',
         section: 'biodiversidade',
-        id: 'dvinia',
-        name: 'DVINIA PRIMA',
+        id: 'perm-bio-dvinia',
+        name: 'Dvinia prima sp.',
         subtitle: 'Cinodonte onívoro, com cerca de 50cm de comprimento',
         description: 'Como todos os cinodontes, eles eram relacionados aos mamíferos. Grande parte de sua dieta era composta por plantas. Vivia próximo a corpos d’água, provavelmente em tocas.',
-        videoSrc: '/assets/placeholder.mp4'
+        imageSrc: '/assets/permiano/especies/dvinia.png',
+        seloSrc: '/assets/permiano/especies/dvinia_selo.png'
     },
     {
         type: 'single_species',
         period: 'permiano',
         section: 'biodiversidade',
-        id: 'arctotypus',
-        name: 'ARCTOTYPUS SYLVAENSIS',
+        id: 'perm-bio-arctotypus',
+        name: 'Arctotypus sylvaensis sp.',
         subtitle: 'Libélula gigante, com cerca de 30cm de envergadura de asa',
         description: 'Depositava seus ovos em plantas similares as cavalinhas atuais. Viviam em regiões de floresta ou pantanosas, com água fresca, onde caçavam pequenos insetos e animais. Também serviam de alimento a outros animais.',
-        videoSrc: '/assets/placeholder.mp4'
+        imageSrc: '/assets/permiano/especies/arctotypus.png',
+        seloSrc: '/assets/permiano/especies/arctotypus_selo.png'
     },
     {
         type: 'single_species',
         period: 'permiano',
         section: 'biodiversidade',
-        id: 'dicynodon',
-        name: 'DICYNODON SP.',
-        subtitle: 'Dicinodonte herbívoro, com aproximadamente 1.2m',
-        description: 'Foi o primeiro fóssil descrito da África e que mostrou evidências de características mamalianas em animais fora do grupo dos mamíferos. Além dos dois dentes canídeos, possuíam um tipo de bico, para ajudar a cortar a vegetação.',
-        videoSrc: '/assets/placeholder.mp4'
+        id: 'perm-bio-dicynodon',
+        name: 'Dicynodon sp.',
+        subtitle: 'Dicinodonte herbívoro, com aproximadamente 1,2m',
+        description: 'Foi o primeiro fóssil descrito mostrando evidências de características mamalianas em animais fora do grupo dos mamíferos. Além dos dois dentes canídeos, possuíam um tipo de bico, para ajudar a cortar a vegetação.',
+        imageSrc: '/assets/permiano/especies/dicynodon.png',
+        seloSrc: '/assets/permiano/especies/dicynodon_selo.png'
     },
     {
         type: 'single_species',
         period: 'permiano',
         section: 'biodiversidade',
-        id: 'glossopteris',
-        name: 'GLOSSOPTERIS SP.',
+        id: 'perm-bio-glossopteris',
+        name: 'Glossopteris sp.',
         subtitle: 'Árvore, com porte de até 30m de altura',
-        description: 'As folhas desta gimnosperma semelhante a samambaia são alongadas, lembrando o formato de uma língua e com um veio central proeminente. Formavam grandes florestas durante este período.',
-        videoSrc: '/assets/placeholder.mp4'
+        description: 'As folhas desta gimnosperma semelhante à samambaia são alongadas, lembrando o formato de uma língua, e com um veio central proeminente. Formava grandes florestas durante este período.',
+        imageSrc: '/assets/permiano/especies/glossopteris.png',
+        seloSrc: '/assets/permiano/especies/glossopteris_selo.png'
     },
     {
         type: 'single_species',
         period: 'permiano',
         section: 'biodiversidade',
-        id: 'phyllotheca',
-        name: 'PHYLLOTHECA SP.',
+        id: 'perm-bio-phyllotheca',
+        name: 'Phyllotheca sp.',
         subtitle: 'Cavalinha, com porte de até 3m de altura',
-        description: 'Era uma espécie de cavalinha primitiva que era bastante comum nas florestas glossopterídeas. Caracteriza-se por folhas finas dispostas em espiral, que partem da planta, deixando as folhas aglomeradas em discos.',
-        videoSrc: '/assets/placeholder.mp4'
+        description: 'Espécie de cavalinha primitiva que era bastante comum nas florestas glossopterídeas. Caracteriza-se por folhas finas dispostas em espiral, aglomeradas em discos.',
+        imageSrc: '/assets/permiano/especies/phyllotheca.png',
+        seloSrc: '/assets/permiano/especies/phyllotheca_selo.png'
     },
     {
         type: 'section_intro',
         period: 'permiano',
         section: 'extincao',
-        title: 'A EXTINÇÃO',
-        content: 'Movimentos tectônicos desencadearam eventos vulcânicos, levando a derrames maciços de lava basáltica que cobriram milhões de quilômetros, destruindo todo o ambiente que alcançaram. Segue um movimento de zoom in, mostrando o continente devastado.\n\nPode-se, então, observar que a grande atividade vulcânica resultou em uma forte emissão de gases envolvidos no efeito estufa, desencadeando um acentuado aquecimento global. Nos mares, os movimentos tectônicos liberaram grandes quantidades de gás metano preso no assoalho oceânico, tornando as águas oceânicas rapidamente anóxicas e eliminando a maioria da vida terrestre e aquática. Apenas alguns poucos animais sobreviveram e herdaram uma terra desolada para seguirem a vida.',
-        bgImage: '/assets/extinction_map.png'
+        id: 'perm-ext-intro',
+        title: 'A 3ª EXTINÇÃO EM MASSA',
+        description: 'A maior extinção em massa da história da Terra, ocorrida há 251 milhões de anos.',
+        bgImage: '/assets/permiano/extincao_bg.png'
     },
     {
         type: 'silurian_double_specimen',
         period: 'permiano',
         section: 'extincao',
+        id: 'perm-ext-split',
+        headerTitle: 'EXTINÇÃO',
+        title: 'UMA CATASTRÓFE SEM PRECEDENTES',
+        content: 'Movimentos tectônicos desencadearam eventos vulcânicos, levando a derrames maciços de lava basáltica que cobriram milhões de quilômetros, destruindo todo o ambiente que alcançaram. Segue um movimento de zoom in, mostrando o continente devastado.\n\nPode-se, então, observar que a grande atividade vulcânica resultou em uma forte emissão de gases envolvidos no efeito estufa, desencadeando um acentuado aquecimento global. Nos mares, os movimentos tectônicos liberaram grandes quantidades de gás metano preso no assoalho oceânico, tornando as águas oceânicas rapidamente anóxicas e eliminando a maioria da vida terrestre e aquática. Apenas alguns poucos animais sobreviveram e herdaram uma terra desolada para seguirem a vida.',
+        imageSrc: '/assets/permiano/extincao_content_bg.png',
         speciesLeft: {
             name: 'CONTINENTE DEVASTADO',
             subtitle: 'Representação de como deveria ter sido a aparência do continente durante a grande extinção',
             description: '',
-            imageSrc: '/assets/placeholder.mp4'
+            imageSrc: '/assets/permiano/extincao_content_bg.png'
         },
         speciesRight: {
             name: 'DIVERSIFICAÇÃO',

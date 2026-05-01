@@ -1,12 +1,30 @@
 # Changelog - PUC Trilho [2026-05-01]
 
+## 🛠️ Versão: Otimização de Performance e Fidelidade (Permiano Final)
+
+### 🚀 Novas Funcionalidades
+- **Otimização de Ativos**: Realizado resize em massa de todos os ativos do Permiano (Backgrounds e Espécies). Redução drástica de ~300MB para ~25MB, eliminando travamentos causados por imagens de 10K (60MP).
+- **Sincronização de Textos**: Realizada auditoria completa e sincronização dos textos da biodiversidade permiana (Archosaurus, Scutosaurus, Dvinia, Arctotypus, Dicynodon, Glossopteris e Phyllotheca) com as referências oficiais (págs 45-52).
+- **Orquestração de Animações**: Implementado sistema de "Unified Animation Pulse" no `App.jsx`, sincronizando a transição de slide com a entrada escalonada (staggered) dos elementos internos.
+- **Async Decoding**: Implementada decodificação assíncrona de imagens para garantir que a interface permaneça responsiva durante o carregamento de novos cenários.
+
+### 🎨 Correções e Alinhamento
+- **Fim do Stuttering**: Removidos filtros de `blur` das animações de Framer Motion, reduzindo significativamente a carga sobre a GPU.
+- **Timeline de Entrada**: Adicionado delay de 0.6s em todos os conteúdos internos para garantir que os elementos surjam apenas após a "aterrissagem" do slide.
+- **Correção de Stagger**: Restaurada a lógica de entrada sequencial dos itens (títulos, botões e labels) que estava corrompida.
+- **Sanitização de Caminhos**: Implementado `encodeURI` em todos os componentes de mídia para suportar caminhos de arquivo com espaços ou caracteres especiais.
+
+# Changelog - PUC Trilho [2026-05-01]
+
 ## 🛠️ Versão: Implementação Período Permiano (Menu)
 
 ### 🚀 Novas Funcionalidades
-- **Módulo Permiano**: Iniciada a implementação do Período Permiano (299 a 251 Ma).
-- **Menu Dinâmico**: Criada a `HomePermian` com suporte completo a variáveis CSS injetadas pelo `DesignEditor`.
-- **Controles de Design**: Adicionados 30+ novos controles no `DesignEditor` específicos para o menu do Permiano (ML, Weights, Button Padding, etc.).
-- **Mapeamento de Referências**: Integradas 19 novas imagens de referência para guiar o alinhamento visual do período.
+- **Módulo Permiano**: Finalizada a implementação da biodiversidade e iniciada a 3ª extinção em massa.
+- **Biodiversidade Permiana**: Implementados os 7 espécimes com nomes corrigidos (Sentence Case), subtítulos oficiais e selos de extinção.
+- **Design Editor**: Adicionado suporte total para os 7 espécimes e para o slide de introdução da extinção.
+- **Ajuste Fino**: Mapeadas imagens de referência (páginas 44 a 54) e configuradas variáveis CSS individuais para cada slide.
+- **Ativos**: Configurado symlink para `_conteudo` garantindo o carregamento correto de todas as imagens e vídeos do servidor.
+- **3ª Extinção em Massa**: Implementado slide de introdução (`perm-ext-intro`) com título em azul seguindo o padrão do Ordoviciano.
 
 ### 🎨 Correções e Alinhamento
 - **Efeito de Crop**: Implementado `clip-path` diagonal em todos os botões do menu para alinhar com o design high-fidelity.

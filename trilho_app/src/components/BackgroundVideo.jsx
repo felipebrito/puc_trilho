@@ -12,8 +12,8 @@ const BackgroundVideo = ({ src, variant = 'full', children }) => {
 
     return (
         <div className={`video-container variant-${variant}`}>
-            {src && (src.match(/\.(jpeg|jpg|gif|png)$/) != null ? (
-                <img src={src} className="bg-video" alt="background" />
+            {src && (src.match(/\.(jpeg|jpg|gif|png)$/i) != null ? (
+                <img src={encodeURI(src)} className="bg-video" alt="background" />
             ) : (
                 <video
                     ref={videoRef}
@@ -23,7 +23,7 @@ const BackgroundVideo = ({ src, variant = 'full', children }) => {
                     playsInline
                     className="bg-video"
                 >
-                    <source src={src} type="video/mp4" />
+                    <source src={encodeURI(src)} type="video/mp4" />
                     Seu navegador não suporta vídeos.
                 </video>
             ))}

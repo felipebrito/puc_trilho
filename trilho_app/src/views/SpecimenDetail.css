@@ -164,7 +164,8 @@
    LAYOUT BASE PARA ESPÉCIES DO DEVONIANO
    ========================================================================== */
 .view-detail.devoniano,
-.view-detail.ordoviciano {
+.view-detail.ordoviciano,
+.view-detail.permiano {
     background-color: #fff;
     /* Variáveis base herdadas por todas as espécies do Devoniano */
     --devonian-name-mt: 96px;
@@ -195,7 +196,8 @@
 
 /* Aplicação das variáveis base */
 .view-detail.devoniano .specimen-name,
-.view-detail.ordoviciano .specimen-name {
+.view-detail.ordoviciano .specimen-name,
+.view-detail.permiano .specimen-name {
     margin-top: var(--devonian-name-mt);
     margin-left: var(--devonian-name-ml);
     font-size: var(--devonian-name-size);
@@ -205,26 +207,31 @@
 }
 
 .view-detail.devoniano .specimen-selo,
-.view-detail.ordoviciano .specimen-selo {
+.view-detail.ordoviciano .specimen-selo,
+.view-detail.permiano .specimen-selo {
     position: absolute;
     top: var(--devonian-selo-top);
     left: var(--devonian-selo-left);
     width: var(--devonian-selo-w);
     display: block;
+    z-index: 100;
 }
 
 .view-detail.devoniano .detail-empty-top,
-.view-detail.ordoviciano .detail-empty-top {
+.view-detail.ordoviciano .detail-empty-top,
+.view-detail.permiano .detail-empty-top {
     height: var(--devonian-white-h);
 }
 
 .view-detail.devoniano .detail-info-area,
-.view-detail.ordoviciano .detail-info-area {
+.view-detail.ordoviciano .detail-info-area,
+.view-detail.permiano .detail-info-area {
     flex: 1;
 }
 
 .view-detail.devoniano .video-container.variant-split,
-.view-detail.ordoviciano .video-container.variant-split {
+.view-detail.ordoviciano .video-container.variant-split,
+.view-detail.permiano .video-container.variant-split {
     height: var(--devonian-bg-h);
     clip-path: polygon(
         0 0, 
@@ -237,7 +244,8 @@
 }
 
 .view-detail.devoniano .specimen-subtitle,
-.view-detail.ordoviciano .specimen-subtitle {
+.view-detail.ordoviciano .specimen-subtitle,
+.view-detail.permiano .specimen-subtitle {
     margin-top: var(--devonian-sub-mt);
     margin-left: var(--devonian-sub-ml);
     font-size: var(--devonian-sub-size);
@@ -245,7 +253,8 @@
 }
 
 .view-detail.devoniano .specimen-description,
-.view-detail.ordoviciano .specimen-description {
+.view-detail.ordoviciano .specimen-description,
+.view-detail.permiano .specimen-description {
     margin-top: var(--devonian-desc-mt);
     margin-left: var(--devonian-desc-ml);
     width: var(--devonian-desc-w);
@@ -254,7 +263,8 @@
 }
 
 .view-detail.devoniano .bg-video,
-.view-detail.ordoviciano .bg-video {
+.view-detail.ordoviciano .bg-video,
+.view-detail.permiano .bg-video {
     transform: scale(var(--devonian-bg-scale)) translate(var(--devonian-bg-x), var(--devonian-bg-y));
 }
 
@@ -1364,4 +1374,256 @@
     --devonian-bg-x: var(--devonian-atrypa-bg-x, 0px);
     --devonian-bg-y: var(--devonian-atrypa-bg-y, 0px);
     --devonian-bg-top: var(--devonian-atrypa-bg-top, 0px);
+}
+
+/* ==========================================================================
+   PERMIANO BIODIVERSIDADE (COM VARIÁVEIS DO DESIGN EDITOR)
+   ========================================================================== */
+.view-detail.permiano {
+    background-color: #fff;
+    --devonian-name-mt: 96px;
+    --devonian-name-ml: 0px;
+    --devonian-name-size: 83px;
+    --devonian-selo-w: 862px;
+    --devonian-selo-top: 799px;
+    --devonian-selo-left: 0px;
+    --devonian-white-h: 34%;
+    --devonian-white-mt: 38px;
+    --devonian-bg-h: 42%;
+    --devonian-cut-y: 40px;
+    --devonian-cut-x1: 250px;
+    --devonian-cut-x2: 280px;
+    --devonian-sub-mt: 51px;
+    --devonian-sub-ml: 0px;
+    --devonian-sub-w: 590px;
+    --devonian-sub-size: 56px;
+    --devonian-desc-mt: 96px;
+    --devonian-desc-ml: 0px;
+    --devonian-desc-w: 752px;
+    --devonian-desc-size: 40px;
+    --devonian-desc-lh: 50px;
+    --devonian-bg-scale: 1;
+    --devonian-bg-x: 0px;
+    --devonian-bg-y: 0px;
+}
+
+.view-detail.permiano .specimen-name {
+    margin-top: var(--devonian-name-mt);
+    margin-left: var(--devonian-name-ml);
+    font-size: var(--devonian-name-size);
+    text-transform: none;
+    font-family: 'Canva Sans Bold', sans-serif;
+    font-style: italic;
+}
+
+.view-detail.permiano .specimen-selo {
+    position: absolute;
+    top: var(--devonian-selo-top);
+    left: var(--devonian-selo-left);
+    width: var(--devonian-selo-w);
+    display: block;
+}
+
+.view-detail.permiano .detail-empty-top {
+    height: var(--devonian-white-h);
+}
+
+.view-detail.permiano .video-container.variant-split {
+    height: var(--devonian-bg-h);
+    clip-path: polygon(
+        0 0, 
+        100% 0, 
+        100% calc(100% - var(--devonian-cut-y)), 
+        calc(100% - var(--devonian-cut-x1)) calc(100% - var(--devonian-cut-y)), 
+        calc(100% - var(--devonian-cut-x2)) 100%, 
+        0 100%
+    );
+}
+
+.view-detail.permiano .specimen-subtitle {
+    margin-top: var(--devonian-sub-mt);
+    margin-left: var(--devonian-sub-ml);
+    font-size: var(--devonian-sub-size);
+    width: var(--devonian-sub-w);
+}
+
+.view-detail.permiano .specimen-description {
+    margin-top: var(--devonian-desc-mt);
+    margin-left: var(--devonian-desc-ml);
+    width: var(--devonian-desc-w);
+    font-size: var(--devonian-desc-size);
+    line-height: var(--devonian-desc-lh);
+}
+
+.view-detail.permiano .bg-video {
+    transform: scale(var(--devonian-bg-scale)) translate(var(--devonian-bg-x), var(--devonian-bg-y));
+}
+
+/* MAPEAMENTO POR ESPÉCIE PERMIANO */
+.view-detail.permiano.perm-bio-archosaurus {
+    --devonian-name-mt: var(--devonian-perm-bio-archosaurus-name-mt, 96px);
+    --devonian-name-ml: var(--devonian-perm-bio-archosaurus-name-ml, 0px);
+    --devonian-name-size: var(--devonian-perm-bio-archosaurus-name-size, 83px);
+    --devonian-sub-mt: var(--devonian-perm-bio-archosaurus-sub-mt, 51px);
+    --devonian-sub-ml: var(--devonian-perm-bio-archosaurus-sub-ml, 0px);
+    --devonian-sub-w: var(--devonian-perm-bio-archosaurus-sub-w, 590px);
+    --devonian-sub-size: var(--devonian-perm-bio-archosaurus-sub-size, 56px);
+    --devonian-desc-mt: var(--devonian-perm-bio-archosaurus-desc-mt, 96px);
+    --devonian-desc-ml: var(--devonian-perm-bio-archosaurus-desc-ml, 0px);
+    --devonian-desc-w: var(--devonian-perm-bio-archosaurus-desc-w, 752px);
+    --devonian-desc-size: var(--devonian-perm-bio-archosaurus-desc-size, 40px);
+    --devonian-desc-lh: var(--devonian-perm-bio-archosaurus-desc-lh, 50px);
+    --devonian-bg-h: var(--devonian-perm-bio-archosaurus-bg-h, 42%);
+    --devonian-bg-scale: var(--devonian-perm-bio-archosaurus-bg-scale, 1);
+    --devonian-bg-x: var(--devonian-perm-bio-archosaurus-bg-x, 0px);
+    --devonian-bg-y: var(--devonian-perm-bio-archosaurus-bg-y, 0px);
+    --devonian-white-h: var(--devonian-perm-bio-archosaurus-white-h, 34%);
+    --devonian-white-mt: var(--devonian-perm-bio-archosaurus-white-mt, 38px);
+    --devonian-selo-top: var(--devonian-perm-bio-archosaurus-selo-top, 799px);
+    --devonian-selo-left: var(--devonian-perm-bio-archosaurus-selo-left, 0px);
+    --devonian-selo-w: var(--devonian-perm-bio-archosaurus-selo-w, 862px);
+}
+
+.view-detail.permiano.perm-bio-scutosaurus {
+    --devonian-name-mt: var(--devonian-perm-bio-scutosaurus-name-mt, 96px);
+    --devonian-name-ml: var(--devonian-perm-bio-scutosaurus-name-ml, 0px);
+    --devonian-name-size: var(--devonian-perm-bio-scutosaurus-name-size, 83px);
+    --devonian-sub-mt: var(--devonian-perm-bio-scutosaurus-sub-mt, 51px);
+    --devonian-sub-ml: var(--devonian-perm-bio-scutosaurus-sub-ml, 0px);
+    --devonian-sub-w: var(--devonian-perm-bio-scutosaurus-sub-w, 590px);
+    --devonian-sub-size: var(--devonian-perm-bio-scutosaurus-sub-size, 56px);
+    --devonian-desc-mt: var(--devonian-perm-bio-scutosaurus-desc-mt, 96px);
+    --devonian-desc-ml: var(--devonian-perm-bio-scutosaurus-desc-ml, 0px);
+    --devonian-desc-w: var(--devonian-perm-bio-scutosaurus-desc-w, 752px);
+    --devonian-desc-size: var(--devonian-perm-bio-scutosaurus-desc-size, 40px);
+    --devonian-desc-lh: var(--devonian-perm-bio-scutosaurus-desc-lh, 50px);
+    --devonian-bg-h: var(--devonian-perm-bio-scutosaurus-bg-h, 42%);
+    --devonian-bg-scale: var(--devonian-perm-bio-scutosaurus-bg-scale, 1);
+    --devonian-bg-x: var(--devonian-perm-bio-scutosaurus-bg-x, 0px);
+    --devonian-bg-y: var(--devonian-perm-bio-scutosaurus-bg-y, 0px);
+    --devonian-white-h: var(--devonian-perm-bio-scutosaurus-white-h, 34%);
+    --devonian-white-mt: var(--devonian-perm-bio-scutosaurus-white-mt, 38px);
+    --devonian-selo-top: var(--devonian-perm-bio-scutosaurus-selo-top, 799px);
+    --devonian-selo-left: var(--devonian-perm-bio-scutosaurus-selo-left, 0px);
+    --devonian-selo-w: var(--devonian-perm-bio-scutosaurus-selo-w, 862px);
+}
+
+.view-detail.permiano.perm-bio-dvinia {
+    --devonian-name-mt: var(--devonian-perm-bio-dvinia-name-mt, 96px);
+    --devonian-name-ml: var(--devonian-perm-bio-dvinia-name-ml, 0px);
+    --devonian-name-size: var(--devonian-perm-bio-dvinia-name-size, 83px);
+    --devonian-sub-mt: var(--devonian-perm-bio-dvinia-sub-mt, 51px);
+    --devonian-sub-ml: var(--devonian-perm-bio-dvinia-sub-ml, 0px);
+    --devonian-sub-w: var(--devonian-perm-bio-dvinia-sub-w, 590px);
+    --devonian-sub-size: var(--devonian-perm-bio-dvinia-sub-size, 56px);
+    --devonian-desc-mt: var(--devonian-perm-bio-dvinia-desc-mt, 96px);
+    --devonian-desc-ml: var(--devonian-perm-bio-dvinia-desc-ml, 0px);
+    --devonian-desc-w: var(--devonian-perm-bio-dvinia-desc-w, 752px);
+    --devonian-desc-size: var(--devonian-perm-bio-dvinia-desc-size, 40px);
+    --devonian-desc-lh: var(--devonian-perm-bio-dvinia-desc-lh, 50px);
+    --devonian-bg-h: var(--devonian-perm-bio-dvinia-bg-h, 42%);
+    --devonian-bg-scale: var(--devonian-perm-bio-dvinia-bg-scale, 1);
+    --devonian-bg-x: var(--devonian-perm-bio-dvinia-bg-x, 0px);
+    --devonian-bg-y: var(--devonian-perm-bio-dvinia-bg-y, 0px);
+    --devonian-white-h: var(--devonian-perm-bio-dvinia-white-h, 34%);
+    --devonian-white-mt: var(--devonian-perm-bio-dvinia-white-mt, 38px);
+    --devonian-selo-top: var(--devonian-perm-bio-dvinia-selo-top, 799px);
+    --devonian-selo-left: var(--devonian-perm-bio-dvinia-selo-left, 0px);
+    --devonian-selo-w: var(--devonian-perm-bio-dvinia-selo-w, 862px);
+}
+
+.view-detail.permiano.perm-bio-arctotypus {
+    --devonian-name-mt: var(--devonian-perm-bio-arctotypus-name-mt, 96px);
+    --devonian-name-ml: var(--devonian-perm-bio-arctotypus-name-ml, 0px);
+    --devonian-name-size: var(--devonian-perm-bio-arctotypus-name-size, 83px);
+    --devonian-sub-mt: var(--devonian-perm-bio-arctotypus-sub-mt, 51px);
+    --devonian-sub-ml: var(--devonian-perm-bio-arctotypus-sub-ml, 0px);
+    --devonian-sub-w: var(--devonian-perm-bio-arctotypus-sub-w, 590px);
+    --devonian-sub-size: var(--devonian-perm-bio-arctotypus-sub-size, 56px);
+    --devonian-desc-mt: var(--devonian-perm-bio-arctotypus-desc-mt, 96px);
+    --devonian-desc-ml: var(--devonian-perm-bio-arctotypus-desc-ml, 0px);
+    --devonian-desc-w: var(--devonian-perm-bio-arctotypus-desc-w, 752px);
+    --devonian-desc-size: var(--devonian-perm-bio-arctotypus-desc-size, 40px);
+    --devonian-desc-lh: var(--devonian-perm-bio-arctotypus-desc-lh, 50px);
+    --devonian-bg-h: var(--devonian-perm-bio-arctotypus-bg-h, 42%);
+    --devonian-bg-scale: var(--devonian-perm-bio-arctotypus-bg-scale, 1);
+    --devonian-bg-x: var(--devonian-perm-bio-arctotypus-bg-x, 0px);
+    --devonian-bg-y: var(--devonian-perm-bio-arctotypus-bg-y, 0px);
+    --devonian-white-h: var(--devonian-perm-bio-arctotypus-white-h, 34%);
+    --devonian-white-mt: var(--devonian-perm-bio-arctotypus-white-mt, 38px);
+    --devonian-selo-top: var(--devonian-perm-bio-arctotypus-selo-top, 799px);
+    --devonian-selo-left: var(--devonian-perm-bio-arctotypus-selo-left, 0px);
+    --devonian-selo-w: var(--devonian-perm-bio-arctotypus-selo-w, 862px);
+}
+
+.view-detail.permiano.perm-bio-dicynodon {
+    --devonian-name-mt: var(--devonian-perm-bio-dicynodon-name-mt, 96px);
+    --devonian-name-ml: var(--devonian-perm-bio-dicynodon-name-ml, 0px);
+    --devonian-name-size: var(--devonian-perm-bio-dicynodon-name-size, 83px);
+    --devonian-sub-mt: var(--devonian-perm-bio-dicynodon-sub-mt, 51px);
+    --devonian-sub-ml: var(--devonian-perm-bio-dicynodon-sub-ml, 0px);
+    --devonian-sub-w: var(--devonian-perm-bio-dicynodon-sub-w, 590px);
+    --devonian-sub-size: var(--devonian-perm-bio-dicynodon-sub-size, 56px);
+    --devonian-desc-mt: var(--devonian-perm-bio-dicynodon-desc-mt, 96px);
+    --devonian-desc-ml: var(--devonian-perm-bio-dicynodon-desc-ml, 0px);
+    --devonian-desc-w: var(--devonian-perm-bio-dicynodon-desc-w, 752px);
+    --devonian-desc-size: var(--devonian-perm-bio-dicynodon-desc-size, 40px);
+    --devonian-desc-lh: var(--devonian-perm-bio-dicynodon-desc-lh, 50px);
+    --devonian-bg-h: var(--devonian-perm-bio-dicynodon-bg-h, 42%);
+    --devonian-bg-scale: var(--devonian-perm-bio-dicynodon-bg-scale, 1);
+    --devonian-bg-x: var(--devonian-perm-bio-dicynodon-bg-x, 0px);
+    --devonian-bg-y: var(--devonian-perm-bio-dicynodon-bg-y, 0px);
+    --devonian-white-h: var(--devonian-perm-bio-dicynodon-white-h, 34%);
+    --devonian-white-mt: var(--devonian-perm-bio-dicynodon-white-mt, 38px);
+    --devonian-selo-top: var(--devonian-perm-bio-dicynodon-selo-top, 799px);
+    --devonian-selo-left: var(--devonian-perm-bio-dicynodon-selo-left, 0px);
+    --devonian-selo-w: var(--devonian-perm-bio-dicynodon-selo-w, 862px);
+}
+
+.view-detail.permiano.perm-bio-glossopteris {
+    --devonian-name-mt: var(--devonian-perm-bio-glossopteris-name-mt, 96px);
+    --devonian-name-ml: var(--devonian-perm-bio-glossopteris-name-ml, 0px);
+    --devonian-name-size: var(--devonian-perm-bio-glossopteris-name-size, 83px);
+    --devonian-sub-mt: var(--devonian-perm-bio-glossopteris-sub-mt, 51px);
+    --devonian-sub-ml: var(--devonian-perm-bio-glossopteris-sub-ml, 0px);
+    --devonian-sub-w: var(--devonian-perm-bio-glossopteris-sub-w, 590px);
+    --devonian-sub-size: var(--devonian-perm-bio-glossopteris-sub-size, 56px);
+    --devonian-desc-mt: var(--devonian-perm-bio-glossopteris-desc-mt, 96px);
+    --devonian-desc-ml: var(--devonian-perm-bio-glossopteris-desc-ml, 0px);
+    --devonian-desc-w: var(--devonian-perm-bio-glossopteris-desc-w, 752px);
+    --devonian-desc-size: var(--devonian-perm-bio-glossopteris-desc-size, 40px);
+    --devonian-desc-lh: var(--devonian-perm-bio-glossopteris-desc-lh, 50px);
+    --devonian-bg-h: var(--devonian-perm-bio-glossopteris-bg-h, 42%);
+    --devonian-bg-scale: var(--devonian-perm-bio-glossopteris-bg-scale, 1);
+    --devonian-bg-x: var(--devonian-perm-bio-glossopteris-bg-x, 0px);
+    --devonian-bg-y: var(--devonian-perm-bio-glossopteris-bg-y, 0px);
+    --devonian-white-h: var(--devonian-perm-bio-glossopteris-white-h, 34%);
+    --devonian-white-mt: var(--devonian-perm-bio-glossopteris-white-mt, 38px);
+    --devonian-selo-top: var(--devonian-perm-bio-glossopteris-selo-top, 799px);
+    --devonian-selo-left: var(--devonian-perm-bio-glossopteris-selo-left, 0px);
+    --devonian-selo-w: var(--devonian-perm-bio-glossopteris-selo-w, 862px);
+}
+
+.view-detail.permiano.perm-bio-phyllotheca {
+    --devonian-name-mt: var(--devonian-perm-bio-phyllotheca-name-mt, 96px);
+    --devonian-name-ml: var(--devonian-perm-bio-phyllotheca-name-ml, 0px);
+    --devonian-name-size: var(--devonian-perm-bio-phyllotheca-name-size, 83px);
+    --devonian-sub-mt: var(--devonian-perm-bio-phyllotheca-sub-mt, 51px);
+    --devonian-sub-ml: var(--devonian-perm-bio-phyllotheca-sub-ml, 0px);
+    --devonian-sub-w: var(--devonian-perm-bio-phyllotheca-sub-w, 590px);
+    --devonian-sub-size: var(--devonian-perm-bio-phyllotheca-sub-size, 56px);
+    --devonian-desc-mt: var(--devonian-perm-bio-phyllotheca-desc-mt, 96px);
+    --devonian-desc-ml: var(--devonian-perm-bio-phyllotheca-desc-ml, 0px);
+    --devonian-desc-w: var(--devonian-perm-bio-phyllotheca-desc-w, 752px);
+    --devonian-desc-size: var(--devonian-perm-bio-phyllotheca-desc-size, 40px);
+    --devonian-desc-lh: var(--devonian-perm-bio-phyllotheca-desc-lh, 50px);
+    --devonian-bg-h: var(--devonian-perm-bio-phyllotheca-bg-h, 42%);
+    --devonian-bg-scale: var(--devonian-perm-bio-phyllotheca-bg-scale, 1);
+    --devonian-bg-x: var(--devonian-perm-bio-phyllotheca-bg-x, 0px);
+    --devonian-bg-y: var(--devonian-perm-bio-phyllotheca-bg-y, 0px);
+    --devonian-white-h: var(--devonian-perm-bio-phyllotheca-white-h, 34%);
+    --devonian-white-mt: var(--devonian-perm-bio-phyllotheca-white-mt, 38px);
+    --devonian-selo-top: var(--devonian-perm-bio-phyllotheca-selo-top, 799px);
+    --devonian-selo-left: var(--devonian-perm-bio-phyllotheca-selo-left, 0px);
+    --devonian-selo-w: var(--devonian-perm-bio-phyllotheca-selo-w, 862px);
 }

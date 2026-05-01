@@ -24,13 +24,16 @@ const SectionIntro = ({ onNavigate, slideData }) => {
         hidden: { opacity: 1 },
         visible: {
             opacity: 1,
-            transition: { staggerChildren: 0.15 }
+            transition: { 
+                delayChildren: 0.6,
+                staggerChildren: 0.15 
+            }
         }
     };
 
     const itemVariants = {
-        hidden: { opacity: 0, filter: 'blur(15px)', y: 20 },
-        visible: { opacity: 1, filter: 'blur(0px)', y: 0, transition: { duration: 0.8, ease: 'easeOut' } }
+        hidden: { opacity: 0, y: 20 },
+        visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: 'easeOut' } }
     };
 
     const periodLabel = slideData.periodLabel || "PERÍODO";
@@ -48,8 +51,6 @@ const SectionIntro = ({ onNavigate, slideData }) => {
                 <motion.div
                     className="section-html-overlay"
                     variants={containerVariants}
-                    initial="hidden"
-                    animate="visible"
                 >
                     <div className="section-intro-header">
                         <motion.h3 variants={itemVariants} className="section-intro-period-label">{periodLabel}</motion.h3>
@@ -59,7 +60,7 @@ const SectionIntro = ({ onNavigate, slideData }) => {
 
                     <div className="section-intro-body">
                         <motion.h1 variants={itemVariants} className="section-intro-main-heading">
-                            <Typewriter text={slideData.title} delay={50} initialDelay={300} />
+                            <Typewriter text={slideData.title} delay={50} initialDelay={800} />
                         </motion.h1>
                         
                         <motion.img variants={itemVariants} className="section-body-top-line" src="/assets/linha.svg" alt="" />
@@ -68,7 +69,7 @@ const SectionIntro = ({ onNavigate, slideData }) => {
                             <Typewriter
                                 text={slideData.content || slideData.description}
                                 delay={15}
-                                initialDelay={1500}
+                                initialDelay={1800}
                             />
                         </motion.div>
                         
