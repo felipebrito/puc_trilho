@@ -12,6 +12,7 @@
 - **Sincronização de Dados**: 
     - Atualizados todos os caminhos de ativos para os sobreviventes do Permiano no `slides.js`.
     - Internalizados todos os ativos de todos os períodos (imagens de espécies, selos, introduções e referências de layout) para dentro da pasta `public/assets/`, eliminando totalmente a dependência do diretório externo `_conteudo`.
+    - Removido o middleware de servidor do `vite.config.js` que servia arquivos externos, tornando o projeto 100% autônomo.
     - Organizadas as imagens de referência em subpastas por período (`ordoviciano/`, `devoniano/`, `permiano/`).
     - Renomeados arquivos para um padrão padronizado (lowercase, sem espaços ou prefixos de página).
 
