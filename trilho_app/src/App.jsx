@@ -22,7 +22,10 @@ import DoubleSpecimenDetail from './views/DoubleSpecimenDetail'
 import MorphingPageDots from './components/MorphingPageDots'
 import DesignEditor from './components/DesignEditor'
 import HardwareConfigurator from './components/HardwareConfigurator'
+import RailWizard from './components/RailWizard'
+import PeriodVideoView from './views/PeriodVideoView'
 import designSettings from './data/design_settings.json'
+import railSettings from './data/rail_settings.json'
 import './App.css'
 
 function getHashForSlide(slide) {
@@ -64,6 +67,9 @@ function App() {
   const [slideIndex, setSlideIndex] = useState(() => getIndexForHash(window.location.hash));
   const [slideDirection, setSlideDirection] = useState('up');
   const [isHardwareConfigVisible, setIsHardwareConfigVisible] = useState(false);
+  const [isRailWizardVisible, setIsRailWizardVisible] = useState(false);
+  const [encoderPosition, setEncoderPosition] = useState(0);
+  const [currentZoneId, setCurrentZoneId] = useState(1);
   const [lastHardwareAction, setLastHardwareAction] = useState(null);
   const [socket, setSocket] = useState(null);
 
@@ -160,12 +166,52 @@ function App() {
       setLastHardwareAction(command);
       if (command === 'LEFT')  window.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowLeft' }));
       if (command === 'RIGHT') window.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight' }));
-      if (command === 'CLICK') window.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' }));
+      if (command === 'CLICK') {
+        window.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' }));
+      }
+      if (command === 'RESET') setEncoderPosition(0);
+    });
+
+    socketInstance.on('encoder_update', (data) => {
+      // Data pode ser um número (posição) ou um objeto { position, direction }
+      const pos = typeof data === 'object' ? data.position : data;
+      setEncoderPosition(pos);
     });
 
     setSocket(socketInstance);
     return () => socketInstance.disconnect();
   }, []);
+
+  // Lógica de Troca de Período via Encoder Position
+  useEffect(() => {
+    const zone = railSettings.zones.find(z => encoderPosition >= z.start && encoderPosition <= z.end);
+    if (zone && zone.id !== currentZoneId) {
+      const direction = zone.id > (currentZoneId || 0) ? 'left' : 'right'; // Invertido para o efeito visual de trilho
+      setSlideDirection(direction);
+      setCurrentZoneId(zone.id);
+      
+      // Mapeia zona para o index de início do período (slidesData)
+      const periodMap = {
+        1: 'arqueano',
+        2: 'proterozoico',
+        3: 'cambriano',
+        4: 'ordoviciano',
+        5: 'siluriano',
+        6: 'devoniano',
+        7: 'carbonifero',
+        8: 'permiano'
+      };
+      
+      const periodKey = periodMap[zone.id];
+      if (periodKey && periodStartIndex[periodKey] !== undefined) {
+        // Se entrar em uma zona com conteúdo, vai para a HOME dela (slide 0 do período)
+        setSlideIndex(periodStartIndex[periodKey]);
+      } else {
+        // Zonas apenas de vídeo (placeholder no slidesData)
+        // Por enquanto, podemos ficar na Home ou criar slides específicos
+      }
+    }
+  }, [encoderPosition, currentZoneId]);
 
   const sendHardwareCommand = useCallback((type, value) => {
     if (socket) {
@@ -173,39 +219,67 @@ function App() {
     }
   }, [socket]);
 
-  // Teclas 1 e 2 — trocar período
+  // Atalhos de teclado
   useEffect(() => {
     const handler = (e) => {
-      if (e.key === '1') { setSlideDirection('left');  setSlideIndex(periodStartIndex.ordoviciano); }
-      if (e.key === '2') { setSlideDirection('right'); setSlideIndex(periodStartIndex.devoniano); }
-      if (e.key === '3') { setSlideDirection('right'); setSlideIndex(periodStartIndex.permiano); }
+      // Atalhos de teste 1-8 vinculados às zonas do trilho
+      if (e.key >= '1' && e.key <= '8') {
+        const zoneId = parseInt(e.key);
+        const zone = railSettings.zones.find(z => z.id === zoneId);
+        if (zone) {
+          setEncoderPosition(zone.start + 10);
+        }
+      }
       if (e.key.toLowerCase() === 'c') { setIsHardwareConfigVisible(prev => !prev); }
+      if (e.key.toLowerCase() === 'w') { setIsRailWizardVisible(prev => !prev); }
+      
+      // Mock de posição para teste (Shift + Setas)
+      if (e.shiftKey && e.key === 'ArrowRight') setEncoderPosition(prev => Math.min(prev + 100, 10000));
+      if (e.shiftKey && e.key === 'ArrowLeft') setEncoderPosition(prev => Math.max(prev - 100, 0));
     };
     window.addEventListener('keydown', handler);
     return () => window.removeEventListener('keydown', handler);
   }, []);
 
-  const slideVariants = {
-    initial: (dir) => {
-      let x = 0, y = 0;
-      if (dir === 'right') x = -1080;
-      if (dir === 'left')  x = 1080;
-      if (dir === 'down')  y = -1920;
-      if (dir === 'up')    y = 1920;
-      return { x, y, opacity: 0, position: 'absolute', width: '100%', height: '100%', zIndex: 5 };
+  const pageVariants = {
+    initial: (direction) => ({
+      x: direction === 'left' ? 1080 : direction === 'right' ? -1080 : 0,
+      y: direction === 'up' ? 1920 : direction === 'down' ? -1920 : 0,
+      opacity: 0,
+      filter: 'blur(20px)',
+      scale: 1.05
+    }),
+    animate: {
+      x: 0,
+      y: 0,
+      opacity: 1,
+      filter: 'blur(0px)',
+      scale: 1,
+      transition: {
+        x: { type: "spring", stiffness: 300, damping: 30 },
+        y: { type: "spring", stiffness: 300, damping: 30 },
+        opacity: { duration: 0.6 },
+        filter: { duration: 0.8 },
+        scale: { duration: 0.8 }
+      }
     },
-    animate: { x: 0, y: 0, opacity: 1, position: 'absolute', width: '100%', height: '100%', zIndex: 10, transition: { duration: 0.6, ease: [0.33, 1, 0.68, 1] } },
-    exit: (dir) => {
-      let x = 0, y = 0;
-      if (dir === 'right') x = 1080;
-      if (dir === 'left')  x = -1080;
-      if (dir === 'down')  y = 1920;
-      if (dir === 'up')    y = -1920;
-      return { x, y, opacity: 0, position: 'absolute', width: '100%', height: '100%', zIndex: 0, transition: { duration: 0.6, ease: [0.33, 1, 0.68, 1] } };
-    }
+    exit: (direction) => ({
+      x: direction === 'left' ? -1080 : direction === 'right' ? 1080 : 0,
+      y: direction === 'up' ? -1920 : direction === 'down' ? 1920 : 0,
+      opacity: 0,
+      filter: 'blur(20px)',
+      scale: 0.95,
+      transition: {
+        x: { type: "spring", stiffness: 300, damping: 30 },
+        y: { type: "spring", stiffness: 300, damping: 30 },
+        opacity: { duration: 0.6 },
+        filter: { duration: 0.8 },
+        scale: { duration: 0.8 }
+      }
+    })
   };
 
-  const currentSlide   = slidesData[slideIndex];
+  const currentSlide   = slidesData[slideIndex] || slidesData[0] || { type: 'home', period: 'arqueano', section: 'home' };
   const type           = currentSlide.type;
   const currentPeriod  = currentSlide.period;
   const currentSection = currentSlide.section;
@@ -333,42 +407,39 @@ function App() {
   return (
     <>
       <TopBar />
-      <div style={{ position: 'relative', width: '100%', height: '100%', overflow: 'hidden' }}>
-        <AnimatePresence custom={slideDirection} initial={false}>
+        <div className="page-container">
           {(() => {
-            let ComponentToRender = null;
-            const key = `${type}-${slideIndex}`;
+            let Comp = null;
+            const zone = railSettings.zones.find(z => z.id === currentZoneId) || railSettings.zones[0];
 
-            if      (type === 'home')                       ComponentToRender = <Home onNavigate={handleNavigate} />;
-            else if (type === 'home_ordoviciano')           ComponentToRender = <HomeOrdovician onNavigate={absoluteNavigate} />;
-            else if (type === 'home_devonian')              ComponentToRender = <HomeDevonian onNavigate={absoluteNavigate} />;
-            else if (type === 'home_permiano')              ComponentToRender = <HomePermian onNavigate={absoluteNavigate} />;
-            else if (type === 'section_intro')              ComponentToRender = <SectionIntro slideData={currentSlide} onNavigate={scopedNavigate} />;
-            else if (type === 'extinction_content')         ComponentToRender = <ExtinctionContent slideData={currentSlide} onNavigate={scopedNavigate} viewId={viewId} />;
-            else if (type === 'extinction_content_devonian') ComponentToRender = <ExtinctionContentDevonian slideData={currentSlide} onNavigate={scopedNavigate} />;
-            else if (type === 'single_species')             ComponentToRender = <SpecimenDetail slideIndex={sectionIndex} totalSlides={sectionSlides.length} onNavigate={scopedNavigate} slideData={currentSlide} />;
-            else if (type === 'event_header')               ComponentToRender = <EventHeader slideIndex={sectionIndex} totalSlides={sectionSlides.length} onNavigate={scopedNavigate} slideData={currentSlide} />;
-            else if (type === 'event_detail')               ComponentToRender = <EventDetail slideIndex={sectionIndex} totalSlides={sectionSlides.length} onNavigate={scopedNavigate} slideData={currentSlide} />;
-            else if (type === 'silurian_globe')             ComponentToRender = <SilurianGlobe slideData={currentSlide} onNavigate={scopedNavigate} viewId={viewId} />;
-            else if (type === 'silurian_specimen')          ComponentToRender = <SilurianSpecimen slideData={currentSlide} onNavigate={scopedNavigate} />;
-            else if (type === 'silurian_double_specimen')   ComponentToRender = <SilurianDoubleSpecimen slideData={currentSlide} onNavigate={scopedNavigate} />;
-            else if (type === 'devonian_extinction_environments') ComponentToRender = <DevonianExtinctionEnvironments slideData={currentSlide} onNavigate={scopedNavigate} />;
-            else if (type === 'double_species')             ComponentToRender = <DoubleSpecimenDetail slideIndex={sectionIndex} totalSlides={sectionSlides.length} onNavigate={scopedNavigate} slideData={currentSlide} />;
-
-            return (
-              <motion.div
-                key={key}
-                custom={slideDirection}
-                variants={slideVariants}
-                initial={["initial", "hidden"]}
-                animate={["animate", "visible"]}
-                exit="exit"
-              >
-                {ComponentToRender}
-              </motion.div>
-            );
+            if      (type === 'home')                       Comp = <Home onNavigate={handleNavigate} />;
+            else if (type === 'home_ordoviciano')           Comp = <HomeOrdovician onNavigate={absoluteNavigate} />;
+            else if (type === 'home_devonian')              Comp = <HomeDevonian onNavigate={absoluteNavigate} />;
+            else if (type === 'home_permiano')              Comp = <HomePermian onNavigate={absoluteNavigate} />;
+            else if (type === 'section_intro')              Comp = <SectionIntro slideData={currentSlide} onNavigate={scopedNavigate} />;
+            else if (type === 'extinction_content')         Comp = <ExtinctionContent slideData={currentSlide} onNavigate={scopedNavigate} viewId={viewId} />;
+            else if (type === 'extinction_content_devonian') Comp = <ExtinctionContentDevonian slideData={currentSlide} onNavigate={scopedNavigate} />;
+            else if (type === 'single_species')             Comp = <SpecimenDetail slideIndex={sectionIndex} totalSlides={sectionSlides.length} onNavigate={scopedNavigate} slideData={currentSlide} />;
+            else if (type === 'event_header')               Comp = <EventHeader slideIndex={sectionIndex} totalSlides={sectionSlides.length} onNavigate={scopedNavigate} slideData={currentSlide} />;
+            else if (type === 'event_detail')               Comp = <EventDetail slideIndex={sectionIndex} totalSlides={sectionSlides.length} onNavigate={scopedNavigate} slideData={currentSlide} />;
+            else if (type === 'silurian_globe')             Comp = <SilurianGlobe slideData={currentSlide} onNavigate={scopedNavigate} viewId={viewId} />;
+            else if (type === 'silurian_specimen')          Comp = <SilurianSpecimen slideData={currentSlide} onNavigate={scopedNavigate} />;
+            else if (type === 'silurian_double_specimen')   Comp = <SilurianDoubleSpecimen slideData={currentSlide} onNavigate={scopedNavigate} />;
+            else if (type === 'devonian_extinction_environments') Comp = <DevonianExtinctionEnvironments slideData={currentSlide} onNavigate={scopedNavigate} />;
+            else if (type === 'double_species')             Comp = <DoubleSpecimenDetail slideIndex={sectionIndex} totalSlides={sectionSlides.length} onNavigate={scopedNavigate} slideData={currentSlide} />;
+            else {
+              Comp = (
+                <PeriodVideoView 
+                  videoSrc={zone.video} 
+                  title={zone.name} 
+                  periodNumber={zone.id} 
+                  hasMenu={false}
+                />
+              );
+            }
+            return Comp;
           })()}
-        </AnimatePresence>
+        </div>
 
         {currentSection !== 'home' && (
           <div style={{ position: 'absolute', bottom: '100px', width: '100%', zIndex: 100 }}>
@@ -402,7 +473,6 @@ function App() {
             const sid = currentSlide.id || viewId;
             const raw = designSettings[currentPeriod]?.[currentSection]?.[sid] || null;
             if (!raw) return null;
-            // Normaliza formato antigo (camelCase) para CSS props (--devonian-{id}-*)
             return Object.fromEntries(
               Object.entries(raw).map(([k, v]) => {
                 if (k.startsWith('--')) return [k, v];
@@ -419,7 +489,12 @@ function App() {
           lastAction={lastHardwareAction}
           onSendCommand={sendHardwareCommand}
         />
-      </div>
+
+        <RailWizard 
+          isVisible={isRailWizardVisible}
+          onClose={() => setIsRailWizardVisible(false)}
+          currentPosition={encoderPosition}
+        />
     </>
   );
 }

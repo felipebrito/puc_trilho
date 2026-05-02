@@ -52,7 +52,7 @@ const HomePermian = ({ onNavigate }) => {
 
     return (
         <div className="view-home-permian">
-            <BackgroundVideo src="/assets/permiano/menu_bg.png" variant="full">
+            <BackgroundVideo src="/_conteudo/Videos/08_Permiano_0604.mp4" variant="full">
                 <motion.div
                     className="home-permian-content"
                     variants={containerVariants}

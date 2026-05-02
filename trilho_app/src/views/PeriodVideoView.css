@@ -1,0 +1,82 @@
+.period-video-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: black;
+}
+
+.background-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: translate(-50%, -50%);
+}
+
+.video-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg, 
+    rgba(7, 13, 25, 0.8) 0%, 
+    rgba(7, 13, 25, 0) 50%, 
+    rgba(7, 13, 25, 0.8) 100%
+  );
+  pointer-events: none;
+}
+
+.period-info {
+  position: absolute;
+  top: 15%;
+  left: 80px;
+  z-index: 10;
+}
+
+.period-number {
+  font-family: var(--font-primary);
+  font-size: 3rem;
+  color: var(--color-primary-blue);
+  display: block;
+  margin-bottom: -10px;
+}
+
+.period-title {
+  font-family: var(--font-primary);
+  font-size: 8rem;
+  text-transform: uppercase;
+  line-height: 0.9;
+  max-width: 600px;
+  text-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.menu-prompt {
+  position: absolute;
+  bottom: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  cursor: pointer;
+  z-index: 20;
+}
+
+.prompt-icon {
+  font-size: 4rem;
+  color: white;
+}
+
+.menu-prompt span {
+  font-family: var(--font-canva);
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  font-size: 1.2rem;
+  font-weight: 700;
+}

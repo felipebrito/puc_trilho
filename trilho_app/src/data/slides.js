@@ -1,5 +1,20 @@
 // =============================================================================
-//  ORDOVICIANO — Período 1
+//  ARQUEANO — Zona 1
+// =============================================================================
+export const arqueanoSlides = [{ type: 'video_period', period: 'arqueano', section: 'home' }];
+
+// =============================================================================
+//  PROTEROZOICO — Zona 2
+// =============================================================================
+export const proterozoicoSlides = [{ type: 'video_period', period: 'proterozoico', section: 'home' }];
+
+// =============================================================================
+//  CAMBRIANO — Zona 3
+// =============================================================================
+export const cambrianoSlides = [{ type: 'video_period', period: 'cambriano', section: 'home' }];
+
+// =============================================================================
+//  ORDOVICIANO — Zona 4
 // =============================================================================
 export const ordovicianoSlides = [
     // Slide 0 - HOME
@@ -196,9 +211,13 @@ export const ordovicianoSlides = [
         seloSrc: '/assets/ordoviciano/selo_atrypa.png'
     },
 ];
+// =============================================================================
+//  SILURIANO — Zona 5
+// =============================================================================
+export const silurianoSlides = [{ type: 'video_period', period: 'siluriano', section: 'home' }];
 
 // =============================================================================
-//  DEVONIANO — Período 2
+//  DEVONIANO — Zona 6
 // =============================================================================
 export const devonianoSlides = [
     // Slide 0 - HOME DEVONIANO
@@ -509,9 +528,13 @@ export const devonianoSlides = [
         seloSrc: '/assets/carbonifero/selo_sigillaria.png'
     },
 ];
+// =============================================================================
+//  CARBONÍFERO — Zona 7
+// =============================================================================
+export const carboniferoSlides = [{ type: 'video_period', period: 'carbonifero', section: 'home' }];
 
 // =============================================================================
-//  PERMIANO — Período 3
+//  PERMIANO — Zona 8
 // =============================================================================
 export const permianoSlides = [
     {
@@ -706,10 +729,24 @@ export const permianoSlides = [
 // =============================================================================
 //  EXPORT UNIFICADO
 // =============================================================================
-export const slidesData = [...ordovicianoSlides, ...devonianoSlides, ...permianoSlides];
+export const slidesData = [
+    ...arqueanoSlides,
+    ...proterozoicoSlides,
+    ...cambrianoSlides,
+    ...ordovicianoSlides,
+    ...silurianoSlides,
+    ...devonianoSlides,
+    ...carboniferoSlides,
+    ...permianoSlides
+];
 
 export const periodStartIndex = {
-    ordoviciano: 0,
-    devoniano: ordovicianoSlides.length,
-    permiano: ordovicianoSlides.length + devonianoSlides.length,
+    arqueano: 0,
+    proterozoico: arqueanoSlides.length,
+    cambriano: arqueanoSlides.length + proterozoicoSlides.length,
+    ordoviciano: arqueanoSlides.length + proterozoicoSlides.length + cambrianoSlides.length,
+    siluriano: arqueanoSlides.length + proterozoicoSlides.length + cambrianoSlides.length + ordovicianoSlides.length,
+    devoniano: arqueanoSlides.length + proterozoicoSlides.length + cambrianoSlides.length + ordovicianoSlides.length + silurianoSlides.length,
+    carbonifero: arqueanoSlides.length + proterozoicoSlides.length + cambrianoSlides.length + ordovicianoSlides.length + silurianoSlides.length + devonianoSlides.length,
+    permiano: arqueanoSlides.length + proterozoicoSlides.length + cambrianoSlides.length + ordovicianoSlides.length + silurianoSlides.length + devonianoSlides.length + carboniferoSlides.length,
 };

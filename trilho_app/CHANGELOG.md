@@ -1,5 +1,18 @@
 # Changelog - PUC Trilho [2026-05-02]
 
+## 🛠️ Versão: Expansão 8 Períodos e Navegação Quiosque (Non-Touch)
+- **Suporte a 8 Períodos**: Implementada a estrutura de dados completa no `slides.js` abrangendo toda a cronologia (Arqueano até Permiano).
+- **Navegação Quiosque**: Removidas referências a "toque na tela", adaptando toda a interface para o modelo de navegação física ("NAVEGUE NO TRILHO").
+- **Ativação Automática**: Implementada lógica de menus automáticos para períodos com biodiversidade (Ordoviciano, Devoniano, Permiano), eliminando a necessidade de clique para abrir o menu.
+- **Cinematic Transitions**: Adicionado sistema de transições suaves com `blur(20px)` e escala, otimizando a percepção visual durante o deslocamento no trilho.
+- **Estabilidade de Renderização**: 
+    - Removido erro `setIsPeriodMenuActive` que interrompia a execução da aplicação.
+    - Corrigido bug de "Tela Preta" através da definição explícita do `.page-container` no CSS global.
+    - Simplificada a árvore de renderização para garantir atualização imediata ao receber sinais do encoder.
+- **Otimização do Editor**: Removidas chaves redundantes no `DesignEditor.jsx` e sincronizados os atalhos de teclado (1-8) com o novo mapeamento de períodos.
+
+# Changelog - PUC Trilho [2026-05-02]
+
 ## 🛠️ Versão: Finalização dos Sobreviventes e Ajustes de Navegação
 - **Padronização Visual**: Removido o uso de imagens para títulos nos sobreviventes do Permiano (*Benthosuchus*, *Lystrosaurus*, etc.), restaurando o uso de texto com efeito `Typewriter` para consistência com o restante do projeto.
 - **Navegação Física**: Invertida a orientação das transições (Esquerda/Direita) para alinhar o movimento do conteúdo na tela com o deslocamento físico do totem sobre o trilho.

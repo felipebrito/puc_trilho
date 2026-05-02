@@ -389,17 +389,6 @@ const cssConfigs = {
     'devoniano-pos-carbon-cordaites': createDevonianoSpecimenConfig('cordaites'),
     'devoniano-pos-carbon-sigillaria': createDevonianoSpecimenConfig('sigillaria'),
 
-    // Permiano
-    'perm-bio-intro': createDevonianoIntroConfig('perm-bio'),
-    'perm-bio-archosaurus': createPermianoSpecimenConfig('archosaurus'),
-    'perm-bio-scutosaurus': createPermianoSpecimenConfig('scutosaurus'),
-    'perm-bio-dvinia': createPermianoSpecimenConfig('dvinia'),
-    'perm-bio-arctotypus': createPermianoSpecimenConfig('arctotypus'),
-    'perm-bio-dicynodon': createPermianoSpecimenConfig('dicynodon'),
-    'perm-bio-glossopteris': createPermianoSpecimenConfig('glossopteris'),
-    'perm-bio-phyllotheca': createPermianoSpecimenConfig('phyllotheca'),
-    'perm-ext-intro': createDevonianoIntroConfig('perm-ext'),
-    
     // Permiano Pós-Extinção
     'perm-pos-ext-intro': createDevonianoIntroConfig('perm-pos-ext'),
     'perm-pos-ext-mundo': [
