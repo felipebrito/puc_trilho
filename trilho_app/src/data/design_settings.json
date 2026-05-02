@@ -873,6 +873,34 @@
         "--dev-perm-pos-ext-resistencia-top-w": "864px",
         "--dev-perm-pos-ext-resistencia-top-size": "52px",
         "--dev-perm-pos-ext-resistencia-top-lh": "60px"
+      },
+      "benthosuchus": {
+        "--devonian-benthosuchus-name-mt": "96px",
+        "--devonian-benthosuchus-name-ml": "0px",
+        "--devonian-benthosuchus-name-size": "83px",
+        "--devonian-benthosuchus-sub-mt": "93px",
+        "--devonian-benthosuchus-sub-ml": "0px",
+        "--devonian-benthosuchus-sub-w": "568px",
+        "--devonian-benthosuchus-sub-size": "56px",
+        "--devonian-benthosuchus-desc-mt": "74px",
+        "--devonian-benthosuchus-desc-ml": "0px",
+        "--devonian-benthosuchus-desc-w": "826px",
+        "--devonian-benthosuchus-desc-size": "40px",
+        "--devonian-benthosuchus-desc-lh": "50px",
+        "--devonian-benthosuchus-bg-h": "42%",
+        "--devonian-benthosuchus-bg-opacity": "1",
+        "--devonian-benthosuchus-bg-scale": "1",
+        "--devonian-benthosuchus-bg-x": "0px",
+        "--devonian-benthosuchus-bg-y": "0px",
+        "--devonian-benthosuchus-white-h": "34%",
+        "--devonian-benthosuchus-white-mt": "38px",
+        "--devonian-benthosuchus-toptext-top": "80px",
+        "--devonian-benthosuchus-toptext-left": "108px",
+        "--devonian-benthosuchus-toptext-w": "864px",
+        "--devonian-benthosuchus-toptext-size": "38px",
+        "--devonian-benthosuchus-selo-w": "862px",
+        "--devonian-benthosuchus-selo-top": "799px",
+        "--devonian-benthosuchus-selo-left": "0px"
       }
     }
   }

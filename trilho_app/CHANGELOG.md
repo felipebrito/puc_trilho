@@ -4,7 +4,7 @@
 - **Padronização Visual**: Removido o uso de imagens para títulos nos sobreviventes do Permiano (*Benthosuchus*, *Lystrosaurus*, etc.), restaurando o uso de texto com efeito `Typewriter` para consistência com o restante do projeto.
 - **Navegação Física**: Invertida a orientação das transições (Esquerda/Direita) para alinhar o movimento do conteúdo na tela com o deslocamento físico do totem sobre o trilho.
 - **Design Editor**: 
-    - Corrigido o mapeamento de variáveis para os sobreviventes, permitindo edição em tempo real de textos, selos e opacidades.
+    - Corrigido o mapeamento de variáveis para todos os sobreviventes (*Lystrosaurus*, *Thrinaxodon*, *Procolophon*, *Voltziopsis*), permitindo edição completa via editor.
     - Sincronizados os valores padrão do *Benthosuchus* com os do *Thrinaxodon* conforme referência validada.
 - **Correções de Layout**: 
     - Restaurados estilos essenciais do título no `SpecimenDetail.css` após remoção acidental.

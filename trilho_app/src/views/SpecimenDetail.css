@@ -1671,30 +1671,105 @@
 
 .view-detail.permiano.lystrosaurus {
     --devonian-name-mt: var(--devonian-lystrosaurus-name-mt, 96px);
+    --devonian-name-ml: var(--devonian-lystrosaurus-name-ml, 0px);
     --devonian-name-size: var(--devonian-lystrosaurus-name-size, 83px);
-    --devonian-bg-opacity: var(--devonian-lystrosaurus-bg-opacity, 1);
+    --devonian-sub-mt: var(--devonian-lystrosaurus-sub-mt, 51px);
+    --devonian-sub-ml: var(--devonian-lystrosaurus-sub-ml, 0px);
+    --devonian-sub-w: var(--devonian-lystrosaurus-sub-w, 590px);
+    --devonian-sub-size: var(--devonian-lystrosaurus-sub-size, 56px);
+    --devonian-desc-mt: var(--devonian-lystrosaurus-desc-mt, 96px);
+    --devonian-desc-ml: var(--devonian-lystrosaurus-desc-ml, 0px);
+    --devonian-desc-w: var(--devonian-lystrosaurus-desc-w, 752px);
+    --devonian-desc-size: var(--devonian-lystrosaurus-desc-size, 40px);
+    --devonian-desc-lh: var(--devonian-lystrosaurus-desc-lh, 50px);
     --devonian-bg-h: var(--devonian-lystrosaurus-bg-h, 42%);
+    --devonian-bg-opacity: var(--devonian-lystrosaurus-bg-opacity, 1);
+    --devonian-bg-scale: var(--devonian-lystrosaurus-bg-scale, 1);
+    --devonian-bg-x: var(--devonian-lystrosaurus-bg-x, 0px);
+    --devonian-bg-y: var(--devonian-lystrosaurus-bg-y, 0px);
+    --devonian-white-h: var(--devonian-lystrosaurus-white-h, 34%);
     --devonian-white-mt: var(--devonian-lystrosaurus-white-mt, 38px);
+    --devonian-toptext-top: var(--devonian-lystrosaurus-toptext-top, 80px);
+    --devonian-selo-top: var(--devonian-lystrosaurus-selo-top, 799px);
+    --devonian-selo-left: var(--devonian-lystrosaurus-selo-left, 0px);
+    --devonian-selo-w: var(--devonian-lystrosaurus-selo-w, 862px);
 }
 
 .view-detail.permiano.thrinaxodon {
     --devonian-name-mt: var(--devonian-thrinaxodon-name-mt, 96px);
-    --devonian-bg-opacity: var(--devonian-thrinaxodon-bg-opacity, 1);
+    --devonian-name-ml: var(--devonian-thrinaxodon-name-ml, 0px);
+    --devonian-name-size: var(--devonian-thrinaxodon-name-size, 83px);
+    --devonian-sub-mt: var(--devonian-thrinaxodon-sub-mt, 51px);
+    --devonian-sub-ml: var(--devonian-thrinaxodon-sub-ml, 0px);
+    --devonian-sub-w: var(--devonian-thrinaxodon-sub-w, 590px);
+    --devonian-sub-size: var(--devonian-thrinaxodon-sub-size, 56px);
+    --devonian-desc-mt: var(--devonian-thrinaxodon-desc-mt, 96px);
+    --devonian-desc-ml: var(--devonian-thrinaxodon-desc-ml, 0px);
+    --devonian-desc-w: var(--devonian-thrinaxodon-desc-w, 752px);
+    --devonian-desc-size: var(--devonian-thrinaxodon-desc-size, 40px);
+    --devonian-desc-lh: var(--devonian-thrinaxodon-desc-lh, 50px);
     --devonian-bg-h: var(--devonian-thrinaxodon-bg-h, 42%);
+    --devonian-bg-opacity: var(--devonian-thrinaxodon-bg-opacity, 1);
+    --devonian-bg-scale: var(--devonian-thrinaxodon-bg-scale, 1);
+    --devonian-bg-x: var(--devonian-thrinaxodon-bg-x, 0px);
+    --devonian-bg-y: var(--devonian-thrinaxodon-bg-y, 0px);
+    --devonian-white-h: var(--devonian-thrinaxodon-white-h, 34%);
     --devonian-white-mt: var(--devonian-thrinaxodon-white-mt, 38px);
+    --devonian-toptext-top: var(--devonian-thrinaxodon-toptext-top, 80px);
+    --devonian-selo-top: var(--devonian-thrinaxodon-selo-top, 799px);
+    --devonian-selo-left: var(--devonian-thrinaxodon-selo-left, 0px);
+    --devonian-selo-w: var(--devonian-thrinaxodon-selo-w, 862px);
 }
 
 .view-detail.permiano.procolophon {
     --devonian-name-mt: var(--devonian-procolophon-name-mt, 96px);
-    --devonian-bg-opacity: var(--devonian-procolophon-bg-opacity, 1);
+    --devonian-name-ml: var(--devonian-procolophon-name-ml, 0px);
+    --devonian-name-size: var(--devonian-procolophon-name-size, 83px);
+    --devonian-sub-mt: var(--devonian-procolophon-sub-mt, 51px);
+    --devonian-sub-ml: var(--devonian-procolophon-sub-ml, 0px);
+    --devonian-sub-w: var(--devonian-procolophon-sub-w, 590px);
+    --devonian-sub-size: var(--devonian-procolophon-sub-size, 56px);
+    --devonian-desc-mt: var(--devonian-procolophon-desc-mt, 96px);
+    --devonian-desc-ml: var(--devonian-procolophon-desc-ml, 0px);
+    --devonian-desc-w: var(--devonian-procolophon-desc-w, 752px);
+    --devonian-desc-size: var(--devonian-procolophon-desc-size, 40px);
+    --devonian-desc-lh: var(--devonian-procolophon-desc-lh, 50px);
     --devonian-bg-h: var(--devonian-procolophon-bg-h, 42%);
+    --devonian-bg-opacity: var(--devonian-procolophon-bg-opacity, 1);
+    --devonian-bg-scale: var(--devonian-procolophon-bg-scale, 1);
+    --devonian-bg-x: var(--devonian-procolophon-bg-x, 0px);
+    --devonian-bg-y: var(--devonian-procolophon-bg-y, 0px);
+    --devonian-white-h: var(--devonian-procolophon-white-h, 34%);
     --devonian-white-mt: var(--devonian-procolophon-white-mt, 38px);
+    --devonian-toptext-top: var(--devonian-procolophon-toptext-top, 80px);
+    --devonian-selo-top: var(--devonian-procolophon-selo-top, 799px);
+    --devonian-selo-left: var(--devonian-procolophon-selo-left, 0px);
+    --devonian-selo-w: var(--devonian-procolophon-selo-w, 862px);
 }
 
 .view-detail.permiano.voltziopsis {
     --devonian-name-mt: var(--devonian-voltziopsis-name-mt, 96px);
-    --devonian-bg-opacity: var(--devonian-voltziopsis-bg-opacity, 1);
+    --devonian-name-ml: var(--devonian-voltziopsis-name-ml, 0px);
+    --devonian-name-size: var(--devonian-voltziopsis-name-size, 83px);
+    --devonian-sub-mt: var(--devonian-voltziopsis-sub-mt, 51px);
+    --devonian-sub-ml: var(--devonian-voltziopsis-sub-ml, 0px);
+    --devonian-sub-w: var(--devonian-voltziopsis-sub-w, 590px);
+    --devonian-sub-size: var(--devonian-voltziopsis-sub-size, 56px);
+    --devonian-desc-mt: var(--devonian-voltziopsis-desc-mt, 96px);
+    --devonian-desc-ml: var(--devonian-voltziopsis-desc-ml, 0px);
+    --devonian-desc-w: var(--devonian-voltziopsis-desc-w, 752px);
+    --devonian-desc-size: var(--devonian-voltziopsis-desc-size, 40px);
+    --devonian-desc-lh: var(--devonian-voltziopsis-desc-lh, 50px);
     --devonian-bg-h: var(--devonian-voltziopsis-bg-h, 42%);
+    --devonian-bg-opacity: var(--devonian-voltziopsis-bg-opacity, 1);
+    --devonian-bg-scale: var(--devonian-voltziopsis-bg-scale, 1);
+    --devonian-bg-x: var(--devonian-voltziopsis-bg-x, 0px);
+    --devonian-bg-y: var(--devonian-voltziopsis-bg-y, 0px);
+    --devonian-white-h: var(--devonian-voltziopsis-white-h, 34%);
     --devonian-white-mt: var(--devonian-voltziopsis-white-mt, 38px);
+    --devonian-toptext-top: var(--devonian-voltziopsis-toptext-top, 80px);
+    --devonian-selo-top: var(--devonian-voltziopsis-selo-top, 799px);
+    --devonian-selo-left: var(--devonian-voltziopsis-selo-left, 0px);
+    --devonian-selo-w: var(--devonian-voltziopsis-selo-w, 862px);
 }
 
