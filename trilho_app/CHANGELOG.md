@@ -1,15 +1,10 @@
 # Changelog - PUC Trilho [2026-05-02]
 
-## 🛠️ Versão: Expansão 8 Períodos e Navegação Quiosque (Non-Touch)
-- **Suporte a 8 Períodos**: Implementada a estrutura de dados completa no `slides.js` abrangendo toda a cronologia (Arqueano até Permiano).
-- **Navegação Quiosque**: Removidas referências a "toque na tela", adaptando toda a interface para o modelo de navegação física ("NAVEGUE NO TRILHO").
-- **Ativação Automática**: Implementada lógica de menus automáticos para períodos com biodiversidade (Ordoviciano, Devoniano, Permiano), eliminando a necessidade de clique para abrir o menu.
-- **Cinematic Transitions**: Adicionado sistema de transições suaves com `blur(20px)` e escala, otimizando a percepção visual durante o deslocamento no trilho.
-- **Estabilidade de Renderização**: 
-    - Removido erro `setIsPeriodMenuActive` que interrompia a execução da aplicação.
-    - Corrigido bug de "Tela Preta" através da definição explícita do `.page-container` no CSS global.
-    - Simplificada a árvore de renderização para garantir atualização imediata ao receber sinais do encoder.
-- **Otimização do Editor**: Removidas chaves redundantes no `DesignEditor.jsx` e sincronizados os atalhos de teclado (1-8) com o novo mapeamento de períodos.
+## 🛠️ Versão: Polimento Visual e Transições Fluídas
+- **Transições Simultâneas**: Removido o `mode="wait"` das transições de slide, permitindo que o conteúdo novo e o antigo se movam juntos ("swipe"), eliminando o intervalo preto entre telas.
+- **Fidelidade de Vídeo**: Removido o overlay de gradiente escuro (`video-overlay`) nos vídeos de período, restaurando o brilho e a nitidez total dos ativos originais.
+- **Sincronização de Animações**: Padronizadas as variantes de animação (`initial` e `animate`) nos componentes `Home`, `SectionIntro` e `ExtinctionContent`, restaurando a entrada sequencial (staggered) de títulos e botões com blur e fade.
+- **Correção de Layout**: Definida a classe `.page-container` no CSS global para garantir que o conteúdo sempre ocupe 100% da área visível do quiosque.
 
 # Changelog - PUC Trilho [2026-05-02]
 

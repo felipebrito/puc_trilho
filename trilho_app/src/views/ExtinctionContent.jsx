@@ -20,26 +20,26 @@ const ExtinctionContent = ({ onNavigate, slideData, viewId }) => {
     }, [onNavigate]);
 
     const containerVariants = {
-        hidden: { opacity: 1 },
-        visible: {
+        initial: { opacity: 1 },
+        animate: {
             opacity: 1,
             transition: { staggerChildren: 0.15 }
         }
     };
 
     const itemVariants = {
-        hidden: { opacity: 0, scale: 0.95, y: 20 },
-        visible: { opacity: 1, scale: 1, y: 0, transition: { duration: 0.8, ease: 'easeOut' } }
+        initial: { opacity: 0, scale: 0.95, y: 20 },
+        animate: { opacity: 1, scale: 1, y: 0, transition: { duration: 0.8, ease: 'easeOut' } }
     };
 
     const imageFadeVariants = {
-        hidden: { opacity: 0 },
-        visible: { opacity: 1, transition: { duration: 1.5, ease: 'easeOut' } }
+        initial: { opacity: 0 },
+        animate: { opacity: 1, transition: { duration: 1.5, ease: 'easeOut' } }
     };
 
     const blurVariants = {
-        hidden: { opacity: 0, y: 20 },
-        visible: { opacity: 1, y: 0, transition: { duration: 1.4, ease: 'easeOut' } }
+        initial: { opacity: 0, y: 20 },
+        animate: { opacity: 1, y: 0, transition: { duration: 1.4, ease: 'easeOut' } }
     };
 
     const getVar = (suffix, defaultValue) => {
@@ -101,8 +101,8 @@ const ExtinctionContent = ({ onNavigate, slideData, viewId }) => {
             }}>
                 <motion.img 
                     variants={imageFadeVariants} 
-                    initial="hidden" 
-                    animate="visible" 
+                    initial="initial" 
+                    animate="animate" 
                     src={slideData.imageSrc} 
                     alt="Extinção Image" 
                     style={{ 
@@ -121,7 +121,7 @@ const ExtinctionContent = ({ onNavigate, slideData, viewId }) => {
                 width: getVar('cap-w', '900px'),
                 textAlign: 'center'
             }}>
-                <motion.p variants={blurVariants} initial="hidden" animate="visible" style={{ fontSize: getVar('cap-size', '26px') }}>
+                <motion.p variants={blurVariants} initial="initial" animate="animate" style={{ fontSize: getVar('cap-size', '26px') }}>
                     {slideData.imageCaption}
                 </motion.p>
             </div>

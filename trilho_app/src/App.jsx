@@ -407,7 +407,7 @@ function App() {
   return (
     <>
       <TopBar />
-        <div className="page-container">
+        <AnimatePresence custom={slideDirection}>
           {(() => {
             let Comp = null;
             const zone = railSettings.zones.find(z => z.id === currentZoneId) || railSettings.zones[0];
@@ -437,9 +437,22 @@ function App() {
                 />
               );
             }
-            return Comp;
+
+            return (
+              <motion.div
+                key={slideIndex}
+                custom={slideDirection}
+                variants={pageVariants}
+                initial="initial"
+                animate="animate"
+                exit="exit"
+                className="page-container"
+              >
+                {Comp}
+              </motion.div>
+            );
           })()}
-        </div>
+        </AnimatePresence>
 
         {currentSection !== 'home' && (
           <div style={{ position: 'absolute', bottom: '100px', width: '100%', zIndex: 100 }}>
