@@ -9,7 +9,10 @@
 - **Correções de Layout**: 
     - Restaurados estilos essenciais do título no `SpecimenDetail.css` após remoção acidental.
     - Corrigido o `white-mt` do *Benthosuchus* que estava empurrando o conteúdo para fora da área visível.
-- **Sincronização de Dados**: Atualizados todos os caminhos de ativos para os sobreviventes do Permiano no `slides.js`.
+- **Sincronização de Dados**: 
+    - Atualizados todos os caminhos de ativos para os sobreviventes do Permiano no `slides.js`.
+    - Internalizados todos os ativos (imagens de espécies, selos e introduções) e imagens de referência para dentro da pasta `public/assets/`, eliminando a dependência do diretório externo `_conteudo`.
+    - Renomeados arquivos para um padrão padronizado (lowercase, sem espaços ou prefixos de página).
 
 # Changelog - PUC Trilho [2026-05-02]
 
