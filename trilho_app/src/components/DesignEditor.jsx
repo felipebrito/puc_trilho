@@ -7,21 +7,21 @@ import React, { useState, useEffect } from 'react';
 function createDevonianoIntroConfig(sectionPrefix, overrides = {}) {
     return [
         { label: 'BG Opacity',     prop: `--dev-${sectionPrefix}-bg-opacity`,      value: overrides.bgOpacity ?? 0.47, min: 0,    max: 1,    suffix: '' },
-        { label: 'Label Top',      prop: `--dev-${sectionPrefix}-label-top`,        value: overrides.labelTop ?? 61,    min: 0,    max: 1920, suffix: 'px' },
+        { label: 'Label Top',      prop: `--dev-${sectionPrefix}-label-top`,        value: overrides.labelTop ?? 61,    min: -1000, max: 1920, suffix: 'px' },
         { label: 'Label Left',     prop: `--dev-${sectionPrefix}-label-left`,       value: overrides.labelLeft ?? 41,   min: -100, max: 500,  suffix: 'px' },
         { label: 'Label Size',     prop: `--dev-${sectionPrefix}-label-size`,       value: overrides.labelSize ?? 30,   min: 10,   max: 100,  suffix: 'px' },
         { label: 'Label Spacing',  prop: `--dev-${sectionPrefix}-label-spacing`,    value: overrides.labelSpacing ?? 6, min: 0,    max: 50,   suffix: 'px' },
-        { label: 'Name Top',       prop: `--dev-${sectionPrefix}-name-top`,         value: overrides.nameTop ?? 102,    min: 0,    max: 1920, suffix: 'px' },
+        { label: 'Name Top',       prop: `--dev-${sectionPrefix}-name-top`,         value: overrides.nameTop ?? 102,    min: -1000, max: 1920, suffix: 'px' },
         { label: 'Name Left',      prop: `--dev-${sectionPrefix}-name-left`,        value: overrides.nameLeft ?? 36,    min: -100, max: 500,  suffix: 'px' },
         { label: 'Name Size',      prop: `--dev-${sectionPrefix}-name-size`,        value: overrides.nameSize ?? 60,    min: 10,   max: 200,  suffix: 'px' },
         { label: 'Name Spacing',   prop: `--dev-${sectionPrefix}-name-spacing`,     value: overrides.nameSpacing ?? 3,  min: 0,    max: 50,   suffix: 'px' },
-        { label: 'Heading Top',    prop: `--dev-${sectionPrefix}-heading-top`,      value: overrides.headingTop ?? 0,   min: -200, max: 500,  suffix: 'px' },
+        { label: 'Heading Top',    prop: `--dev-${sectionPrefix}-heading-top`,      value: overrides.headingTop ?? 0,   min: -1000, max: 1000, suffix: 'px' },
         { label: 'Heading Left',   prop: `--dev-${sectionPrefix}-heading-left`,     value: overrides.headingLeft ?? 0,  min: -200, max: 500,  suffix: 'px' },
         { label: 'Heading Size',   prop: `--dev-${sectionPrefix}-heading-size`,     value: overrides.headingSize ?? 96, min: 20,   max: 300,  suffix: 'px' },
         { label: 'Heading Width',  prop: `--dev-${sectionPrefix}-heading-w`,        value: overrides.headingW ?? 900,   min: 100,  max: 1080, suffix: 'px' },
         { label: 'Heading Spacing',prop: `--dev-${sectionPrefix}-heading-spacing`,  value: overrides.headingSpacing ?? 0, min: -10, max: 50,  suffix: 'px' },
         { label: 'Heading LH',     prop: `--dev-${sectionPrefix}-heading-lh`,       value: overrides.headingLH ?? 1.05, min: 0.1,  max: 2,    suffix: '' },
-        { label: 'Body Top',       prop: `--dev-${sectionPrefix}-body-top`,         value: overrides.bodyTop ?? 599,    min: 0,    max: 1920, suffix: 'px' },
+        { label: 'Body Top',       prop: `--dev-${sectionPrefix}-body-top`,         value: overrides.bodyTop ?? 599,    min: -1000, max: 1920, suffix: 'px' },
         { label: 'Body Left',      prop: `--dev-${sectionPrefix}-body-left`,        value: overrides.bodyLeft ?? 36,    min: 0,    max: 500,  suffix: 'px' },
         { label: 'Body Width',     prop: `--dev-${sectionPrefix}-body-w`,           value: overrides.bodyW ?? 821,      min: 100,  max: 1080, suffix: 'px' },
         { label: 'Body Size',      prop: `--dev-${sectionPrefix}-body-size`,        value: overrides.bodySize ?? 37,    min: 10,   max: 80,   suffix: 'px' },
@@ -58,6 +58,7 @@ function createDevonianoSpecimenConfig(id, overrides = {}) {
         { label: 'Desc Size', prop: `--devonian-${id}-desc-size`, value: overrides.descSize || 40, min: 10, max: 100, suffix: 'px' },
         { label: 'Desc LH', prop: `--devonian-${id}-desc-lh`, value: overrides.descLH || 50, min: 10, max: 150, suffix: 'px' },
         { label: 'BG Height', prop: `--devonian-${id}-bg-h`, value: overrides.bgH || 42, min: 20, max: 100, suffix: '%' },
+        { label: 'BG Opacity', prop: `--devonian-${id}-bg-opacity`, value: overrides.bgOpacity || 1, min: 0, max: 1, suffix: '' },
         { label: 'BG Top', prop: `--devonian-${id}-bg-top`, value: overrides.bgTop || 0, min: -500, max: 1000, suffix: 'px' },
         { label: 'BG Scale', prop: `--devonian-${id}-bg-scale`, value: overrides.bgScale || 1, min: 0.5, max: 3, suffix: '' },
         { label: 'BG X', prop: `--devonian-${id}-bg-x`, value: overrides.bgX || 0, min: -1000, max: 1000, suffix: 'px' },
@@ -77,8 +78,8 @@ function createDevonianoSpecimenConfig(id, overrides = {}) {
     ];
 }
 
-const createPermianoSpecimenConfig = (id, defaults = {}) => {
-    const prefix = `perm-bio-${id}`;
+const createPermianoSpecimenConfig = (id, defaults = {}, prefixOverride) => {
+    const prefix = prefixOverride || `perm-bio-${id}`;
     return [
         { label: 'Name MT', prop: `--devonian-${prefix}-name-mt`, value: defaults.nameMt || 96, min: -200, max: 1500, suffix: 'px' },
         { label: 'Name ML', prop: `--devonian-${prefix}-name-ml`, value: defaults.nameMl || 0, min: -200, max: 500, suffix: 'px' },
@@ -93,11 +94,16 @@ const createPermianoSpecimenConfig = (id, defaults = {}) => {
         { label: 'Desc Size', prop: `--devonian-${prefix}-desc-size`, value: defaults.descSize || 40, min: 10, max: 100, suffix: 'px' },
         { label: 'Desc LH', prop: `--devonian-${prefix}-desc-lh`, value: defaults.descLH || 50, min: 10, max: 150, suffix: 'px' },
         { label: 'BG Height', prop: `--devonian-${prefix}-bg-h`, value: defaults.bgH || 42, min: 10, max: 100, suffix: '%' },
+        { label: 'BG Opacity', prop: `--devonian-${prefix}-bg-opacity`, value: defaults.bgOpacity || 1, min: 0, max: 1, suffix: '' },
         { label: 'BG Scale', prop: `--devonian-${prefix}-bg-scale`, value: defaults.bgScale || 1, min: 0.1, max: 3, step: 0.05, suffix: '' },
         { label: 'BG X', prop: `--devonian-${prefix}-bg-x`, value: defaults.bgX || 0, min: -1080, max: 1080, suffix: 'px' },
         { label: 'BG Y', prop: `--devonian-${prefix}-bg-y`, value: defaults.bgY || 0, min: -1920, max: 1920, suffix: 'px' },
         { label: 'White Height', prop: `--devonian-${prefix}-white-h`, value: defaults.whiteH || 34, min: 10, max: 100, suffix: '%' },
         { label: 'White MT', prop: `--devonian-${prefix}-white-mt`, value: defaults.whiteMt || 38, min: -100, max: 2000, suffix: 'px' },
+        { label: 'TopText Top', prop: `--devonian-${prefix}-toptext-top`, value: defaults.topTextTop || 80, min: -500, max: 1000, suffix: 'px' },
+        { label: 'TopText Left', prop: `--devonian-${prefix}-toptext-left`, value: defaults.topTextLeft || 108, min: 0, max: 1000, suffix: 'px' },
+        { label: 'TopText Width', prop: `--devonian-${prefix}-toptext-w`, value: defaults.topTextW || 864, min: 200, max: 1080, suffix: 'px' },
+        { label: 'TopText Size', prop: `--devonian-${prefix}-toptext-size`, value: defaults.topTextSize || 38, min: 10, max: 100, suffix: 'px' },
         { label: 'Selo Width', prop: `--devonian-${prefix}-selo-w`, value: defaults.seloW || 862, min: 50, max: 1500, suffix: 'px' },
         { label: 'Selo Top', prop: `--devonian-${prefix}-selo-top`, value: defaults.seloTop || 799, min: -200, max: 1500, suffix: 'px' },
         { label: 'Selo Left', prop: `--devonian-${prefix}-selo-left`, value: defaults.seloLeft || 0, min: -200, max: 1080, suffix: 'px' },
@@ -325,6 +331,22 @@ const cssConfigs = {
         { label: 'Text Width', prop: '--dev-ext-text-w', value: 864, min: 100, max: 1080, suffix: 'px' },
         { label: 'Text Line Height', prop: '--dev-ext-text-lh', value: 47, min: 20, max: 100, suffix: 'px' },
     ],
+    'permiano-extincao-content': [
+        { label: 'Img Top', prop: '--dev-ext-img-top', value: 160, min: 0, max: 500, suffix: 'px' },
+        { label: 'Img Height', prop: '--dev-ext-img-h', value: 660, min: 100, max: 1200, suffix: 'px' },
+        { label: 'Img Scale', prop: '--dev-ext-img-scale', value: 1, min: 0.5, max: 2, suffix: '' },
+        { label: 'Caption Top', prop: '--dev-ext-caption-top', value: 860, min: 0, max: 1500, suffix: 'px' },
+        { label: 'Caption Left', prop: '--dev-ext-caption-left', value: 108, min: 0, max: 500, suffix: 'px' },
+        { label: 'Caption Width', prop: '--dev-ext-caption-w', value: 900, min: 100, max: 1080, suffix: 'px' },
+        { label: 'Caption Size', prop: '--dev-ext-caption-size', value: 26, min: 10, max: 80, suffix: 'px' },
+        { label: 'Line Top', prop: '--dev-ext-line-top', value: 960, min: 0, max: 1500, suffix: 'px' },
+        { label: 'Line Left', prop: '--dev-ext-line-left', value: 108, min: 0, max: 500, suffix: 'px' },
+        { label: 'Line Width', prop: '--dev-ext-line-w', value: 890, min: 100, max: 1080, suffix: 'px' },
+        { label: 'Text Top', prop: '--dev-ext-text-top', value: 1050, min: 0, max: 1800, suffix: 'px' },
+        { label: 'Text Left', prop: '--dev-ext-text-left', value: 108, min: 0, max: 500, suffix: 'px' },
+        { label: 'Text Width', prop: '--dev-ext-text-w', value: 864, min: 100, max: 1080, suffix: 'px' },
+        { label: 'Text Line Height', prop: '--dev-ext-text-lh', value: 47, min: 20, max: 100, suffix: 'px' },
+    ],
     'ordoviciano-pos-extincao-intro': createDevonianoIntroConfig('ord-pos'),
 
     'ordoviciano-pos-dalmanites': createDevonianoSpecimenConfig('dalmanites', {
@@ -377,6 +399,51 @@ const cssConfigs = {
     'perm-bio-glossopteris': createPermianoSpecimenConfig('glossopteris'),
     'perm-bio-phyllotheca': createPermianoSpecimenConfig('phyllotheca'),
     'perm-ext-intro': createDevonianoIntroConfig('perm-ext'),
+    
+    // Permiano Pós-Extinção
+    'perm-pos-ext-intro': createDevonianoIntroConfig('perm-pos-ext'),
+    'perm-pos-ext-mundo': [
+        { label: 'Img Top', prop: '--dev-perm-pos-ext-mundo-img-top', value: 160, min: 0, max: 800, suffix: 'px' },
+        { label: 'Img Height', prop: '--dev-perm-pos-ext-mundo-img-h', value: 660, min: 100, max: 1200, suffix: 'px' },
+        { label: 'Img Scale', prop: '--dev-perm-pos-ext-mundo-img-scale', value: 1, min: 0.5, max: 3, suffix: '' },
+        { label: 'Caption Top', prop: '--dev-perm-pos-ext-mundo-cap-top', value: 860, min: 0, max: 1500, suffix: 'px' },
+        { label: 'Caption Left', prop: '--dev-perm-pos-ext-mundo-cap-left', value: 108, min: 0, max: 500, suffix: 'px' },
+        { label: 'Caption Size', prop: '--dev-perm-pos-ext-mundo-cap-size', value: 26, min: 10, max: 80, suffix: 'px' },
+        { label: 'Line Top', prop: '--dev-perm-pos-ext-mundo-line-top', value: 960, min: 0, max: 1500, suffix: 'px' },
+        { label: 'Line Left', prop: '--dev-perm-pos-ext-mundo-line-left', value: 108, min: 0, max: 500, suffix: 'px' },
+        { label: 'Text Area Top', prop: '--dev-perm-pos-ext-mundo-text-top', value: 1050, min: 0, max: 1800, suffix: 'px' },
+        { label: 'TopText Top', prop: '--dev-perm-pos-ext-mundo-top-top', value: 1050, min: 0, max: 2000, suffix: 'px' },
+        { label: 'TopText Left', prop: '--dev-perm-pos-ext-mundo-top-left', value: 108, min: 0, max: 500, suffix: 'px' },
+        { label: 'TopText Width', prop: '--dev-perm-pos-ext-mundo-top-w', value: 864, min: 100, max: 1080, suffix: 'px' },
+        { label: 'TopText Size', prop: '--dev-perm-pos-ext-mundo-top-size', value: 37, min: 10, max: 100, suffix: 'px' },
+        { label: 'TopText LH', prop: '--dev-perm-pos-ext-mundo-top-lh', value: 47, min: 20, max: 100, suffix: 'px' },
+        { label: 'BottomText Top', prop: '--dev-perm-pos-ext-mundo-bot-top', value: 1450, min: 0, max: 2000, suffix: 'px' },
+        { label: 'BottomText Left', prop: '--dev-perm-pos-ext-mundo-bot-left', value: 108, min: 0, max: 500, suffix: 'px' },
+        { label: 'BottomText Width', prop: '--dev-perm-pos-ext-mundo-bot-w', value: 864, min: 100, max: 1080, suffix: 'px' },
+        { label: 'BottomText Size', prop: '--dev-perm-pos-ext-mundo-bot-size', value: 37, min: 10, max: 100, suffix: 'px' },
+        { label: 'BottomText LH', prop: '--dev-perm-pos-ext-mundo-bot-lh', value: 47, min: 20, max: 100, suffix: 'px' },
+    ],
+    'perm-pos-ext-resistencia': [
+        { label: 'Img Top', prop: '--dev-perm-pos-ext-resistencia-img-top', value: 160, min: 0, max: 800, suffix: 'px' },
+        { label: 'Img Height', prop: '--dev-perm-pos-ext-resistencia-img-h', value: 660, min: 100, max: 1200, suffix: 'px' },
+        { label: 'Img Scale', prop: '--dev-perm-pos-ext-resistencia-img-scale', value: 1, min: 0.5, max: 3, suffix: '' },
+        { label: 'Img X', prop: '--dev-perm-pos-ext-resistencia-img-x', value: 0, min: -500, max: 500, suffix: 'px' },
+        { label: 'Img Y', prop: '--dev-perm-pos-ext-resistencia-img-y', value: 0, min: -500, max: 500, suffix: 'px' },
+        { label: 'Caption Top', prop: '--dev-perm-pos-ext-resistencia-cap-top', value: 860, min: 0, max: 1500, suffix: 'px' },
+        { label: 'Line Top', prop: '--dev-perm-pos-ext-resistencia-line-top', value: 1600, min: 0, max: 2000, suffix: 'px' },
+        { label: 'Line Left', prop: '--dev-perm-pos-ext-resistencia-line-left', value: 108, min: 0, max: 500, suffix: 'px' },
+        { label: 'Text Area Top', prop: '--dev-perm-pos-ext-resistencia-text-top', value: 1050, min: 0, max: 1800, suffix: 'px' },
+        { label: 'TopText Top', prop: '--dev-perm-pos-ext-resistencia-top-top', value: 1050, min: 0, max: 2000, suffix: 'px' },
+        { label: 'TopText Left', prop: '--dev-perm-pos-ext-resistencia-top-left', value: 108, min: 0, max: 500, suffix: 'px' },
+        { label: 'TopText Width', prop: '--dev-perm-pos-ext-resistencia-top-w', value: 864, min: 100, max: 1080, suffix: 'px' },
+        { label: 'TopText Size', prop: '--dev-perm-pos-ext-resistencia-top-size', value: 45, min: 10, max: 100, suffix: 'px' },
+        { label: 'TopText LH', prop: '--dev-perm-pos-ext-resistencia-top-lh', value: 60, min: 20, max: 150, suffix: 'px' },
+    ],
+    'benthosuchus': createPermianoSpecimenConfig('benthosuchus', {}, 'benthosuchus'),
+    'lystrosaurus': createPermianoSpecimenConfig('lystrosaurus', {}, 'lystrosaurus'),
+    'thrinaxodon': createPermianoSpecimenConfig('thrinaxodon', {}, 'thrinaxodon'),
+    'procolophon': createPermianoSpecimenConfig('procolophon', {}, 'procolophon'),
+    'voltziopsis': createPermianoSpecimenConfig('voltziopsis', {}, 'voltziopsis'),
 };
 
 // ==========================================================================
@@ -533,6 +600,26 @@ const DesignEditor = ({ referenceImage, viewId, period, section, slideId, savedS
                     </button>
                 </div>
             </div>
+
+            {/* Reference Image Overlay for alignment comparison */}
+            {referenceImage && (
+                <div style={{
+                    position: 'fixed',
+                    top: 0,
+                    left: 0,
+                    width: '100%',
+                    height: '100%',
+                    pointerEvents: 'none',
+                    zIndex: 9999,
+                    opacity: 0.5
+                }}>
+                    <img 
+                        src={referenceImage} 
+                        alt="Reference" 
+                        style={{ width: '100%', height: '100%', objectFit: 'contain' }} 
+                    />
+                </div>
+            )}
         </>
     );
 };

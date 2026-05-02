@@ -13,8 +13,58 @@
     height: 100%;
     object-fit: cover;
     z-index: 1;
-    opacity: 0.47;
+    opacity: var(--section-intro-bg-opacity, 0.47);
 }
+
+/* ==========================================================================
+   PERMIANO PÓS-EXTINÇÃO (COM VARIÁVEIS DO DESIGN EDITOR)
+   ========================================================================== */
+.view-section-intro.permiano.pos_extincao .section-bg-image {
+    --section-intro-bg-opacity: var(--dev-perm-pos-ext-bg-opacity, 1);
+}
+
+.view-section-intro.permiano.pos_extincao .section-intro-header {
+    top: 0;
+    left: 0;
+}
+
+.view-section-intro.permiano.pos_extincao .section-intro-period-label {
+    top: var(--dev-perm-pos-ext-label-top, 1208px);
+    left: var(--dev-perm-pos-ext-label-left, 41px);
+    font-size: var(--dev-perm-pos-ext-label-size, 30px);
+    letter-spacing: var(--dev-perm-pos-ext-label-spacing, 6px);
+}
+
+.view-section-intro.permiano.pos_extincao .section-intro-period-name {
+    top: var(--dev-perm-pos-ext-name-top, 1274px);
+    left: var(--dev-perm-pos-ext-name-left, 36px);
+    font-size: var(--dev-perm-pos-ext-name-size, 60px);
+    letter-spacing: var(--dev-perm-pos-ext-name-spacing, 3px);
+}
+
+.view-section-intro.permiano.pos_extincao .section-intro-body {
+    top: var(--dev-perm-pos-ext-body-top, 540px);
+    left: var(--dev-perm-pos-ext-body-left, 3.1px);
+    width: var(--dev-perm-pos-ext-body-w, 821px);
+    font-size: var(--dev-perm-pos-ext-body-size, 37px);
+    line-height: var(--dev-perm-pos-ext-body-lh, 1.3);
+}
+
+.view-section-intro.permiano.pos_extincao .section-intro-main-heading {
+    top: var(--dev-perm-pos-ext-heading-top, 0px);
+    left: var(--dev-perm-pos-ext-heading-left, 0px);
+    font-size: var(--dev-perm-pos-ext-heading-size, 96px);
+    width: var(--dev-perm-pos-ext-heading-w, 900px);
+    letter-spacing: var(--dev-perm-pos-ext-heading-spacing, 0px);
+    line-height: var(--dev-perm-pos-ext-heading-lh, 1.05);
+}
+
+.view-section-intro.permiano.pos_extincao .section-title-underline,
+.view-section-intro.permiano.pos_extincao .section-body-top-line,
+.view-section-intro.permiano.pos_extincao .section-body-bottom-line {
+    display: none !important;
+}
+
 
 .section-intro-content {
     position: absolute;
@@ -463,11 +513,11 @@
     top: var(--dev-perm-bio-body-top, 937px);
     left: var(--dev-perm-bio-body-left, 36px);
     width: var(--dev-perm-bio-body-w, 651px);
-    font-size: var(--dev-perm-bio-body-size, 37px);
 }
 
 .view-section-intro.permiano.biodiversidade .section-intro-main-text {
     line-height: var(--dev-perm-bio-body-lh, 1.3);
+    font-size: var(--dev-perm-bio-body-size, 37px);
 }
 
 .view-section-intro.permiano.biodiversidade .section-intro-main-heading {
@@ -518,6 +568,7 @@
 
 .view-section-intro.permiano.extincao .section-intro-main-text {
     line-height: var(--dev-perm-ext-body-lh, 1.3);
+    font-size: var(--dev-perm-ext-body-size, 37px);
 }
 
 .view-section-intro.permiano.extincao .section-intro-main-heading {
@@ -527,7 +578,7 @@
     width: var(--dev-perm-ext-heading-w, 805px);
     letter-spacing: var(--dev-perm-ext-heading-spacing, -1px);
     line-height: var(--dev-perm-ext-heading-lh, 1.05);
-    color: var(--color-primary-blue) !important;
+    color: var(--color-white) !important;
 }
 
 .view-section-intro.permiano.extincao .section-title-underline,

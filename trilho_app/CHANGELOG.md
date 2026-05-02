@@ -1,3 +1,27 @@
+# Changelog - PUC Trilho [2026-05-02]
+
+## 🛠️ Versão: Finalização dos Sobreviventes e Ajustes de Navegação
+- **Padronização Visual**: Removido o uso de imagens para títulos nos sobreviventes do Permiano (*Benthosuchus*, *Lystrosaurus*, etc.), restaurando o uso de texto com efeito `Typewriter` para consistência com o restante do projeto.
+- **Navegação Física**: Invertida a orientação das transições (Esquerda/Direita) para alinhar o movimento do conteúdo na tela com o deslocamento físico do totem sobre o trilho.
+- **Design Editor**: 
+    - Corrigido o mapeamento de variáveis para os sobreviventes, permitindo edição em tempo real de textos, selos e opacidades.
+    - Sincronizados os valores padrão do *Benthosuchus* com os do *Thrinaxodon* conforme referência validada.
+- **Correções de Layout**: 
+    - Restaurados estilos essenciais do título no `SpecimenDetail.css` após remoção acidental.
+    - Corrigido o `white-mt` do *Benthosuchus* que estava empurrando o conteúdo para fora da área visível.
+- **Sincronização de Dados**: Atualizados todos os caminhos de ativos para os sobreviventes do Permiano no `slides.js`.
+
+# Changelog - PUC Trilho [2026-05-02]
+
+## 🛠️ Versão: Refinamento da 3ª Extinção e Design Editor
+- **Restauração de Layout**: Revertida a página da Extinção do Permiano para o padrão `SectionIntro` (fundo escuro com imagem dos vulcões), alinhando com a estética do Ordoviciano.
+- **Sincronização de Dados**: Corrigido o mapeamento de IDs entre `slides.js` e `DesignEditor.jsx`, garantindo que o editor carregue as configurações automáticas para todas as seções do Permiano.
+- **Tipografia**: Ajustado o CSS para forçar textos 100% brancos na introdução da extinção, conforme solicitado.
+- **Evolução do Editor**: 
+    - Aumentado o range negativo de posicionamento vertical para até **-1000px**, permitindo colocar títulos no topo absoluto da tela.
+    - Corrigido o bug do **Body Size** que não estava sendo aplicado ao texto principal das introduções.
+- **Conteúdo**: Atualizados os textos técnicos sobre atividade vulcânica e liberação de metano no Permiano.
+
 # Changelog - PUC Trilho [2026-05-01]
 
 ## 🛠️ Versão: Otimização de Performance e Fidelidade (Permiano Final)

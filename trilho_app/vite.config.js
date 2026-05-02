@@ -9,6 +9,27 @@ function designSaverPlugin() {
   return {
     name: 'design-saver',
     configureServer(server) {
+      // Serve _conteudo directory
+      server.middlewares.use('/_conteudo', (req, res, next) => {
+        const decodedUrl = decodeURIComponent(req.url.split('?')[0]).replace(/^\//, '')
+        const filePath = path.resolve('..', '_conteudo', decodedUrl)
+        if (fs.existsSync(filePath) && fs.lstatSync(filePath).isFile()) {
+          const ext = path.extname(filePath).toLowerCase()
+          const mimeTypes = {
+            '.jpg': 'image/jpeg',
+            '.jpeg': 'image/jpeg',
+            '.png': 'image/png',
+            '.svg': 'image/svg+xml',
+            '.gif': 'image/gif',
+            '.webp': 'image/webp'
+          }
+          res.setHeader('Content-Type', mimeTypes[ext] || 'application/octet-stream')
+          res.end(fs.readFileSync(filePath))
+        } else {
+          next()
+        }
+      })
+
       server.middlewares.use('/api/save-design', (req, res) => {
         if (req.method !== 'POST') {
           res.statusCode = 405

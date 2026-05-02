@@ -55,7 +55,7 @@ const SectionIntro = ({ onNavigate, slideData }) => {
                     <div className="section-intro-header">
                         <motion.h3 variants={itemVariants} className="section-intro-period-label">{periodLabel}</motion.h3>
                         <motion.h2 variants={itemVariants} className="section-intro-period-name">{periodName}</motion.h2>
-                        <motion.img variants={itemVariants} className="section-title-underline" src="/assets/linha.svg" alt="" />
+                        {!slideData.hideLines && <motion.img variants={itemVariants} className="section-title-underline" src="/assets/linha.svg" alt="" />}
                     </div>
 
                     <div className="section-intro-body">
@@ -63,7 +63,7 @@ const SectionIntro = ({ onNavigate, slideData }) => {
                             <Typewriter text={slideData.title} delay={50} initialDelay={800} />
                         </motion.h1>
                         
-                        <motion.img variants={itemVariants} className="section-body-top-line" src="/assets/linha.svg" alt="" />
+                        {!slideData.hideLines && <motion.img variants={itemVariants} className="section-body-top-line" src="/assets/linha.svg" alt="" />}
                         
                         <motion.div variants={itemVariants} className="section-intro-main-text">
                             <Typewriter
@@ -73,7 +73,7 @@ const SectionIntro = ({ onNavigate, slideData }) => {
                             />
                         </motion.div>
                         
-                        <motion.img variants={itemVariants} className="section-body-bottom-line" src="/assets/linha.svg" alt="" />
+                        {!slideData.hideLines && <motion.img variants={itemVariants} className="section-body-bottom-line" src="/assets/linha.svg" alt="" />}
                     </div>
                 </motion.div>
             </div>

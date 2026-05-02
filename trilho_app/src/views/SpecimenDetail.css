@@ -266,6 +266,7 @@
 .view-detail.ordoviciano .bg-video,
 .view-detail.permiano .bg-video {
     transform: scale(var(--devonian-bg-scale)) translate(var(--devonian-bg-x), var(--devonian-bg-y));
+    opacity: var(--devonian-bg-opacity, 1);
 }
 
 /* ==========================================================================
@@ -1474,6 +1475,7 @@
     --devonian-desc-size: var(--devonian-perm-bio-archosaurus-desc-size, 40px);
     --devonian-desc-lh: var(--devonian-perm-bio-archosaurus-desc-lh, 50px);
     --devonian-bg-h: var(--devonian-perm-bio-archosaurus-bg-h, 42%);
+    --devonian-bg-opacity: var(--devonian-perm-bio-archosaurus-bg-opacity, 1);
     --devonian-bg-scale: var(--devonian-perm-bio-archosaurus-bg-scale, 1);
     --devonian-bg-x: var(--devonian-perm-bio-archosaurus-bg-x, 0px);
     --devonian-bg-y: var(--devonian-perm-bio-archosaurus-bg-y, 0px);
@@ -1626,4 +1628,73 @@
     --devonian-selo-top: var(--devonian-perm-bio-phyllotheca-selo-top, 799px);
     --devonian-selo-left: var(--devonian-perm-bio-phyllotheca-selo-left, 0px);
     --devonian-selo-w: var(--devonian-perm-bio-phyllotheca-selo-w, 862px);
+    --devonian-bg-opacity: var(--devonian-perm-bio-phyllotheca-bg-opacity, 1);
 }
+
+/* ==========================================================
+   PERMIANO PÓS-EXTINÇÃO - SOBREVIVENTES
+   ========================================================== */
+
+.view-detail.permiano.benthosuchus,
+.view-detail.permiano.lystrosaurus,
+.view-detail.permiano.thrinaxodon,
+.view-detail.permiano.procolophon,
+.view-detail.permiano.voltziopsis {
+    background-color: #fff;
+}
+
+.view-detail.permiano.benthosuchus {
+    --devonian-name-mt: var(--devonian-benthosuchus-name-mt, 96px);
+    --devonian-name-ml: var(--devonian-benthosuchus-name-ml, 0px);
+    --devonian-name-size: var(--devonian-benthosuchus-name-size, 83px);
+    --devonian-sub-mt: var(--devonian-benthosuchus-sub-mt, 51px);
+    --devonian-sub-ml: var(--devonian-benthosuchus-sub-ml, 0px);
+    --devonian-sub-w: var(--devonian-benthosuchus-sub-w, 590px);
+    --devonian-sub-size: var(--devonian-benthosuchus-sub-size, 56px);
+    --devonian-desc-mt: var(--devonian-benthosuchus-desc-mt, 96px);
+    --devonian-desc-ml: var(--devonian-benthosuchus-desc-ml, 0px);
+    --devonian-desc-w: var(--devonian-benthosuchus-desc-w, 752px);
+    --devonian-desc-size: var(--devonian-benthosuchus-desc-size, 40px);
+    --devonian-desc-lh: var(--devonian-benthosuchus-desc-lh, 50px);
+    --devonian-bg-h: var(--devonian-benthosuchus-bg-h, 42%);
+    --devonian-bg-opacity: var(--devonian-benthosuchus-bg-opacity, 1);
+    --devonian-bg-scale: var(--devonian-benthosuchus-bg-scale, 1);
+    --devonian-bg-x: var(--devonian-benthosuchus-bg-x, 0px);
+    --devonian-bg-y: var(--devonian-benthosuchus-bg-y, 0px);
+    --devonian-white-h: var(--devonian-benthosuchus-white-h, 34%);
+    --devonian-white-mt: var(--devonian-benthosuchus-white-mt, 38px);
+    --devonian-toptext-top: var(--devonian-benthosuchus-toptext-top, 180px);
+    --devonian-selo-top: var(--devonian-benthosuchus-selo-top, 799px);
+    --devonian-selo-left: var(--devonian-benthosuchus-selo-left, 0px);
+    --devonian-selo-w: var(--devonian-benthosuchus-selo-w, 862px);
+}
+
+.view-detail.permiano.lystrosaurus {
+    --devonian-name-mt: var(--devonian-lystrosaurus-name-mt, 96px);
+    --devonian-name-size: var(--devonian-lystrosaurus-name-size, 83px);
+    --devonian-bg-opacity: var(--devonian-lystrosaurus-bg-opacity, 1);
+    --devonian-bg-h: var(--devonian-lystrosaurus-bg-h, 42%);
+    --devonian-white-mt: var(--devonian-lystrosaurus-white-mt, 38px);
+}
+
+.view-detail.permiano.thrinaxodon {
+    --devonian-name-mt: var(--devonian-thrinaxodon-name-mt, 96px);
+    --devonian-bg-opacity: var(--devonian-thrinaxodon-bg-opacity, 1);
+    --devonian-bg-h: var(--devonian-thrinaxodon-bg-h, 42%);
+    --devonian-white-mt: var(--devonian-thrinaxodon-white-mt, 38px);
+}
+
+.view-detail.permiano.procolophon {
+    --devonian-name-mt: var(--devonian-procolophon-name-mt, 96px);
+    --devonian-bg-opacity: var(--devonian-procolophon-bg-opacity, 1);
+    --devonian-bg-h: var(--devonian-procolophon-bg-h, 42%);
+    --devonian-white-mt: var(--devonian-procolophon-white-mt, 38px);
+}
+
+.view-detail.permiano.voltziopsis {
+    --devonian-name-mt: var(--devonian-voltziopsis-name-mt, 96px);
+    --devonian-bg-opacity: var(--devonian-voltziopsis-bg-opacity, 1);
+    --devonian-bg-h: var(--devonian-voltziopsis-bg-h, 42%);
+    --devonian-white-mt: var(--devonian-voltziopsis-white-mt, 38px);
+}
+

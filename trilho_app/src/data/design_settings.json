@@ -789,6 +789,91 @@
         "--devonian-perm-bio-phyllotheca-selo-top": "799px",
         "--devonian-perm-bio-phyllotheca-selo-left": "0px"
       }
+    },
+    "extincao": {
+      "perm-ext-intro": {
+        "--dev-perm-ext-bg-opacity": "0.47",
+        "--dev-perm-ext-label-top": "61px",
+        "--dev-perm-ext-label-left": "41px",
+        "--dev-perm-ext-label-size": "30px",
+        "--dev-perm-ext-label-spacing": "6px",
+        "--dev-perm-ext-name-top": "102px",
+        "--dev-perm-ext-name-left": "36px",
+        "--dev-perm-ext-name-size": "60px",
+        "--dev-perm-ext-name-spacing": "3px",
+        "--dev-perm-ext-heading-top": "-33px",
+        "--dev-perm-ext-heading-left": "0px",
+        "--dev-perm-ext-heading-size": "96px",
+        "--dev-perm-ext-heading-w": "650px",
+        "--dev-perm-ext-heading-spacing": "4px",
+        "--dev-perm-ext-heading-lh": "1.15",
+        "--dev-perm-ext-body-top": "266px",
+        "--dev-perm-ext-body-left": "36px",
+        "--dev-perm-ext-body-w": "735px",
+        "--dev-perm-ext-body-size": "43px",
+        "--dev-perm-ext-body-lh": "1.3"
+      }
+    },
+    "pos_extincao": {
+      "perm-pos-ext-intro": {
+        "--dev-perm-pos-ext-bg-opacity": "0.85",
+        "--dev-perm-pos-ext-label-top": "1465px",
+        "--dev-perm-pos-ext-label-left": "41px",
+        "--dev-perm-pos-ext-label-size": "30px",
+        "--dev-perm-pos-ext-label-spacing": "6px",
+        "--dev-perm-pos-ext-name-top": "1501px",
+        "--dev-perm-pos-ext-name-left": "36px",
+        "--dev-perm-pos-ext-name-size": "60px",
+        "--dev-perm-pos-ext-name-spacing": "3px",
+        "--dev-perm-pos-ext-heading-top": "110px",
+        "--dev-perm-pos-ext-heading-left": "0px",
+        "--dev-perm-pos-ext-heading-size": "106px",
+        "--dev-perm-pos-ext-heading-w": "900px",
+        "--dev-perm-pos-ext-heading-spacing": "0px",
+        "--dev-perm-pos-ext-heading-lh": "1.05",
+        "--dev-perm-pos-ext-body-top": "599px",
+        "--dev-perm-pos-ext-body-left": "36px",
+        "--dev-perm-pos-ext-body-w": "821px",
+        "--dev-perm-pos-ext-body-size": "37px",
+        "--dev-perm-pos-ext-body-lh": "1.3"
+      },
+      "perm-pos-ext-mundo": {
+        "--dev-perm-pos-ext-mundo-img-top": "123px",
+        "--dev-perm-pos-ext-mundo-img-h": "607px",
+        "--dev-perm-pos-ext-mundo-img-scale": "1.15",
+        "--dev-perm-pos-ext-mundo-cap-top": "785px",
+        "--dev-perm-pos-ext-mundo-cap-left": "103px",
+        "--dev-perm-pos-ext-mundo-cap-size": "26px",
+        "--dev-perm-pos-ext-mundo-line-top": "858px",
+        "--dev-perm-pos-ext-mundo-line-left": "108px",
+        "--dev-perm-pos-ext-mundo-text-top": "1031px",
+        "--dev-perm-pos-ext-mundo-top-top": "961px",
+        "--dev-perm-pos-ext-mundo-top-left": "108px",
+        "--dev-perm-pos-ext-mundo-top-w": "864px",
+        "--dev-perm-pos-ext-mundo-top-size": "37px",
+        "--dev-perm-pos-ext-mundo-top-lh": "47px",
+        "--dev-perm-pos-ext-mundo-bot-top": "1330px",
+        "--dev-perm-pos-ext-mundo-bot-left": "108px",
+        "--dev-perm-pos-ext-mundo-bot-w": "864px",
+        "--dev-perm-pos-ext-mundo-bot-size": "37px",
+        "--dev-perm-pos-ext-mundo-bot-lh": "47px"
+      },
+      "perm-pos-ext-resistencia": {
+        "--dev-perm-pos-ext-resistencia-img-top": "96px",
+        "--dev-perm-pos-ext-resistencia-img-h": "860px",
+        "--dev-perm-pos-ext-resistencia-img-scale": "1.85",
+        "--dev-perm-pos-ext-resistencia-img-x": "-237px",
+        "--dev-perm-pos-ext-resistencia-img-y": "0px",
+        "--dev-perm-pos-ext-resistencia-cap-top": "860px",
+        "--dev-perm-pos-ext-resistencia-line-top": "1600px",
+        "--dev-perm-pos-ext-resistencia-line-left": "108px",
+        "--dev-perm-pos-ext-resistencia-text-top": "1050px",
+        "--dev-perm-pos-ext-resistencia-top-top": "1050px",
+        "--dev-perm-pos-ext-resistencia-top-left": "108px",
+        "--dev-perm-pos-ext-resistencia-top-w": "864px",
+        "--dev-perm-pos-ext-resistencia-top-size": "52px",
+        "--dev-perm-pos-ext-resistencia-top-lh": "60px"
+      }
     }
   }
 }

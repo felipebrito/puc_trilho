@@ -5,10 +5,10 @@ import { slidesData, periodStartIndex } from '../data/slides';
 import './HomePermian.css';
 
 // Absolute indices in slidesData for each permiano section
-const PERMIAN_OFFSET    = periodStartIndex.permiano;
+const PERMIAN_OFFSET = periodStartIndex.permiano;
 const BIODIVERSIDADE_IDX = PERMIAN_OFFSET + slidesData.slice(PERMIAN_OFFSET).findIndex(s => s.section === 'biodiversidade');
-const EXTINCAO_IDX       = PERMIAN_OFFSET + slidesData.slice(PERMIAN_OFFSET).findIndex(s => s.section === 'extincao');
-const POS_EXTINCAO_IDX   = PERMIAN_OFFSET + slidesData.slice(PERMIAN_OFFSET).findIndex(s => s.section === 'pos_extincao');
+const EXTINCAO_IDX = PERMIAN_OFFSET + slidesData.slice(PERMIAN_OFFSET).findIndex(s => s.section === 'extincao');
+const POS_EXTINCAO_IDX = PERMIAN_OFFSET + slidesData.slice(PERMIAN_OFFSET).findIndex(s => s.section === 'pos_extincao');
 
 const HomePermian = ({ onNavigate }) => {
     const [activeIndex, setActiveIndex] = useState(0);
@@ -38,9 +38,9 @@ const HomePermian = ({ onNavigate }) => {
         hidden: { opacity: 1 },
         visible: {
             opacity: 1,
-            transition: { 
+            transition: {
                 delayChildren: 0.6,
-                staggerChildren: 0.15 
+                staggerChildren: 0.15
             }
         }
     };
@@ -82,7 +82,7 @@ const HomePermian = ({ onNavigate }) => {
                             onClick={() => onNavigate('up', EXTINCAO_IDX)}
                             onMouseEnter={() => setActiveIndex(1)}
                         >
-                            <span>A 3ª EXTINÇÃO EM MASSA |</span>
+                            <span>A 3ª EXTINÇÃO EM MASSA</span>
                             <span className={activeIndex === 1 ? "btn-permian-icon-active" : "btn-permian-icon-inactive"}>›</span>
                         </button>
                         <button
