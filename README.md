@@ -1,61 +1,44 @@
-# PUC Gigantes - Trilho App (Exposição Interativa)
+# PUC Trilho - Quiosque Geológico de Alta Fidelidade
 
-Aplicativo interativo react + vite em formato Totem/Kiosk Vertical (1080x1920) desenvolvido para exibir a linhagem evolutiva, slides informativos sobre a fauna marinha do período Ordoviciano, Siluriano, o evento de Extinção em Massa, o período Devoniano e o período Permiano.
+Aplicação interativa de alta fidelidade desenvolvida em React + Vite, em formato Kiosk Vertical (1080x1920), para o Museu de Ciências e Tecnologia da PUC Minas. O projeto exibe a cronologia da Terra através de 8 períodos geológicos, integrando navegação física e visual cinematográfico.
 
-O App é desenhado estritamente para espelhar a apresentação criada pela PUC e pelo Museu de Ciências e Tecnologia.
+## 🚀 Funcionalidades
+- **Navegação Física**: Sincronização em tempo real com hardware de Rotary Encoder sobre um trilho mecânico.
+- **8 Períodos Geológicos**: Do Arqueano ao Permiano, com transições fluidas e conteúdos profundos de biodiversidade.
+- **Animações Cinematográficas**: Transições laterais ("swipe") simultâneas e revelação sequencial de textos (`Typewriter`) via Framer Motion.
+- **Ferramentas Administrativas**: Assistente de calibração do trilho (Wizard) e Editor de Design integrado para ajustes em tempo real.
 
-> **Importante:** Este repositório foi reestruturado para ser **exclusivo para a aplicação do Trilho**. Outros serviços (como o Photo Booth, Server e Projeções) foram separados.
+## 🛠️ Instalação e Execução
 
-## 🎛️ Sistema de Controle (Rotary Encoder ESP32)
+### Requisitos:
+- Node.js (v18+)
+- NPM
 
-A instalação utiliza um moderno sistema de navegação física, garantindo interatividade de ponta para os visitantes, substituindo controles tradicionais (teclado/touch). A interface é montada para ser controlada de maneira orgânica por hardware direcional através de uma integração do React com um microcontrolador **ESP32** acoplado a um **Rotary Encoder**:
+### Passos:
+1. Instale as dependências:
+   ```bash
+   npm install
+   ```
+2. Execute o servidor de desenvolvimento:
+   ```bash
+   npm run dev
+   ```
 
-*   **Girar para a Direita (Clockwise):** Simula a entrada `ArrowRight`, avançando de forma fluida para a tela ou slide seguinte.
-*   **Girar para a Esquerda (Counter-Clockwise):** Simula a entrada `ArrowLeft`, retornando à lâmina anterior da evolução pré-histórica.
-*   **Pressionar (Click/SW do Encoder):** Simula a entrada `Enter`, disparando a ação principal do slide (ou retornando ao menu principal dependendo do contexto interativo).
+## 🎮 Controles e Atalhos
 
-Essa comunicação assegura uma experiência lúdica em que os visitantes controlam facilmente a linha do tempo geológica.
+### Navegação de Teste:
+- **Teclas 1 a 8**: Salto direto para a Home de cada período geológico.
+- **Setas Direita/Esquerda**: Navegação sequencial entre slides.
 
-### Pinagem Básica (ESP32):
-- **CLK:** Pino de Clock.
-- **DT:** Pino de Direção (Data).
-- **SW:** Pino do Switch (Botão/Click).
-- **GND/3V3:** Alimentação padrão e terra.
+### Administração e Calibração:
+- **Tecla 'W'**: Abre o **RailWizard** (Calibração física dos limites do encoder para cada zona).
+- **Tecla 'E'**: Abre o **DesignEditor** (Ajustes de cores, escalas, posições e opacidades sem mexer no código).
 
-### Atalhos de Teclado (Acesso Direto):
-Além do painel físico principal usando o Encoder, a aplicação conta com atalhos de teclado para pular diretamente para os inícios dos respectivos períodos:
-- **Tecla `1`:** Navega para o Início do Período Ordoviciano.
-- **Tecla `2`:** Navega para o Início do Período Devoniano.
-- **Tecla `3`:** Navega para o Início do Período Permiano.
-
-## 🚀 Como Rodar o Aplicativo Principal
-
-### Pré-requisitos
-*   Node.js (v16+) instalado.
-
-### 1. Iniciar o Servidor React
-O código da aplicação front-end está concentrado na pasta `trilho_app`:
-
-```bash
-cd trilho_app
-npm install
-npm run dev
-```
-
-A aplicação será iniciada na porta padrão (`http://localhost:5173`). Configure a tela do monitor/totem para exibição vertical visando manter o design pixel-perfect (`1080x1920`).
-
-## 🦖 Estrutura Interativa do Front-End
-
-A navegação baseia-se num sistema segmentado reativo de slides (`slidesData.js`) formando uma trilha:
-1. **Home/SectionIntro**: Capa e chamada interativa para a época a ser explorada.
-2. **Biodiversidade (`BiodiversityIntro`)**: Exposição geral sobre a vida marinha no período selecionado.
-3. **Catálogo de Espécimes (`SpecimenDetail`, `SilurianDoubleSpecimen`, etc.)**: Layout dedicado ao detalhamento 3D ou visual das espécies com descrições imersivas.
-4. **Eventos de Extinção (`ExtinctionIntro`, `ExtinctionContent`)**: Telas imersivas e dramáticas ilustrando como o período geológico encontrou seu fim antes de originar o próximo estágio de evolução.
-
-## 📦 Tecnologias 
-- `React 18` + `Vite`
-- `Framer Motion` (Transições microscópicas e grandes aberturas)
-- `C/C++ Arduino Core` (Software microcontrolador ESP32)
+## 🏗️ Estrutura Técnica
+- **Frontend**: React 18, Vite.
+- **Animações**: Framer Motion (uso de `AnimatePresence` com `popLayout`).
+- **Roteamento**: Baseado em Hash dinâmico (`#periodo-sessao-index`).
+- **Assets**: Vídeos 4K otimizados e ilustrações PNG/SVG espelhadas do design original da PUC.
 
 ---
-*Produzido sob a estrutura de roteamento segmentário do React via estados por SlideIndex*
+*Documentação detalhada disponível em [DOCUMENTATION.md](./DOCUMENTATION.md)*

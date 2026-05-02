@@ -1,60 +1,91 @@
-# Changelog
+# Changelog - PUC Trilho [2026-05-02]
 
-## [Unreleased] - 2026-04-27
+## 🛠️ Versão: Minimalismo de Capa e Orquestração de Conteúdo
+- **Capas Minimalistas**: Ocultados todos os blocos de texto (títulos, datas e descrições) nas capas de períodos (`HomeOrdovician`, `HomeDevonian`, `HomePermian`) e transições, mantendo apenas o vídeo e os menus de interação.
+- **Orquestração de Digitação**: Restaurados os atrasos sequenciais (`Typewriter`) nas páginas de biodiversidade para garantir que nome, subtítulo e descrição surjam em tempos distintos (0.8s, 1.5s, 2.5s).
+- **Navegação de Sessão**: Corrigido o posicionamento dos textos nas páginas de extinção, garantindo visibilidade total independente da calibração do encoder.
+- **Estabilidade de Transição**: Implementado o modo `popLayout` no Framer Motion para evitar sobreposição de elementos durante a navegação lateral rápida no trilho.
 
-### Trilho Kiosk App
+# Changelog - PUC Trilho [2026-05-02]
 
-- **Correção: Flash preto na transição Home → Biodiversidade**
-    - **Diagnóstico**: A transição da tela `HomeOrdovician` para `SectionIntro` (biodiversidade) apresentava um flash preto e engasgava ao carregar. O problema não era ordem de execução nem animação CSS, mas sim o ciclo de vida de decode de imagens do browser.
-    - **Causa raiz**: O browser distingue *download* de *decode*. A home carregava sem problemas porque a imagem de fundo (`home_bg.png`) era decodificada no primeiro render do app, antes de qualquer interação. As demais telas (biodiversidade, extinção, etc.) só tinham suas imagens requisitadas no momento da transição — tarde demais para o browser decodificar antes da primeira pintura, resultando em um frame preto visível.
-    - **Tentativas descartadas**:
-        - `new Image().src = ...` (preload via JS): apenas baixa o arquivo, não garante decode. Não resolveu.
-        - Aumento do `initialDelay` do componente `Typewriter`: atacava sintoma errado (re-renders), não a causa.
-    - **Solução aplicada** (`App.jsx`): Adicionado um bloco de `<img>` invisível no DOM para **todos os slides** que possuem imagem de fundo (`videoSrc`, `bgImage`, `imageSrc`). Por serem elementos reais no DOM (mesmo com `opacity: 0`, `width: 0`, `overflow: hidden`), o browser realiza o decode completo durante o tempo ocioso (idle), e quando a transição começar a imagem já está pronta para pintar instantaneamente — o mesmo comportamento que a home já tinha por padrão.
+## 🛠️ Versão: Finalização dos Sobreviventes e Ajustes de Navegação
+- **Padronização Visual**: Removido o uso de imagens para títulos nos sobreviventes do Permiano (*Benthosuchus*, *Lystrosaurus*, etc.), restaurando o uso de texto com efeito `Typewriter` para consistência com o restante do projeto.
+- **Navegação Física**: Invertida a orientação das transições (Esquerda/Direita) para alinhar o movimento do conteúdo na tela com o deslocamento físico do totem sobre o trilho.
+- **Design Editor**: 
+    - Corrigido o mapeamento de variáveis para todos os sobreviventes (*Lystrosaurus*, *Thrinaxodon*, *Procolophon*, *Voltziopsis*), permitindo edição completa via editor.
+    - Sincronizados os valores padrão do *Benthosuchus* com os do *Thrinaxodon* conforme referência validada.
+- **Correções de Layout**: 
+    - Restaurados estilos essenciais do título no `SpecimenDetail.css` após remoção acidental.
+    - Corrigido o `white-mt` do *Benthosuchus* que estava empurrando o conteúdo para fora da área visível.
+- **Sincronização de Dados**: 
+    - Atualizados todos os caminhos de ativos para os sobreviventes do Permiano no `slides.js`.
+    - Internalizados todos os ativos de todos os períodos (imagens de espécies, selos, introduções e referências de layout) para dentro da pasta `public/assets/`, eliminando totalmente a dependência do diretório externo `_conteudo`.
+    - Removido o middleware de servidor do `vite.config.js` que servia arquivos externos, tornando o projeto 100% autônomo.
+    - Organizadas as imagens de referência em subpastas por período (`ordoviciano/`, `devoniano/`, `permiano/`).
+    - Renomeados arquivos para um padrão padronizado (lowercase, sem espaços ou prefixos de página).
 
-- **Correção: `HomeOrdovician` ausente no roteador de componentes** (`App.jsx`)
-    - O tipo `home_ordoviciano` não estava mapeado no switch de renderização de `App.jsx`, fazendo com que a tela home do Ordoviciano não renderizasse componente algum.
-    - Adicionado o import de `HomeOrdovician` e o caso `else if (type === 'home_ordoviciano')` no roteador.
+# Changelog - PUC Trilho [2026-05-02]
 
-- **Correção: prop `viewKey` → `viewId` no `DesignEditor`** (`App.jsx`)
-    - O componente `DesignEditor` recebia a prop com nome errado (`viewKey`), que foi corrigido para `viewId`, alinhando ao contrato da interface do componente.
+## 🛠️ Versão: Refinamento da 3ª Extinção e Design Editor
+- **Restauração de Layout**: Revertida a página da Extinção do Permiano para o padrão `SectionIntro` (fundo escuro com imagem dos vulcões), alinhando com a estética do Ordoviciano.
+- **Sincronização de Dados**: Corrigido o mapeamento de IDs entre `slides.js` e `DesignEditor.jsx`, garantindo que o editor carregue as configurações automáticas para todas as seções do Permiano.
+- **Tipografia**: Ajustado o CSS para forçar textos 100% brancos na introdução da extinção, conforme solicitado.
+- **Evolução do Editor**: 
+    - Aumentado o range negativo de posicionamento vertical para até **-1000px**, permitindo colocar títulos no topo absoluto da tela.
+    - Corrigido o bug do **Body Size** que não estava sendo aplicado ao texto principal das introduções.
+- **Conteúdo**: Atualizados os textos técnicos sobre atividade vulcânica e liberação de metano no Permiano.
 
-- **Correção: remoção da classe `animate-fade-in` de todas as views**
-    - A classe `animate-fade-in` aplicada manualmente nos elementos raiz dos componentes conflitava com as animações de transição gerenciadas pelo `framer-motion` via `AnimatePresence` em `App.jsx`, causando dupla animação de entrada.
-    - Removida de todos os componentes de view: `Home`, `HomeOrdovician`, `HomeDevonian`, `HomePermian`, `SectionIntro`, `SpecimenDetail`, `DoubleSpecimenDetail`, `EventHeader`, `EventDetail`, `ExtinctionContent`, `ExtinctionContentDevonian`, `SilurianGlobe`, `SilurianSpecimen`, `SilurianDoubleSpecimen`, `DevonianExtinctionEnvironments`.
+# Changelog - PUC Trilho [2026-05-01]
 
-- **Features & Infraestrutura** (sessão anterior):
-    - Implementação de navegação robusta via rotas URL Hash (`/#periodo-sessao-id`), facilitando edição e preview de telas específicas.
-    - Implementação da ferramenta `DesignEditor` como overlay: permite injeção dinâmica de variáveis CSS sobre uma imagem de referência, com suporte de exportação para código.
-    - Script e ambiente criados para exportar referências originais em PDF como uma galeria de imagens para uso no overlay.
-- **Telas e Conteúdo** (sessão anterior):
-    - **Devoniano (Home)**:
-        - Troca do background genérico pelo arquivo definitivo (`devoniano_home_bg.png`).
-        - Inclusão dos textos finais e alinhamento visual preciso utilizando o `DesignEditor`.
-        - Substituição do comportamento dos botões do menu inferior por recortes de imagem nativos (`botaoOFF.png`) correspondendo ao design de estado ativo.
-## [Unreleased] - 2026-02-10
+## 🛠️ Versão: Otimização de Performance e Fidelidade (Permiano Final)
 
-### Booth App
--   **Stability Fixes**:
-    -   Fixed "stuck at 3" countdown issue by using explicit `timerRef` management.
-    -   Replaced fragile boolean cooldown with robust timestamp-based check (`cooldownTimeRef`) to prevent race conditions.
-    -   Persisted `Webcam` component to avoid camera re-initialization delays between photos.
--   **Resource Optimization**:
-    -   Implemented "Deadlock Prevention": Paused `face-api` detection loop while `background-removal` is running to prevent GPU/CPU resource contention.
-    -   Added "Resource Protection": Disabled "Tirar Foto" button and blocked `startCapture` calls while background processing is active.
--   **UI/UX Improvements**:
-    -   Added `GooeyLoader` component for engaging visual feedback during processing.
-    -   Implemented full-screen "Processing" overlay:
-        -   Hides camera video and controls during upload/processing.
-        -   Displays `GooeyLoader` and a "Processando..." message.
-        -   Prevents user interaction until processing is complete.
-    -   Added non-blocking "Success" overlay.
-    -   Improved face feedback messages ("Aproxime-se", "Centralize", "Sorria").
--   **Features**:
-    -   Integrated `face-api.js` for smart face detection and V-shape jawline cropping.
-    -   Integrated `@imgly/background-removal` for client-side background removal.
-    -   Implemented V-shape mask logic to include neck but exclude shoulders.
+### 🚀 Novas Funcionalidades
+- **Otimização de Ativos**: Realizado resize em massa de todos os ativos do Permiano (Backgrounds e Espécies). Redução drástica de ~300MB para ~25MB, eliminando travamentos causados por imagens de 10K (60MP).
+- **Sincronização de Textos**: Realizada auditoria completa e sincronização dos textos da biodiversidade permiana (Archosaurus, Scutosaurus, Dvinia, Arctotypus, Dicynodon, Glossopteris e Phyllotheca) com as referências oficiais (págs 45-52).
+- **Orquestração de Animações**: Implementado sistema de "Unified Animation Pulse" no `App.jsx`, sincronizando a transição de slide com a entrada escalonada (staggered) dos elementos internos.
+- **Async Decoding**: Implementada decodificação assíncrona de imagens para garantir que a interface permaneça responsiva durante o carregamento de novos cenários.
 
-### General
--   Initialized Unity project structure (`Unity/Gigantes`).
--   Updated project documentation and task tracking.
+### 🎨 Correções e Alinhamento
+- **Fim do Stuttering**: Removidos filtros de `blur` das animações de Framer Motion, reduzindo significativamente a carga sobre a GPU.
+- **Timeline de Entrada**: Adicionado delay de 0.6s em todos os conteúdos internos para garantir que os elementos surjam apenas após a "aterrissagem" do slide.
+- **Correção de Stagger**: Restaurada a lógica de entrada sequencial dos itens (títulos, botões e labels) que estava corrompida.
+- **Sanitização de Caminhos**: Implementado `encodeURI` em todos os componentes de mídia para suportar caminhos de arquivo com espaços ou caracteres especiais.
+
+# Changelog - PUC Trilho [2026-05-01]
+
+## 🛠️ Versão: Implementação Período Permiano (Menu)
+
+### 🚀 Novas Funcionalidades
+- **Módulo Permiano**: Finalizada a implementação da biodiversidade e iniciada a 3ª extinção em massa.
+- **Biodiversidade Permiana**: Implementados os 7 espécimes com nomes corrigidos (Sentence Case), subtítulos oficiais e selos de extinção.
+- **Design Editor**: Adicionado suporte total para os 7 espécimes e para o slide de introdução da extinção.
+- **Ajuste Fino**: Mapeadas imagens de referência (páginas 44 a 54) e configuradas variáveis CSS individuais para cada slide.
+- **Ativos**: Configurado symlink para `_conteudo` garantindo o carregamento correto de todas as imagens e vídeos do servidor.
+- **3ª Extinção em Massa**: Implementado slide de introdução (`perm-ext-intro`) com título em azul seguindo o padrão do Ordoviciano.
+
+### 🎨 Correções e Alinhamento
+- **Efeito de Crop**: Implementado `clip-path` diagonal em todos os botões do menu para alinhar com o design high-fidelity.
+- **Correção de pageKey**: Ajustada lógica de navegação no `App.jsx` para suportar múltiplos períodos com slides de "Home" distintos.
+- **Blindagem de Textos**: Transcritos conteúdos oficiais sobre a 3ª Extinção em Massa e formação da Pangeia.
+
+# Changelog - PUC Trilho [2026-04-27]
+
+## 🛠️ Versão: Estabilidade JSON-First (Ponto Zero)
+
+### 🚀 Novas Funcionalidades
+- **Arquitetura de Dados**: Implementado o `design_settings.json` como banco de dados central para coordenadas de layout.
+- **Injetor de Estilos Dynamico**: Criado `useEffect` no `App.jsx` que injeta variáveis CSS específicas por espécie (`--devonian-{id}-{prop}`) a cada troca de slide.
+- **IDs de Navegação**: Atribuídos IDs persistentes (`intro`, `globe`, `dalmanites`, etc.) para garantir que as coordenadas fiquem atreladas ao conteúdo e não ao índice numérico.
+
+### 🎨 Correções e Alinhamento
+- **Finalização Homotelus sp.**: Coordenadas travadas e blindadas no JSON (Slide 1 Biodiversidade Ordoviciano).
+- **Restauração do Editor**: Corrigidos erros de sincronização e mapeamento (viewId) que impediam o funcionamento dos sliders.
+- **Limpeza de Transição**: Removida animação de sobreposição que causava "texto fantasma" durante a navegação.
+- **Restauração Global**: Revertidas mudanças estruturais no `SpecimenDetail.css` que causavam regressões no Devoniano/Carbonífero.
+- **Correção Meganeura**: Restaurado alinhamento original (96px Name MT) via injeção de dados estáveis.
+- **Blindagem Dalmanites**: Aplicadas as coordenadas finais do chat (Box Top: 926px, TopText: 181px) via JSON.
+- **Fix Globo Siluriano**: Corrigido header encavalado e texto sobreposto ao globo (-61px header adjustment).
+
+### 🔒 Segurança de Código
+- **Isolamento de Estilos**: Implementado padrão de variáveis CSS por ID, garantindo que alterações em uma página não impactem as outras.
+- **Persistência**: Configurações do `DesignEditor` agora refletem o estado real do banco de dados JSON.
