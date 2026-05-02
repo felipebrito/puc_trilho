@@ -1,10 +1,10 @@
 # Changelog - PUC Trilho [2026-05-02]
 
-## 🛠️ Versão: Polimento Visual e Transições Fluídas
-- **Transições Simultâneas**: Removido o `mode="wait"` das transições de slide, permitindo que o conteúdo novo e o antigo se movam juntos ("swipe"), eliminando o intervalo preto entre telas.
-- **Fidelidade de Vídeo**: Removido o overlay de gradiente escuro (`video-overlay`) nos vídeos de período, restaurando o brilho e a nitidez total dos ativos originais.
-- **Sincronização de Animações**: Padronizadas as variantes de animação (`initial` e `animate`) nos componentes `Home`, `SectionIntro` e `ExtinctionContent`, restaurando a entrada sequencial (staggered) de títulos e botões com blur e fade.
-- **Correção de Layout**: Definida a classe `.page-container` no CSS global para garantir que o conteúdo sempre ocupe 100% da área visível do quiosque.
+## 🛠️ Versão: Minimalismo de Capa e Orquestração de Conteúdo
+- **Capas Minimalistas**: Ocultados todos os blocos de texto (títulos, datas e descrições) nas capas de períodos (`HomeOrdovician`, `HomeDevonian`, `HomePermian`) e transições, mantendo apenas o vídeo e os menus de interação.
+- **Orquestração de Digitação**: Restaurados os atrasos sequenciais (`Typewriter`) nas páginas de biodiversidade para garantir que nome, subtítulo e descrição surjam em tempos distintos (0.8s, 1.5s, 2.5s).
+- **Navegação de Sessão**: Corrigido o posicionamento dos textos nas páginas de extinção, garantindo visibilidade total independente da calibração do encoder.
+- **Estabilidade de Transição**: Implementado o modo `popLayout` no Framer Motion para evitar sobreposição de elementos durante a navegação lateral rápida no trilho.
 
 # Changelog - PUC Trilho [2026-05-02]
 

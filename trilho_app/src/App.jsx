@@ -407,7 +407,7 @@ function App() {
   return (
     <>
       <TopBar />
-        <AnimatePresence custom={slideDirection}>
+        <AnimatePresence mode="popLayout" custom={slideDirection}>
           {(() => {
             let Comp = null;
             const zone = railSettings.zones.find(z => z.id === currentZoneId) || railSettings.zones[0];

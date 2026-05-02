@@ -18,15 +18,7 @@ const PeriodVideoView = ({ videoSrc, title, periodNumber, hasMenu, onOpenMenu })
 
             <div className="video-overlay" />
 
-            <motion.div 
-                className="period-info"
-                initial={{ opacity: 0, x: -50 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 1, delay: 0.5 }}
-            >
-                <span className="period-number">{periodNumber.toString().padStart(2, '0')}</span>
-                <h1 className="period-title">{title}</h1>
-            </motion.div>
+            {/* Section texts hidden as requested */}
 
             {hasMenu && (
                 <motion.div 

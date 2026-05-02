@@ -141,14 +141,13 @@ const ExtinctionContent = ({ onNavigate, slideData, viewId }) => {
                 width: getVar('text-w', '864px') 
             }}>
                 <div className="extinction-top-text" style={{ 
-                    position: viewId?.includes('extincao-content') ? 'relative' : 'absolute',
-                    top: viewId?.includes('extincao-content') ? '0' : `calc(${getVar('top-top', '0px')} - ${getVar('text-top', '1050px')})`,
-                    left: viewId?.includes('extincao-content') ? '0' : `calc(${getVar('top-left', '108px')} - ${getVar('text-left', '108px')})`,
+                    position: 'relative',
                     width: getVar('top-w', '864px'),
                     marginBottom: '60px',
-                    lineHeight: getVar('top-lh', '47px')
+                    lineHeight: getVar('top-lh', '47px'),
+                    zIndex: 10
                 }}>
-                    <p style={{ margin: 0, fontFamily: 'var(--font-canva)', fontSize: getVar('top-size', '37px'), color: 'rgb(11, 14, 33)', lineHeight: 'inherit' }}>
+                    <p style={{ margin: 0, fontFamily: 'var(--font-canva)', fontSize: getVar('top-size', '37px'), lineHeight: 'inherit' }}>
                         {slideData.topText?.split('\n').map((line, i) => (
                             <React.Fragment key={i}>
                                 {line}<br />
@@ -158,13 +157,12 @@ const ExtinctionContent = ({ onNavigate, slideData, viewId }) => {
                 </div>
 
                 <div className="extinction-bottom-text" style={{
-                    position: viewId.includes('extincao-content') ? 'relative' : 'absolute',
-                    top: viewId.includes('extincao-content') ? '0' : `calc(${getVar('bot-top', '400px')} - ${getVar('text-top', '1050px')})`,
-                    left: viewId.includes('extincao-content') ? '0' : `calc(${getVar('bot-left', '108px')} - ${getVar('text-left', '108px')})`,
+                    position: 'relative',
                     width: getVar('bot-w', '864px'),
-                    lineHeight: getVar('bot-lh', '47px')
+                    lineHeight: getVar('bot-lh', '47px'),
+                    zIndex: 10
                 }}>
-                    <p style={{ margin: 0, fontFamily: 'var(--font-canva)', fontSize: getVar('bot-size', '37px'), color: 'rgb(11, 14, 33)', lineHeight: 'inherit' }}>
+                    <p style={{ margin: 0, fontFamily: 'var(--font-canva)', fontSize: getVar('bot-size', '37px'), lineHeight: 'inherit' }}>
                         {slideData.bottomText?.split('\n').map((line, i) => {
                             const highlightPhrase = '85% de todas as espécies';
                             if (line.includes(highlightPhrase)) {

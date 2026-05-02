@@ -57,12 +57,7 @@ const HomeDevonian = ({ onNavigate }) => {
                     className="home-devonian-content"
                     variants={containerVariants}
                 >
-                    <div className="home-devonian-titles">
-                        <motion.h2 variants={itemVariants} className="devonian-subtitle">PERÍODO</motion.h2>
-                        <motion.h1 variants={itemVariants} className="devonian-title">DEVONIANO</motion.h1>
-                        <motion.p variants={itemVariants} className="devonian-description">420 a 360 milhões de anos</motion.p>
-
-                    </div>
+                    {/* Titles hidden as requested */}
 
                     <motion.div variants={itemVariants} className="home-devonian-menu">
                         <button

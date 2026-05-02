@@ -57,14 +57,14 @@ const HomeOrdovician = ({ onNavigate }) => {
                     className="home-ordovician-content"
                     variants={containerVariants}
                 >
-                    <div className="home-ordovician-titles">
+                    {/* <div className="home-ordovician-titles">
                         <motion.h2 variants={itemVariants} className="ordovician-subtitle">PERÍODO</motion.h2>
                         <motion.h1 variants={itemVariants} className="ordovician-title">ORDOVICIANO</motion.h1>
                         <motion.p variants={itemVariants} className="ordovician-description">486 a 444 milhões de anos</motion.p>
                         <motion.p variants={itemVariants} className="ordovician-sub-description">
                             A primeira extinção em massa marca o final do período.
                         </motion.p>
-                    </div>
+                    </div> */}
 
                     <motion.div variants={itemVariants} className="home-ordovician-menu">
                         <button

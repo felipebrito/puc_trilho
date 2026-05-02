@@ -57,16 +57,7 @@ const HomePermian = ({ onNavigate }) => {
                     className="home-permian-content"
                     variants={containerVariants}
                 >
-                    <div className="home-permian-titles">
-                        <motion.h2 variants={itemVariants} className="permian-subtitle">PERÍODO</motion.h2>
-                        <motion.h1 variants={itemVariants} className="permian-title">PERMIANO</motion.h1>
-                        <motion.div variants={itemVariants} className="permian-title-underline"></motion.div>
-                        <motion.p variants={itemVariants} className="permian-description">299 a 251 milhões de anos</motion.p>
-                        <motion.p variants={itemVariants} className="permian-sub-description">A 3ª extinção em massa.</motion.p>
-                        <motion.p variants={itemVariants} className="permian-extra-description">
-                            O supercontinente Pangeia se forma e ocorre a terceira extinção em massa, a mais letal de todos os tempos.
-                        </motion.p>
-                    </div>
+                    {/* Titles hidden as requested */}
 
                     <motion.div variants={itemVariants} className="home-permian-menu">
                         <button
