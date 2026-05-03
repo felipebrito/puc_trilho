@@ -248,6 +248,14 @@ function App() {
       }
       if (e.key.toLowerCase() === 'c') { setIsHardwareConfigVisible(prev => !prev); }
       if (e.key.toLowerCase() === 'w') { setIsRailWizardVisible(prev => !prev); }
+      if (e.key.toLowerCase() === 'd') { setShowDebugPos(prev => !prev); }
+      if (e.key.toLowerCase() === 'f') {
+        if (!document.fullscreenElement) {
+          document.documentElement.requestFullscreen().catch(e => console.error(e));
+        } else {
+          document.exitFullscreen().catch(e => console.error(e));
+        }
+      }
       
       // Mock de posição para teste (Shift + Setas)
       if (e.shiftKey && (e.key === 'ArrowRight' || e.key === 'ArrowLeft' || e.key === '>' || e.key === '<' || e.key === '.' || e.key === ',')) {
@@ -489,25 +497,27 @@ function App() {
         {currentSection === 'home' && <BottomBar />}
         
         {/* Debug Overlay */}
-        <div style={{
-          position: 'fixed',
-          top: 20,
-          right: 20,
-          background: 'rgba(0,0,0,0.8)',
-          color: 'white',
-          padding: '15px',
-          borderRadius: '10px',
-          zIndex: 10000,
-          fontFamily: 'monospace',
-          border: '1px solid #007AFF',
-          pointerEvents: 'none'
-        }}>
-          <div>POS: {Math.round(encoderPosition)}</div>
-          <div>ZONA: {railSettings.zones.find(z => encoderPosition >= z.start && encoderPosition <= z.end)?.name || 'FORA'}</div>
-          <div style={{ color: socket?.connected ? '#4CD964' : '#FF2D55' }}>
-            SOCKET: {socket?.connected ? 'CONECTADO' : 'DESCONECTADO'}
+        {showDebugPos && (
+          <div style={{
+            position: 'fixed',
+            top: 20,
+            right: 20,
+            background: 'rgba(0,0,0,0.8)',
+            color: 'white',
+            padding: '15px',
+            borderRadius: '10px',
+            zIndex: 10000,
+            fontFamily: 'monospace',
+            border: '1px solid #007AFF',
+            pointerEvents: 'none'
+          }}>
+            <div>POS: {Math.round(encoderPosition)}</div>
+            <div>ZONA: {railSettings.zones.find(z => encoderPosition >= z.start && encoderPosition <= z.end)?.name || 'FORA'}</div>
+            <div style={{ color: socket?.connected ? '#4CD964' : '#FF2D55' }}>
+              SOCKET: {socket?.connected ? 'CONECTADO' : 'DESCONECTADO'}
+            </div>
           </div>
-        </div>
+        )}
 
         {/* Prerender invisível para forçar decode das imagens antes da transição */}
         <div style={{ position: 'absolute', width: 0, height: 0, overflow: 'hidden', opacity: 0, pointerEvents: 'none' }}>
