@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trilho Debugger | PUC</title>
+    <script src="/socket.io/socket.io.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0a0c;
+            --primary: #007AFF;
+            --accent: #FF2D55;
+            --glass: rgba(255, 255, 255, 0.05);
+            --text: #ffffff;
+        }
+
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 800px;
+            text-align: center;
+        }
+
+        h1 {
+            font-weight: 900;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            background: linear-gradient(to right, #fff, #666);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Simulador do Trilho */
+        .rail-track {
+            height: 12px;
+            background: var(--glass);
+            border-radius: 6px;
+            position: relative;
+            margin: 60px 0;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+        }
+
+        .rail-handle {
+            width: 40px;
+            height: 40px;
+            background: var(--primary);
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 30px var(--primary);
+            transition: left 0.1s cubic-bezier(0.23, 1, 0.32, 1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .markers {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            color: rgba(255,255,255,0.3);
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+
+        /* Painel de Comandos */
+        .log-panel {
+            background: var(--glass);
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 40px;
+            height: 150px;
+            overflow-y: auto;
+            text-align: left;
+            font-family: monospace;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .log-entry {
+            margin-bottom: 5px;
+            border-left: 3px solid transparent;
+            padding-left: 10px;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        .log-entry.right { border-color: var(--primary); color: #80bfff; }
+        .log-entry.left { border-color: var(--accent); color: #ff8095; }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-10px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        /* Status Visual */
+        .indicator {
+            display: inline-block;
+            width: 100px;
+            padding: 10px;
+            border-radius: 8px;
+            margin: 0 10px;
+            font-weight: bold;
+            opacity: 0.3;
+            transition: 0.2s;
+        }
+
+        .indicator.active {
+            opacity: 1;
+            transform: scale(1.1);
+        }
+
+        .right-box.active { background: var(--primary); box-shadow: 0 0 20px var(--primary); }
+        .left-box.active { background: var(--accent); box-shadow: 0 0 20px var(--accent); }
+        .click-box.active { background: #4CD964; box-shadow: 0 0 20px #4CD964; }
+        .reset-box.active { background: #FF9500; box-shadow: 0 0 20px #FF9500; }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>TRILHO DEBUGGER</h1>
+
+        <div style="margin-bottom: 30px;">
+            <div id="left-ind" class="indicator left-box">ESQUERDA (E)</div>
+            <div id="click-ind" class="indicator click-box">CLIQUE (C)</div>
+            <div id="right-ind" class="indicator right-box">DIREITA (D)</div>
+            <div id="reset-ind" class="indicator reset-box">RESET (H)</div>
+        </div>
+
+        <div class="rail-track">
+            <div id="handle" class="rail-handle">0</div>
+        </div>
+        
+        <div class="markers">
+            <span>0</span>
+            <span>2500</span>
+            <span>5000</span>
+            <span>7500</span>
+            <span>10000</span>
+        </div>
+
+        <!-- Painel de Configuração de Hardware -->
+        <div class="log-panel" style="margin-top: 20px; border-color: #FF9500;">
+            <h3 style="margin: 0 0 15px 0; font-size: 0.9rem; color: #FF9500;">⚙️ AJUSTE DE SENSIBILIDADE</h3>
+            
+            <div style="margin-bottom: 15px;">
+                <label style="display: block; font-size: 0.7rem; margin-bottom: 5px;">Passos por Ação: <span id="val-steps">5</span></label>
+                <input type="range" id="input-steps" min="1" max="20" value="5" style="width: 100%;">
+                <small style="font-size: 0.6rem; color: #888;">Quantos "cliques" do encoder para 1 seta na tela.</small>
+            </div>
+
+            <div style="margin-bottom: 15px;">
+                <label style="display: block; font-size: 0.7rem; margin-bottom: 5px;">Debounce Seta (ms): <span id="val-nav-debounce">150</span></label>
+                <input type="range" id="input-nav-debounce" min="50" max="1000" step="50" value="150" style="width: 100%;">
+            </div>
+
+            <div>
+                <label style="display: block; font-size: 0.7rem; margin-bottom: 5px;">Debounce Clique (ms): <span id="val-click-debounce">500</span></label>
+                <input type="range" id="input-click-debounce" min="100" max="2000" step="100" value="500" style="width: 100%;">
+            </div>
+        </div>
+
+        <div class="log-panel" id="logs">
+            <div class="log-entry">Ações: Aguardando...</div>
+        </div>
+
+        <div class="log-panel" id="raw-logs" style="height: 100px; font-size: 0.7rem; margin-top: 10px; opacity: 0.7;">
+            <div class="log-entry">Serial Raw: Aguardando...</div>
+        </div>
+    </div>
+
+    <script>
+        const socket = io();
+        const handle = document.getElementById('handle');
+        const logs = document.getElementById('logs');
+        const rawLogs = document.getElementById('raw-logs');
+        const lInd = document.getElementById('left-ind');
+        const rInd = document.getElementById('right-ind');
+        const cInd = document.getElementById('click-ind');
+        const hInd = document.getElementById('reset-ind');
+
+        socket.on('serial_raw', (data) => {
+            const entry = document.createElement('div');
+            entry.className = `log-entry`;
+            entry.innerText = `[SERIAL]: ${data}`;
+            rawLogs.prepend(entry);
+            if (rawLogs.children.length > 20) rawLogs.lastChild.remove();
+        });
+
+        // Configurações de Hardware
+        const inputSteps = document.getElementById('input-steps');
+        const inputNavDebounce = document.getElementById('input-nav-debounce');
+        const inputClickDebounce = document.getElementById('input-click-debounce');
+        
+        const valSteps = document.getElementById('val-steps');
+        const valNavDebounce = document.getElementById('val-nav-debounce');
+        const valClickDebounce = document.getElementById('val-click-debounce');
+
+        socket.on('config_sync', (config) => {
+            inputSteps.value = config.navStepsPerAction;
+            inputNavDebounce.value = config.navDebounceMs;
+            inputClickDebounce.value = config.clickDebounceMs;
+            
+            valSteps.innerText = config.navStepsPerAction;
+            valNavDebounce.innerText = config.navDebounceMs;
+            valClickDebounce.innerText = config.clickDebounceMs;
+        });
+
+        function updateConfig() {
+            const newConfig = {
+                navStepsPerAction: parseInt(inputSteps.value),
+                navDebounceMs: parseInt(inputNavDebounce.value),
+                clickDebounceMs: parseInt(inputClickDebounce.value)
+            };
+            socket.emit('update_config', newConfig);
+        }
+
+        inputSteps.addEventListener('input', () => { valSteps.innerText = inputSteps.value; updateConfig(); });
+        inputNavDebounce.addEventListener('input', () => { valNavDebounce.innerText = inputNavDebounce.value; updateConfig(); });
+        inputClickDebounce.addEventListener('input', () => { valClickDebounce.innerText = inputClickDebounce.value; updateConfig(); });
+
+        socket.on('encoder_update', (pos) => {
+            // Mapeia 0-10000 para porcentagem (ajuste o 10000 se o limite do P for outro)
+            const percent = (pos / 10000) * 100;
+            handle.style.left = `${percent}%`;
+            handle.innerText = Math.round(pos);
+        });
+
+        socket.on('encoder_action', (action) => {
+            const entry = document.createElement('div');
+            entry.className = `log-entry ${action.toLowerCase()}`;
+            entry.innerText = `[${new Date().toLocaleTimeString()}] AÇÃO: ${action}`;
+            logs.prepend(entry);
+
+            // Piscar indicador
+            let ind;
+            if (action === 'RIGHT') ind = rInd;
+            else if (action === 'LEFT') ind = lInd;
+            else if (action === 'CLICK') ind = cInd;
+            else if (action === 'RESET') ind = hInd;
+
+            if (ind) {
+                ind.classList.add('active');
+                setTimeout(() => ind.classList.remove('active'), 150);
+            }
+        });
+    </script>
+</body>
+</html>

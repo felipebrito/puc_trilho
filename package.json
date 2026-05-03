@@ -1,15 +1,14 @@
 {
-    "name": "puc-gigantes",
-    "version": "1.0.0",
-    "description": "Gigantes de Porto Alegre - Project Root",
-    "scripts": {
-        "server": "npm --prefix server run server",
-        "projection": "npm --prefix projection run server",
-        "booth": "npm --prefix booth run server",
-        "lab": "npm --prefix projection run lab",
-        "chroma": "npm --prefix projection run chroma",
-        "all": "npm run server & npm run projection & npm run booth"
-    },
-    "author": "",
-    "license": "ISC"
+  "name": "puc-trilho-master",
+  "version": "1.0.0",
+  "description": "Master starter for Kiosk and Hardware Bridge",
+  "main": "index.js",
+  "scripts": {
+    "install-all": "npm install && cd trilho_app && npm install && cd ../automacoes/encoder_control && npm install",
+    "start": "concurrently \"cd trilho_app && npm run dev\" \"cd automacoes/encoder_control && node bridge.js\"",
+    "dev": "npm start"
+  },
+  "dependencies": {
+    "concurrently": "^8.2.2"
+  }
 }

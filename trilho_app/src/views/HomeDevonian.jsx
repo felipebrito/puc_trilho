@@ -52,7 +52,7 @@ const HomeDevonian = ({ onNavigate }) => {
 
     return (
         <div className="view-home-devonian">
-            <BackgroundVideo src="/_conteudo/Videos/06_Devoniano_0604.mp4" variant="full">
+            <BackgroundVideo src="/assets/videos/06_Devoniano_0604.mp4" variant="full">
                 <motion.div
                     className="home-devonian-content"
                     variants={containerVariants}

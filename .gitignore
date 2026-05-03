@@ -12,5 +12,5 @@ dist
 booth/
 server/
 projection/
-automacoes/
 Unity/
+# automacoes/ (REMOVED TO ALLOW TRACKING)

@@ -52,7 +52,7 @@ const HomeOrdovician = ({ onNavigate }) => {
 
     return (
         <div className="view-home-ordovician">
-            <BackgroundVideo src="/_conteudo/Videos/04_Ordoviciano_0604.mp4" variant="full">
+            <BackgroundVideo src="/assets/videos/04_Ordoviciano_0604.mp4" variant="full">
                 <motion.div
                     className="home-ordovician-content"
                     variants={containerVariants}

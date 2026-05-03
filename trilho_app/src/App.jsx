@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { io } from 'socket.io-client'
 import TopBar from './components/TopBar'
@@ -68,6 +68,8 @@ function App() {
   const [slideDirection, setSlideDirection] = useState('up');
   const [isHardwareConfigVisible, setIsHardwareConfigVisible] = useState(false);
   const [isRailWizardVisible, setIsRailWizardVisible] = useState(false);
+  const [showDebugPos, setShowDebugPos] = useState(false);
+  const debugTimeoutRef = useRef(null);
   const [encoderPosition, setEncoderPosition] = useState(0);
   const [currentZoneId, setCurrentZoneId] = useState(1);
   const [lastHardwareAction, setLastHardwareAction] = useState(null);
@@ -157,12 +159,23 @@ function App() {
 
   // Socket IO — encoder
   useEffect(() => {
-    const socketInstance = io('https://localhost:3000', {
-      secure: true,
-      rejectUnauthorized: false
+    console.log('🔌 Tentando conectar ao Socket em http://127.0.0.1:3000...');
+    const socketInstance = io('http://127.0.0.1:3000', {
+      transports: ['websocket'],
+      reconnection: true,
+      reconnectionAttempts: Infinity
+    });
+
+    socketInstance.on('connect', () => {
+      console.log('✅ Socket Conectado com Sucesso!');
+    });
+
+    socketInstance.on('connect_error', (err) => {
+      console.error('❌ Erro de Conexão Socket:', err.message);
     });
 
     socketInstance.on('encoder_action', (command) => {
+      console.log('🕹️ Hardware Action:', command);
       setLastHardwareAction(command);
       if (command === 'LEFT')  window.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowLeft' }));
       if (command === 'RIGHT') window.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight' }));
@@ -173,8 +186,8 @@ function App() {
     });
 
     socketInstance.on('encoder_update', (data) => {
-      // Data pode ser um número (posição) ou um objeto { position, direction }
       const pos = typeof data === 'object' ? data.position : data;
+      console.log('📍 App recebeu posição:', pos);
       setEncoderPosition(pos);
     });
 
@@ -185,7 +198,10 @@ function App() {
   // Lógica de Troca de Período via Encoder Position
   useEffect(() => {
     const zone = railSettings.zones.find(z => encoderPosition >= z.start && encoderPosition <= z.end);
+    console.log('🗺️ Zona Calculada:', zone?.name, 'ID:', zone?.id, 'Pos:', encoderPosition);
+    
     if (zone && zone.id !== currentZoneId) {
+      console.log('🔄 Trocando para Zona:', zone.id);
       const direction = zone.id > (currentZoneId || 0) ? 'left' : 'right'; // Invertido para o efeito visual de trilho
       setSlideDirection(direction);
       setCurrentZoneId(zone.id);
@@ -234,8 +250,14 @@ function App() {
       if (e.key.toLowerCase() === 'w') { setIsRailWizardVisible(prev => !prev); }
       
       // Mock de posição para teste (Shift + Setas)
-      if (e.shiftKey && e.key === 'ArrowRight') setEncoderPosition(prev => Math.min(prev + 100, 10000));
-      if (e.shiftKey && e.key === 'ArrowLeft') setEncoderPosition(prev => Math.max(prev - 100, 0));
+      if (e.shiftKey && (e.key === 'ArrowRight' || e.key === 'ArrowLeft' || e.key === '>' || e.key === '<' || e.key === '.' || e.key === ',')) {
+        if (e.key === 'ArrowRight' || e.key === '>' || e.key === '.') setEncoderPosition(prev => Math.min(prev + 100, 10000));
+        if (e.key === 'ArrowLeft' || e.key === '<' || e.key === ',') setEncoderPosition(prev => Math.max(prev - 100, 0));
+        
+        setShowDebugPos(true);
+        if (debugTimeoutRef.current) clearTimeout(debugTimeoutRef.current);
+        debugTimeoutRef.current = setTimeout(() => setShowDebugPos(false), 2000);
+      }
     };
     window.addEventListener('keydown', handler);
     return () => window.removeEventListener('keydown', handler);
@@ -465,6 +487,27 @@ function App() {
         )}
 
         {currentSection === 'home' && <BottomBar />}
+        
+        {/* Debug Overlay */}
+        <div style={{
+          position: 'fixed',
+          top: 20,
+          right: 20,
+          background: 'rgba(0,0,0,0.8)',
+          color: 'white',
+          padding: '15px',
+          borderRadius: '10px',
+          zIndex: 10000,
+          fontFamily: 'monospace',
+          border: '1px solid #007AFF',
+          pointerEvents: 'none'
+        }}>
+          <div>POS: {Math.round(encoderPosition)}</div>
+          <div>ZONA: {railSettings.zones.find(z => encoderPosition >= z.start && encoderPosition <= z.end)?.name || 'FORA'}</div>
+          <div style={{ color: socket?.connected ? '#4CD964' : '#FF2D55' }}>
+            SOCKET: {socket?.connected ? 'CONECTADO' : 'DESCONECTADO'}
+          </div>
+        </div>
 
         {/* Prerender invisível para forçar decode das imagens antes da transição */}
         <div style={{ position: 'absolute', width: 0, height: 0, overflow: 'hidden', opacity: 0, pointerEvents: 'none' }}>
@@ -508,6 +551,22 @@ function App() {
           onClose={() => setIsRailWizardVisible(false)}
           currentPosition={encoderPosition}
         />
+
+        {showDebugPos && (
+          <div style={{
+              position: 'absolute',
+              bottom: '40px',
+              right: '40px',
+              color: 'rgba(255,255,255,0.4)',
+              fontFamily: 'monospace',
+              fontSize: '24px',
+              zIndex: 10000,
+              pointerEvents: 'none',
+              textShadow: '0 0 10px rgba(0,0,0,0.5)'
+          }}>
+              POS: {encoderPosition}
+          </div>
+        )}
     </>
   );
 }
