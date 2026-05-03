@@ -1,8 +1,15 @@
 #!/bin/bash
 
 # Navega para a pasta onde o script está localizado
-cd "$(dirname "$0")"
+BASE_DIR="$(dirname "$0")"
+cd "$BASE_DIR"
 
+# Se o script estiver fora da pasta puc_trilho, entra nela
+if [ -d "puc_trilho" ]; then
+    cd "puc_trilho"
+fi
+
+echo "📂 Pasta de trabalho: $(pwd)"
 echo "🚀 Iniciando Sistema PUC Trilho..."
 
 # Mata processos antigos para evitar conflitos de porta
