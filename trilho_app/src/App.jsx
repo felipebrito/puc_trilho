@@ -74,6 +74,8 @@ function App() {
   const [currentZoneId, setCurrentZoneId] = useState(1);
   const [lastHardwareAction, setLastHardwareAction] = useState(null);
   const [socket, setSocket] = useState(null);
+  const lastClickTimeRef = useRef(0);
+  const lastEncoderMoveTimeRef = useRef(0);
 
   // Aplica configurações do design_settings.json ao trocar de slide
   useEffect(() => {
@@ -177,18 +179,33 @@ function App() {
     socketInstance.on('encoder_action', (command) => {
       console.log('🕹️ Hardware Action:', command);
       setLastHardwareAction(command);
+      
+      const now = Date.now();
+      
       if (command === 'LEFT')  window.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowLeft' }));
       if (command === 'RIGHT') window.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight' }));
+      
       if (command === 'CLICK') {
-        window.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' }));
+        // Debounce: Ignora cliques muito próximos ou se houve movimento muito recente (ruído de indução)
+        const timeSinceLastClick = now - lastClickTimeRef.current;
+        const timeSinceLastMove = now - lastEncoderMoveTimeRef.current;
+        
+        if (timeSinceLastClick > 500 && timeSinceLastMove > 200) {
+          console.log('✅ Click Validado');
+          window.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' }));
+          lastClickTimeRef.current = now;
+        } else {
+          console.warn('⚠️ Click ignorado (provável ruído):', { timeSinceLastClick, timeSinceLastMove });
+        }
       }
       if (command === 'RESET') setEncoderPosition(0);
     });
 
     socketInstance.on('encoder_update', (data) => {
       const pos = typeof data === 'object' ? data.position : data;
-      console.log('📍 App recebeu posição:', pos);
+      // console.log('📍 App recebeu posição:', pos);
       setEncoderPosition(pos);
+      lastEncoderMoveTimeRef.current = Date.now(); // Marca movimento para filtrar ruído no botão
     });
 
     setSocket(socketInstance);
