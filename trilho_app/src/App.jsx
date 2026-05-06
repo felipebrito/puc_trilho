@@ -303,16 +303,21 @@ function App() {
   const resetInactivityTimer = useCallback(() => {
     if (inactivityTimerRef.current) clearTimeout(inactivityTimerRef.current);
 
-    // Se já estiver na home ou menus de config abertos, não agendamos o reset
-    if (slideIndex === 0 || isHardwareConfigVisible || isRailWizardVisible) return;
+    // Se menus de config abertos, não agendamos o reset
+    if (isHardwareConfigVisible || isRailWizardVisible) return;
+
+    const currentSlide = slidesData[slideIndex];
+    if (!currentSlide) return;
+    
+    const periodHomeIdx = periodStartIndex[currentSlide.period] ?? 0;
+
+    // Se já estiver na home do período atual, não precisa de timer
+    if (slideIndex === periodHomeIdx) return;
 
     inactivityTimerRef.current = setTimeout(() => {
-      console.log('⏰ Inatividade detectada (60s). Voltando para a Home.');
+      console.log('⏰ Inatividade detectada (60s). Voltando para a Home do Período.');
       setSlideDirection('down');
-      setSlideIndex(0);
-      setCurrentZoneId(1);
-      setEncoderPosition(0);
-      sendHardwareCommand('RESET', 0);
+      setSlideIndex(periodHomeIdx);
     }, 60000);
   }, [slideIndex, isHardwareConfigVisible, isRailWizardVisible]);
 
