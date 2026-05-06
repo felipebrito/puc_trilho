@@ -259,7 +259,7 @@ function App() {
       
       // Mock de posição para teste (Shift + Setas)
       if (e.shiftKey && (e.key === 'ArrowRight' || e.key === 'ArrowLeft' || e.key === '>' || e.key === '<' || e.key === '.' || e.key === ',')) {
-        if (e.key === 'ArrowRight' || e.key === '>' || e.key === '.') setEncoderPosition(prev => Math.min(prev + 100, 10000));
+        if (e.key === 'ArrowRight' || e.key === '>' || e.key === '.') setEncoderPosition(prev => Math.min(prev + 100, railSettings.maxEncoderValue));
         if (e.key === 'ArrowLeft' || e.key === '<' || e.key === ',') setEncoderPosition(prev => Math.max(prev - 100, 0));
         
         setShowDebugPos(true);

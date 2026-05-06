@@ -1,68 +1,68 @@
 {
-  "totalLength": 7000,
-  "maxEncoderValue": 10000,
+  "totalLength": 6300,
+  "maxEncoderValue": 6300,
   "zones": [
     {
       "id": 1,
       "name": "Arqueano",
       "start": 0,
-      "end": 1250,
+      "end": 900,
       "video": "/assets/videos/01_Arqueano_0204.mp4",
       "hasMenu": false
     },
     {
       "id": 2,
       "name": "Proterozoico",
-      "start": 1250,
-      "end": 2500,
+      "start": 900,
+      "end": 1890,
       "video": "/assets/videos/02_proterozoico_2704.mp4",
       "hasMenu": false
     },
     {
       "id": 3,
       "name": "Cambriano",
-      "start": 2500,
-      "end": 3750,
+      "start": 1890,
+      "end": 2540,
       "video": "/assets/videos/03_Cambriano_0204.mp4",
       "hasMenu": false
     },
     {
       "id": 4,
       "name": "Ordoviciano",
-      "start": 3750,
-      "end": 5000,
+      "start": 2540,
+      "end": 3170,
       "video": "/assets/videos/04_Ordoviciano_0604.mp4",
       "hasMenu": true
     },
     {
       "id": 5,
       "name": "Siluriano",
-      "start": 5000,
-      "end": 6250,
+      "start": 3170,
+      "end": 3952,
       "video": "/assets/videos/05_Siluriano_0604.mp4",
       "hasMenu": false
     },
     {
       "id": 6,
       "name": "Devoniano",
-      "start": 6250,
-      "end": 7500,
+      "start": 3952,
+      "end": 4735,
       "video": "/assets/videos/06_Devoniano_0604.mp4",
       "hasMenu": true
     },
     {
       "id": 7,
       "name": "Carbonifero",
-      "start": 7500,
-      "end": 8750,
+      "start": 4735,
+      "end": 5517,
       "video": "/assets/videos/07_Carbonifero_0604.mp4",
       "hasMenu": false
     },
     {
       "id": 8,
       "name": "Permiano",
-      "start": 8750,
-      "end": 10000,
+      "start": 5517,
+      "end": 6300,
       "video": "/assets/videos/08_Permiano_0604.mp4",
       "hasMenu": true
     }
