@@ -4,3 +4,9 @@
   position: relative;
   cursor: none; /* Esconde o mouse no quiosque */
 }
+
+/* Mostra o cursor quando as telas de configuração (C ou W) estão abertas */
+.show-cursor #root,
+.show-cursor * {
+  cursor: auto !important;
+}

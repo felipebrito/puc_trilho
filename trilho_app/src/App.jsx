@@ -288,6 +288,15 @@ function App() {
     return () => window.removeEventListener('keydown', handler);
   }, []);
 
+  // Exibe o cursor quando menus de configuração estão abertos
+  useEffect(() => {
+    if (isHardwareConfigVisible || isRailWizardVisible) {
+      document.documentElement.classList.add('show-cursor');
+    } else {
+      document.documentElement.classList.remove('show-cursor');
+    }
+  }, [isHardwareConfigVisible, isRailWizardVisible]);
+
   const pageVariants = {
     initial: (direction) => ({
       x: direction === 'left' ? 1080 : direction === 'right' ? -1080 : 0,
