@@ -297,6 +297,36 @@ function App() {
     }
   }, [isHardwareConfigVisible, isRailWizardVisible]);
 
+  // Lógica de Inatividade (60s)
+  const inactivityTimerRef = useRef(null);
+
+  const resetInactivityTimer = useCallback(() => {
+    if (inactivityTimerRef.current) clearTimeout(inactivityTimerRef.current);
+
+    // Se já estiver na home ou menus de config abertos, não agendamos o reset
+    if (slideIndex === 0 || isHardwareConfigVisible || isRailWizardVisible) return;
+
+    inactivityTimerRef.current = setTimeout(() => {
+      console.log('⏰ Inatividade detectada (60s). Voltando para a Home.');
+      setSlideDirection('down');
+      setSlideIndex(0);
+    }, 60000);
+  }, [slideIndex, isHardwareConfigVisible, isRailWizardVisible]);
+
+  useEffect(() => {
+    resetInactivityTimer();
+
+    const events = ['mousemove', 'mousedown', 'touchstart', 'keydown'];
+    const handler = () => resetInactivityTimer();
+    
+    events.forEach(evt => window.addEventListener(evt, handler));
+
+    return () => {
+      if (inactivityTimerRef.current) clearTimeout(inactivityTimerRef.current);
+      events.forEach(evt => window.removeEventListener(evt, handler));
+    };
+  }, [resetInactivityTimer, encoderPosition, lastHardwareAction]);
+
   const pageVariants = {
     initial: (direction) => ({
       x: direction === 'left' ? 1080 : direction === 'right' ? -1080 : 0,
