@@ -310,6 +310,9 @@ function App() {
       console.log('⏰ Inatividade detectada (60s). Voltando para a Home.');
       setSlideDirection('down');
       setSlideIndex(0);
+      setCurrentZoneId(1);
+      setEncoderPosition(0);
+      sendHardwareCommand('RESET', 0);
     }, 60000);
   }, [slideIndex, isHardwareConfigVisible, isRailWizardVisible]);
 
