@@ -14,3 +14,4 @@ server/
 projection/
 Unity/
 # automacoes/ (REMOVED TO ALLOW TRACKING)
+.vercel

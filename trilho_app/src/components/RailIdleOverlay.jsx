@@ -7,7 +7,7 @@ import './RailIdleOverlay.css';
  * NÃO aparece em páginas internas (conteúdo, espécimes, etc.).
  * Mostra c1 deslizando ±280px com mudança de cor, sobre c2 instrução.
  */
-const RailIdleOverlay = ({ isActive = true, forceVisible = false }) => {
+const RailIdleOverlay = ({ isActive = true, forceVisible = false, showPressInstruction = true }) => {
     // Agora o RailIdleOverlay é controlado centralmente pelo App.jsx via forceVisible (isIdle).
     // O timer interno foi removido para evitar redundância e conflitos.
     const visible = forceVisible;
@@ -66,36 +66,40 @@ const RailIdleOverlay = ({ isActive = true, forceVisible = false }) => {
                             draggable={false}
                         />
 
-                        {/* Divisor sutil */}
-                        <div className="rail-idle__divider" />
+                        {showPressInstruction && (
+                            <>
+                                {/* Divisor sutil */}
+                                <div className="rail-idle__divider" />
 
-                        {/* Instrução pressionar (b1 + b2) */}
-                        <div className="rail-idle__press-section">
-                            <motion.img
-                                src="/assets/b1.svg"
-                                alt="Botão pressionar"
-                                className="rail-idle__press-btn"
-                                draggable={false}
-                                animate={{
-                                    filter: [
-                                        'drop-shadow(0 0 0px rgba(0,92,255,0))',
-                                        'drop-shadow(0 0 30px rgba(0,92,255,0.8))',
-                                        'drop-shadow(0 0 0px rgba(0,92,255,0))',
-                                    ],
-                                }}
-                                transition={{
-                                    duration: 1.6,
-                                    repeat: Infinity,
-                                    ease: 'easeInOut'
-                                }}
-                            />
-                            <img
-                                src="/assets/b2.svg"
-                                alt="Pressione para acessar"
-                                className="rail-idle__press-label"
-                                draggable={false}
-                            />
-                        </div>
+                                {/* Instrução pressionar (b1 + b2) */}
+                                <div className="rail-idle__press-section">
+                                    <motion.img
+                                        src="/assets/b1.svg"
+                                        alt="Botão pressionar"
+                                        className="rail-idle__press-btn"
+                                        draggable={false}
+                                        animate={{
+                                            filter: [
+                                                'drop-shadow(0 0 0px rgba(0,92,255,0))',
+                                                'drop-shadow(0 0 30px rgba(0,92,255,0.8))',
+                                                'drop-shadow(0 0 0px rgba(0,92,255,0))',
+                                            ],
+                                        }}
+                                        transition={{
+                                            duration: 1.6,
+                                            repeat: Infinity,
+                                            ease: 'easeInOut'
+                                        }}
+                                    />
+                                    <img
+                                        src="/assets/b2.svg"
+                                        alt="Pressione para acessar"
+                                        className="rail-idle__press-label"
+                                        draggable={false}
+                                    />
+                                </div>
+                            </>
+                        )}
                     </motion.div>
                 </motion.div>
             )}

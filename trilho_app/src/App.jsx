@@ -640,6 +640,7 @@ function App() {
               idleTimeout={idleTimeout}
               isActive={!isHardwareConfigVisible && !isRailWizardVisible}
               forceVisible={isIdle || showInstructions}
+              showPressInstruction={slidesData[slideIndex]?.type === 'home'}
             />
           );
         })()}
