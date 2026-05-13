@@ -81,7 +81,9 @@ function App() {
   });
 
   useEffect(() => {
+    console.log(`%c ⏰ [App] Novo tempo de inatividade definido: ${idleTimeout}ms (${idleTimeout/60000} min)`, 'background: #222; color: #bada55; font-size: 14px; font-weight: bold');
     localStorage.setItem('idleTimeout', idleTimeout);
+    resetInactivityTimer(false); // Força um reset imediato com o novo tempo
   }, [idleTimeout]);
   const [showInstructions, setShowInstructions] = useState(false);
   const [isIdle, setIsIdle] = useState(false);
