@@ -202,7 +202,7 @@ const cssConfigs = {
         headingSize: 105,
         headingLH: 0.95,
     }),
-    'devoniano-extincao-intro': createDevonianoIntroConfig('ext', {
+    'devoniano-extincao-0': createDevonianoIntroConfig('ext', {
         bgOpacity: 1,
         labelTop: 57,
         nameTop: 99,
@@ -221,24 +221,32 @@ const cssConfigs = {
         { label: 'Desc Size', prop: '--dev-ext-amb-desc-size', value: 37, min: 10, max: 100, suffix: 'px' },
         { label: 'Desc LH', prop: '--dev-ext-amb-desc-lh', value: 1.35, min: 0.5, max: 2.5, suffix: '' },
     ],
-    'devoniano-pos-extincao-intro': createDevonianoIntroConfig('pos', {
+    'devoniano-pos_extincao-intro': createDevonianoIntroConfig('pos', {
         bgOpacity: 1,
         labelTop: 1208,
         nameTop: 1274,
         bodyTop: 599
     }),
-    'devoniano-pos-globe': createDevonianoGlobeConfig('pos-glob', {
+    'devoniano-pos_extincao-globe': createDevonianoGlobeConfig('pos-glob', {
         headerTop: -61,
         globMt: 61,
         descMt: 92,
         descLH: 47
     }),
-    'devoniano-pos-summary': createDevonianoGlobeConfig('pos-sum', {
+    'devoniano-pos_extincao-summary': createDevonianoGlobeConfig('pos-sum', {
         headerTop: -61,
         globMt: 61,
         descMt: 92,
         descLH: 47
     }),
+    'devoniano-pos_extincao-meganeura': createDevonianoSpecimenConfig('meganeura', { subW: 650, descW: 850 }),
+    'devoniano-pos_extincao-stethacanthus': createDevonianoSpecimenConfig('stethacanthus', { subW: 750 }),
+    'devoniano-pos_extincao-arthropleura': createDevonianoSpecimenConfig('arthropleura', { subW: 750 }),
+    'devoniano-pos_extincao-amphibamus': createDevonianoSpecimenConfig('amphibamus', { subW: 750 }),
+    'devoniano-pos_extincao-sphenophyllum': createDevonianoSpecimenConfig('sphenophyllum', { subW: 750 }),
+    'devoniano-pos_extincao-calamites': createDevonianoSpecimenConfig('calamites', { subW: 750 }),
+    'devoniano-pos_extincao-cordaites': createDevonianoSpecimenConfig('cordaites', { subW: 750 }),
+    'devoniano-pos_extincao-sigillaria': createDevonianoSpecimenConfig('sigillaria', { subW: 750 }),
     'devoniano-biodiversidade-dunkleosteus': createDevonianoSpecimenConfig('dunk', { subW: 590, nameSize: 83, descSize: 40 }),
     'devoniano-biodiversidade-campbellodus': createDevonianoSpecimenConfig('campbell', { subW: 657, descMt: 127, descW: 802 }),
     'devoniano-biodiversidade-ctenacanthus': createDevonianoSpecimenConfig('ctenacanthus', { subW: 802, descMt: 128, descW: 921 }),
@@ -251,7 +259,7 @@ const cssConfigs = {
     'devoniano-biodiversidade-ichthyostega': createDevonianoSpecimenConfig('ichthyostega', { nameMt: 67, nameSize: 86, subW: 935, descMt: -33, descW: 869, descLH: 47 }),
     'devoniano-biodiversidade-drepanophycus': createDevonianoSpecimenConfig('drepanophycus', { subMt: 78, subW: 834, descMt: 124, descW: 870, descLH: 50 }),
     
-    'perm-bio-intro': createDevonianoIntroConfig('perm-bio', {
+    'permiano-biodiversidade-intro': createDevonianoIntroConfig('perm-bio', {
         bgOpacity: 0.47,
         labelTop: 61,
         nameTop: 102,
@@ -262,16 +270,16 @@ const cssConfigs = {
         headingSpacing: -1,
         headingLH: 1.05
     }),
-    'permiano-biodiversidade-archosaurus': createPermianoSpecimenConfig('archosaurus'),
-    'permiano-biodiversidade-scutosaurus': createPermianoSpecimenConfig('scutosaurus'),
-    'permiano-biodiversidade-dvinia': createPermianoSpecimenConfig('dvinia'),
-    'permiano-biodiversidade-arctotypus': createPermianoSpecimenConfig('arctotypus'),
-    'permiano-biodiversidade-dicynodon': createPermianoSpecimenConfig('dicynodon'),
-    'permiano-biodiversidade-glossopteris': createPermianoSpecimenConfig('glossopteris'),
-    'permiano-biodiversidade-phyllotheca': createPermianoSpecimenConfig('phyllotheca'),
+    'permiano-biodiversidade-perm-bio-archosaurus': createPermianoSpecimenConfig('archosaurus'),
+    'permiano-biodiversidade-perm-bio-scutosaurus': createPermianoSpecimenConfig('scutosaurus'),
+    'permiano-biodiversidade-perm-bio-dvinia': createPermianoSpecimenConfig('dvinia'),
+    'permiano-biodiversidade-perm-bio-arctotypus': createPermianoSpecimenConfig('arctotypus'),
+    'permiano-biodiversidade-perm-bio-dicynodon': createPermianoSpecimenConfig('dicynodon'),
+    'permiano-biodiversidade-perm-bio-glossopteris': createPermianoSpecimenConfig('glossopteris'),
+    'permiano-biodiversidade-perm-bio-phyllotheca': createPermianoSpecimenConfig('phyllotheca'),
 
     // Ordoviciano
-    'ordoviciano-bio-intro': createDevonianoIntroConfig('ord-bio', { 
+    'ordoviciano-biodiversidade-intro': createDevonianoIntroConfig('ord-bio', { 
         bodyTop: 937, 
         bodyW: 651,
         headingTop: -62, 
@@ -439,16 +447,35 @@ const cssConfigs = {
 // ==========================================================================
 
 const DesignEditor = ({ referenceImage, viewId, period, section, slideId, savedSettings }) => {
-    const [isVisible, setIsVisible] = useState(false);
+    const [isVisible, setIsVisible] = useState(true);
     const [opacity, setOpacity] = useState(0.5);
     const [variables, setVariables] = useState({});
     const [saveStatus, setSaveStatus] = useState('idle'); // idle | saving | saved | error
 
-    const currentConfig = cssConfigs[viewId] || [];
+    // LOG DE DIAGNÓSTICO PESADO
+    console.log(`[DesignEditor] DEBUG - viewId: "${viewId}", period: "${period}", section: "${section}"`);
+    // console.log('[DesignEditor] Chaves disponíveis:', Object.keys(cssConfigs));
+
+    // Tenta achar a configuração pelo viewId exato ou pelo padrão simplificado
+    let currentConfig = cssConfigs[viewId];
+    
+    if (!currentConfig) {
+        // Fallback para biodiversidade
+        if (viewId.includes('biodiversidade') && !viewId.includes('intro')) {
+             const specId = viewId.split('-').pop();
+             currentConfig = cssConfigs[`${period}-biodiversidade-${specId}`];
+        }
+        // Fallback para globo/summary
+        if (viewId.includes('globe')) currentConfig = cssConfigs[`${period}-${section}-globe`];
+        if (viewId.includes('summary')) currentConfig = cssConfigs[`${period}-${section}-summary`];
+        // Fallback para introduções por índice
+        if (viewId.endsWith('-0')) currentConfig = cssConfigs[`${period}-${section}-intro`];
+    }
+    const activeConfig = currentConfig || [];
 
     useEffect(() => {
         const initialVars = {};
-        currentConfig.forEach(cfg => {
+        activeConfig.forEach(cfg => {
             // Tenta ler do JSON salvo (formato novo: chave = CSS var)
             const saved = savedSettings?.[cfg.prop];
             const numeric = saved !== undefined ? parseFloat(saved) : NaN;
@@ -575,11 +602,11 @@ const DesignEditor = ({ referenceImage, viewId, period, section, slideId, savedS
                     </div>
                 )}
 
-                {currentConfig.length === 0 && (
+                {activeConfig.length === 0 && (
                     <p style={{ fontSize: '13px', color: '#888' }}>Nenhuma config disponível para "{viewId}".</p>
                 )}
 
-                {currentConfig.map(cfg => (
+                {activeConfig.map(cfg => (
                     <div key={cfg.prop} style={{ marginBottom: '15px' }}>
                         <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '5px' }}>
                             <label style={{ fontSize: '13px' }}>{cfg.label}</label>

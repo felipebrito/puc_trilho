@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import './SilurianGlobe.css';
 
 const SilurianGlobe = ({ onNavigate, slideData, viewId }) => {
+    console.log('🌍 [Globe] viewId:', viewId);
     useEffect(() => {
         const handleKeyDown = (e) => {
             if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {

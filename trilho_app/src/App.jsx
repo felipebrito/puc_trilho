@@ -503,7 +503,7 @@ function App() {
       return `${period}-extincao-content`;
     }
     if (type === 'extinction_content_devonian') return `${period}-extincao-content`;
-    if (type === 'silurian_globe') return id ? `${period}-pos-${id}` : `${period}-pos-globe`;
+    if (type === 'silurian_globe') return id ? `${period}-${section}-${id}` : `${period}-${section}-globe`;
     if (type === 'single_species' || type === 'double_species' || type === 'silurian_specimen' || type === 'silurian_double_specimen') {
       return `${period}-${section}-${id}`;
     }
@@ -525,6 +525,32 @@ function App() {
   };
 
   const absoluteNavigate = (dir, absoluteIdx) => handleNavigate(dir, absoluteIdx);
+
+  // Injetor Global de Estilos do Design Editor
+  useEffect(() => {
+    const sid = currentSlide.id || viewId;
+    const settings = designSettings[currentPeriod]?.[currentSection]?.[sid];
+    
+    if (settings) {
+      Object.entries(settings).forEach(([prop, value]) => {
+        if (prop.startsWith('--')) {
+          document.documentElement.style.setProperty(prop, value);
+        } else {
+          // Ponte para formato antigo (camelCase para kebab-case com prefixo)
+          const cssKey = prop.replace(/([A-Z])/g, '-$1').toLowerCase();
+          const fullProp = `--devonian-${sid}-${cssKey}`;
+          document.documentElement.style.setProperty(fullProp, value);
+          // Caso específico do Globo que usa prefixos diferentes
+          if (sid.includes('globe')) {
+            document.documentElement.style.setProperty(`--dev-pos-glob-${cssKey}`, value);
+          }
+          if (sid.includes('summary')) {
+            document.documentElement.style.setProperty(`--dev-pos-sum-${cssKey}`, value);
+          }
+        }
+      });
+    }
+  }, [currentSlide, viewId, currentPeriod, currentSection, designSettings]);
 
   return (
     <>
@@ -651,15 +677,8 @@ function App() {
           savedSettings={(() => {
             const sid = currentSlide.id || viewId;
             const raw = designSettings[currentPeriod]?.[currentSection]?.[sid] || null;
-            console.log(`[App] Lendo configs de: ${currentPeriod} / ${currentSection} / ${sid}`, raw ? '(Encontrado)' : '(Não encontrado)');
-            if (!raw) return null;
-            return Object.fromEntries(
-              Object.entries(raw).map(([k, v]) => {
-                if (k.startsWith('--')) return [k, v];
-                const cssKey = k.replace(/([A-Z])/g, '-$1').toLowerCase();
-                return [`--devonian-${sid}-${cssKey}`, v];
-              })
-            );
+            // console.log(`[App] Lendo configs de: ${currentPeriod} / ${currentSection} / ${sid}`, raw ? '(Encontrado)' : '(Não encontrado)');
+            return raw; // Retorna o objeto original do JSON (que já deve conter as chaves --prop)
           })()}
         />
 

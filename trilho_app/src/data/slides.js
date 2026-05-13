@@ -368,6 +368,7 @@ export const devonianoSlides = [
         title: 'A 2ª EXTINÇÃO\nEM MASSA',
         periodLabel: 'PERÍODO',
         periodName: 'DEVONIANO',
+        content: 'Ao final do Devoniano, fortes aumentos e reduções na temperatura do planeta, unidos a uma variação no nível do mar e a queda dos níveis de oxigênio na atmosfera e nos oceanos, causaram a extinção de animais terrestres e aquáticos, por intoxicação e fome. Neste caso, restaram apenas alguns poucos sobreviventes, que mais tarde originarão a linhagem dos tetrápodes que dominará a terra.',
         bgImage: '/assets/devoniano/extincao_bg.png',
     },
 

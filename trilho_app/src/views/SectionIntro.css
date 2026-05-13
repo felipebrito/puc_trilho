@@ -209,6 +209,9 @@
     top: var(--dev-ext-body-top, 540px);
     left: var(--dev-ext-body-left, 3.1px);
     width: var(--dev-ext-body-w, 821px);
+}
+
+.view-section-intro.devoniano.extincao .section-intro-main-text {
     font-size: var(--dev-ext-body-size, 37px);
     line-height: var(--dev-ext-body-lh, 1.3);
 }
@@ -261,6 +264,9 @@
     top: var(--dev-pos-body-top, 540px);
     left: var(--dev-pos-body-left, 3.1px);
     width: var(--dev-pos-body-w, 821px);
+}
+
+.view-section-intro.devoniano.pos_extincao .section-intro-main-text {
     font-size: var(--dev-pos-body-size, 37px);
     line-height: var(--dev-pos-body-lh, 1.3);
 }
@@ -314,6 +320,9 @@
     top: var(--dev-bio-body-top, 638px);
     left: var(--dev-bio-body-left, 36px);
     width: var(--dev-bio-body-w, 821px);
+}
+
+.view-section-intro.devoniano.biodiversidade .section-intro-main-text {
     font-size: var(--dev-bio-body-size, 37px);
     line-height: var(--dev-bio-body-lh, 1.3);
 }
@@ -415,6 +424,7 @@
 }
 
 .view-section-intro.ordoviciano.extincao .section-intro-main-text {
+    font-size: var(--dev-ord-ext-body-size, 37px);
     line-height: var(--dev-ord-ext-body-lh, 1.3);
 }
 
@@ -468,6 +478,7 @@
 }
 
 .view-section-intro.ordoviciano.pos_extincao .section-intro-main-text {
+    font-size: var(--dev-ord-pos-body-size, 37px);
     line-height: var(--dev-ord-pos-body-lh, 1.3);
 }
 

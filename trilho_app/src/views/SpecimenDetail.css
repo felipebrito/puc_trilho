@@ -798,6 +798,96 @@
     --devonian-bg-x: var(--devonian-drepanophycus-bg-x, 0px);
     --devonian-bg-y: var(--devonian-drepanophycus-bg-y, 0px);
 }
+
+.view-detail.devoniano.devoniano-pos_extincao-meganeura {
+    --devonian-name-mt: var(--devonian-meganeura-name-mt, 96px);
+    --devonian-name-ml: var(--devonian-meganeura-name-ml, 0px);
+    --devonian-name-size: var(--devonian-meganeura-name-size, 83px);
+    --devonian-selo-w: var(--devonian-meganeura-selo-w, 862px);
+    --devonian-selo-top: var(--devonian-meganeura-selo-top, 799px);
+    --devonian-selo-left: var(--devonian-meganeura-selo-left, 0px);
+    --devonian-white-h: var(--devonian-meganeura-white-h, 34%);
+    --devonian-white-mt: var(--devonian-meganeura-white-mt, 38px);
+    --devonian-bg-h: var(--devonian-meganeura-bg-h, 42%);
+    --devonian-cut-y: var(--devonian-meganeura-cut-y, 40px);
+    --devonian-cut-x1: var(--devonian-meganeura-cut-x1, 250px);
+    --devonian-cut-x2: var(--devonian-meganeura-cut-x2, 280px);
+    --devonian-sub-mt: var(--devonian-meganeura-sub-mt, 51px);
+    --devonian-sub-ml: var(--devonian-meganeura-sub-ml, 0px);
+    --devonian-sub-w: var(--devonian-meganeura-sub-w, 650px);
+    --devonian-sub-size: var(--devonian-meganeura-sub-size, 56px);
+    --devonian-desc-mt: var(--devonian-meganeura-desc-mt, 96px);
+    --devonian-desc-ml: var(--devonian-meganeura-desc-ml, 0px);
+    --devonian-desc-w: var(--devonian-meganeura-desc-w, 850px);
+    --devonian-desc-size: var(--devonian-meganeura-desc-size, 40px);
+    --devonian-desc-lh: var(--devonian-meganeura-desc-lh, 50px);
+    --devonian-bg-scale: var(--devonian-meganeura-bg-scale, 1);
+    --devonian-bg-x: var(--devonian-meganeura-bg-x, 0px);
+    --devonian-bg-y: var(--devonian-meganeura-bg-y, 0px);
+}
+
+/* Carbonífero - Stethacanthus */
+.view-detail.devoniano.devoniano-pos_extincao-stethacanthus {
+    --devonian-sub-w: var(--devonian-stethacanthus-sub-w, 750px);
+    --devonian-bg-scale: var(--devonian-stethacanthus-bg-scale, 1);
+    --devonian-bg-x: var(--devonian-stethacanthus-bg-x, 0px);
+    --devonian-bg-y: var(--devonian-stethacanthus-bg-y, 0px);
+    --devonian-selo-top: var(--devonian-stethacanthus-selo-top, 799px);
+}
+
+/* Carbonífero - Arthropleura */
+.view-detail.devoniano.devoniano-pos_extincao-arthropleura {
+    --devonian-sub-w: var(--devonian-arthropleura-sub-w, 750px);
+    --devonian-bg-scale: var(--devonian-arthropleura-bg-scale, 1);
+    --devonian-bg-x: var(--devonian-arthropleura-bg-x, 0px);
+    --devonian-bg-y: var(--devonian-arthropleura-bg-y, 0px);
+    --devonian-selo-top: var(--devonian-arthropleura-selo-top, 799px);
+}
+
+/* Carbonífero - Amphibamus */
+.view-detail.devoniano.devoniano-pos_extincao-amphibamus {
+    --devonian-sub-w: var(--devonian-amphibamus-sub-w, 750px);
+    --devonian-bg-scale: var(--devonian-amphibamus-bg-scale, 1);
+    --devonian-bg-x: var(--devonian-amphibamus-bg-x, 0px);
+    --devonian-bg-y: var(--devonian-amphibamus-bg-y, 0px);
+    --devonian-selo-top: var(--devonian-amphibamus-selo-top, 799px);
+}
+
+/* Carbonífero - Sphenophyllum */
+.view-detail.devoniano.devoniano-pos_extincao-sphenophyllum {
+    --devonian-sub-w: var(--devonian-sphenophyllum-sub-w, 750px);
+    --devonian-bg-scale: var(--devonian-sphenophyllum-bg-scale, 1);
+    --devonian-bg-x: var(--devonian-sphenophyllum-bg-x, 0px);
+    --devonian-bg-y: var(--devonian-sphenophyllum-bg-y, 0px);
+    --devonian-selo-top: var(--devonian-sphenophyllum-selo-top, 799px);
+}
+
+/* Carbonífero - Calamites */
+.view-detail.devoniano.devoniano-pos_extincao-calamites {
+    --devonian-sub-w: var(--devonian-calamites-sub-w, 750px);
+    --devonian-bg-scale: var(--devonian-calamites-bg-scale, 1);
+    --devonian-bg-x: var(--devonian-calamites-bg-x, 0px);
+    --devonian-bg-y: var(--devonian-calamites-bg-y, 0px);
+    --devonian-selo-top: var(--devonian-calamites-selo-top, 799px);
+}
+
+/* Carbonífero - Cordaites */
+.view-detail.devoniano.devoniano-pos_extincao-cordaites {
+    --devonian-sub-w: var(--devonian-cordaites-sub-w, 750px);
+    --devonian-bg-scale: var(--devonian-cordaites-bg-scale, 1);
+    --devonian-bg-x: var(--devonian-cordaites-bg-x, 0px);
+    --devonian-bg-y: var(--devonian-cordaites-bg-y, 0px);
+    --devonian-selo-top: var(--devonian-cordaites-selo-top, 799px);
+}
+
+/* Carbonífero - Sigillaria */
+.view-detail.devoniano.devoniano-pos_extincao-sigillaria {
+    --devonian-sub-w: var(--devonian-sigillaria-sub-w, 750px);
+    --devonian-bg-scale: var(--devonian-sigillaria-bg-scale, 1);
+    --devonian-bg-x: var(--devonian-sigillaria-bg-x, 0px);
+    --devonian-bg-y: var(--devonian-sigillaria-bg-y, 0px);
+    --devonian-selo-top: var(--devonian-sigillaria-selo-top, 799px);
+}
 .view-detail.devoniano.meganeura {
     --devonian-name-mt: var(--devonian-meganeura-name-mt, 96px);
     --devonian-name-ml: var(--devonian-meganeura-name-ml, 0px);
@@ -1776,3 +1866,12 @@
     --devonian-selo-w: var(--devonian-voltziopsis-selo-w, 862px);
 }
 
+
+/* Permiano - Espécies */
+.view-detail.permiano.permiano-biodiversidade-perm-bio-archosaurus { --devonian-bg-scale: var(--devonian-archosaurus-bg-scale, 1); --devonian-bg-y: var(--devonian-archosaurus-bg-y, 0px); }
+.view-detail.permiano.permiano-biodiversidade-perm-bio-scutosaurus { --devonian-bg-scale: var(--devonian-scutosaurus-bg-scale, 1); --devonian-bg-y: var(--devonian-scutosaurus-bg-y, 0px); }
+.view-detail.permiano.permiano-biodiversidade-perm-bio-dvinia { --devonian-bg-scale: var(--devonian-dvinia-bg-scale, 1); --devonian-bg-y: var(--devonian-dvinia-bg-y, 0px); }
+.view-detail.permiano.permiano-biodiversidade-perm-bio-arctotypus { --devonian-bg-scale: var(--devonian-arctotypus-bg-scale, 1); --devonian-bg-y: var(--devonian-arctotypus-bg-y, 0px); }
+.view-detail.permiano.permiano-biodiversidade-perm-bio-dicynodon { --devonian-bg-scale: var(--devonian-dicynodon-bg-scale, 1); --devonian-bg-y: var(--devonian-dicynodon-bg-y, 0px); }
+.view-detail.permiano.permiano-biodiversidade-perm-bio-glossopteris { --devonian-bg-scale: var(--devonian-glossopteris-bg-scale, 1); --devonian-bg-y: var(--devonian-glossopteris-bg-y, 0px); }
+.view-detail.permiano.permiano-biodiversidade-perm-bio-phyllotheca { --devonian-bg-scale: var(--devonian-phyllotheca-bg-scale, 1); --devonian-bg-y: var(--devonian-phyllotheca-bg-y, 0px); }

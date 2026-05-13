@@ -10,7 +10,12 @@
 - **Design Editor Robusto**: 
     - Implementada lógica de salvamento baseada em `useRef` para garantir persistência atômica dos dados.
     - Adicionado atalho global **Ctrl+S / Cmd+S**.
-    - Sincronizados todos os `viewId` para o padrão `periodo-secao-id`.
+    - **Sincronização de IDs**: Padronizada a nomenclatura de rotas e configurações para o formato `periodo-secao-id` (ex: `devoniano-pos_extincao-globe`), eliminando falhas de mapeamento.
+    - **Injetor de Estilos Híbrido**: O motor de injeção no `App.jsx` agora suporta tanto o formato legado (camelCase) quanto o novo formato de variáveis CSS diretas, preservando calibrações antigas.
+    - **Resiliência de Crash**: Adicionado tratamento de erros no editor para evitar falhas fatais em páginas sem configuração mapeada.
+- **Expansão de Calibração**: 
+    - Ativado suporte total de edição para **todos os espécimes do Carbonífero** (Stethacanthus, Arthropleura, Amphibamus, etc.) e **Biodiversidade do Permiano**.
+    - Mapeadas as pontes de variáveis CSS no `SpecimenDetail.css` para garantir que o editor atue em tempo real em todas as novas telas.
 - **Renderização e Conteúdo**: 
     - Alterado `object-fit` para `contain` em todos os espécimes para evitar cortes de imagem (crop).
     - Renomeada espécie *Atrypa* para *Favosites* em todo o ecossistema do app.
