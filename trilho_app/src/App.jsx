@@ -23,6 +23,7 @@ import MorphingPageDots from './components/MorphingPageDots'
 import DesignEditor from './components/DesignEditor'
 import HardwareConfigurator from './components/HardwareConfigurator'
 import RailWizard from './components/RailWizard'
+import RailIdleOverlay from './components/RailIdleOverlay'
 import PeriodVideoView from './views/PeriodVideoView'
 import designSettings from './data/design_settings.json'
 import railSettings from './data/rail_settings.json'
@@ -74,6 +75,8 @@ function App() {
   const [currentZoneId, setCurrentZoneId] = useState(1);
   const [lastHardwareAction, setLastHardwareAction] = useState(null);
   const [socket, setSocket] = useState(null);
+  const [idleTimeout, setIdleTimeout] = useState(120000); // 2 minutos por padrão
+  const [showInstructions, setShowInstructions] = useState(false);
   const lastClickTimeRef = useRef(0);
   const lastEncoderMoveTimeRef = useRef(0);
 
@@ -266,6 +269,7 @@ function App() {
       if (e.key.toLowerCase() === 'c') { setIsHardwareConfigVisible(prev => !prev); }
       if (e.key.toLowerCase() === 'w') { setIsRailWizardVisible(prev => !prev); }
       if (e.key.toLowerCase() === 'd') { setShowDebugPos(prev => !prev); }
+      if (e.key.toLowerCase() === 'i') { setShowInstructions(prev => !prev); }
       if (e.key.toLowerCase() === 'f') {
         if (!document.fullscreenElement) {
           document.documentElement.requestFullscreen().catch(e => console.error(e));
@@ -507,9 +511,9 @@ function App() {
             const zone = railSettings.zones.find(z => z.id === currentZoneId) || railSettings.zones[0];
 
             if      (type === 'home')                       Comp = <Home onNavigate={handleNavigate} />;
-            else if (type === 'home_ordoviciano')           Comp = <HomeOrdovician onNavigate={absoluteNavigate} />;
-            else if (type === 'home_devonian')              Comp = <HomeDevonian onNavigate={absoluteNavigate} />;
-            else if (type === 'home_permiano')              Comp = <HomePermian onNavigate={absoluteNavigate} />;
+            else if (type === 'home_ordoviciano')           Comp = <HomeOrdovician onNavigate={absoluteNavigate} idleTimeout={idleTimeout} forceVisible={showInstructions} />;
+            else if (type === 'home_devonian')              Comp = <HomeDevonian onNavigate={absoluteNavigate} idleTimeout={idleTimeout} forceVisible={showInstructions} />;
+            else if (type === 'home_permiano')              Comp = <HomePermian onNavigate={absoluteNavigate} idleTimeout={idleTimeout} forceVisible={showInstructions} />;
             else if (type === 'section_intro')              Comp = <SectionIntro slideData={currentSlide} onNavigate={scopedNavigate} />;
             else if (type === 'extinction_content')         Comp = <ExtinctionContent slideData={currentSlide} onNavigate={scopedNavigate} viewId={viewId} />;
             else if (type === 'extinction_content_devonian') Comp = <ExtinctionContentDevonian slideData={currentSlide} onNavigate={scopedNavigate} />;
@@ -559,6 +563,20 @@ function App() {
         )}
 
         {currentSection === 'home' && <BottomBar />}
+
+        {/* RailIdleOverlay — telas sem menu de período */}
+        {(() => {
+          const menuTypes = ['home_ordoviciano', 'home_devonian', 'home_permiano'];
+          const isMenuScreen = menuTypes.includes(type);
+          if (isMenuScreen) return null;
+          return (
+            <RailIdleOverlay
+              idleTimeout={idleTimeout}
+              isActive={!isHardwareConfigVisible && !isRailWizardVisible}
+              forceVisible={showInstructions}
+            />
+          );
+        })()}
         
         {/* Debug Overlay */}
         {showDebugPos && (
@@ -618,6 +636,8 @@ function App() {
           onClose={() => setIsHardwareConfigVisible(false)}
           lastAction={lastHardwareAction}
           onSendCommand={sendHardwareCommand}
+          idleTimeout={idleTimeout}
+          onIdleTimeoutChange={setIdleTimeout}
         />
 
         <RailWizard 

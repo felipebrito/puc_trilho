@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './HardwareConfigurator.css';
 
-const HardwareConfigurator = ({ isVisible, onClose, lastAction, onSendCommand }) => {
+const HardwareConfigurator = ({ isVisible, onClose, lastAction, onSendCommand, idleTimeout = 120000, onIdleTimeoutChange }) => {
     const [sensitivity, setSensitivity] = useState(50);
     const [activeAction, setActiveAction] = useState(null);
 
@@ -57,6 +57,21 @@ const HardwareConfigurator = ({ isVisible, onClose, lastAction, onSendCommand })
                             }
                         }}
                     />
+                </div>
+
+                <div className="config-section">
+                    <label>Tempo de Inatividade (telas de menu)</label>
+                    <div className="idle-timeout-options">
+                        {[1, 2, 3, 4, 5].map(min => (
+                            <button
+                                key={min}
+                                className={`idle-timeout-btn ${idleTimeout === min * 60000 ? 'active' : ''}`}
+                                onClick={() => onIdleTimeoutChange && onIdleTimeoutChange(min * 60000)}
+                            >
+                                {min} min
+                            </button>
+                        ))}
+                    </div>
                 </div>
 
                 <div className="shortcuts-info">

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import BackgroundVideo from '../components/BackgroundVideo';
 import { slidesData, periodStartIndex } from '../data/slides';
+import IdleOverlay from '../components/IdleOverlay';
 import './HomeDevonian.css';
 
 // Absolute indices in slidesData for each devoniano section
@@ -10,7 +11,7 @@ const BIODIVERSIDADE_IDX = DEVONIAN_OFFSET + slidesData.slice(DEVONIAN_OFFSET).f
 const EXTINCAO_IDX = DEVONIAN_OFFSET + slidesData.slice(DEVONIAN_OFFSET).findIndex(s => s.section === 'extincao');
 const POS_EXTINCAO_IDX = DEVONIAN_OFFSET + slidesData.slice(DEVONIAN_OFFSET).findIndex(s => s.section === 'pos_extincao');
 
-const HomeDevonian = ({ onNavigate }) => {
+const HomeDevonian = ({ onNavigate, idleTimeout = 120000, forceVisible = false }) => {
     const [activeIndex, setActiveIndex] = useState(0);
 
     useEffect(() => {
@@ -52,6 +53,7 @@ const HomeDevonian = ({ onNavigate }) => {
 
     return (
         <div className="view-home-devonian">
+            <IdleOverlay idleTimeout={idleTimeout} isActive={true} forceVisible={forceVisible} />
             <BackgroundVideo src="/assets/videos/06_Devoniano_0604.mp4" variant="full">
                 <motion.div
                     className="home-devonian-content"

@@ -1,0 +1,60 @@
+/* RailIdleOverlay.css */
+
+.rail-idle-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 499;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+}
+
+/* ── Backdrop blur ──────────────────────────────────── */
+.rail-idle__backdrop {
+    position: absolute;
+    inset: 0;
+    backdrop-filter: blur(10px) brightness(0.6);
+    -webkit-backdrop-filter: blur(10px) brightness(0.6);
+    background: rgba(0, 0, 0, 0.25);
+}
+
+/* ── Conteúdo central ───────────────────────────────── */
+.rail-idle__center {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+}
+
+/* ── Trilho (track) ────────────────────────────────── */
+.rail-idle__rail-track {
+    position: relative;
+    width: 700px;
+    height: 340px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: visible;
+}
+
+/* c1 — ícone de tela deslizante */
+.rail-idle__screen-icon {
+    width: 170px;
+    height: auto;
+    margin-top: 60px;
+    user-select: none;
+}
+
+
+
+/* ── Instrução c2 ───────────────────────────────────── */
+.rail-idle__instruction {
+    width: 680px;
+    height: auto;
+    margin-top: 48px;
+    filter: brightness(0) invert(1);
+    opacity: 0.92;
+    user-select: none;
+}

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import BackgroundVideo from '../components/BackgroundVideo';
 import { slidesData, periodStartIndex } from '../data/slides';
+import IdleOverlay from '../components/IdleOverlay';
 import './HomePermian.css';
 
 // Absolute indices in slidesData for each permiano section
@@ -10,7 +11,7 @@ const BIODIVERSIDADE_IDX = PERMIAN_OFFSET + slidesData.slice(PERMIAN_OFFSET).fin
 const EXTINCAO_IDX = PERMIAN_OFFSET + slidesData.slice(PERMIAN_OFFSET).findIndex(s => s.section === 'extincao');
 const POS_EXTINCAO_IDX = PERMIAN_OFFSET + slidesData.slice(PERMIAN_OFFSET).findIndex(s => s.section === 'pos_extincao');
 
-const HomePermian = ({ onNavigate }) => {
+const HomePermian = ({ onNavigate, idleTimeout = 120000, forceVisible = false }) => {
     const [activeIndex, setActiveIndex] = useState(0);
 
     useEffect(() => {
@@ -52,6 +53,7 @@ const HomePermian = ({ onNavigate }) => {
 
     return (
         <div className="view-home-permian">
+            <IdleOverlay idleTimeout={idleTimeout} isActive={true} forceVisible={forceVisible} />
             <BackgroundVideo src="/assets/videos/08_Permiano_0604.mp4" variant="full">
                 <motion.div
                     className="home-permian-content"

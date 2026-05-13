@@ -1,0 +1,90 @@
+/* IdleOverlay.css */
+
+.idle-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none; /* deixa cliques passarem (interação encerrada por keydown/touch) */
+}
+
+/* ── Backdrop com blur ──────────────────────────────── */
+.idle-overlay__backdrop {
+    position: absolute;
+    inset: 0;
+    backdrop-filter: blur(10px) brightness(0.6);
+    -webkit-backdrop-filter: blur(10px) brightness(0.6);
+    background: rgba(0, 0, 0, 0.25);
+}
+
+/* ── Conteúdo central ───────────────────────────────── */
+.idle-overlay__center {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 56px;
+}
+
+/* ── Knob (a1.svg) ──────────────────────────────────── */
+.idle-overlay__knob {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.idle-overlay__knob-img {
+    width: 260px;
+    height: 260px;
+    filter: drop-shadow(0 0 32px rgba(0, 92, 255, 0.5));
+    user-select: none;
+}
+
+/* ── Instrução (a2.svg) ─────────────────────────────── */
+.idle-overlay__instruction {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.idle-overlay__instruction-img {
+    width: 520px;
+    height: auto;
+    opacity: 0.92;
+    filter: brightness(0) invert(1);
+    user-select: none;
+}
+
+/* ── Divisor ────────────────────────────────────────── */
+.idle-overlay__divider {
+    width: 320px;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.18);
+    border-radius: 1px;
+}
+
+/* ── Seção pressionar (b1 + b2) ─────────────────────── */
+.idle-overlay__press-section {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+}
+
+.idle-overlay__press-btn {
+    width: 130px;
+    height: 130px;
+    user-select: none;
+    flex-shrink: 0;
+}
+
+.idle-overlay__press-label {
+    width: 380px;
+    height: auto;
+    opacity: 0.90;
+    user-select: none;
+    filter: brightness(0) invert(1);
+}

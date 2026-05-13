@@ -1,0 +1,14 @@
+A aplicação funciona reativamente a controles físicos onde tenho uma tela touch sobre um trilho fisico com estimadamente 7m de comprimento.
+A ideia do projeto é simular os períodos geológicos da terra em ordem. Onde o usuário vai andar sobre o trilho e de acordo com onde ele estiver, o aplicativo vai mostrar o conteúdo referente àquele período.
+Eletronicamente eu tenho um sistema que consegue me dar a posicao do totem no trilho com a leitura de um encoder em relação ao inicio do trilho. 
+Uma chave micro é o fim de curso, onde ao resetar eu sei que ele voltou ao início do trilho.
+Preciso um wizard onde eu leia a posicao do encoder e possa definir as action zones e vincular essas zonas aos respectivos conteudos.
+O wizard deve ter uma interface que ilustre o trilho, e sobre ele seja possivel desenhar/configurar as zonas.
+E vamos ter 8 periodos inves de apenas os 3 que temos atualmente.
+Eles serao divididos de acordo com os videos da pasta /Users/brito/Desktop/puc_trilho/_conteudo/Videos nelas temos um video para o 04 ordoviciano 06 devoniano e 08 permiano.
+
+Inves de tocar a imagem estatica das sessoes, vamos usar o video respectivo em loop.
+Ao passar de uma sessao pra outra faz a transicao left ou right, dependendo da orientacao do encoder e toca o video respectivo.
+As 3 sessoes que tem navegacao o menu surge quando eles forem acionados 
+
+Podemos usar 12345678 para os 8 periodos
