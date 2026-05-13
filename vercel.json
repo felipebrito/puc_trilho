@@ -1,5 +1,7 @@
 {
-  "buildCommand": "cd trilho_app && npm install && npm run build",
-  "outputDirectory": "trilho_app/dist",
-  "framework": "vite"
+  "name": "puc-trilho",
+  "framework": "vite",
+  "buildCommand": "cd trilho_app && npm install && npm run build && cp -r dist/* ../",
+  "outputDirectory": "./",
+  "cleanUrls": true
 }

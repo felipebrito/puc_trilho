@@ -501,6 +501,12 @@ const DesignEditor = ({ referenceImage, viewId, period, section, slideId, savedS
     }, [period, section, slideId, viewId, variables]);
 
     const handleSave = async () => {
+        // Bloqueia salvamento em produção (Vercel) para evitar erro 404
+        if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
+            alert('💡 O salvamento de configurações só é permitido rodando LOCALMENTE.\n\nComo a Vercel é uma plataforma de apenas leitura, você deve calibrar no seu computador e depois dar "git push" para atualizar o site online.');
+            return;
+        }
+
         const { period: p, section: s, slideId: sid, variables: vars } = stateRef.current;
         
         console.log(`[DesignEditor] Iniciando salvamento para: ${p} / ${s} / ${sid}`);
