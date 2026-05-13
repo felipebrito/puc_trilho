@@ -138,7 +138,8 @@ const ExtinctionContent = ({ onNavigate, slideData, viewId }) => {
                 position: 'absolute', 
                 top: getVar('text-top', '1050px'), 
                 left: getVar('text-left', '108px'), 
-                width: getVar('text-w', '864px') 
+                width: getVar('text-w', '864px'),
+                color: 'var(--color-text-dark)'
             }}>
                 <div className="extinction-top-text" style={{ 
                     position: 'relative',

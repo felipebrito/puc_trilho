@@ -77,6 +77,7 @@ function App() {
   const [socket, setSocket] = useState(null);
   const [idleTimeout, setIdleTimeout] = useState(120000); // 2 minutos por padrão
   const [showInstructions, setShowInstructions] = useState(false);
+  const [isIdle, setIsIdle] = useState(false);
   const lastClickTimeRef = useRef(0);
   const lastEncoderMoveTimeRef = useRef(0);
 
@@ -202,13 +203,16 @@ function App() {
         }
       }
       if (command === 'RESET') setEncoderPosition(0);
+      // Notifica os overlays que houve atividade de hardware
+      window.dispatchEvent(new Event('hardware_activity'));
     });
 
     socketInstance.on('encoder_update', (data) => {
       const pos = typeof data === 'object' ? data.position : data;
-      // console.log('📍 App recebeu posição:', pos);
       setEncoderPosition(pos);
-      lastEncoderMoveTimeRef.current = Date.now(); // Marca movimento para filtrar ruído no botão
+      lastEncoderMoveTimeRef.current = Date.now();
+      // Notifica os overlays que o trilho se moveu
+      window.dispatchEvent(new Event('hardware_activity'));
     });
 
     setSocket(socketInstance);
@@ -301,34 +305,37 @@ function App() {
     }
   }, [isHardwareConfigVisible, isRailWizardVisible]);
 
-  // Lógica de Inatividade (60s)
+  // Lógica de Inatividade Centralizada
   const inactivityTimerRef = useRef(null);
 
   const resetInactivityTimer = useCallback(() => {
     if (inactivityTimerRef.current) clearTimeout(inactivityTimerRef.current);
+    
+    // Se houve interação, removemos o estado de idle
+    setIsIdle(false);
 
-    // Se menus de config abertos, não agendamos o reset
+    // Se menus de config abertos, não agendamos o reset para não atrapalhar a manutenção
     if (isHardwareConfigVisible || isRailWizardVisible) return;
 
-    const currentSlide = slidesData[slideIndex];
-    if (!currentSlide) return;
-    
-    const periodHomeIdx = periodStartIndex[currentSlide.period] ?? 0;
-
-    // Se já estiver na home do período atual, não precisa de timer
-    if (slideIndex === periodHomeIdx) return;
-
     inactivityTimerRef.current = setTimeout(() => {
-      console.log('⏰ Inatividade detectada (60s). Voltando para a Home do Período.');
-      setSlideDirection('down');
-      setSlideIndex(periodHomeIdx);
-    }, 60000);
-  }, [slideIndex, isHardwareConfigVisible, isRailWizardVisible]);
+      console.log(`⏰ Inatividade detectada (${idleTimeout}ms). Ativando Idle e voltando para Home se necessário.`);
+      setIsIdle(true);
+      
+      const currentSlide = slidesData[slideIndex];
+      if (currentSlide) {
+        const periodHomeIdx = periodStartIndex[currentSlide.period] ?? 0;
+        if (slideIndex !== periodHomeIdx) {
+          setSlideDirection('down');
+          setSlideIndex(periodHomeIdx);
+        }
+      }
+    }, idleTimeout);
+  }, [slideIndex, isHardwareConfigVisible, isRailWizardVisible, idleTimeout]);
 
   useEffect(() => {
     resetInactivityTimer();
 
-    const events = ['mousemove', 'mousedown', 'touchstart', 'keydown'];
+    const events = ['mousemove', 'mousedown', 'touchstart', 'keydown', 'hardware_activity'];
     const handler = () => resetInactivityTimer();
     
     events.forEach(evt => window.addEventListener(evt, handler));
@@ -337,7 +344,7 @@ function App() {
       if (inactivityTimerRef.current) clearTimeout(inactivityTimerRef.current);
       events.forEach(evt => window.removeEventListener(evt, handler));
     };
-  }, [resetInactivityTimer, encoderPosition, lastHardwareAction]);
+  }, [resetInactivityTimer]);
 
   const pageVariants = {
     initial: (direction) => ({
@@ -466,7 +473,7 @@ function App() {
       if (id) return id;
       if (section === 'biodiversidade') return `${period}-bio-intro`;
       if (section === 'extincao')       return `${period}-extincao-intro`;
-      if (section === 'pos_extincao')   return `${period}-pos-extincao-intro`;
+      if (section === 'pos_extincao')   return `${period}-pos_extincao-intro`;
     }
     if (type === 'devonian_extinction_environments') return 'devoniano-extincao-ambientes';
     if (type === 'extinction_content') {
@@ -476,12 +483,7 @@ function App() {
     if (type === 'extinction_content_devonian') return `${period}-extincao-content`;
     if (type === 'silurian_globe') return id ? `${period}-pos-${id}` : `${period}-pos-globe`;
     if (type === 'single_species' || type === 'double_species' || type === 'silurian_specimen' || type === 'silurian_double_specimen') {
-      if (period === 'devoniano' && section === 'biodiversidade') return `devoniano-bio-${id}`;
-      if (period === 'devoniano' && section === 'pos_extincao')   return `devoniano-pos-carbon-${id}`;
-      if (period === 'ordoviciano' && section === 'biodiversidade') return id; 
-      if (period === 'ordoviciano' && section === 'pos_extincao')   return `ordoviciano-pos-${id}`;
-      if (period === 'permiano' && section === 'biodiversidade') return id;
-      if (period === 'permiano' && section === 'pos_extincao')   return id;
+      return `${period}-${section}-${id}`;
     }
     return null;
 }
@@ -511,9 +513,9 @@ function App() {
             const zone = railSettings.zones.find(z => z.id === currentZoneId) || railSettings.zones[0];
 
             if      (type === 'home')                       Comp = <Home onNavigate={handleNavigate} />;
-            else if (type === 'home_ordoviciano')           Comp = <HomeOrdovician onNavigate={absoluteNavigate} idleTimeout={idleTimeout} forceVisible={showInstructions} />;
-            else if (type === 'home_devonian')              Comp = <HomeDevonian onNavigate={absoluteNavigate} idleTimeout={idleTimeout} forceVisible={showInstructions} />;
-            else if (type === 'home_permiano')              Comp = <HomePermian onNavigate={absoluteNavigate} idleTimeout={idleTimeout} forceVisible={showInstructions} />;
+            else if (type === 'home_ordoviciano')           Comp = <HomeOrdovician onNavigate={absoluteNavigate} idleTimeout={idleTimeout} forceVisible={isIdle || showInstructions} />;
+            else if (type === 'home_devonian')              Comp = <HomeDevonian onNavigate={absoluteNavigate} idleTimeout={idleTimeout} forceVisible={isIdle || showInstructions} />;
+            else if (type === 'home_permiano')              Comp = <HomePermian onNavigate={absoluteNavigate} idleTimeout={idleTimeout} forceVisible={isIdle || showInstructions} />;
             else if (type === 'section_intro')              Comp = <SectionIntro slideData={currentSlide} onNavigate={scopedNavigate} />;
             else if (type === 'extinction_content')         Comp = <ExtinctionContent slideData={currentSlide} onNavigate={scopedNavigate} viewId={viewId} />;
             else if (type === 'extinction_content_devonian') Comp = <ExtinctionContentDevonian slideData={currentSlide} onNavigate={scopedNavigate} />;
@@ -564,16 +566,23 @@ function App() {
 
         {currentSection === 'home' && <BottomBar />}
 
-        {/* RailIdleOverlay — telas sem menu de período */}
+        {/* RailIdleOverlay — só em 'home' e PeriodVideoView (sem conteúdo de período) */}
         {(() => {
-          const menuTypes = ['home_ordoviciano', 'home_devonian', 'home_permiano'];
-          const isMenuScreen = menuTypes.includes(type);
-          if (isMenuScreen) return null;
+          const railTypes = ['home']; // + PeriodVideoView usa o else do switch
+          const isRailScreen = railTypes.includes(type) || (
+            // PeriodVideoView: tipo não mapeado para nenhum componente de conteúdo
+            !['home_ordoviciano','home_devonian','home_permiano',
+              'section_intro','extinction_content','extinction_content_devonian',
+              'single_species','event_header','event_detail','double_species',
+              'silurian_globe','silurian_specimen','silurian_double_specimen',
+              'devonian_extinction_environments'].includes(type)
+          );
+          if (!isRailScreen) return null;
           return (
             <RailIdleOverlay
               idleTimeout={idleTimeout}
               isActive={!isHardwareConfigVisible && !isRailWizardVisible}
-              forceVisible={showInstructions}
+              forceVisible={isIdle || showInstructions}
             />
           );
         })()}
@@ -620,6 +629,7 @@ function App() {
           savedSettings={(() => {
             const sid = currentSlide.id || viewId;
             const raw = designSettings[currentPeriod]?.[currentSection]?.[sid] || null;
+            console.log(`[App] Lendo configs de: ${currentPeriod} / ${currentSection} / ${sid}`, raw ? '(Encontrado)' : '(Não encontrado)');
             if (!raw) return null;
             return Object.fromEntries(
               Object.entries(raw).map(([k, v]) => {

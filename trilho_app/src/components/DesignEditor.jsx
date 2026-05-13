@@ -239,17 +239,17 @@ const cssConfigs = {
         descMt: 92,
         descLH: 47
     }),
-    'devoniano-bio-dunkleosteus': createDevonianoSpecimenConfig('dunk', { subW: 590, nameSize: 83, descSize: 40 }),
-    'devoniano-bio-campbellodus': createDevonianoSpecimenConfig('campbell', { subW: 657, descMt: 127, descW: 802 }),
-    'devoniano-bio-ctenacanthus': createDevonianoSpecimenConfig('ctenacanthus', { subW: 802, descMt: 128, descW: 921 }),
-    'devoniano-bio-gogonasus': createDevonianoSpecimenConfig('gogonasus', { subW: 641, descMt: 125, descW: 881 }),
-    'devoniano-bio-griphognatus': createDevonianoSpecimenConfig('griphognatus', { subW: 858, descMt: 127, descW: 887 }),
-    'devoniano-bio-furcaster': createDevonianoSpecimenConfig('furcaster', { subW: 831, descMt: 126, descW: 910 }),
-    'devoniano-bio-palaeoisopus': createDevonianoSpecimenConfig('palaeoisopus', { subW: 755, descMt: 81, descW: 866 }),
-    'devoniano-bio-archaeopteris': createDevonianoSpecimenConfig('archaeopteris', { subMt: 87, subW: 735, descMt: 150, descW: 898, descLH: 48 }),
-    'devoniano-bio-tiktaalik': createDevonianoSpecimenConfig('tiktaalik', { subW: 590, descMt: -11, descW: 915, descLH: 48 }),
-    'devoniano-bio-ichthyostega': createDevonianoSpecimenConfig('ichthyostega', { nameMt: 67, nameSize: 86, subW: 935, descMt: -33, descW: 869, descLH: 47 }),
-    'devoniano-bio-drepanophycus': createDevonianoSpecimenConfig('drepanophycus', { subMt: 78, subW: 834, descMt: 124, descW: 870, descLH: 50 }),
+    'devoniano-biodiversidade-dunkleosteus': createDevonianoSpecimenConfig('dunk', { subW: 590, nameSize: 83, descSize: 40 }),
+    'devoniano-biodiversidade-campbellodus': createDevonianoSpecimenConfig('campbell', { subW: 657, descMt: 127, descW: 802 }),
+    'devoniano-biodiversidade-ctenacanthus': createDevonianoSpecimenConfig('ctenacanthus', { subW: 802, descMt: 128, descW: 921 }),
+    'devoniano-biodiversidade-gogonasus': createDevonianoSpecimenConfig('gogonasus', { subW: 641, descMt: 125, descW: 881 }),
+    'devoniano-biodiversidade-griphognatus': createDevonianoSpecimenConfig('griphognatus', { subW: 858, descMt: 127, descW: 887 }),
+    'devoniano-biodiversidade-furcaster': createDevonianoSpecimenConfig('furcaster', { subW: 831, descMt: 126, descW: 910 }),
+    'devoniano-biodiversidade-palaeoisopus': createDevonianoSpecimenConfig('palaeoisopus', { subW: 755, descMt: 81, descW: 866 }),
+    'devoniano-biodiversidade-archaeopteris': createDevonianoSpecimenConfig('archaeopteris', { subMt: 87, subW: 735, descMt: 150, descW: 898, descLH: 48 }),
+    'devoniano-biodiversidade-tiktaalik': createDevonianoSpecimenConfig('tiktaalik', { subW: 590, descMt: -11, descW: 915, descLH: 48 }),
+    'devoniano-biodiversidade-ichthyostega': createDevonianoSpecimenConfig('ichthyostega', { nameMt: 67, nameSize: 86, subW: 935, descMt: -33, descW: 869, descLH: 47 }),
+    'devoniano-biodiversidade-drepanophycus': createDevonianoSpecimenConfig('drepanophycus', { subMt: 78, subW: 834, descMt: 124, descW: 870, descLH: 50 }),
     
     'perm-bio-intro': createDevonianoIntroConfig('perm-bio', {
         bgOpacity: 0.47,
@@ -262,13 +262,13 @@ const cssConfigs = {
         headingSpacing: -1,
         headingLH: 1.05
     }),
-    'perm-bio-archosaurus': createPermianoSpecimenConfig('archosaurus'),
-    'perm-bio-scutosaurus': createPermianoSpecimenConfig('scutosaurus'),
-    'perm-bio-dvinia': createPermianoSpecimenConfig('dvinia'),
-    'perm-bio-arctotypus': createPermianoSpecimenConfig('arctotypus'),
-    'perm-bio-dicynodon': createPermianoSpecimenConfig('dicynodon'),
-    'perm-bio-glossopteris': createPermianoSpecimenConfig('glossopteris'),
-    'perm-bio-phyllotheca': createPermianoSpecimenConfig('phyllotheca'),
+    'permiano-biodiversidade-archosaurus': createPermianoSpecimenConfig('archosaurus'),
+    'permiano-biodiversidade-scutosaurus': createPermianoSpecimenConfig('scutosaurus'),
+    'permiano-biodiversidade-dvinia': createPermianoSpecimenConfig('dvinia'),
+    'permiano-biodiversidade-arctotypus': createPermianoSpecimenConfig('arctotypus'),
+    'permiano-biodiversidade-dicynodon': createPermianoSpecimenConfig('dicynodon'),
+    'permiano-biodiversidade-glossopteris': createPermianoSpecimenConfig('glossopteris'),
+    'permiano-biodiversidade-phyllotheca': createPermianoSpecimenConfig('phyllotheca'),
 
     // Ordoviciano
     'ordoviciano-bio-intro': createDevonianoIntroConfig('ord-bio', { 
@@ -280,35 +280,35 @@ const cssConfigs = {
         headingSpacing: -1,
         headingLH: 1.05 
     }),
-    'ord-homotelus': createDevonianoSpecimenConfig('ord-homotelus'),
-    'ord-cameroceras': createDevonianoSpecimenConfig('ord-cameroceras', {
+    'ordoviciano-biodiversidade-ord-homotelus': createDevonianoSpecimenConfig('ord-homotelus'),
+    'ordoviciano-biodiversidade-ord-cameroceras': createDevonianoSpecimenConfig('ord-cameroceras', {
         subMt: 38,
         subW: 790,
         descMt: 69,
         descW: 798
     }),
-    'ord-megalograptus': createDevonianoSpecimenConfig('ord-megalograptus', {
+    'ordoviciano-biodiversidade-ord-megalograptus': createDevonianoSpecimenConfig('ord-megalograptus', {
         subMt: 40,
         subW: 719,
         descMt: 66,
         bgScale: 1.1,
         bgX: 50
     }),
-    'ord-balacrinus': createDevonianoSpecimenConfig('ord-balacrinus', {
+    'ordoviciano-biodiversidade-ord-balacrinus': createDevonianoSpecimenConfig('ord-balacrinus', {
         subMt: 45,
         subW: 776,
         descMt: 60,
         descW: 893
     }),
-    'ord-sacabambaspis': createDevonianoSpecimenConfig('ord-sacabambaspis', {
+    'ordoviciano-biodiversidade-ord-sacabambaspis': createDevonianoSpecimenConfig('ord-sacabambaspis', {
         descMt: 73,
         descW: 904
     }),
-    'ord-promissum': createDevonianoSpecimenConfig('ord-promissum', {
+    'ordoviciano-biodiversidade-ord-promissum': createDevonianoSpecimenConfig('ord-promissum', {
         descMt: 47,
         descW: 916
     }),
-    'ord-sowerbyella': createDevonianoSpecimenConfig('ord-sowerbyella', {
+    'ordoviciano-biodiversidade-ord-sowerbyella': createDevonianoSpecimenConfig('ord-sowerbyella', {
         subMt: 42,
         subW: 683,
         descMt: 62,
@@ -347,9 +347,8 @@ const cssConfigs = {
         { label: 'Text Width', prop: '--dev-ext-text-w', value: 864, min: 100, max: 1080, suffix: 'px' },
         { label: 'Text Line Height', prop: '--dev-ext-text-lh', value: 47, min: 20, max: 100, suffix: 'px' },
     ],
-    'ordoviciano-pos-extincao-intro': createDevonianoIntroConfig('ord-pos'),
-
-    'ordoviciano-pos-dalmanites': createDevonianoSpecimenConfig('dalmanites', {
+    'ordoviciano-pos_extincao-intro': createDevonianoIntroConfig('ord-pos'),
+    'ordoviciano-pos_extincao-dalmanites': createDevonianoSpecimenConfig('dalmanites', {
         nameMt: 20,
         subMt: 29,
         subSize: 47,
@@ -363,7 +362,7 @@ const cssConfigs = {
         seloTop: 543,
         topTextTop: 181
     }),
-    'ordoviciano-pos-globe': createDevonianoGlobeConfig('ord-glob', {
+    'ordoviciano-pos_extincao-globe': createDevonianoGlobeConfig('ord-glob', {
         headerTop: -61,
         globMt: 61,
         globW: 1080,
@@ -375,9 +374,9 @@ const cssConfigs = {
         descLH: 45,
         lineMt: 29
     }),
-    'ordoviciano-pos-halysites': createDevonianoSpecimenConfig('halysites'),
-    'ordoviciano-pos-cooksonia': createDevonianoSpecimenConfig('cooksonia'),
-    'ordoviciano-pos-atrypa': createDevonianoSpecimenConfig('atrypa'),
+    'ordoviciano-pos_extincao-halysites': createDevonianoSpecimenConfig('halysites'),
+    'ordoviciano-pos_extincao-cooksonia': createDevonianoSpecimenConfig('cooksonia'),
+    'ordoviciano-pos_extincao-favosites': createDevonianoSpecimenConfig('favosites'),
 
     // Carbonífero
     'devoniano-pos-carbon-meganeura': createDevonianoSpecimenConfig('meganeura'),
@@ -391,7 +390,7 @@ const cssConfigs = {
 
     // Permiano Pós-Extinção
     'perm-pos-ext-intro': createDevonianoIntroConfig('perm-pos-ext'),
-    'perm-pos-ext-mundo': [
+    'permiano-pos_extincao-mundo': [
         { label: 'Img Top', prop: '--dev-perm-pos-ext-mundo-img-top', value: 160, min: 0, max: 800, suffix: 'px' },
         { label: 'Img Height', prop: '--dev-perm-pos-ext-mundo-img-h', value: 660, min: 100, max: 1200, suffix: 'px' },
         { label: 'Img Scale', prop: '--dev-perm-pos-ext-mundo-img-scale', value: 1, min: 0.5, max: 3, suffix: '' },
@@ -412,7 +411,7 @@ const cssConfigs = {
         { label: 'BottomText Size', prop: '--dev-perm-pos-ext-mundo-bot-size', value: 37, min: 10, max: 100, suffix: 'px' },
         { label: 'BottomText LH', prop: '--dev-perm-pos-ext-mundo-bot-lh', value: 47, min: 20, max: 100, suffix: 'px' },
     ],
-    'perm-pos-ext-resistencia': [
+    'permiano-pos_extincao-resistencia': [
         { label: 'Img Top', prop: '--dev-perm-pos-ext-resistencia-img-top', value: 160, min: 0, max: 800, suffix: 'px' },
         { label: 'Img Height', prop: '--dev-perm-pos-ext-resistencia-img-h', value: 660, min: 100, max: 1200, suffix: 'px' },
         { label: 'Img Scale', prop: '--dev-perm-pos-ext-resistencia-img-scale', value: 1, min: 0.5, max: 3, suffix: '' },
@@ -428,11 +427,11 @@ const cssConfigs = {
         { label: 'TopText Size', prop: '--dev-perm-pos-ext-resistencia-top-size', value: 45, min: 10, max: 100, suffix: 'px' },
         { label: 'TopText LH', prop: '--dev-perm-pos-ext-resistencia-top-lh', value: 60, min: 20, max: 150, suffix: 'px' },
     ],
-    'benthosuchus': createPermianoSpecimenConfig('benthosuchus', {}, 'benthosuchus'),
-    'lystrosaurus': createPermianoSpecimenConfig('lystrosaurus', {}, 'lystrosaurus'),
-    'thrinaxodon': createPermianoSpecimenConfig('thrinaxodon', {}, 'thrinaxodon'),
-    'procolophon': createPermianoSpecimenConfig('procolophon', {}, 'procolophon'),
-    'voltziopsis': createPermianoSpecimenConfig('voltziopsis', {}, 'voltziopsis'),
+    'permiano-pos_extincao-benthosuchus': createPermianoSpecimenConfig('benthosuchus', {}, 'benthosuchus'),
+    'permiano-pos_extincao-lystrosaurus': createPermianoSpecimenConfig('lystrosaurus', {}, 'lystrosaurus'),
+    'permiano-pos_extincao-thrinaxodon': createPermianoSpecimenConfig('thrinaxodon', {}, 'thrinaxodon'),
+    'permiano-pos_extincao-procolophon': createPermianoSpecimenConfig('procolophon', {}, 'procolophon'),
+    'permiano-pos_extincao-voltziopsis': createPermianoSpecimenConfig('voltziopsis', {}, 'voltziopsis'),
 };
 
 // ==========================================================================
@@ -461,45 +460,73 @@ const DesignEditor = ({ referenceImage, viewId, period, section, slideId, savedS
     }, [viewId]);
 
     const handleVarChange = (prop, value, suffix) => {
+        console.log(`[DesignEditor] Alterando ${prop}: ${value}${suffix}`);
         setVariables(prev => ({ ...prev, [prop]: value }));
         document.documentElement.style.setProperty(prop, `${value}${suffix}`);
     };
 
+    // Referências para garantir que o salvamento sempre use os dados mais recentes
+    const stateRef = useRef({ period, section, slideId, viewId, variables });
+    useEffect(() => {
+        stateRef.current = { period, section, slideId, viewId, variables };
+    }, [period, section, slideId, viewId, variables]);
+
     const handleSave = async () => {
-        if (!period || !section || !slideId) {
+        const { period: p, section: s, slideId: sid, variables: vars } = stateRef.current;
+        
+        console.log(`[DesignEditor] Iniciando salvamento para: ${p} / ${s} / ${sid}`);
+        if (!p || !s || !sid) {
+            console.error('[DesignEditor] Erro: Faltam IDs para salvar!', { p, s, sid });
             alert('Faltam dados de identificação (period/section/id) para salvar.');
             return;
         }
-        // Build values as { cssVar: "value+unit" }
+
         const values = {};
         currentConfig.forEach(cfg => {
-            values[cfg.prop] = `${variables[cfg.prop] ?? cfg.value}${cfg.suffix}`;
+            values[cfg.prop] = `${vars[cfg.prop] ?? cfg.value}${cfg.suffix}`;
         });
+        
+        console.log('[DesignEditor] Valores que serão enviados:', values);
         setSaveStatus('saving');
+
         try {
             const res = await fetch('/api/save-design', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ period, section, id: slideId, values }),
+                body: JSON.stringify({ period: p, section: s, id: sid, values }),
             });
             if (!res.ok) throw new Error(await res.text());
+            console.log('[DesignEditor] Resposta do servidor: OK');
             setSaveStatus('saved');
             setTimeout(() => setSaveStatus('idle'), 2000);
         } catch (e) {
+            console.error('[DesignEditor] Erro na requisição:', e);
             setSaveStatus('error');
             alert(`Erro ao salvar: ${e.message}`);
         }
     };
 
     useEffect(() => {
+        // Expõe função global para debug
+        window.saveDesign = handleSave;
+        console.log(`[DesignEditor] Pronto para: ${period} / ${section} / ${slideId || viewId}`);
+        
         const handleKeyDown = (e) => {
             if ((e.key === 'e' || e.key === 'E') && !e.target.matches('input, textarea')) {
                 setIsVisible(prev => !prev);
             }
+            if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+                e.preventDefault();
+                console.log('[DesignEditor] Atalho detectado via teclado');
+                handleSave();
+            }
         };
         window.addEventListener('keydown', handleKeyDown);
-        return () => window.removeEventListener('keydown', handleKeyDown);
-    }, []);
+        return () => {
+            window.removeEventListener('keydown', handleKeyDown);
+            delete window.saveDesign;
+        };
+    }, [period, section, slideId, viewId]); // Re-registra se os IDs mudarem
 
     if (!isVisible) return null;
 

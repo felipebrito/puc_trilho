@@ -1,61 +1,16 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import './IdleOverlay.css';
 
 /**
- * IdleOverlay
- * Aparece após `idleTimeout` ms de inatividade (sem keydown / touchstart).
- * Desaparece ao primeiro evento de interação.
- *
- * Props:
- *   idleTimeout  — ms até aparecer (default: 8000)
- *   isActive     — se a tela pai está montada e ativa
+ * IdleOverlay — telas COM menu (HomeOrdovician, HomeDevonian, HomePermian)
+ * Aparece após `idleTimeout` ms sem interação.
+ * forceVisible: toggle imediato via tecla I.
  */
-const IdleOverlay = ({ idleTimeout = 8000, isActive = true, forceVisible = false }) => {
-    const [visible, setVisible] = useState(false);
-    const timerRef = useRef(null);
-
-    // forceVisible: mostra/esconde imediatamente (tecla I)
-    useEffect(() => {
-        setVisible(forceVisible);
-    }, [forceVisible]);
-
-    const hide = useCallback(() => {
-        setVisible(false);
-    }, []);
-
-    const scheduleShow = useCallback(() => {
-        if (timerRef.current) clearTimeout(timerRef.current);
-        timerRef.current = setTimeout(() => {
-            setVisible(true);
-        }, idleTimeout);
-    }, [idleTimeout]);
-
-    const handleInteraction = useCallback(() => {
-        if (visible) {
-            hide();
-        }
-        scheduleShow();
-    }, [visible, hide, scheduleShow]);
-
-    useEffect(() => {
-        if (!isActive) {
-            setVisible(false);
-            if (timerRef.current) clearTimeout(timerRef.current);
-            return;
-        }
-
-        const events = ['keydown', 'touchstart', 'mousedown'];
-        events.forEach(evt => window.addEventListener(evt, handleInteraction, { passive: true }));
-
-        // Inicia o timer ao montar
-        scheduleShow();
-
-        return () => {
-            events.forEach(evt => window.removeEventListener(evt, handleInteraction));
-            if (timerRef.current) clearTimeout(timerRef.current);
-        };
-    }, [isActive, handleInteraction, scheduleShow]);
+const IdleOverlay = ({ isActive = true, forceVisible = false }) => {
+    // Agora o IdleOverlay é controlado centralmente pelo App.jsx via forceVisible (isIdle).
+    // O timer interno foi removido para evitar redundância e conflitos.
+    const visible = forceVisible;
 
     return (
         <AnimatePresence>
@@ -98,30 +53,20 @@ const IdleOverlay = ({ idleTimeout = 8000, isActive = true, forceVisible = false
                         </motion.div>
 
                         {/* Instrução rotação (a2.svg) */}
-                        <motion.div
-                            className="idle-overlay__instruction"
-                            initial={{ opacity: 0, y: 16 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.3, duration: 0.6 }}
-                        >
+                        <div className="idle-overlay__instruction">
                             <img
                                 src="/assets/a2.svg"
                                 alt="Instrução: gire para explorar"
                                 className="idle-overlay__instruction-img"
                                 draggable={false}
                             />
-                        </motion.div>
+                        </div>
 
                         {/* Divisor */}
                         <div className="idle-overlay__divider" />
 
                         {/* Instrução pressionar — b1 (botão piscando) + b2 (texto) */}
-                        <motion.div
-                            className="idle-overlay__press-section"
-                            initial={{ opacity: 0, y: 16 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.5, duration: 0.6 }}
-                        >
+                        <div className="idle-overlay__press-section">
                             {/* b1 — botão com glow pulsante */}
                             <motion.img
                                 src="/assets/b1.svg"
@@ -138,7 +83,7 @@ const IdleOverlay = ({ idleTimeout = 8000, isActive = true, forceVisible = false
                                 transition={{
                                     duration: 1.6,
                                     ease: 'easeInOut',
-                                    times: [0, 0.4, 0.7, 1],
+                                    times: [0, 0.4, 1],
                                     repeat: Infinity,
                                     repeatType: 'loop',
                                 }}
@@ -150,7 +95,7 @@ const IdleOverlay = ({ idleTimeout = 8000, isActive = true, forceVisible = false
                                 className="idle-overlay__press-label"
                                 draggable={false}
                             />
-                        </motion.div>
+                        </div>
                     </motion.div>
                 </motion.div>
             )}

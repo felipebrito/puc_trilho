@@ -265,7 +265,10 @@
 .view-detail.devoniano .bg-video,
 .view-detail.ordoviciano .bg-video,
 .view-detail.permiano .bg-video {
-    transform: scale(var(--devonian-bg-scale)) translate(var(--devonian-bg-x), var(--devonian-bg-y));
+    object-fit: contain;
+    object-position: center center;
+    transform: translate(var(--devonian-bg-x, 0px), var(--devonian-bg-y, 0px)) scale(var(--devonian-bg-scale, 1));
+    transform-origin: center center;
     opacity: var(--devonian-bg-opacity, 1);
 }
 
@@ -1224,7 +1227,7 @@
 .view-detail.ordoviciano.dalmanites .detail-empty-top,
 .view-detail.ordoviciano.halysites .detail-empty-top,
 .view-detail.ordoviciano.cooksonia .detail-empty-top,
-.view-detail.ordoviciano.atrypa .detail-empty-top {
+.view-detail.ordoviciano.favosites .detail-empty-top {
     height: 0;
 }
 
@@ -1232,7 +1235,7 @@
 .view-detail.ordoviciano.dalmanites .detail-base-bg,
 .view-detail.ordoviciano.halysites .detail-base-bg,
 .view-detail.ordoviciano.cooksonia .detail-base-bg,
-.view-detail.ordoviciano.atrypa .detail-base-bg {
+.view-detail.ordoviciano.favosites .detail-base-bg {
     top: 0;
     height: 100%;
 }
@@ -1241,7 +1244,7 @@
 .view-detail.ordoviciano.dalmanites .detail-info-area,
 .view-detail.ordoviciano.halysites .detail-info-area,
 .view-detail.ordoviciano.cooksonia .detail-info-area,
-.view-detail.ordoviciano.atrypa .detail-info-area {
+.view-detail.ordoviciano.favosites .detail-info-area {
     position: absolute;
     top: var(--devonian-white-mt, 926px);
     left: 0;
@@ -1254,14 +1257,14 @@
 .view-detail.ordoviciano.dalmanites .video-container.variant-split,
 .view-detail.ordoviciano.halysites .video-container.variant-split,
 .view-detail.ordoviciano.cooksonia .video-container.variant-split,
-.view-detail.ordoviciano.atrypa .video-container.variant-split {
+.view-detail.ordoviciano.favosites .video-container.variant-split {
     top: var(--devonian-bg-top, 0);
 }
 
 .view-detail.ordoviciano.dalmanites .bg-video,
 .view-detail.ordoviciano.halysites .bg-video,
 .view-detail.ordoviciano.cooksonia .bg-video,
-.view-detail.ordoviciano.atrypa .bg-video {
+.view-detail.ordoviciano.favosites .bg-video {
     height: 1080px;
 }
 
@@ -1349,32 +1352,32 @@
     --devonian-bg-top: var(--devonian-cooksonia-bg-top, 0px);
 }
 
-.view-detail.ordoviciano.atrypa {
-    --devonian-name-mt: var(--devonian-atrypa-name-mt, 96px);
-    --devonian-name-ml: var(--devonian-atrypa-name-ml, 0px);
-    --devonian-name-size: var(--devonian-atrypa-name-size, 82px);
-    --devonian-selo-w: var(--devonian-atrypa-selo-w, 862px);
-    --devonian-selo-top: var(--devonian-atrypa-selo-top, 799px);
-    --devonian-selo-left: var(--devonian-atrypa-selo-left, 0px);
-    --devonian-white-h: var(--devonian-atrypa-white-h, 34%);
-    --devonian-white-mt: var(--devonian-atrypa-white-mt, 38px);
-    --devonian-bg-h: var(--devonian-atrypa-bg-h, 42%);
-    --devonian-cut-y: var(--devonian-atrypa-cut-y, 40px);
-    --devonian-cut-x1: var(--devonian-atrypa-cut-x1, 250px);
-    --devonian-cut-x2: var(--devonian-atrypa-cut-x2, 280px);
-    --devonian-sub-mt: var(--devonian-atrypa-sub-mt, 46px);
-    --devonian-sub-ml: var(--devonian-atrypa-sub-ml, 3px);
-    --devonian-sub-w: var(--devonian-atrypa-sub-w, 736px);
-    --devonian-sub-size: var(--devonian-atrypa-sub-size, 56px);
-    --devonian-desc-mt: var(--devonian-atrypa-desc-mt, 117px);
-    --devonian-desc-ml: var(--devonian-atrypa-desc-ml, 0px);
-    --devonian-desc-w: var(--devonian-atrypa-desc-w, 883px);
-    --devonian-desc-size: var(--devonian-atrypa-desc-size, 40px);
-    --devonian-desc-lh: var(--devonian-atrypa-desc-lh, 50px);
-    --devonian-bg-scale: var(--devonian-atrypa-bg-scale, 1);
-    --devonian-bg-x: var(--devonian-atrypa-bg-x, 0px);
-    --devonian-bg-y: var(--devonian-atrypa-bg-y, 0px);
-    --devonian-bg-top: var(--devonian-atrypa-bg-top, 0px);
+.view-detail.ordoviciano.favosites {
+    --devonian-name-mt: var(--devonian-favosites-name-mt, 96px);
+    --devonian-name-ml: var(--devonian-favosites-name-ml, 0px);
+    --devonian-name-size: var(--devonian-favosites-name-size, 82px);
+    --devonian-selo-w: var(--devonian-favosites-selo-w, 862px);
+    --devonian-selo-top: var(--devonian-favosites-selo-top, 799px);
+    --devonian-selo-left: var(--devonian-favosites-selo-left, 0px);
+    --devonian-white-h: var(--devonian-favosites-white-h, 34%);
+    --devonian-white-mt: var(--devonian-favosites-white-mt, 38px);
+    --devonian-bg-h: var(--devonian-favosites-bg-h, 42%);
+    --devonian-cut-y: var(--devonian-favosites-cut-y, 40px);
+    --devonian-cut-x1: var(--devonian-favosites-cut-x1, 250px);
+    --devonian-cut-x2: var(--devonian-favosites-cut-x2, 280px);
+    --devonian-sub-mt: var(--devonian-favosites-sub-mt, 46px);
+    --devonian-sub-ml: var(--devonian-favosites-sub-ml, 3px);
+    --devonian-sub-w: var(--devonian-favosites-sub-w, 736px);
+    --devonian-sub-size: var(--devonian-favosites-sub-size, 56px);
+    --devonian-desc-mt: var(--devonian-favosites-desc-mt, 117px);
+    --devonian-desc-ml: var(--devonian-favosites-desc-ml, 0px);
+    --devonian-desc-w: var(--devonian-favosites-desc-w, 883px);
+    --devonian-desc-size: var(--devonian-favosites-desc-size, 40px);
+    --devonian-desc-lh: var(--devonian-favosites-desc-lh, 50px);
+    --devonian-bg-scale: var(--devonian-favosites-bg-scale, 1);
+    --devonian-bg-x: var(--devonian-favosites-bg-x, 0px);
+    --devonian-bg-y: var(--devonian-favosites-bg-y, 0px);
+    --devonian-bg-top: var(--devonian-favosites-bg-top, 0px);
 }
 
 /* ==========================================================================

@@ -39,22 +39,31 @@ function designSaverPlugin() {
         req.on('data', chunk => { body += chunk })
         req.on('end', () => {
           try {
+            console.log('[Design Saver] Recebendo requisição de salvamento...')
             const { period, section, id, values } = JSON.parse(body)
+            console.log(`[Design Saver] Period: ${period}, Section: ${section}, ID: ${id}`)
+            
             if (!period || !section || !id || !values) {
+              console.error('[Design Saver] Erro: Dados incompletos', { period, section, id })
               res.statusCode = 400
               res.end(JSON.stringify({ error: 'period, section, id e values são obrigatórios' }))
               return
             }
 
-            const settings = JSON.parse(fs.readFileSync(DESIGN_SETTINGS_PATH, 'utf-8'))
+            const rawData = fs.readFileSync(DESIGN_SETTINGS_PATH, 'utf-8')
+            const settings = JSON.parse(rawData)
+            
             if (!settings[period]) settings[period] = {}
             if (!settings[period][section]) settings[period][section] = {}
             settings[period][section][id] = values
 
             fs.writeFileSync(DESIGN_SETTINGS_PATH, JSON.stringify(settings, null, 2))
+            console.log(`[Design Saver] Sucesso: Arquivo atualizado em ${DESIGN_SETTINGS_PATH}`)
+            
             res.setHeader('Content-Type', 'application/json')
             res.end(JSON.stringify({ ok: true }))
           } catch (e) {
+            console.error('[Design Saver] Erro crítico ao salvar:', e.message)
             res.statusCode = 500
             res.end(JSON.stringify({ error: e.message }))
           }

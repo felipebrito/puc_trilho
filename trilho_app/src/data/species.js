@@ -31,7 +31,7 @@ export const speciesData = [
         id: 'sacabambaspis',
         name: 'SACABAMBASPIS SP.',
         subtitle: 'Peixe sem mandíbula, com aproximadamente 25 cm de comprimento',
-        description: 'Sua boca em forma de colher, tinha pequenas fileiras de plaqueta ósseas para raspar algas e lodo do fundo do mar, bem como se alimentar realizando sucção (sugando). Habitava águas rasas nas margens continentais de Gondwana.',
+        description: 'Alimentava-se por sucção, sua boca em forma de colher, tinha pequenas fileiras de plaqueta ósseas para raspar algas e lodo do fundo do mar. Habitava águas rasas nas margens continentais de Gondwana.',
         videoSrc: '/assets/videos/sacabambaspis_sp.mp4'
     }
 ];

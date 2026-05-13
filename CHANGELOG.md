@@ -1,10 +1,18 @@
-# Changelog - PUC Trilho [2026-05-02]
+# Changelog - PUC Trilho [2026-05-13]
 
-## 🛠️ Versão: Minimalismo de Capa e Orquestração de Conteúdo
-- **Capas Minimalistas**: Ocultados todos os blocos de texto (títulos, datas e descrições) nas capas de períodos (`HomeOrdovician`, `HomeDevonian`, `HomePermian`) e transições, mantendo apenas o vídeo e os menus de interação.
-- **Orquestração de Digitação**: Restaurados os atrasos sequenciais (`Typewriter`) nas páginas de biodiversidade para garantir que nome, subtítulo e descrição surjam em tempos distintos (0.8s, 1.5s, 2.5s).
-- **Navegação de Sessão**: Corrigido o posicionamento dos textos nas páginas de extinção, garantindo visibilidade total independente da calibração do encoder.
-- **Estabilidade de Transição**: Implementado o modo `popLayout` no Framer Motion para evitar sobreposição de elementos durante a navegação lateral rápida no trilho.
+## 🛠️ Versão: Estabilização do Design Editor e Persistência
+- **Design Editor Robusto**: 
+    - Implementada lógica de salvamento baseada em `useRef` para garantir que o estado persistido seja sempre o mais recente, independente de ciclos de renderização do React.
+    - Adicionado atalho global **Ctrl+S / Cmd+S** para salvamento rápido.
+    - Sincronizados todos os `viewId` para o padrão `periodo-secao-id`, resolvendo problemas de "editor sumindo".
+    - Adicionado comando `saveDesign()` no console para salvamento manual de emergência.
+- **Renderização de Imagens**: 
+    - Alterado `object-fit` para `contain` com alinhamento centralizado em todos os espécimes, garantindo que as imagens nunca sejam cortadas (crop), mesmo com alterações de escala.
+- **Correções de Conteúdo**:
+    - Renomeada espécie *Atrypa* para *Favosites* em todo o projeto (arquivos, dados e editor).
+    - Corrigidos textos da 1ª Extinção em Massa (Ordoviciano).
+    - Persistência manual de valores para o *Halysites* (`BG Y: -67px`, `Scale: 1.05`).
+- **Logs e Depuração**: Implementados logs detalhados em tempo real no console e no terminal (Vite) para monitorar o fluxo de dados entre editor e JSON.
 
 # Changelog - PUC Trilho [2026-05-02]
 
