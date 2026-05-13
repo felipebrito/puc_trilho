@@ -14,8 +14,10 @@
     - **Injetor de Estilos Híbrido**: O motor de injeção no `App.jsx` agora suporta tanto o formato legado (camelCase) quanto o novo formato de variáveis CSS diretas, preservando calibrações antigas.
     - **Resiliência de Crash**: Adicionado tratamento de erros no editor para evitar falhas fatais em páginas sem configuração mapeada (ex: transição para o Cambriano).
     - **Persistência de Hardware**: O tempo de inatividade configurado no Menu C agora é salvo no `localStorage`, impedindo resets indesejados.
-    - **Diagnóstico do Timer**: Implementados logs de alta visibilidade no console para monitorar a contagem regressiva e garantir que o tempo de 5 minutos seja respeitado fielmente.
-    - **Visibilidade Inteligente**: Revertido o estado inicial do Design Editor para escondido, mantendo a interface limpa.
+    - **Diagnóstico do Timer**: Implementados logs de alta visibilidade no console para monitorar a contagem regressiva.
+    - **Interface de Repouso Contextual**: O `RailIdleOverlay` agora oculta automaticamente as instruções de botões (B1/C1) em telas sem menus interativos, evitando confusão visual.
+    - **Infraestrutura Vercel**: Configurado `vercel.json` na raiz para corrigir o roteamento do build e eliminar o erro 404 no deploy.
+    - **Visibilidade Inteligente**: Revertido o estado inicial do Design Editor para escondido.
 - **Expansão de Calibração**: 
     - Ativado suporte total de edição para **todos os espécimes do Carbonífero** (Stethacanthus, Arthropleura, Amphibamus, etc.) e **Biodiversidade do Permiano**.
     - Mapeadas as pontes de variáveis CSS no `SpecimenDetail.css` para garantir que o editor atue em tempo real em todas as novas telas.
