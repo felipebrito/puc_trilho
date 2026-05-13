@@ -51,10 +51,35 @@
 
 /* ── Instrução c2 ───────────────────────────────────── */
 .rail-idle__instruction {
-    width: 680px;
+    width: 600px;
     height: auto;
-    margin-top: 48px;
+    margin-top: 40px;
     filter: brightness(0) invert(1);
-    opacity: 0.92;
+    opacity: 0.85;
     user-select: none;
+}
+
+.rail-idle__divider {
+    width: 400px;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(255,255,255,0.2), transparent);
+    margin: 30px 0;
+}
+
+.rail-idle__press-section {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    filter: brightness(0) invert(1);
+    opacity: 0.85;
+}
+
+.rail-idle__press-btn {
+    width: 60px;
+    height: auto;
+}
+
+.rail-idle__press-label {
+    width: 320px;
+    height: auto;
 }

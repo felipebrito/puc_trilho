@@ -1,18 +1,20 @@
 # Changelog - PUC Trilho [2026-05-13]
 
-## 🛠️ Versão: Estabilização do Design Editor e Persistência
+## 🛠️ Versão: Estabilização do Design Editor e Inteligência de Repouso
+- **Inteligência de Inatividade**: 
+    - Reformulada a lógica de repouso no `App.jsx` para diferenciar "ações do sistema" de "interações do usuário", garantindo que as instruções não sumam durante a navegação automática.
+    - Implementado **Filtro de Ruído** para o hardware: o timer só é resetado se o totem se mover mais de 1 unidade, evitando que vibrações impeçam o repouso.
+    - Adicionadas instruções completas ao `RailIdleOverlay` (Mover + Pressionar), mantendo consistência visual com os menus.
+    - Ajustado o tempo padrão de inatividade para **60 segundos**.
+    - Implementados logs de diagnóstico detalhados para monitorar o ciclo de vida do timer e atividade de hardware.
 - **Design Editor Robusto**: 
-    - Implementada lógica de salvamento baseada em `useRef` para garantir que o estado persistido seja sempre o mais recente, independente de ciclos de renderização do React.
-    - Adicionado atalho global **Ctrl+S / Cmd+S** para salvamento rápido.
-    - Sincronizados todos os `viewId` para o padrão `periodo-secao-id`, resolvendo problemas de "editor sumindo".
-    - Adicionado comando `saveDesign()` no console para salvamento manual de emergência.
-- **Renderização de Imagens**: 
-    - Alterado `object-fit` para `contain` com alinhamento centralizado em todos os espécimes, garantindo que as imagens nunca sejam cortadas (crop), mesmo com alterações de escala.
-- **Correções de Conteúdo**:
-    - Renomeada espécie *Atrypa* para *Favosites* em todo o projeto (arquivos, dados e editor).
-    - Corrigidos textos da 1ª Extinção em Massa (Ordoviciano).
-    - Persistência manual de valores para o *Halysites* (`BG Y: -67px`, `Scale: 1.05`).
-- **Logs e Depuração**: Implementados logs detalhados em tempo real no console e no terminal (Vite) para monitorar o fluxo de dados entre editor e JSON.
+    - Implementada lógica de salvamento baseada em `useRef` para garantir persistência atômica dos dados.
+    - Adicionado atalho global **Ctrl+S / Cmd+S**.
+    - Sincronizados todos os `viewId` para o padrão `periodo-secao-id`.
+- **Renderização e Conteúdo**: 
+    - Alterado `object-fit` para `contain` em todos os espécimes para evitar cortes de imagem (crop).
+    - Renomeada espécie *Atrypa* para *Favosites* em todo o ecossistema do app.
+    - Corrigidos textos da 1ª Extinção em Massa.
 
 # Changelog - PUC Trilho [2026-05-02]
 

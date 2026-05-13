@@ -65,6 +65,37 @@ const RailIdleOverlay = ({ isActive = true, forceVisible = false }) => {
                             className="rail-idle__instruction"
                             draggable={false}
                         />
+
+                        {/* Divisor sutil */}
+                        <div className="rail-idle__divider" />
+
+                        {/* Instrução pressionar (b1 + b2) */}
+                        <div className="rail-idle__press-section">
+                            <motion.img
+                                src="/assets/b1.svg"
+                                alt="Botão pressionar"
+                                className="rail-idle__press-btn"
+                                draggable={false}
+                                animate={{
+                                    filter: [
+                                        'drop-shadow(0 0 0px rgba(0,92,255,0))',
+                                        'drop-shadow(0 0 30px rgba(0,92,255,0.8))',
+                                        'drop-shadow(0 0 0px rgba(0,92,255,0))',
+                                    ],
+                                }}
+                                transition={{
+                                    duration: 1.6,
+                                    repeat: Infinity,
+                                    ease: 'easeInOut'
+                                }}
+                            />
+                            <img
+                                src="/assets/b2.svg"
+                                alt="Pressione para acessar"
+                                className="rail-idle__press-label"
+                                draggable={false}
+                            />
+                        </div>
                     </motion.div>
                 </motion.div>
             )}

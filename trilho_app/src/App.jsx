@@ -75,7 +75,7 @@ function App() {
   const [currentZoneId, setCurrentZoneId] = useState(1);
   const [lastHardwareAction, setLastHardwareAction] = useState(null);
   const [socket, setSocket] = useState(null);
-  const [idleTimeout, setIdleTimeout] = useState(120000); // 2 minutos por padrão
+  const [idleTimeout, setIdleTimeout] = useState(60000); // 1 minuto por padrão
   const [showInstructions, setShowInstructions] = useState(false);
   const [isIdle, setIsIdle] = useState(false);
   const lastClickTimeRef = useRef(0);
@@ -209,10 +209,15 @@ function App() {
 
     socketInstance.on('encoder_update', (data) => {
       const pos = typeof data === 'object' ? data.position : data;
-      setEncoderPosition(pos);
-      lastEncoderMoveTimeRef.current = Date.now();
-      // Notifica os overlays que o trilho se moveu
-      window.dispatchEvent(new Event('hardware_activity'));
+      
+      // Só consideramos atividade se a posição realmente mudou (evita flood com totem parado)
+      setEncoderPosition(prevPos => {
+        if (Math.abs(prevPos - pos) > 1) { // margem de 1 unidade para ruído
+          lastEncoderMoveTimeRef.current = Date.now();
+          window.dispatchEvent(new Event('hardware_activity'));
+        }
+        return pos;
+      });
     });
 
     setSocket(socketInstance);
@@ -308,35 +313,52 @@ function App() {
   // Lógica de Inatividade Centralizada
   const inactivityTimerRef = useRef(null);
 
-  const resetInactivityTimer = useCallback(() => {
-    if (inactivityTimerRef.current) clearTimeout(inactivityTimerRef.current);
+  const resetInactivityTimer = useCallback((isUserAction = false) => {
+    if (inactivityTimerRef.current) {
+      // console.log('🧹 [Timer] Limpando timer anterior');
+      clearTimeout(inactivityTimerRef.current);
+    }
     
-    // Se houve interação, removemos o estado de idle
-    setIsIdle(false);
+    // Log de diagnóstico
+    console.log(`[Timer] Iniciando contagem de ${idleTimeout}ms. Ação do usuário: ${isUserAction}`);
 
-    // Se menus de config abertos, não agendamos o reset para não atrapalhar a manutenção
-    if (isHardwareConfigVisible || isRailWizardVisible) return;
+    if (isUserAction) {
+      if (isIdle) console.log('🌞 [Inatividade] Ação do usuário detectada. Acordando sistema...');
+      setIsIdle(false);
+    }
+
+    if (isHardwareConfigVisible || isRailWizardVisible) {
+      console.log('🛠️ [Inatividade] Timer suspenso (menus de config abertos)');
+      return;
+    }
 
     inactivityTimerRef.current = setTimeout(() => {
-      console.log(`⏰ Inatividade detectada (${idleTimeout}ms). Ativando Idle e voltando para Home se necessário.`);
+      console.log(`⏰ [Inatividade] Tempo esgotado (${idleTimeout}ms). Ativando repouso.`);
       setIsIdle(true);
       
       const currentSlide = slidesData[slideIndex];
       if (currentSlide) {
         const periodHomeIdx = periodStartIndex[currentSlide.period] ?? 0;
         if (slideIndex !== periodHomeIdx) {
+          console.log(`🏠 [Inatividade] Voltando para a Home do período: ${currentSlide.period}`);
           setSlideDirection('down');
           setSlideIndex(periodHomeIdx);
         }
       }
     }, idleTimeout);
-  }, [slideIndex, isHardwareConfigVisible, isRailWizardVisible, idleTimeout]);
+  }, [slideIndex, isHardwareConfigVisible, isRailWizardVisible, idleTimeout, isIdle]);
 
   useEffect(() => {
     resetInactivityTimer();
 
     const events = ['mousemove', 'mousedown', 'touchstart', 'keydown', 'hardware_activity'];
-    const handler = () => resetInactivityTimer();
+    const handler = (e) => {
+      // Log especial para hardware para ver se ele está "gritando" no console
+      if (e?.type === 'hardware_activity') {
+        console.log('⚡ [Hardware] Atividade detectada');
+      }
+      resetInactivityTimer(true);
+    };
     
     events.forEach(evt => window.addEventListener(evt, handler));
 
