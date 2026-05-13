@@ -75,7 +75,14 @@ function App() {
   const [currentZoneId, setCurrentZoneId] = useState(1);
   const [lastHardwareAction, setLastHardwareAction] = useState(null);
   const [socket, setSocket] = useState(null);
-  const [idleTimeout, setIdleTimeout] = useState(60000); // 1 minuto por padrão
+  const [idleTimeout, setIdleTimeout] = useState(() => {
+    const saved = localStorage.getItem('idleTimeout');
+    return saved ? parseInt(saved) : 60000; // 1 minuto por padrão
+  });
+
+  useEffect(() => {
+    localStorage.setItem('idleTimeout', idleTimeout);
+  }, [idleTimeout]);
   const [showInstructions, setShowInstructions] = useState(false);
   const [isIdle, setIsIdle] = useState(false);
   const lastClickTimeRef = useRef(0);

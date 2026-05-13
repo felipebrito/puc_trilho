@@ -447,24 +447,26 @@ const cssConfigs = {
 // ==========================================================================
 
 const DesignEditor = ({ referenceImage, viewId, period, section, slideId, savedSettings }) => {
-    const [isVisible, setIsVisible] = useState(true);
+    const [isVisible, setIsVisible] = useState(false);
     const [opacity, setOpacity] = useState(0.5);
     const [variables, setVariables] = useState({});
     const [saveStatus, setSaveStatus] = useState('idle'); // idle | saving | saved | error
 
     // LOG DE DIAGNÓSTICO PESADO
     console.log(`[DesignEditor] DEBUG - viewId: "${viewId}", period: "${period}", section: "${section}"`);
-    // console.log('[DesignEditor] Chaves disponíveis:', Object.keys(cssConfigs));
-
-    // Tenta achar a configuração pelo viewId exato ou pelo padrão simplificado
-    let currentConfig = cssConfigs[viewId];
     
-    if (!currentConfig) {
+    // Tenta achar a configuração pelo viewId exato ou pelo padrão simplificado
+    let currentConfig = viewId ? cssConfigs[viewId] : null;
+    
+    if (!currentConfig && viewId) {
         // Fallback para biodiversidade
         if (viewId.includes('biodiversidade') && !viewId.includes('intro')) {
              const specId = viewId.split('-').pop();
              currentConfig = cssConfigs[`${period}-biodiversidade-${specId}`];
         }
+        // Fallback para introduções (periodo-secao-intro)
+        if (viewId.includes('intro')) currentConfig = cssConfigs[`${period}-${section}-intro`];
+        
         // Fallback para globo/summary
         if (viewId.includes('globe')) currentConfig = cssConfigs[`${period}-${section}-globe`];
         if (viewId.includes('summary')) currentConfig = cssConfigs[`${period}-${section}-summary`];
