@@ -172,13 +172,20 @@ function App() {
     });
   }, []);
 
-  // Socket IO — encoder
+  // Socket IO — encoder (Somente Local)
   useEffect(() => {
+    const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+    
+    if (!isLocal) {
+      console.log('🌐 [Ambiente Online] Pulando conexão com hardware local.');
+      return;
+    }
+
     console.log('🔌 Tentando conectar ao Socket em http://127.0.0.1:3000...');
     const socketInstance = io('http://127.0.0.1:3000', {
       transports: ['websocket'],
       reconnection: true,
-      reconnectionAttempts: Infinity
+      reconnectionAttempts: 5 // Reduzido de Infinity para não pesar se o servidor local estiver desligado
     });
 
     socketInstance.on('connect', () => {
