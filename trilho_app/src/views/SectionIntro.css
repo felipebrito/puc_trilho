@@ -435,8 +435,7 @@
     width: var(--dev-ord-ext-heading-w, 805px);
     letter-spacing: var(--dev-ord-ext-heading-spacing, -1px);
     line-height: var(--dev-ord-ext-heading-lh, 1.05);
-    color: var(--color-primary-blue) !important;
-    /* Título em azul conforme solicitado */
+    color: var(--color-white) !important;
 }
 
 /* Forçar remoção das linhas para Ordoviciano */

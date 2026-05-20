@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
+import B2Icon from './B2Icon';
 import './RailIdleOverlay.css';
 
 /**
@@ -91,12 +92,7 @@ const RailIdleOverlay = ({ isActive = true, forceVisible = false, showPressInstr
                                             ease: 'easeInOut'
                                         }}
                                     />
-                                    <img
-                                        src="/assets/b2.svg"
-                                        alt="Pressione para acessar"
-                                        className="rail-idle__press-label"
-                                        draggable={false}
-                                    />
+                                    <B2Icon className="rail-idle__press-label" />
                                 </div>
                             </>
                         )}

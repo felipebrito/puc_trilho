@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
+import B2Icon from './B2Icon';
 import './IdleOverlay.css';
 
 /**
@@ -89,12 +90,7 @@ const IdleOverlay = ({ isActive = true, forceVisible = false }) => {
                                 }}
                             />
                             {/* b2 — texto instrução */}
-                            <img
-                                src="/assets/b2.svg"
-                                alt="Pressione para acessar"
-                                className="idle-overlay__press-label"
-                                draggable={false}
-                            />
+                            <B2Icon className="idle-overlay__press-label" />
                         </div>
                     </motion.div>
                 </motion.div>
