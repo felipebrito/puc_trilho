@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
+import A2Icon from './A2Icon';
 import B2Icon from './B2Icon';
 import './IdleOverlay.css';
 
@@ -53,15 +54,8 @@ const IdleOverlay = ({ isActive = true, forceVisible = false }) => {
                             />
                         </motion.div>
 
-                        {/* Instrução rotação (a2.svg) */}
-                        <div className="idle-overlay__instruction">
-                            <img
-                                src="/assets/a2.svg"
-                                alt="Instrução: gire para explorar"
-                                className="idle-overlay__instruction-img"
-                                draggable={false}
-                            />
-                        </div>
+                        {/* Instrução rotação (A2Icon) */}
+                        <A2Icon className="idle-overlay__instruction" />
 
                         {/* Divisor */}
                         <div className="idle-overlay__divider" />
