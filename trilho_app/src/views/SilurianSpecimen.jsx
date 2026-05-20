@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { formatSpecies } from '../utils/formatSpecies';
 import './SilurianSpecimen.css';
 
 const SilurianSpecimen = ({ onNavigate, slideData }) => {
@@ -43,7 +44,7 @@ const SilurianSpecimen = ({ onNavigate, slideData }) => {
                     <img src={slideData.imageSrc} alt={slideData.name} className="silurian-specimen-image" />
                     <div className="silurian-name-overlay">
                         <br /><br /><br /><br /><br />
-                        <h2 className="silurian-specimen-name1">{slideData.name}</h2>
+                        <h2 className="silurian-specimen-name1">{formatSpecies(slideData.name)}</h2>
                         <h3 className="silurian-specimen-subtitle1">{slideData.subtitle}</h3>
                     </div>
                 </div>

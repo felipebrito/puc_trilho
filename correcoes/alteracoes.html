@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alterações de Conteúdo — PUC Trilho</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0f0f0f; color: #e0e0e0; padding: 40px 20px; }
+  h1 { font-size: 1.8rem; font-weight: 700; margin-bottom: 8px; color: #fff; }
+  .subtitle { color: #888; font-size: 0.95rem; margin-bottom: 40px; }
+  h2 { font-size: 1.2rem; font-weight: 600; color: #a78bfa; margin: 40px 0 16px; text-transform: uppercase; letter-spacing: 0.08em; border-bottom: 1px solid #2a2a2a; padding-bottom: 8px; }
+  h3 { font-size: 0.85rem; font-weight: 600; color: #6b7280; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 10px; }
+  .card { background: #1a1a1a; border: 1px solid #2a2a2a; border-radius: 10px; padding: 20px; margin-bottom: 16px; }
+  .card-title { font-size: 1rem; font-weight: 600; color: #f9fafb; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+  .badge { font-size: 0.7rem; font-weight: 700; padding: 2px 8px; border-radius: 999px; text-transform: uppercase; letter-spacing: 0.05em; }
+  .badge-text { background: #1d4ed8; color: #bfdbfe; }
+  .badge-image { background: #92400e; color: #fde68a; }
+  .diff { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .diff-box { border-radius: 8px; padding: 14px; }
+  .diff-before { background: #2d1515; border: 1px solid #7f1d1d; }
+  .diff-after { background: #142d14; border: 1px solid #14532d; }
+  .diff-box h3 { margin-bottom: 8px; }
+  .diff-before h3 { color: #f87171; }
+  .diff-after h3 { color: #4ade80; }
+  .diff-box p { font-size: 0.88rem; line-height: 1.6; color: #d1d5db; }
+  mark { background: transparent; font-weight: 700; }
+  .diff-before mark { color: #fca5a5; text-decoration: line-through; }
+  .diff-after mark { color: #86efac; }
+  .file-link { font-size: 0.78rem; color: #6b7280; font-family: monospace; margin-bottom: 12px; display: block; }
+  .file-link a { color: #818cf8; text-decoration: none; }
+  .file-link a:hover { text-decoration: underline; }
+  .image-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+  .image-table th { text-align: left; padding: 10px 12px; background: #212121; color: #9ca3af; font-weight: 600; border-bottom: 1px solid #2a2a2a; }
+  .image-table td { padding: 10px 12px; border-bottom: 1px solid #1f1f1f; vertical-align: top; }
+  .image-table tr:last-child td { border-bottom: none; }
+  .path { font-family: monospace; font-size: 0.8rem; color: #a5b4fc; }
+  .corr-path { font-family: monospace; font-size: 0.8rem; color: #fbbf24; }
+  .note { background: #1c2a1c; border: 1px solid #166534; border-radius: 8px; padding: 14px; margin-top: 8px; font-size: 0.85rem; color: #86efac; }
+  @media (max-width: 700px) { .diff { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<h1>Alterações de Conteúdo — PUC Trilho</h1>
+<p class="subtitle">Gerado em 19/05/2026 · Baseado nos arquivos da pasta <code>correcoes/</code></p>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2>Alterações de Texto</h2>
+
+<!-- 1 -->
+<div class="card">
+  <div class="card-title">
+    <span class="badge badge-text">TEXTO</span>
+    Ordoviciano — Megalograptus sp. · Descrição
+  </div>
+  <span class="file-link">
+    <a href="../trilho_app/src/data/slides.js">trilho_app/src/data/slides.js</a>
+    · id: ord-megalograptus · linha ~67
+  </span>
+  <div class="diff">
+    <div class="diff-box diff-before">
+      <h3>Antes</h3>
+      <p>…um dos escorpiões-marinhos mais antigos que se <mark>conhecem</mark>.</p>
+    </div>
+    <div class="diff-box diff-after">
+      <h3>Depois</h3>
+      <p>…um dos escorpiões-marinhos mais antigos que se <mark>conhece</mark>.</p>
+    </div>
+  </div>
+</div>
+
+<!-- 2 -->
+<div class="card">
+  <div class="card-title">
+    <span class="badge badge-text">TEXTO</span>
+    Ordoviciano → Siluriano — Globo Continental · Conteúdo
+  </div>
+  <span class="file-link">
+    <a href="../trilho_app/src/data/slides.js">trilho_app/src/data/slides.js</a>
+    · type: silurian_globe · period: ordoviciano · linha ~157
+  </span>
+  <div class="diff">
+    <div class="diff-box diff-before">
+      <h3>Antes</h3>
+      <p>…correspondente <mark>à nova época retratada: Período Siluriano</mark>…</p>
+    </div>
+    <div class="diff-box diff-after">
+      <h3>Depois</h3>
+      <p>…correspondente <mark>ao Período Siluriano</mark>…</p>
+    </div>
+  </div>
+</div>
+
+<!-- 3 -->
+<div class="card">
+  <div class="card-title">
+    <span class="badge badge-text">TEXTO</span>
+    Devoniano — Drepanophycus sp. · Descrição
+  </div>
+  <span class="file-link">
+    <a href="../trilho_app/src/data/slides.js">trilho_app/src/data/slides.js</a>
+    · id: drepanophycus · linha ~358
+  </span>
+  <div class="diff">
+    <div class="diff-box diff-before">
+      <h3>Antes</h3>
+      <p>Plantas vasculares de folhas micrófilas (pequenas folhinhas) <mark>extintas do gênero Lycopodiophyta</mark>. Seu talo era decumbente, fazendo-<mark>o</mark> crescer rasteiro ao solo.</p>
+    </div>
+    <div class="diff-box diff-after">
+      <h3>Depois</h3>
+      <p>Plantas vasculares de folhas micrófilas (pequenas folhinhas). Seu talo era decumbente, fazendo-<mark>a</mark> crescer rasteiro ao solo.</p>
+    </div>
+  </div>
+</div>
+
+<!-- 4 -->
+<div class="card">
+  <div class="card-title">
+    <span class="badge badge-text">TEXTO</span>
+    Devoniano → Carbonífero — Globo Continental · Grupos de peixes
+  </div>
+  <span class="file-link">
+    <a href="../trilho_app/src/data/slides.js">trilho_app/src/data/slides.js</a>
+    · type: silurian_globe · id: globe · period: devoniano · linha ~413
+  </span>
+  <div class="diff">
+    <div class="diff-box diff-before">
+      <h3>Antes</h3>
+      <p>…Grupos outrora dominantes, como <mark>peixes sarcopterígios, placodermes e acantoides, deram lugar a tetrápodes, peixes actinopterígeos e peixes condrictes</mark>.</p>
+    </div>
+    <div class="diff-box diff-after">
+      <h3>Depois</h3>
+      <p>…Grupos outrora dominantes, como <mark>peixes com placas ósseas e tubarões espinhados, deram lugar a novos grupos de peixes (como os de nadadeiras raiadas) e aos tetrápodes</mark>.</p>
+    </div>
+  </div>
+</div>
+
+<!-- 5 -->
+<div class="card">
+  <div class="card-title">
+    <span class="badge badge-text">TEXTO</span>
+    Carbonífero (pós-Devoniano) — Cordaites sp. · Descrição
+  </div>
+  <span class="file-link">
+    <a href="../trilho_app/src/data/slides.js">trilho_app/src/data/slides.js</a>
+    · id: cordaites · linha ~514
+  </span>
+  <div class="diff">
+    <div class="diff-box diff-before">
+      <h3>Antes</h3>
+      <p>Relacionadas <mark>às</mark> coníferas, <mark>as</mark> cordaites cresceram…</p>
+    </div>
+    <div class="diff-box diff-after">
+      <h3>Depois</h3>
+      <p>Relacionadas <mark>à</mark> coníferas, <mark>os</mark> cordaites cresceram…</p>
+    </div>
+  </div>
+</div>
+
+<!-- 6 -->
+<div class="card">
+  <div class="card-title">
+    <span class="badge badge-text">TEXTO</span>
+    Permiano — Arctotypus sylvaensis sp. · Descrição
+  </div>
+  <span class="file-link">
+    <a href="../trilho_app/src/data/slides.js">trilho_app/src/data/slides.js</a>
+    · id: perm-bio-arctotypus · linha ~596
+  </span>
+  <div class="diff">
+    <div class="diff-box diff-before">
+      <h3>Antes</h3>
+      <p>…similares <mark>as</mark> cavalinhas atuais. <mark>Viviam</mark> em regiões de floresta ou <mark>pantanosas</mark>…</p>
+    </div>
+    <div class="diff-box diff-after">
+      <h3>Depois</h3>
+      <p>…similares <mark>às</mark> cavalinhas atuais. <mark>Vivia</mark> em regiões de floresta ou <mark>pântanos</mark>…</p>
+    </div>
+  </div>
+</div>
+
+<!-- 7 -->
+<div class="card">
+  <div class="card-title">
+    <span class="badge badge-text">TEXTO</span>
+    Permiano — Dicynodon sp. · Descrição
+  </div>
+  <span class="file-link">
+    <a href="../trilho_app/src/data/slides.js">trilho_app/src/data/slides.js</a>
+    · id: perm-bio-dicynodon · linha ~607
+  </span>
+  <div class="diff">
+    <div class="diff-box diff-before">
+      <h3>Antes</h3>
+      <p>Foi o primeiro fóssil descrito mostrando evidências…</p>
+    </div>
+    <div class="diff-box diff-after">
+      <h3>Depois</h3>
+      <p>Foi o primeiro fóssil descrito <mark>da África,</mark> mostrando evidências…</p>
+    </div>
+  </div>
+</div>
+
+<!-- 8 -->
+<div class="card">
+  <div class="card-title">
+    <span class="badge badge-text">TEXTO</span>
+    Permiano (pós-extinção) — Procolophon sp. · Descrição
+  </div>
+  <span class="file-link">
+    <a href="../trilho_app/src/data/slides.js">trilho_app/src/data/slides.js</a>
+    · id: procolophon · linha ~713
+  </span>
+  <div class="diff">
+    <div class="diff-box diff-before">
+      <h3>Antes</h3>
+      <p><mark>Procolofonídeo que</mark> vivia em grupos…sobreviveu <mark>a</mark> extinção…</p>
+    </div>
+    <div class="diff-box diff-after">
+      <h3>Depois</h3>
+      <p>Vivia em grupos…sobreviveu <mark>à</mark> extinção…</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<h2>Imagens a Substituir Manualmente</h2>
+<p style="font-size:0.85rem;color:#6b7280;margin-bottom:16px;">
+  Copie a imagem da pasta <code>correcoes/</code> para o caminho indicado em <code>Destino na app</code>, substituindo o arquivo existente.
+</p>
+
+<table class="image-table">
+  <thead>
+    <tr>
+      <th>Período / Slide</th>
+      <th>Arquivo em correcoes/</th>
+      <th>Destino na app</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Ordoviciano · Pg 02 · Background menu</td>
+      <td class="corr-path">01 ORDOVICIANO/01 MENU/pg02 bg.png</td>
+      <td class="path">trilho_app/public/assets/ordoviciano/home_bg.png</td>
+    </tr>
+    <tr>
+      <td>Ordoviciano · Pg 03 · Homotelus sp.</td>
+      <td class="corr-path">01 ORDOVICIANO/02 BIODIVERSIDADE/01 Homotelus/pg03 imagem Homotelus.png</td>
+      <td class="path">trilho_app/public/assets/ordoviciano/homotelus.png</td>
+    </tr>
+    <tr>
+      <td>Ordoviciano · Pg 06 · Balacrinus sp.</td>
+      <td class="corr-path">01 ORDOVICIANO/02 BIODIVERSIDADE/04 Balacrinus/pg06 imagem Balacrinus.png</td>
+      <td class="path">trilho_app/public/assets/ordoviciano/balacrinus.png</td>
+    </tr>
+    <tr>
+      <td>Ordoviciano · Pg 10 · Extinção background</td>
+      <td class="corr-path">01 ORDOVICIANO/03 primeira extincao/pg10 BG.png</td>
+      <td class="path">trilho_app/public/assets/ordoviciano/extincao_intro_bg.png</td>
+    </tr>
+    <tr>
+      <td>Devoniano · Pg 22 · Ctenacanthus sp.</td>
+      <td class="corr-path">02 DEVONIANO/01 BIODIVERSIDADE/03 Ctenacanthus/pg22 imagem Ctenacanthus.png</td>
+      <td class="path">trilho_app/public/assets/devoniano/img_ctenacanthus.png</td>
+    </tr>
+    <tr>
+      <td>Devoniano · Pg 29 · Ichthyostega gunnari sp.</td>
+      <td class="corr-path">02 DEVONIANO/01 BIODIVERSIDADE/10 Ichthyostega gunnari/pg29 imagem Ichthyostega gunnari .png</td>
+      <td class="path">trilho_app/public/assets/devoniano/img_ichthyostega.png</td>
+    </tr>
+    <tr>
+      <td>Carbonífero · Pg 40 · Sphenophyllum sp.</td>
+      <td class="corr-path">02 DEVONIANO/03 E DEPOIS/01 BIODIVERSIDADE/05 Sphenophyllum/pg40 imagem Sphenophyllum.png</td>
+      <td class="path">trilho_app/public/assets/carbonifero/img_sphenophyllum.png</td>
+    </tr>
+    <tr>
+      <td>Permiano · Extinção · Página 2 menu (imagem de fundo)</td>
+      <td class="corr-path">03 PERMIANO/02 3 EXTINCAO/IMAGEM PAGINA 2 MENU.png</td>
+      <td class="path">trilho_app/public/assets/permiano/extincao_content_bg.png</td>
+    </tr>
+    <tr>
+      <td>Permiano · Pós-extinção · Background globo</td>
+      <td class="corr-path">03 PERMIANO/03 E DEPOIS/MENU/pg57 imagem BG.png</td>
+      <td class="path">trilho_app/public/assets/permiano/pos_extincao_bg.png</td>
+    </tr>
+    <tr>
+      <td>Permiano · Pós-extinção · Benthosuchus sp.</td>
+      <td class="corr-path">03 PERMIANO/03 E DEPOIS/01 BIODIVERSIDADE/01 Benthosuchus/pg58 imagem Benthosuchus.png</td>
+      <td class="path">trilho_app/public/assets/permiano/especies/benthosuchus.png</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="note" style="margin-top:20px;">
+  ℹ️ Os textos de <strong>subtítulo das telas de vídeo</strong> (Arqueano, Proterozoico, Cambriano, Siluriano, Carbonífero, Ordoviciano, Devoniano, Permiano) estão atualmente ocultados no código (<code>/* Titles hidden as requested */</code>). Se quiser reativar, avise para reabilitar o bloco e aplicar os textos corrigidos dos arquivos <code>tela * texto subtitulo.docx</code>.
+</div>
+
+</body>
+</html>

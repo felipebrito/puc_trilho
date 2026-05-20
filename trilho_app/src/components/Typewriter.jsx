@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { formatSpecies } from '../utils/formatSpecies';
 
 const Typewriter = ({ text, delay = 30, initialDelay = 0, className = '' }) => {
     const [displayedText, setDisplayedText] = useState('');
@@ -26,7 +27,7 @@ const Typewriter = ({ text, delay = 30, initialDelay = 0, className = '' }) => {
         };
     }, [text, delay, initialDelay]);
 
-    return <span className={className}>{displayedText}</span>;
+    return <span className={className}>{formatSpecies(displayedText)}</span>;
 }
 
 export default Typewriter;

@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { formatSpecies } from '../utils/formatSpecies';
 import './SilurianDoubleSpecimen.css';
 
 const SilurianDoubleSpecimen = ({ onNavigate, slideData }) => {
@@ -36,7 +37,7 @@ const SilurianDoubleSpecimen = ({ onNavigate, slideData }) => {
                         <img src="assets/barrabranca.png" className="barrabrancaInterna" />
                         <img src={slideData.speciesLeft.imageSrc} alt={slideData.speciesLeft.name} className="silurian-specimen-image" />
                         <div className="silurian-name-overlay">
-                            <h2 className="silurian-specimen-name">{slideData.speciesLeft.name}</h2>
+                            <h2 className="silurian-specimen-name">{formatSpecies(slideData.speciesLeft.name)}</h2>
                             <h3 className="silurian-specimen-subtitle">{slideData.speciesLeft.subtitle}</h3>
                         </div>
                     </div>
@@ -53,7 +54,7 @@ const SilurianDoubleSpecimen = ({ onNavigate, slideData }) => {
                         <img src="assets/barrabranca.png" className="barrabrancaInterna" />
                         <img src={slideData.speciesRight.imageSrc} alt={slideData.speciesRight.name} className="silurian-specimen-image" />
                         <div className="silurian-name-overlay">
-                            <h2 className="silurian-specimen-name">{slideData.speciesRight.name}</h2>
+                            <h2 className="silurian-specimen-name">{formatSpecies(slideData.speciesRight.name)}</h2>
                             <h3 className="silurian-specimen-subtitle">{slideData.speciesRight.subtitle}</h3>
                         </div>
                     </div>
