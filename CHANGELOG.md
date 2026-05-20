@@ -1,3 +1,16 @@
+# Changelog - PUC Trilho [2026-05-20]
+
+## 🛠️ Versão: Rigor Científico e Nomenclatura Biológica
+- **Padronização do 'sp.'**:
+    - Implementado `formatSpecies.jsx`, um utilitário inteligente que detecta a abreviação "sp." e remove o itálico (aplicando `font-style: normal`), preservando o itálico do nome do gênero (*ex: Homotelus* sp.).
+    - Injetado em todos os componentes de texto, incluindo o componente animado `Typewriter.jsx` e os layouts das telas do Siluriano (`SilurianSpecimen` e `SilurianDoubleSpecimen`).
+- **Nomes Binominais**: 
+    - Removido o sufixo incorreto "sp." de todas as espécies que já possuíam nome binominal completo (gênero + epíteto específico), respeitando a regra taxonômica (*Arctotypus sylvaensis*, *Archosaurus rossicus*, *Dvinia prima*, *Palaeoisopus problematicus*, etc.).
+- **Unidades de Medida**:
+    - Realizada auditoria no banco de dados (`slides.js`) para padronizar todas as métricas de tamanho e comprimento.
+    - Adicionado espaçamento obrigatório antes das unidades (ex: de `30cm` para `30 cm`, de `1m` para `1 m`).
+    - Substituição de pontos por vírgulas nas medidas decimais (ex: `2.5m` para `2,5 m`).
+
 # Changelog - PUC Trilho [2026-05-13]
 
 ## 🛠️ Versão: Estabilização do Design Editor e Inteligência de Repouso
