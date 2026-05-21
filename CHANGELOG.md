@@ -1,3 +1,15 @@
+# Changelog - PUC Trilho [2026-05-21]
+
+## 🖼️ Versão: Atualização de Ativos Visuais (Imagens)
+- **Atualização de Imagens**:
+    - **Devoniano**: Atualizada a imagem do espécime *Ctenacanthus* (`img_ctenacanthus.png`).
+    - **Ordoviciano**: Atualizada a imagem de fundo da introdução da extinção (`extincao_intro_bg.png`).
+    - **Permiano**:
+        - Atualizada a imagem do espécime *Benthosuchus* (`benthosuchus.png`).
+        - Atualizada a imagem de fundo da extinção (`extincao_bg.png`).
+        - Atualizada a imagem de fundo da pós-extinção (`pos_extincao_bg.png`).
+        - Atualizada a imagem de fundo do menu pós-extinção ("03 e depois") (`pg55 BG.png`).
+
 # Changelog - PUC Trilho [2026-05-20]
 
 ## 🛠️ Versão: Rigor Científico e Nomenclatura Biológica
