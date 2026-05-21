@@ -1,13 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import './RailWizard.css';
-import initialSettings from '../data/rail_settings.json';
 
-const RailWizard = ({ isVisible, onClose, currentPosition }) => {
-    const [settings, setSettings] = useState(initialSettings);
+const RailWizard = ({ isVisible, onClose, currentPosition, railSettings, onSaveSettings }) => {
+    const [settings, setSettings] = useState(railSettings);
     const [activeZone, setActiveZone] = useState(null);
 
+    // Sincroniza o estado do Wizard com as configurações ativas ao abrir
     useEffect(() => {
-        if (currentPosition !== undefined) {
+        if (isVisible && railSettings) {
+            setSettings(railSettings);
+        }
+    }, [isVisible, railSettings]);
+
+    useEffect(() => {
+        if (currentPosition !== undefined && settings) {
             const zone = settings.zones.find(z => currentPosition >= z.start && currentPosition <= z.end);
             if (zone) setActiveZone(zone.id);
         }
@@ -15,20 +21,29 @@ const RailWizard = ({ isVisible, onClose, currentPosition }) => {
 
     const handleZoneChange = (id, field, value) => {
         const val = parseInt(value) || 0;
-        const newZones = settings.zones.map((zone, index) => {
+        const newZones = settings.zones.map((zone) => {
             if (zone.id === id) {
                 return { ...zone, [field]: val };
             }
             return zone;
         });
 
-        // Aplica o encadeamento: Início de um é o Fim do anterior
-        const chainedZones = newZones.map((zone, index) => {
-            if (index > 0) {
-                return { ...zone, start: newZones[index - 1].end };
+        // Aplica o encadeamento: Início de um é o Fim do anterior, e garante que Fim >= Início
+        let chainedZones = [...newZones];
+        for (let i = 0; i < chainedZones.length; i++) {
+            if (i > 0) {
+                chainedZones[i] = {
+                    ...chainedZones[i],
+                    start: chainedZones[i - 1].end
+                };
             }
-            return zone;
-        });
+            if (chainedZones[i].end < chainedZones[i].start) {
+                chainedZones[i] = {
+                    ...chainedZones[i],
+                    end: chainedZones[i].start
+                };
+            }
+        }
 
         setSettings({ ...settings, zones: chainedZones });
     };
@@ -41,7 +56,11 @@ const RailWizard = ({ isVisible, onClose, currentPosition }) => {
                 body: JSON.stringify(settings)
             });
             if (response.ok) {
+                localStorage.setItem('rail_settings', JSON.stringify(settings));
                 alert('Configurações salvas com sucesso em rail_settings.json!');
+                if (onSaveSettings) {
+                    onSaveSettings(settings);
+                }
             } else {
                 throw new Error('Falha ao salvar');
             }
@@ -49,6 +68,9 @@ const RailWizard = ({ isVisible, onClose, currentPosition }) => {
             console.error(err);
             alert('Erro ao salvar no arquivo. Salvando apenas no navegador.');
             localStorage.setItem('rail_settings', JSON.stringify(settings));
+            if (onSaveSettings) {
+                onSaveSettings(settings);
+            }
         }
     };
 

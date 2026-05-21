@@ -1,5 +1,13 @@
 # Changelog - PUC Trilho [2026-05-21]
 
+## 🎛️ Versão: Calibração de Trilho Dinâmica e Persistência Resiliente
+- **Estabilização da Posição dos Períodos (Trilho)**:
+    - Corrigido o bug de stale closures nos hooks do `App.jsx` que ignoravam as atualizações das zonas do trilho até que a página fosse atualizada manualmente. Adicionado o estado `railSettings` às dependências dos efeitos de transição de período e de atalhos de teclado.
+    - Implementado gerenciamento de estado dinâmico (`railSettings` como React state) inicializado a partir do `localStorage` com fallback para as configurações iniciais (`rail_settings.json`).
+    - Atualizado o componente `RailWizard.jsx` para receber `railSettings` e `onSaveSettings` como props e sincronizar adequadamente seu estado interno ao ser aberto.
+    - Corrigido o algoritmo de encadeamento de fronteiras (`handleZoneChange`) para garantir a invariante `end >= start` para todas as zonas encadeadas, eliminando o erro de sobreposição onde um limite inferior invertido (`start > end`) quebrava o rastreador de posição do totem.
+    - Implementada persistência dupla (Double Persistence): salva com sucesso no backend do servidor via endpoint `/api/save-rail` e no browser (`localStorage`) para garantir a resiliência em deploys do Vercel e produção sem falhas de escrita de arquivos.
+
 ## 🖱️ Versão: Exibição Dinâmica do Cursor no Design Editor
 - **Exibição Dinâmica do Cursor**:
     - Implementada lógica no `DesignEditor.jsx` para injetar a classe `show-cursor-editor` no elemento raiz (`document.documentElement`) ao abrir o Design Editor (Tecla 'E').

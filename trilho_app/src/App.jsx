@@ -26,7 +26,7 @@ import RailWizard from './components/RailWizard'
 import RailIdleOverlay from './components/RailIdleOverlay'
 import PeriodVideoView from './views/PeriodVideoView'
 import designSettings from './data/design_settings.json'
-import railSettings from './data/rail_settings.json'
+import initialRailSettings from './data/rail_settings.json'
 import './App.css'
 
 function getHashForSlide(slide) {
@@ -65,6 +65,17 @@ function getIndexForHash(hashStr) {
 }
 
 function App() {
+  const [railSettings, setRailSettings] = useState(() => {
+    const saved = localStorage.getItem('rail_settings');
+    if (saved) {
+      try {
+        return JSON.parse(saved);
+      } catch (e) {
+        console.error('Erro ao parsear rail_settings do localStorage', e);
+      }
+    }
+    return initialRailSettings;
+  });
   const [slideIndex, setSlideIndex] = useState(() => getIndexForHash(window.location.hash));
   const [slideDirection, setSlideDirection] = useState('up');
   const [isHardwareConfigVisible, setIsHardwareConfigVisible] = useState(false);
@@ -272,7 +283,7 @@ function App() {
         // Por enquanto, podemos ficar na Home ou criar slides específicos
       }
     }
-  }, [encoderPosition, currentZoneId]);
+  }, [encoderPosition, currentZoneId, railSettings]);
 
   const sendHardwareCommand = useCallback((type, value) => {
     if (socket) {
@@ -315,7 +326,7 @@ function App() {
     };
     window.addEventListener('keydown', handler);
     return () => window.removeEventListener('keydown', handler);
-  }, []);
+  }, [railSettings]);
 
   // Exibe o cursor quando menus de configuração estão abertos
   useEffect(() => {
@@ -712,6 +723,8 @@ function App() {
           isVisible={isRailWizardVisible}
           onClose={() => setIsRailWizardVisible(false)}
           currentPosition={encoderPosition}
+          railSettings={railSettings}
+          onSaveSettings={(newSettings) => setRailSettings(newSettings)}
         />
 
         {showDebugPos && (
