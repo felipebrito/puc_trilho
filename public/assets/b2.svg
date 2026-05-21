@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 778.17 250.55">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #005cff;
+      }
+
+      .cls-2 {
+        font-family: Sora-Bold, Sora;
+        font-size: 130px;
+        font-weight: 700;
+      }
+
+      .cls-3 {
+        letter-spacing: 0em;
+      }
+
+      .cls-4 {
+        letter-spacing: 0em;
+      }
+
+      .cls-5 {
+        font-family: Sora-Medium, Sora;
+        font-size: 92.62px;
+        font-weight: 500;
+      }
+    </style>
+  </defs>
+  <g id="Layer_1-2" data-name="Layer 1">
+    <text class="cls-1" transform="translate(0 112.45)"><tspan class="cls-2"><tspan x="0" y="0">PR</tspan><tspan class="cls-3" x="181.61" y="0">E</tspan><tspan x="258.18" y="0">SSIONE</tspan></tspan><tspan class="cls-5"><tspan x="93.81" y="111.15">pa</tspan><tspan class="cls-4" x="211.9" y="111.15">r</tspan><tspan x="250.06" y="111.15">a acessar</tspan></tspan></text>
+  </g>
+</svg>

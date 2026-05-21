@@ -1,5 +1,11 @@
 # Changelog - PUC Trilho [2026-05-21]
 
+## 🛠️ Versão: Sincronização de Ativos Estáticos e Resolução de Mídia
+- **Sincronização de Ativos no Repositório**:
+    - Sincronizados todos os ativos estáticos de `trilho_app/public/assets/` para a pasta de ativos raiz `public/assets/`.
+    - Isso inclui os ícones de instrução (`a1.svg`, `b1.svg`, `c1.svg`, `c2.svg`) e imagens relacionadas, corrigindo a falha de renderização do componente de inatividade "Gire o botão" / "Pressione" nos servidores de produção e deploy (ex: Vercel/GitHub Pages).
+    - Copiados todos os vídeos de períodos geológicos (`videos/01_Arqueano_0204.mp4`, etc.) e subpastas de biodiversidade para o diretório raiz de ativos.
+
 ## 🖼️ Versão: Atualização de Ativos Visuais (Imagens)
 - **Atualização de Imagens**:
     - **Devoniano**: Atualizada a imagem do espécime *Ctenacanthus* (`img_ctenacanthus.png`).
