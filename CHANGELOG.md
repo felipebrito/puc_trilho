@@ -1,12 +1,16 @@
 # Changelog - PUC Trilho [2026-05-21]
 
 ## 🎛️ Versão: Calibração de Trilho Dinâmica e Persistência Resiliente
-- **Estabilização da Posição dos Períodos (Trilho)**:
-    - Corrigido o bug de stale closures nos hooks do `App.jsx` que ignoravam as atualizações das zonas do trilho até que a página fosse atualizada manualmente. Adicionado o estado `railSettings` às dependências dos efeitos de transição de período e de atalhos de teclado.
-    - Implementado gerenciamento de estado dinâmico (`railSettings` como React state) inicializado a partir do `localStorage` com fallback para as configurações iniciais (`rail_settings.json`).
-    - Atualizado o componente `RailWizard.jsx` para receber `railSettings` e `onSaveSettings` como props e sincronizar adequadamente seu estado interno ao ser aberto.
-    - Corrigido o algoritmo de encadeamento de fronteiras (`handleZoneChange`) para garantir a invariante `end >= start` para todas as zonas encadeadas, eliminando o erro de sobreposição onde um limite inferior invertido (`start > end`) quebrava o rastreador de posição do totem.
-    - Implementada persistência dupla (Double Persistence): salva com sucesso no backend do servidor via endpoint `/api/save-rail` e no browser (`localStorage`) para garantir a resiliência em deploys do Vercel e produção sem falhas de escrita de arquivos.
+- **Estabilização e Refinamento do Calibrador de Trilho**:
+    - **Fronteiras Exclusivas Sem Sobreposição (+1)**: Corrigido o cálculo de encadeamento das zonas do trilho. Agora, o início de cada zona é automaticamente definido como `Fim da zona anterior + 1` (ex: Zona 1 terminando em 610 e Zona 2 começando em 611). Isso impede que a mesma posição de leitura do encoder (como 610) dispare duas zonas ao mesmo tempo, resolvendo conflitos de transição.
+    - **Menu Seletor de Períodos (Selectable)**: Adicionado um elemento `<select>` premium em cada seção do editor que permite vincular dinamicamente qualquer seção física do trilho a um período geológico (Arqueano, Siluriano, Permiano, etc.). A aplicação agora analisa o nome da zona de forma dinâmica e normalizada para redirecionar o quiosque para a tela correta.
+    - **Interface Não-Sobreposta em Grade/Flow**: Removido o posicionamento absoluto vertical (`style={{ top: ... }}`) dos cards no editor de zonas. Agora, eles fluem em uma lista vertical rolável (`overflow-y: auto`), garantindo que não haja sobreposição visual e permitindo fácil manuseio pelo usuário.
+    - **Calibração com Clique Rápido ("Marcar Fim Aqui")**: Adicionado botão de calibração automática ("Marcar Fim Aqui") em cada seção. Ao mover o totem fisicamente e clicar no botão, a posição atual do encoder é instantaneamente definida como o limite final da seção, recalibrando todo o trilho em segundos.
+    - **Estabilização da Posição dos Períodos (Trilho)**:
+        - Corrigido o bug de stale closures nos hooks do `App.jsx` que ignoravam as atualizações das zonas do trilho até que a página fosse atualizada manualmente. Adicionado o estado `railSettings` às dependências dos efeitos de transição de período e de atalhos de teclado.
+        - Implementado gerenciamento de estado dinâmico (`railSettings` como React state) inicializado a partir do `localStorage` com fallback para as configurações iniciais (`rail_settings.json`).
+        - Atualizado o componente `RailWizard.jsx` para receber `railSettings` e `onSaveSettings` como props e sincronizar adequadamente seu estado interno ao ser aberto.
+        - Implementada persistência dupla (Double Persistence): salva com sucesso no backend do servidor via endpoint `/api/save-rail` e no browser (`localStorage`) para garantir a resiliência em deploys do Vercel e produção sem falhas de escrita de arquivos.
 
 ## 🖱️ Versão: Exibição Dinâmica do Cursor no Design Editor
 - **Exibição Dinâmica do Cursor**:

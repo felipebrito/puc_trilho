@@ -262,19 +262,26 @@ function App() {
       setSlideDirection(direction);
       setCurrentZoneId(zone.id);
       
-      // Mapeia zona para o index de início do período (slidesData)
-      const periodMap = {
-        1: 'arqueano',
-        2: 'proterozoico',
-        3: 'cambriano',
-        4: 'ordoviciano',
-        5: 'siluriano',
-        6: 'devoniano',
-        7: 'carbonifero',
-        8: 'permiano'
+      // Normaliza o nome da zona de forma robusta para corresponder às chaves de slides (arqueano, proterozoico, etc.)
+      const normalizePeriodKey = (name) => {
+        if (!name) return '';
+        const lower = name.toLowerCase()
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, ""); // remove acentos
+        if (lower.includes('arqueano')) return 'arqueano';
+        if (lower.includes('proterozoico')) return 'proterozoico';
+        if (lower.includes('cambriano')) return 'cambriano';
+        if (lower.includes('ordoviciano')) return 'ordoviciano';
+        if (lower.includes('siluriano')) return 'siluriano';
+        if (lower.includes('devoniano')) return 'devoniano';
+        if (lower.includes('carbonifero') || lower.includes('carbonifera')) return 'carbonifero';
+        if (lower.includes('permiano')) return 'permiano';
+        return lower;
       };
       
-      const periodKey = periodMap[zone.id];
+      const periodKey = normalizePeriodKey(zone.name);
+      console.log('🔑 Chave do Período Mapeada:', periodKey);
+
       if (periodKey && periodStartIndex[periodKey] !== undefined) {
         // Se entrar em uma zona com conteúdo, vai para a HOME dela (slide 0 do período)
         setSlideIndex(periodStartIndex[periodKey]);
