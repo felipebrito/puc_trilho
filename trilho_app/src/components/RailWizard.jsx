@@ -37,7 +37,7 @@ const PERIOD_DATA = {
     }
 };
 
-const RailWizard = ({ isVisible, onClose, currentPosition, railSettings, onSaveSettings }) => {
+const RailWizard = ({ isVisible, onClose, currentPosition, railSettings, onSaveSettings, onResetSettings }) => {
     const [settings, setSettings] = useState(railSettings);
     const [activeZone, setActiveZone] = useState(null);
 
@@ -49,8 +49,11 @@ const RailWizard = ({ isVisible, onClose, currentPosition, railSettings, onSaveS
     }, [isVisible, railSettings]);
 
     useEffect(() => {
-        if (currentPosition !== undefined && settings) {
-            const zone = settings.zones.find(z => currentPosition >= z.start && currentPosition <= z.end);
+        if (currentPosition !== undefined && settings && settings.zones && settings.zones.length > 0) {
+            let zone = settings.zones.find(z => currentPosition >= z.start && currentPosition <= z.end);
+            if (!zone && currentPosition < settings.zones[0].start) {
+                zone = settings.zones[0];
+            }
             if (zone) setActiveZone(zone.id);
         }
     }, [currentPosition, settings]);
@@ -61,10 +64,10 @@ const RailWizard = ({ isVisible, onClose, currentPosition, railSettings, onSaveS
         const newZones = settings.zones.map((zone) => {
             if (zone.id === id) {
                 return { 
-                    ...zone, 
-                    name: newPeriodName,
-                    video: periodDefaults.video || zone.video,
-                    hasMenu: periodDefaults.hasMenu !== undefined ? periodDefaults.hasMenu : zone.hasMenu
+                     ...zone, 
+                     name: newPeriodName,
+                     video: periodDefaults.video || zone.video,
+                     hasMenu: periodDefaults.hasMenu !== undefined ? periodDefaults.hasMenu : zone.hasMenu
                 };
             }
             return zone;
@@ -187,16 +190,33 @@ const RailWizard = ({ isVisible, onClose, currentPosition, railSettings, onSaveS
                                         {zone.hasMenu ? "Menu Interativo" : "Apenas Vídeo"}
                                     </div>
                                 </div>
-
+                                
                                 <div className="zone-inputs-dual">
                                     <div className="dual-control">
-                                        <label>Início (Auto-calculado)</label>
+                                        <label>{index === 0 ? "Início (Ajuste Fino)" : "Início (Auto-calculado)"}</label>
                                         <div className="input-slider-row">
-                                            <input 
-                                                type="number" 
-                                                value={zone.start} 
-                                                disabled 
-                                            />
+                                            {index === 0 ? (
+                                                <>
+                                                    <input 
+                                                        type="range" 
+                                                        min="0" 
+                                                        max={settings.maxEncoderValue} 
+                                                        value={zone.start} 
+                                                        onChange={(e) => handleZoneChange(zone.id, 'start', e.target.value)}
+                                                    />
+                                                    <input 
+                                                        type="number" 
+                                                        value={zone.start} 
+                                                        onChange={(e) => handleZoneChange(zone.id, 'start', e.target.value)}
+                                                    />
+                                                </>
+                                            ) : (
+                                                <input 
+                                                    type="number" 
+                                                    value={zone.start} 
+                                                    disabled 
+                                                />
+                                            )}
                                         </div>
                                     </div>
                                     
@@ -220,6 +240,15 @@ const RailWizard = ({ isVisible, onClose, currentPosition, railSettings, onSaveS
                                 </div>
 
                                 <div className="zone-action-col">
+                                    {index === 0 && (
+                                        <button 
+                                            className="calibration-btn start-calibration"
+                                            onClick={() => handleZoneChange(zone.id, 'start', currentPosition)}
+                                            title="Define o início do primeiro período no ponto atual do totem"
+                                        >
+                                            Marcar Início Aqui
+                                        </button>
+                                    )}
                                     <button 
                                         className="calibration-btn"
                                         onClick={() => handleZoneChange(zone.id, 'end', currentPosition)}
@@ -243,6 +272,9 @@ const RailWizard = ({ isVisible, onClose, currentPosition, railSettings, onSaveS
                         )}
                     </div>
                     <div className="footer-actions">
+                        {onResetSettings && (
+                            <button className="restore-btn" onClick={onResetSettings}>Restaurar Padrões</button>
+                        )}
                         <button className="copy-btn" onClick={copyToClipboard}>Copiar JSON</button>
                         <button className="save-btn" onClick={saveToLocalStorage}>Salvar Configuração</button>
                     </div>

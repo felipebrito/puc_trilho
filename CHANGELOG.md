@@ -1,5 +1,12 @@
 # Changelog - PUC Trilho [2026-05-21]
 
+## 📏 Versão: Ajuste de Range do Primeiro Período (Arqueano) e Calibração Fina
+- **Ajuste do Início e Fim do Range do Primeiro Período (Arqueano)**:
+    - **Fronteira Física Corrigida**: Configurado o primeiro período (Arqueano, Seção 1) para cobrir o intervalo de `0` a `634`. Isso alinha perfeitamente a leitura física do encoder, onde a posição de repouso (`0` a `634`) encostada na tela representa o primeiro período geológico.
+    - **Próximo Período Iniciando em 635**: O segundo período (Proterozoico) agora começa automaticamente em `635` (Fim do Arqueano + 1), permitindo que a contagem e as transições subsequentes de 610 mm (ou conforme calibrado dinamicamente) funcionem em cascata perfeitamente.
+    - **Clamping de Segurança Sub-zero**: Implementada lógica resiliente no `App.jsx` e `RailWizard.jsx` para direcionar posições negativas ou abaixo do início configurado (ex: devido a pequenos ruídos ou ajustes mecânicos de encostar na tela) diretamente para o primeiro período (Arqueano), evitando crashes ou estados indefinidos ("FORA").
+    - **Botão Restaurar Padrões**: Adicionado um botão "Restaurar Padrões" no painel do `RailWizard`, com uma coloração vermelha e micro-animação premium, permitindo aos técnicos restaurar as configurações do trilho diretamente a partir do arquivo padrão `rail_settings.json` fresco do servidor, limpando com segurança o `localStorage` do quiosque em caso de desalinhamento severo.
+
 ## 🎛️ Versão: Calibração de Trilho Dinâmica e Persistência Resiliente
 - **Estabilização e Refinamento do Calibrador de Trilho**:
     - **Fronteiras Exclusivas Sem Sobreposição (+1)**: Corrigido o cálculo de encadeamento das zonas do trilho. Agora, o início de cada zona é automaticamente definido como `Fim da zona anterior + 1` (ex: Zona 1 terminando em 610 e Zona 2 começando em 611). Isso impede que a mesma posição de leitura do encoder (como 610) dispare duas zonas ao mesmo tempo, resolvendo conflitos de transição.

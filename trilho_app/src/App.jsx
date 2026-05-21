@@ -253,7 +253,14 @@ function App() {
 
   // Lógica de Troca de Período via Encoder Position
   useEffect(() => {
-    const zone = railSettings.zones.find(z => encoderPosition >= z.start && encoderPosition <= z.end);
+    let zone = railSettings.zones.find(z => encoderPosition >= z.start && encoderPosition <= z.end);
+    
+    // Se a posição for menor que o início da primeira zona (zona morta de encostar na tela),
+    // consideramos que o totem está na primeira zona (Arqueano) para que fique ativo.
+    if (!zone && railSettings.zones && railSettings.zones.length > 0 && encoderPosition < railSettings.zones[0].start) {
+      zone = railSettings.zones[0];
+    }
+    
     console.log('🗺️ Zona Calculada:', zone?.name, 'ID:', zone?.id, 'Pos:', encoderPosition);
     
     if (zone && zone.id !== currentZoneId) {
@@ -686,7 +693,7 @@ function App() {
             pointerEvents: 'none'
           }}>
             <div>POS: {Math.round(encoderPosition)}</div>
-            <div>ZONA: {railSettings.zones.find(z => encoderPosition >= z.start && encoderPosition <= z.end)?.name || 'FORA'}</div>
+            <div>ZONA: {(railSettings.zones.find(z => encoderPosition >= z.start && encoderPosition <= z.end) || (railSettings.zones && railSettings.zones.length > 0 && encoderPosition < railSettings.zones[0].start ? railSettings.zones[0] : null))?.name || 'FORA'}</div>
             <div style={{ color: socket?.connected ? '#4CD964' : '#FF2D55' }}>
               SOCKET: {socket?.connected ? 'CONECTADO' : 'DESCONECTADO'}
             </div>
@@ -732,6 +739,20 @@ function App() {
           currentPosition={encoderPosition}
           railSettings={railSettings}
           onSaveSettings={(newSettings) => setRailSettings(newSettings)}
+          onResetSettings={async () => {
+            if (window.confirm("Deseja realmente restaurar os padrões de fábrica?")) {
+              localStorage.removeItem('rail_settings');
+              // Para garantir que o estado local seja atualizado com o JSON fresco:
+              const response = await fetch('/src/data/rail_settings.json');
+              if (response.ok) {
+                const freshSettings = await response.json();
+                setRailSettings(freshSettings);
+              } else {
+                setRailSettings(initialRailSettings);
+              }
+              alert("Configurações restauradas com sucesso para os padrões do arquivo rail_settings.json!");
+            }
+          }}
         />
 
         {showDebugPos && (
