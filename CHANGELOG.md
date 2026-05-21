@@ -1,5 +1,19 @@
 # Changelog - PUC Trilho [2026-05-21]
 
+## 🎛️ Versão: Blindagem de Entradas em Movimento e Otimização do Calibrador
+- **Blindagem Completa de Ações em Movimento do Trilho**:
+    - **Detecção de Movimento Físico e Virtual**: O backend (`bridge.js`) e o frontend (`App.jsx`) agora trabalham em harmonia para rastrear o movimento do trilho e ignorar imediatamente quaisquer cliques ou pulsos de navegação (esquerda/direita) se o tempo decorrido desde o último deslocamento for menor que o limite configurado (`ignoreDuringMoveMs`). Isso zera os falsos cliques causados por indução mecânica ou vibração durante o deslocamento do totem.
+    - **Atualização na Simulação Virtual**: A simulação de posição no quiosque (Shift + Setas) agora também atualiza dinamicamente o marcador de movimento recente do totem, garantindo a mesma blindagem em testes de bancada.
+- **Calibrador Multi-Slider Premium (Menu C)**:
+    - **Otimização do Calibrador**: O único slider de sensibilidade antigo foi substituído por 4 sliders de alta fidelidade e com descritivos integrados em uma grade visual moderna (`HardwareConfigurator.jsx`), oferecendo calibração completa e independente de hardware em tempo real:
+        1. *Giro por Ação* (passos de rotação física necessários para uma mudança na tela, de 1 a 20 passos).
+        2. *Debounce de Navegação* (tempo de retenção de seta, de 50 ms a 1000 ms).
+        3. *Anti-Ruído do Clique* (debounce do clique do botão, de 200 ms a 1500 ms).
+        4. *Bloqueio ao Mover o Trilho* (tempo de blindagem contra vibração do trilho, de 0 ms a 2000 ms).
+    - **Visual Renovado com Glassmorphism**: Painel remodelado no CSS com cards elegantes e estilizados, contraste aprimorado, efeito de vidro jateado fosco, e realce de valores em tempo real para um visual extremamente premium e de nível industrial.
+- **Persistência das Calibrações Físicas**:
+    - **Salvar em Arquivo JSON**: Criada persistência atômica das calibrações físicas no arquivo `hardware_settings.json` na pasta do backend. Qualquer alteração nos controles deslizantes via Socket é salva no disco instantaneamente e recarregada na inicialização do serviço do quiosque.
+
 ## 📏 Versão: Alinhamento das Fronteiras de Calibração e Indicação Visual
 - **Alinhamento dos Marcadores Visuais (`zone.end`)**:
     - **Fronteira Calibrada Corrigida**: Posicionados os marcadores de seção na trilha visual do `RailWizard` em suas respectivas posições de fim (`zone.end`) em vez das posições iniciais (`zone.start`). 

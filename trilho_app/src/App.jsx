@@ -86,6 +86,24 @@ function App() {
   const [currentZoneId, setCurrentZoneId] = useState(1);
   const [lastHardwareAction, setLastHardwareAction] = useState(null);
   const [socket, setSocket] = useState(null);
+  const [hardwareConfig, setHardwareConfig] = useState({
+    navStepsPerAction: 7,
+    navDebounceMs: 150,
+    clickDebounceMs: 500,
+    ignoreDuringMoveMs: 800
+  });
+  const hardwareConfigRef = useRef(hardwareConfig);
+
+  useEffect(() => {
+    hardwareConfigRef.current = hardwareConfig;
+  }, [hardwareConfig]);
+
+  const updateHardwareConfig = useCallback((newConfig) => {
+    if (socket) {
+      socket.emit('update_config', newConfig);
+    }
+  }, [socket]);
+
   const [idleTimeout, setIdleTimeout] = useState(() => {
     const saved = localStorage.getItem('idleTimeout');
     return saved ? parseInt(saved) : 60000; // 1 minuto por padrão
@@ -212,21 +230,28 @@ function App() {
       setLastHardwareAction(command);
       
       const now = Date.now();
+      const timeSinceLastMove = now - lastEncoderMoveTimeRef.current;
+      const config = hardwareConfigRef.current;
+      
+      // Bloqueio redundante no frontend: ignora qualquer ação se o trilho estiver se movendo
+      if (timeSinceLastMove < config.ignoreDuringMoveMs) {
+        console.warn(`⚠️ [Bloqueio Movimento] Ação '${command}' ignorada no frontend porque o trilho está se movendo (último movimento há ${timeSinceLastMove}ms, limite ${config.ignoreDuringMoveMs}ms)`);
+        return;
+      }
       
       if (command === 'LEFT')  window.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowLeft' }));
       if (command === 'RIGHT') window.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight' }));
       
       if (command === 'CLICK') {
-        // Debounce: Ignora cliques muito próximos ou se houve movimento muito recente (ruído de indução)
+        // Debounce: Ignora cliques com base no tempo de debounce configurado
         const timeSinceLastClick = now - lastClickTimeRef.current;
-        const timeSinceLastMove = now - lastEncoderMoveTimeRef.current;
         
-        if (timeSinceLastClick > 500 && timeSinceLastMove > 200) {
+        if (timeSinceLastClick > config.clickDebounceMs) {
           console.log('✅ Click Validado');
           window.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' }));
           lastClickTimeRef.current = now;
         } else {
-          console.warn('⚠️ Click ignorado (provável ruído):', { timeSinceLastClick, timeSinceLastMove });
+          console.warn('⚠️ Click ignorado por debounce:', { timeSinceLastClick, threshold: config.clickDebounceMs });
         }
       }
       if (command === 'RESET') setEncoderPosition(0);
@@ -245,6 +270,11 @@ function App() {
         }
         return pos;
       });
+    });
+
+    socketInstance.on('config_sync', (newConfig) => {
+      console.log('🔄 Hardware Config Sincronizada:', newConfig);
+      setHardwareConfig(newConfig);
     });
 
     setSocket(socketInstance);
@@ -330,8 +360,15 @@ function App() {
       
       // Mock de posição para teste (Shift + Setas)
       if (e.shiftKey && (e.key === 'ArrowRight' || e.key === 'ArrowLeft' || e.key === '>' || e.key === '<' || e.key === '.' || e.key === ',')) {
-        if (e.key === 'ArrowRight' || e.key === '>' || e.key === '.') setEncoderPosition(prev => Math.min(prev + 100, railSettings.maxEncoderValue));
-        if (e.key === 'ArrowLeft' || e.key === '<' || e.key === ',') setEncoderPosition(prev => Math.max(prev - 100, 0));
+        setEncoderPosition(prev => {
+          const newVal = (e.key === 'ArrowRight' || e.key === '>' || e.key === '.') 
+            ? Math.min(prev + 100, railSettings.maxEncoderValue)
+            : Math.max(prev - 100, 0);
+          if (newVal !== prev) {
+            lastEncoderMoveTimeRef.current = Date.now();
+          }
+          return newVal;
+        });
         
         setShowDebugPos(true);
         if (debugTimeoutRef.current) clearTimeout(debugTimeoutRef.current);
@@ -728,7 +765,8 @@ function App() {
           isVisible={isHardwareConfigVisible} 
           onClose={() => setIsHardwareConfigVisible(false)}
           lastAction={lastHardwareAction}
-          onSendCommand={sendHardwareCommand}
+          hardwareConfig={hardwareConfig}
+          onUpdateConfig={updateHardwareConfig}
           idleTimeout={idleTimeout}
           onIdleTimeoutChange={setIdleTimeout}
         />

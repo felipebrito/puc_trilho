@@ -227,6 +227,67 @@ input[type="range"]::-webkit-slider-thumb:hover {
     text-align: center;
 }
 
+/* ── Config Grid and Premium Sliders ────────────────── */
+.config-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.config-grid .config-section {
+    margin-bottom: 0px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 24px;
+    padding: 30px;
+    transition: all 0.3s ease;
+}
+
+.config-grid .config-section:hover {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.slider-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 24px !important;
+    font-weight: 600;
+    color: #ccc;
+    margin-bottom: 25px !important;
+}
+
+.slider-title .highlight {
+    color: #4ade80;
+    font-weight: 700;
+    font-family: monospace;
+    background: rgba(74, 222, 128, 0.12);
+    padding: 6px 16px;
+    border-radius: 10px;
+    font-size: 22px;
+}
+
+.slider-hint {
+    font-size: 16px;
+    color: #666;
+    margin-top: 15px;
+    line-height: 1.4;
+}
+
+.idle-timeout-wrapper {
+    margin-bottom: 40px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 24px;
+    padding: 30px;
+}
+
+.idle-timeout-wrapper label {
+    margin-bottom: 25px !important;
+}
+
 .shortcuts-info {
     font-size: 20px;
     color: #555;

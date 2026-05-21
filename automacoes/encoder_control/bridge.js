@@ -4,6 +4,7 @@ const express = require('express');
 const http = require('http');
 const { Server } = require('socket.io');
 const path = require('path');
+const fs = require('fs');
 
 const app = express();
 const server = http.createServer(app);
@@ -16,18 +17,45 @@ const io = new Server(server, {
 const ESP32_PORT = process.argv[2] || '/dev/cu.usbmodem5B3D0287021'; 
 const BAUD_RATE = 115200;
 
-let lastEventTime = 0;
 let simulatedPosition = 0; // Começa no zero
 
 // Configurações de hardware configuráveis
 let config = {
-  navStepsPerAction: 7,   // Quantos giros físicos para 1 ação na tela
-  navDebounceMs: 150,     // Tempo mínimo entre comandos de seta
-  clickDebounceMs: 500,   // Tempo mínimo entre cliques (Enter)
+  navStepsPerAction: 7,     // Quantos giros físicos para 1 ação na tela
+  navDebounceMs: 150,       // Tempo mínimo entre comandos de seta
+  clickDebounceMs: 500,     // Tempo mínimo entre cliques (Enter)
+  ignoreDuringMoveMs: 800   // Novo: Bloquear botões enquanto o trilho se move
 };
 
+const CONFIG_FILE = path.join(__dirname, 'hardware_settings.json');
+
+// Carrega configurações existentes se houver
+try {
+  if (fs.existsSync(CONFIG_FILE)) {
+    const savedConfig = JSON.parse(fs.readFileSync(CONFIG_FILE, 'utf8'));
+    config = { ...config, ...savedConfig };
+    console.log('📂 Configurações de hardware carregadas do arquivo:', config);
+  } else {
+    fs.writeFileSync(CONFIG_FILE, JSON.stringify(config, null, 2), 'utf8');
+    console.log('📄 Criado arquivo inicial de configurações de hardware:', config);
+  }
+} catch (e) {
+  console.error('⚠️ Erro ao inicializar arquivo de configurações de hardware:', e.message);
+}
+
+function saveConfig() {
+  try {
+    fs.writeFileSync(CONFIG_FILE, JSON.stringify(config, null, 2), 'utf8');
+    console.log('💾 Configurações salvas em arquivo com sucesso:', config);
+  } catch (e) {
+    console.error('❌ Erro ao salvar configurações de hardware no arquivo:', e.message);
+  }
+}
+
 let stepCounter = 0;
-let lastActionDir = null; // 'RIGHT' ou 'LEFT'
+let lastActionDir = null;   // 'RIGHT' ou 'LEFT'
+let lastNavActionTime = 0;  // Timestamp da última ação de navegação emitida
+let lastClickActionTime = 0;// Timestamp da última ação de clique emitida
 
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -42,7 +70,8 @@ io.on('connection', (socket) => {
   // Recebe atualizações de configuração do Debugger
   socket.on('update_config', (newConfig) => {
     config = { ...config, ...newConfig };
-    console.log('⚙️ Configuração Atualizada:', config);
+    console.log('⚙️ Configuração Atualizada via Socket:', config);
+    saveConfig();
     io.emit('config_sync', config); // Sincroniza com todos os clientes
   });
 });
@@ -74,43 +103,65 @@ try {
        if (match && (now - lastPosTime > POS_THROTTLE_MS)) {
          const posValue = Math.round(parseFloat(match[1]));
          if (!isNaN(posValue)) {
+           // Se a posição mudou, atualizamos o timestamp de movimento do trilho
+           if (Math.abs(simulatedPosition - posValue) > 1) {
+             lastPosTime = now;
+           }
+           simulatedPosition = posValue;
            io.emit('encoder_update', posValue);
-           lastPosTime = now;
          }
        }
     } else if (raw === 'D' || raw === 'E' || raw === 'C' || raw === 'H') {
-      const currentDebounce = (raw === 'C') ? config.clickDebounceMs : config.navDebounceMs;
-      
-      if (now - lastEventTime > currentDebounce) {
-        let action = '';
-        
-        if (raw === 'D' || raw === 'E') {
-          const dir = (raw === 'D') ? 'RIGHT' : 'LEFT';
-          
-          // Lógica de sensibilidade (Razão de giros)
-          if (lastActionDir !== dir) {
-             stepCounter = 0; // Reset se mudar de direção
-             lastActionDir = dir;
-          }
-          
-          stepCounter++;
-          
-          if (stepCounter >= config.navStepsPerAction) {
-            action = dir;
-            stepCounter = 0;
-          }
-        } else if (raw === 'C') {
-          action = 'CLICK';
-        } else if (raw === 'H') {
-          action = 'RESET';
-        }
+      // 1. Bloqueia qualquer botão se o trilho estiver se movendo
+      const timeSinceLastMove = now - lastPosTime;
+      if (timeSinceLastMove < config.ignoreDuringMoveMs) {
+        console.log(`⚠️ [Bloqueio Movimento] Ignorando pulso serial '${raw}' porque o trilho está se movendo (último movimento há ${timeSinceLastMove}ms)`);
+        return;
+      }
 
-        if (action) {
-          console.log(`🚀 Evento: ${action}`);
-          io.emit('encoder_action', action);
-          
-          if (action === 'RESET') io.emit('encoder_update', 0);
-          lastEventTime = now;
+      let action = '';
+
+      if (raw === 'D' || raw === 'E') {
+        const dir = (raw === 'D') ? 'RIGHT' : 'LEFT';
+        
+        // Lógica de sensibilidade (Razão de giros)
+        if (lastActionDir !== dir) {
+           stepCounter = 0; // Reset se mudar de direção
+           lastActionDir = dir;
+        }
+        
+        stepCounter++;
+        
+        // Só emite ação se acumulou giros suficientes
+        if (stepCounter >= config.navStepsPerAction) {
+          // Debounce aplicado à ação de navegação, não ao pulso bruto do encoder
+          if (now - lastNavActionTime > config.navDebounceMs) {
+            action = dir;
+            lastNavActionTime = now;
+          } else {
+            console.log(`⚠️ Ação ${dir} ignorada por debounce de navegação (${now - lastNavActionTime}ms)`);
+          }
+          stepCounter = 0;
+        }
+      } else if (raw === 'C') {
+        // Debounce do Clique físico para evitar ruídos de KY-040
+        if (now - lastClickActionTime > config.clickDebounceMs) {
+          action = 'CLICK';
+          lastClickActionTime = now;
+        } else {
+          console.log(`⚠️ Clique ignorado por debounce (${now - lastClickActionTime}ms)`);
+        }
+      } else if (raw === 'H') {
+        action = 'RESET';
+      }
+
+      if (action) {
+        console.log(`🚀 Evento emitido: ${action}`);
+        io.emit('encoder_action', action);
+        
+        if (action === 'RESET') {
+          simulatedPosition = 0;
+          io.emit('encoder_update', 0);
         }
       }
     }
