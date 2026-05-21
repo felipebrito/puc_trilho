@@ -1,5 +1,14 @@
 # Changelog - PUC Trilho [2026-05-21]
 
+## 📏 Versão: Alinhamento das Fronteiras de Calibração e Indicação Visual
+- **Alinhamento dos Marcadores Visuais (`zone.end`)**:
+    - **Fronteira Calibrada Corrigida**: Posicionados os marcadores de seção na trilha visual do `RailWizard` em suas respectivas posições de fim (`zone.end`) em vez das posições iniciais (`zone.start`). 
+    - **Correspondência Correta de Seções**: Desta forma, o limite no valor `634` é corretamente identificado com o rótulo "1" (fim da Seção 1) e o limite no valor `1245` com o rótulo "2" (fim da Seção 2), eliminando a incongruência em que o marcador "2" era desenhado na fronteira da Seção 1.
+    - **Indicação sem Valor Falso no Zero**: Evitou a plotagem redundante do ponto "1" no valor `0` (onde o trilho encosta na tela), preservando o sentido lógico da calibração onde apenas as fronteiras entre as seções são ajustáveis.
+- **Simplificação e Blindagem da Calibração**:
+    - **Início Fixo no Zero**: O início da Seção 1 foi permanentemente travado em `0` e os controles deslizantes/manuais de entrada de início da Seção 1 foram desativados e simplificados para exibição de leitura fixa, uma vez que o totem sempre encosta fisicamente no monitor ao alcançar o valor `0`.
+    - **Remoção de Controles Redundantes**: Removido o botão "Marcar Início Aqui" da Seção 1, unificando todo o fluxo de calibração em botões simples e intuitivos de "Marcar Fim Aqui".
+
 ## 📏 Versão: Ajuste de Range do Primeiro Período (Arqueano) e Calibração Fina
 - **Ajuste do Início e Fim do Range do Primeiro Período (Arqueano)**:
     - **Fronteira Física Corrigida**: Configurado o primeiro período (Arqueano, Seção 1) para cobrir o intervalo de `0` a `634`. Isso alinha perfeitamente a leitura física do encoder, onde a posição de repouso (`0` a `634`) encostada na tela representa o primeiro período geológico.

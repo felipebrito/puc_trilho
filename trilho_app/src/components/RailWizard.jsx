@@ -86,6 +86,9 @@ const RailWizard = ({ isVisible, onClose, currentPosition, railSettings, onSaveS
 
         // Aplica o encadeamento sem sobreposição: Início de um é o Fim do anterior + 1
         let chainedZones = [...newZones];
+        if (chainedZones.length > 0) {
+            chainedZones[0].start = 0;
+        }
         for (let i = 0; i < chainedZones.length; i++) {
             if (i > 0) {
                 chainedZones[i] = {
@@ -152,7 +155,7 @@ const RailWizard = ({ isVisible, onClose, currentPosition, railSettings, onSaveS
                                 <div 
                                     key={zone.id}
                                     className="zone-marker"
-                                    style={{ top: `${(zone.start / settings.maxEncoderValue) * 100}%` }}
+                                    style={{ top: `${(zone.end / settings.maxEncoderValue) * 100}%` }}
                                 >
                                     <span className="zone-label-short">{zone.id}</span>
                                 </div>
@@ -193,30 +196,13 @@ const RailWizard = ({ isVisible, onClose, currentPosition, railSettings, onSaveS
                                 
                                 <div className="zone-inputs-dual">
                                     <div className="dual-control">
-                                        <label>{index === 0 ? "Início (Ajuste Fino)" : "Início (Auto-calculado)"}</label>
+                                        <label>Início (Fixo/Auto-calculado)</label>
                                         <div className="input-slider-row">
-                                            {index === 0 ? (
-                                                <>
-                                                    <input 
-                                                        type="range" 
-                                                        min="0" 
-                                                        max={settings.maxEncoderValue} 
-                                                        value={zone.start} 
-                                                        onChange={(e) => handleZoneChange(zone.id, 'start', e.target.value)}
-                                                    />
-                                                    <input 
-                                                        type="number" 
-                                                        value={zone.start} 
-                                                        onChange={(e) => handleZoneChange(zone.id, 'start', e.target.value)}
-                                                    />
-                                                </>
-                                            ) : (
-                                                <input 
-                                                    type="number" 
-                                                    value={zone.start} 
-                                                    disabled 
-                                                />
-                                            )}
+                                            <input 
+                                                type="number" 
+                                                value={zone.start} 
+                                                disabled 
+                                            />
                                         </div>
                                     </div>
                                     
@@ -240,15 +226,6 @@ const RailWizard = ({ isVisible, onClose, currentPosition, railSettings, onSaveS
                                 </div>
 
                                 <div className="zone-action-col">
-                                    {index === 0 && (
-                                        <button 
-                                            className="calibration-btn start-calibration"
-                                            onClick={() => handleZoneChange(zone.id, 'start', currentPosition)}
-                                            title="Define o início do primeiro período no ponto atual do totem"
-                                        >
-                                            Marcar Início Aqui
-                                        </button>
-                                    )}
                                     <button 
                                         className="calibration-btn"
                                         onClick={() => handleZoneChange(zone.id, 'end', currentPosition)}
