@@ -24,7 +24,9 @@ let config = {
   navStepsPerAction: 7,     // Quantos giros físicos para 1 ação na tela
   navDebounceMs: 150,       // Tempo mínimo entre comandos de seta
   clickDebounceMs: 500,     // Tempo mínimo entre cliques (Enter)
-  ignoreDuringMoveMs: 800   // Novo: Bloquear botões enquanto o trilho se move
+  ignoreDuringMoveMs: 800,  // Bloquear botões enquanto o trilho se move
+  motionMinDelta: 15,       // Variação mínima acumulada para detectar movimento real (filtro ruído)
+  motionWindowMs: 250       // Janela de análise de tempo em ms para filtro de ruído
 };
 
 const CONFIG_FILE = path.join(__dirname, 'hardware_settings.json');
@@ -76,8 +78,10 @@ io.on('connection', (socket) => {
   });
 });
 
-let lastPosTime = 0;
+let lastRealMoveTime = 0;   // Timestamp do último movimento físico real
+let lastPosEmitTime = 0;    // Timestamp do último envio de posição via socket
 const POS_THROTTLE_MS = 30; // Evita floodar a aplicação com dados de posição
+let posHistory = [];        // Histórico deslizante de posições para filtro de ruído
 
 try {
   const port = new SerialPort({ path: ESP32_PORT, baudRate: BAUD_RATE });
@@ -100,22 +104,42 @@ try {
     if (raw.startsWith('P')) {
        // O trilho é o P. Regex para pegar números após P ou P:
        const match = raw.match(/P[:\s]*(-?\d+\.?\d*)/);
-       if (match && (now - lastPosTime > POS_THROTTLE_MS)) {
+       if (match) {
          const posValue = Math.round(parseFloat(match[1]));
          if (!isNaN(posValue)) {
-           // Se a posição mudou, atualizamos o timestamp de movimento do trilho
-           if (Math.abs(simulatedPosition - posValue) > 1) {
-             lastPosTime = now;
+           // 1. Registra a posição no histórico deslizante para detecção de movimento real
+           posHistory.push({ pos: posValue, time: now });
+           
+           // Mantém apenas os itens dentro da janela deslizante (ex: 250ms)
+           const windowMs = config.motionWindowMs || 250;
+           posHistory = posHistory.filter(item => now - item.time <= windowMs);
+
+           // Calcula delta (variação máxima) no histórico deslizante
+           if (posHistory.length > 1) {
+             const positions = posHistory.map(h => h.pos);
+             const minPos = Math.min(...positions);
+             const maxPos = Math.max(...positions);
+             const delta = maxPos - minPos;
+
+             const minDelta = config.motionMinDelta !== undefined ? config.motionMinDelta : 15;
+             if (delta >= minDelta) {
+               lastRealMoveTime = now; // Atualiza apenas para movimento físico real
+             }
            }
-           simulatedPosition = posValue;
-           io.emit('encoder_update', posValue);
+
+           // 2. Throttle de emissão de posição para o frontend
+           if (now - lastPosEmitTime > POS_THROTTLE_MS) {
+             simulatedPosition = posValue;
+             io.emit('encoder_update', posValue);
+             lastPosEmitTime = now;
+           }
          }
        }
     } else if (raw === 'D' || raw === 'E' || raw === 'C' || raw === 'H') {
       // 1. Bloqueia qualquer botão se o trilho estiver se movendo
-      const timeSinceLastMove = now - lastPosTime;
+      const timeSinceLastMove = now - lastRealMoveTime;
       if (timeSinceLastMove < config.ignoreDuringMoveMs) {
-        console.log(`⚠️ [Bloqueio Movimento] Ignorando pulso serial '${raw}' porque o trilho está se movendo (último movimento há ${timeSinceLastMove}ms)`);
+        console.log(`⚠️ [Bloqueio Movimento] Ignorando pulso serial '${raw}' porque o trilho está se movendo (último movimento real há ${timeSinceLastMove}ms)`);
         return;
       }
 

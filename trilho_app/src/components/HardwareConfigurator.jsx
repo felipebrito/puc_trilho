@@ -129,6 +129,42 @@ const HardwareConfigurator = ({
                         />
                         <div className="slider-hint">Bloqueia entradas se trilho movedor estiver ativo</div>
                     </div>
+
+                    <div className="config-section">
+                        <label className="slider-title">Filtro de Ruído (Movimento): <span className="highlight">{config.motionMinDelta !== undefined ? config.motionMinDelta : 15} unid.</span></label>
+                        <input 
+                            type="range" 
+                            min="2" 
+                            max="50" 
+                            step="1"
+                            value={config.motionMinDelta !== undefined ? config.motionMinDelta : 15} 
+                            onChange={(e) => {
+                                const val = parseInt(e.target.value);
+                                if (onUpdateConfig) {
+                                    onUpdateConfig({ motionMinDelta: val });
+                                }
+                            }}
+                        />
+                        <div className="slider-hint">Variação mínima necessária para detectar movimento real</div>
+                    </div>
+
+                    <div className="config-section">
+                        <label className="slider-title">Janela de Ruído: <span className="highlight">{config.motionWindowMs !== undefined ? config.motionWindowMs : 250} ms</span></label>
+                        <input 
+                            type="range" 
+                            min="50" 
+                            max="1000" 
+                            step="50"
+                            value={config.motionWindowMs !== undefined ? config.motionWindowMs : 250} 
+                            onChange={(e) => {
+                                const val = parseInt(e.target.value);
+                                if (onUpdateConfig) {
+                                    onUpdateConfig({ motionWindowMs: val });
+                                }
+                            }}
+                        />
+                        <div className="slider-hint">Período de tempo para medir a variação de ruído do sensor</div>
+                    </div>
                 </div>
 
                 <div className="config-section idle-timeout-wrapper">

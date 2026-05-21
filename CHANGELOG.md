@@ -1,5 +1,20 @@
 # Changelog - PUC Trilho [2026-05-21]
 
+## 🎛️ Versão: Filtro de Ruído Inteligente para o Trilho e Restabelecimento do Clique
+- **Filtro de Ruído Baseado em Janela Deslizante (Fim da Intermitência)**:
+    - **Algoritmo de Delta Acumulado**: Implementado rastreamento de movimento por janela de tempo deslizante (`motionWindowMs`, padrão 250ms) no backend (`bridge.js`) e frontend (`App.jsx`). Em vez de considerar qualquer variação `> 1` como movimento, agora calculamos a variação cumulativa (`maxPos - minPos`) no período. O totem só é considerado "em movimento" se a variação for maior ou igual ao limite configurável (`motionMinDelta`, padrão 15 unidades).
+    - **Solução do Bloqueio do Clique (Fix "o clique parou de receber")**: Com o novo filtro, ruídos e pequenas oscilações eletrônicas do cabo/encoder (jitter de 1 a 3 unidades) com o totem parado são completamente ignorados. O estado do trilho é corretamente identificado como estático, restabelecendo instantaneamente a recepção de cliques físicos ('C') e navegação ('D', 'E') com 100% de confiabilidade.
+- **Painel de Calibração com 6 Sliders Premium**:
+    - **Grade Balanceada de Alta Fidelidade**: Adicionados mais 2 controles deslizantes integrados à grade visual do menu 'C' (`HardwareConfigurator.jsx`), resultando em uma grade simétrica de 6 sliders:
+        1. *Giro por Ação* (passos físicos para disparar seta).
+        2. *Debounce de Navegação* (tempo de retenção entre setas).
+        3. *Anti-Ruído do Clique* (tempo de debounce do clique).
+        4. *Bloqueio ao Mover o Trilho* (tempo de blindagem de entradas em movimento).
+        5. *Filtro de Ruído* (variação mínima para detectar movimento real).
+        6. *Janela de Ruído* (período de tempo para medir ruído do sensor).
+- **Sincronização e Persistência Completa**:
+    - Todos os novos parâmetros são sincronizados dinamicamente via socket com o frontend e persistidos automaticamente no arquivo de calibração `hardware_settings.json` do backend.
+
 ## 🎛️ Versão: Blindagem de Entradas em Movimento e Otimização do Calibrador
 - **Blindagem Completa de Ações em Movimento do Trilho**:
     - **Detecção de Movimento Físico e Virtual**: O backend (`bridge.js`) e o frontend (`App.jsx`) agora trabalham em harmonia para rastrear o movimento do trilho e ignorar imediatamente quaisquer cliques ou pulsos de navegação (esquerda/direita) se o tempo decorrido desde o último deslocamento for menor que o limite configurado (`ignoreDuringMoveMs`). Isso zera os falsos cliques causados por indução mecânica ou vibração durante o deslocamento do totem.

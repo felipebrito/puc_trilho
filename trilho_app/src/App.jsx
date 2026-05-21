@@ -90,7 +90,9 @@ function App() {
     navStepsPerAction: 7,
     navDebounceMs: 150,
     clickDebounceMs: 500,
-    ignoreDuringMoveMs: 800
+    ignoreDuringMoveMs: 800,
+    motionMinDelta: 15,
+    motionWindowMs: 250
   });
   const hardwareConfigRef = useRef(hardwareConfig);
 
@@ -118,6 +120,7 @@ function App() {
   const [isIdle, setIsIdle] = useState(false);
   const lastClickTimeRef = useRef(0);
   const lastEncoderMoveTimeRef = useRef(0);
+  const posHistoryRef = useRef([]); // Histórico de posições para filtro de ruído no frontend
 
   // Aplica configurações do design_settings.json ao trocar de slide
   useEffect(() => {
@@ -261,11 +264,30 @@ function App() {
 
     socketInstance.on('encoder_update', (data) => {
       const pos = typeof data === 'object' ? data.position : data;
+      const now = Date.now();
+      const config = hardwareConfigRef.current;
       
-      // Só consideramos atividade se a posição realmente mudou (evita flood com totem parado)
+      // Adiciona ao histórico deslizante de posições do frontend
+      posHistoryRef.current.push({ pos, time: now });
+      
+      // Limpa dados mais antigos que a janela configurada
+      const windowMs = config.motionWindowMs || 250;
+      posHistoryRef.current = posHistoryRef.current.filter(item => now - item.time <= windowMs);
+
+      // Calcula a variação delta no histórico
+      let delta = 0;
+      if (posHistoryRef.current.length > 1) {
+        const positions = posHistoryRef.current.map(h => h.pos);
+        const minPos = Math.min(...positions);
+        const maxPos = Math.max(...positions);
+        delta = maxPos - minPos;
+      }
+      
       setEncoderPosition(prevPos => {
-        if (Math.abs(prevPos - pos) > 1) { // margem de 1 unidade para ruído
-          lastEncoderMoveTimeRef.current = Date.now();
+        const minDelta = config.motionMinDelta !== undefined ? config.motionMinDelta : 15;
+        // Só consideramos atividade de movimento se a variação no tempo for maior ou igual ao limite
+        if (delta >= minDelta) {
+          lastEncoderMoveTimeRef.current = now;
           window.dispatchEvent(new Event('hardware_activity'));
         }
         return pos;
