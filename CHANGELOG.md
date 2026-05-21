@@ -1,5 +1,10 @@
 # Changelog - PUC Trilho [2026-05-21]
 
+## 🖱️ Versão: Exibição Dinâmica do Cursor no Design Editor
+- **Exibição Dinâmica do Cursor**:
+    - Implementada lógica no `DesignEditor.jsx` para injetar a classe `show-cursor-editor` no elemento raiz (`document.documentElement`) ao abrir o Design Editor (Tecla 'E').
+    - Atualizado o arquivo `App.css` para aplicar `cursor: auto !important` quando a classe do editor estiver ativa, permitindo a exibição do cursor e facilitando o uso do mouse e dos sliders de calibração no quiosque.
+
 ## 🛠️ Versão: Sincronização de Ativos Estáticos e Resolução de Mídia
 - **Sincronização de Ativos no Repositório**:
     - Sincronizados todos os ativos estáticos de `trilho_app/public/assets/` para a pasta de ativos raiz `public/assets/`.

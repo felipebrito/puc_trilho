@@ -452,6 +452,17 @@ const DesignEditor = ({ referenceImage, viewId, period, section, slideId, savedS
     const [variables, setVariables] = useState({});
     const [saveStatus, setSaveStatus] = useState('idle'); // idle | saving | saved | error
 
+    useEffect(() => {
+        if (isVisible) {
+            document.documentElement.classList.add('show-cursor-editor');
+        } else {
+            document.documentElement.classList.remove('show-cursor-editor');
+        }
+        return () => {
+            document.documentElement.classList.remove('show-cursor-editor');
+        };
+    }, [isVisible]);
+
     // LOG DE DIAGNÓSTICO PESADO
     console.log(`[DesignEditor] DEBUG - viewId: "${viewId}", period: "${period}", section: "${section}"`);
     

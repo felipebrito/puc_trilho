@@ -5,8 +5,10 @@
   cursor: none; /* Esconde o mouse no quiosque */
 }
 
-/* Mostra o cursor quando as telas de configuração (C ou W) estão abertas */
+/* Mostra o cursor quando as telas de configuração (C, W ou E) estão abertas */
 .show-cursor #root,
-.show-cursor * {
+.show-cursor *,
+.show-cursor-editor #root,
+.show-cursor-editor * {
   cursor: auto !important;
 }
